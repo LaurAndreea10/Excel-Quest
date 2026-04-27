@@ -5,11 +5,12 @@ Acest branch adaugă o versiune preview pentru Excel Quest, aliniată ca experie
 ## Ce include preview-ul
 
 - landing public premium cu hero, CTA și navigație sticky;
+- comutator bilingv Română / English, cu limba salvată în `localStorage`;
 - separare între demo și experiența personală;
 - progres local pornit de la zero, salvat în `localStorage`;
 - lecții, quiz-uri și proiecte cu XP;
 - simulator spreadsheet cu formule SUM, AVERAGE, MIN, MAX;
-- export CSV;
+- export CSV bilingv;
 - bibliotecă de formule;
 - raport personal;
 - coach local, fără servicii externe.
