@@ -7,7 +7,23 @@ Acest branch adaugă versiuni preview pentru Excel Quest, aliniate ca experienț
 1. `index-content-rich-preview.html` — preview recomandat pentru conținut bogat: lecții, proiecte, Formula Vault, Daily Quest și command palette.
 2. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei de experiență aplicativă.
 3. `index-quest-map-preview.html` — preview gamification/job simulation cu hartă, inbox, audit și colecții.
-4. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+4. `index-game-modes-preview.html` — preview cu game modes: Escape Room, Dashboard Builder, Sandbox, Bingo, Interview și Time Machine.
+5. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+
+## Ce include preview-ul Game Modes
+
+- Excel Escape Room: puzzle-uri cu cod ascuns, COUNTIF, filtre și formule reparate;
+- Build-a-Dashboard: curățare date, KPI-uri, grafice, layout și scor de claritate;
+- Excel Roast: comentarii amuzante pentru tabele greșite;
+- Guess the Formula: utilizatorul vede rezultatul și ghicește formula;
+- Excel Sandbox: spațiu liber pentru date, formule, explicații și reset;
+- Personal Goal Tracker: obiective precum școală, buget, joburi sau rapoarte;
+- Formula Flashcards: carduri pentru formule, shortcut-uri, erori și funcții logice;
+- Excel Bingo: tablă 5x5 cu mini-task-uri și XP la completarea unei linii;
+- Scenario Generator: provocări generate pentru magazine online, studenți, bugete și HR;
+- Peer Review Mode: utilizatorul evaluează o soluție și propune o metodă mai eficientă;
+- Excel Time Machine: același task arătat ca metodă manuală, beginner și professional;
+- Job Interview Mode: întrebări și task-uri de interviu cu scor și recomandări.
 
 ## Ce include preview-ul Quest Map
 
