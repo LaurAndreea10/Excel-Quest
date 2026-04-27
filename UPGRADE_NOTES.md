@@ -5,8 +5,24 @@ Acest branch adaugă versiuni preview pentru Excel Quest, aliniate ca experienț
 ## Preview-uri disponibile
 
 1. `index-content-rich-preview.html` — preview recomandat pentru conținut bogat: lecții, proiecte, Formula Vault, Daily Quest și command palette.
-2. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei noi de experiență aplicativă.
-3. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+2. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei de experiență aplicativă.
+3. `index-quest-map-preview.html` — preview gamification/job simulation cu hartă, inbox, audit și colecții.
+4. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+
+## Ce include preview-ul Quest Map
+
+- Excel Quest Map: Formula Forest, Pivot City, Chart Mountains, Data Cleaning Lab, Dashboard Castle, Shortcut Arena;
+- Client Requests: cereri tip job real, rezolvate prin formule/metode în grid;
+- Bad Spreadsheet Museum: galerie de tabele greșite și reparații propuse;
+- Formula Duels: alegerea formulei mai bune, cu explicație;
+- What Would Excel Do?: întrebări rapide despre comportamentul Excel;
+- Mini Case Studies: alegerea metodei potrivite — formulă, pivot sau filtru;
+- Excel Personality: onboarding cu rezultate precum Formula Wizard, Dashboard Designer, Data Cleaner, Shortcut Ninja, Pivot Strategist;
+- Streak Freeze: recompensă câștigată și folosită local;
+- Excel Inbox: emailuri/misiuni de la manager, client, HR și finance;
+- Audit Mode: checklist pentru formule consistente, duplicate, valori lipsă, totaluri și date suspecte;
+- Explain the Chart: interpretare de grafic;
+- Achievement Collections: Formula Starter Pack, Data Analyst Pack, Cleaning Pack.
 
 ## Ce include preview-ul advanced
 
@@ -43,4 +59,4 @@ Am încercat update direct pe `index.html`, dar GitHub API a returnat conflict p
 
 ## Pentru publicare
 
-După review, `index-content-rich-preview.html` sau `index-advanced-experience-preview.html` poate înlocui `index.html`, în funcție de direcția aleasă.
+După review, unul dintre preview-uri poate înlocui `index.html`, sau modulele pot fi combinate într-o singură experiență finală.
