@@ -8,7 +8,26 @@ Acest branch adaugă versiuni preview pentru Excel Quest, aliniate ca experienț
 2. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei de experiență aplicativă.
 3. `index-quest-map-preview.html` — preview gamification/job simulation cu hartă, inbox, audit și colecții.
 4. `index-game-modes-preview.html` — preview cu game modes: Escape Room, Dashboard Builder, Sandbox, Bingo, Interview și Time Machine.
-5. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+5. `index-career-learning-preview.html` — preview career learning: paths, gym, certification, mentor notes și templates.
+6. `index-unexpected-modes-preview.html` — preview unexpected: Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Fortune Cookies.
+7. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+
+## Ce include preview-ul Unexpected Modes
+
+- Excel Horror Stories: scenarii amuzante cu dezastre Excel și sarcini de salvare;
+- Formula Karaoke: formula apare pe bucăți, iar utilizatorul completează următorul pas;
+- Spreadsheet Personality Test: Formula Wizard, Cleanup Hero, Pivot Brain, Dashboard Artist, Shortcut Speedrunner;
+- Excel Courtroom: formule suspecte judecate ca vinovate, nevinovate sau care au nevoie de corectare;
+- Hidden Easter Eggs: badge-uri și titluri secrete pentru acțiuni repetate sau milestone-uri;
+- Excel Radio: feed scurt de tips pe dashboard;
+- Mini Podcast Cards: episoade scurte în format text;
+- Fake Boss Feedback: manager fictiv care generează misiuni secundare după proiect;
+- Excel Fortune Cookie: replici scurte și memorabile după quiz;
+- Data Ethics Corner: principii despre grafice, surse, date personale și limitele analizei;
+- Excel Translation Mode: transformă limbajul normal în funcții precum SUMIF, COUNTIF, XLOOKUP;
+- Inbox From the Future: mesaje motivaționale fictive din viitor.
+
+Combinația recomandată pentru integrarea finală este: Excel Courtroom + Excel Translation Mode + Hidden Easter Eggs + Data Ethics Corner.
 
 ## Ce include preview-ul Game Modes
 
