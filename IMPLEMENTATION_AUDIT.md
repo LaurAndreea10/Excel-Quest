@@ -66,6 +66,23 @@ Implementat în `index-game-modes-lab-preview.html` și documentat în `GAME_MOD
 - [x] Excel Time Machine cu metoda manuală, beginner și profesională.
 - [x] Job Interview Mode cu întrebări, scor și recomandări.
 
+## Setul 5 – career growth, mentorat și resurse reutilizabile
+
+Implementat în `index-career-growth-preview.html` și documentat în `CAREER_GROWTH.md`.
+
+- [x] Excel Career Paths pentru Admin Assistant, Junior Accountant, Data Analyst, HR Specialist, Sales Analyst și Project Manager.
+- [x] One Formula, Many Uses cu exemple reale pentru COUNTIF.
+- [x] Excel Gym cu antrenamente de 5 minute pentru formule, shortcut-uri, erori, grafice și data cleaning.
+- [x] Data Storytelling cu concluzii și recomandări pentru manager.
+- [x] Spreadsheet Design Score pe claritate, formule corecte, formatare, structură, lizibilitate și insight-uri.
+- [x] Wrong Answer Gallery cu explicații pentru greșeli comune.
+- [x] Excel Habits cu mini-obiceiuri bune.
+- [x] Cheat Sheet Builder pentru formule, shortcut-uri și explicații, cu export PDF demo.
+- [x] Mini Certification Exam cu structură de examen, scor minim și certificat demo.
+- [x] Progress Timeline cu etape de progres.
+- [x] Excel Mentor Notes cu feedback orientativ după proiect.
+- [x] Template Library cu buget lunar, tracker cheltuieli, raport vânzări, inventar, plan de proiect, calendar editorial și habit tracker.
+
 ## Fișiere relevante
 
 - `index-content-rich-preview.html`
@@ -76,17 +93,10 @@ Implementat în `index-game-modes-lab-preview.html` și documentat în `GAME_MOD
 - `QUEST_SYSTEMS.md`
 - `index-game-modes-lab-preview.html`
 - `GAME_MODES_LAB.md`
+- `index-career-growth-preview.html`
+- `CAREER_GROWTH.md`
 - `index-final.html`
 
 ## Observație de rollout
 
-Cerințele sunt implementate ca preview-uri independente, testabile în repository. `index-final.html` funcționează ca homepage unificat și trimite către experiențele principale. Pentru ca toate să fie vizibile direct pe homepage-ul public `/Excel-Quest/`, următorul pas manual este promovarea `index-final.html` ca `index.html` și adăugarea linkului către `index-game-modes-lab-preview.html` în pagina finală.
-
-Comandă rapidă pentru promovarea homepage-ului final:
-
-```bash
-cp index-final.html index.html
-git add index.html
-git commit -m "Promote final unified homepage"
-git push
-```
+Cerințele sunt implementate ca preview-uri independente, testabile în repository. `index.html` redirecționează către `index-final.html`, iar pagina finală listează experiențele principale. Când apare un set nou, `index-final.html` trebuie actualizat cu un card/link către preview-ul nou.
