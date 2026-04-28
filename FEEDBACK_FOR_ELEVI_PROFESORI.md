@@ -12,6 +12,20 @@ Acest formular poate fi folosit în testarea aplicației cu elevi, profesori, tr
 
 Nu colecta date personale sensibile. Numele poate fi înlocuit cu alias.
 
+Dacă persoana testatoare dorește să menționeze nevoi de accesibilitate, poate completa voluntar:
+
+- folosesc cititor de ecran;
+- folosesc doar tastatura;
+- am nevoie de text mai mare;
+- am dificultăți de citire/dislexie;
+- am nevoie de instrucțiuni mai scurte;
+- prefer contrast mai puternic;
+- altă nevoie:
+
+```text
+
+```
+
 ## 1. Prima impresie
 
 1. Ai înțeles ce face aplicația în primele 10 secunde?
@@ -156,7 +170,52 @@ Observații:
 
 ```
 
-## 8. Legal și încredere
+## 8. Accesibilitate
+
+1. Textul este ușor de citit?
+   - Da
+   - Parțial
+   - Nu
+
+2. Instrucțiunile sunt suficient de scurte și clare?
+   - Da
+   - Parțial
+   - Nu
+
+3. Mesajele de eroare îți spun ce să faci mai departe?
+   - Da
+   - Parțial
+   - Nu
+
+4. Poți înțelege feedbackul fără să te bazezi doar pe culoare?
+   - Da
+   - Parțial
+   - Nu
+
+5. Poți folosi aplicația fără mouse, doar cu tastatura?
+   - Da
+   - Parțial
+   - Nu
+   - Nu am testat
+
+6. Dacă folosești cititor de ecran, butoanele și câmpurile au sens?
+   - Da
+   - Parțial
+   - Nu
+   - Nu folosesc cititor de ecran
+
+7. Graficele sau tabelele au suficiente explicații text?
+   - Da
+   - Parțial
+   - Nu
+
+Ce ar trebui adaptat pentru a fi mai accesibil?
+
+```text
+
+```
+
+## 9. Legal și încredere
 
 1. Ai găsit ușor Politica de confidențialitate?
    - Da
@@ -170,7 +229,7 @@ Observații:
    - Da
    - Nu
 
-## 9. Scor general
+## 10. Scor general
 
 Acordă un scor de la 1 la 10:
 
@@ -190,7 +249,7 @@ De ce?
 
 ```
 
-## 10. Cele mai importante 3 îmbunătățiri
+## 11. Cele mai importante 3 îmbunătățiri
 
 1.
 2.
