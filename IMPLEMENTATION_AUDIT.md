@@ -49,6 +49,23 @@ Implementat în `index-quest-systems-preview.html` și documentat în `QUEST_SYS
 - [x] Explain the Chart cu interpretarea unui grafic.
 - [x] Achievement Collections cu Formula Starter Pack și Data Analyst Pack.
 
+## Setul 4 – game modes lab și practică shareable
+
+Implementat în `index-game-modes-lab-preview.html` și documentat în `GAME_MODES_LAB.md`.
+
+- [x] Excel Escape Room cu puzzle COUNTIF și deblocare de cameră.
+- [x] Build-a-Dashboard cu pași: curățare date, KPI-uri, grafice, layout și scor de claritate.
+- [x] Excel Roast cu mesaje amuzante pentru tabele greșite.
+- [x] Guess the Formula cu rezultat dat și formulă de ghicit.
+- [x] Excel Sandbox pentru testarea formulelor, explicație rezultat și reset.
+- [x] Personal Goal Tracker cu obiective personale și progres.
+- [x] Formula Flashcards pentru formule, shortcut-uri, erori și funcții logice.
+- [x] Excel Bingo cu tablă de mini-task-uri și XP.
+- [x] Scenario Generator cu provocări generate aleatoriu.
+- [x] Peer Review Mode pentru evaluarea unei soluții simulate.
+- [x] Excel Time Machine cu metoda manuală, beginner și profesională.
+- [x] Job Interview Mode cu întrebări, scor și recomandări.
+
 ## Fișiere relevante
 
 - `index-content-rich-preview.html`
@@ -57,11 +74,13 @@ Implementat în `index-quest-systems-preview.html` și documentat în `QUEST_SYS
 - `ADVANCED_LEARNING_MODULES.md`
 - `index-quest-systems-preview.html`
 - `QUEST_SYSTEMS.md`
+- `index-game-modes-lab-preview.html`
+- `GAME_MODES_LAB.md`
 - `index-final.html`
 
 ## Observație de rollout
 
-Cerințele sunt implementate ca preview-uri independente, testabile în repository. `index-final.html` funcționează ca homepage unificat și trimite către experiențele principale. Pentru ca toate să fie vizibile direct pe homepage-ul public `/Excel-Quest/`, următorul pas manual este promovarea `index-final.html` ca `index.html`.
+Cerințele sunt implementate ca preview-uri independente, testabile în repository. `index-final.html` funcționează ca homepage unificat și trimite către experiențele principale. Pentru ca toate să fie vizibile direct pe homepage-ul public `/Excel-Quest/`, următorul pas manual este promovarea `index-final.html` ca `index.html` și adăugarea linkului către `index-game-modes-lab-preview.html` în pagina finală.
 
 Comandă rapidă pentru promovarea homepage-ului final:
 
