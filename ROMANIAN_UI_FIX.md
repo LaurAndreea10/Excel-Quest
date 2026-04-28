@@ -1,21 +1,41 @@
-# Fix UI română – zile și formular de început
+# Selector limbă și traducere câmpuri
 
-Acest branch adaugă `romanian-ui-hotfix.js`, un script mic pentru localizarea textelor rămase în engleză în interfața live `index.html`.
+Acest branch actualizează `romanian-ui-hotfix.js` astfel încât aplicația să permită selectarea limbii **Română / English** și să traducă formularul de început, câmpurile, placeholder-urile, opțiunile, butoanele și zilele din streak.
 
-## Ce adaptează
+## Ce adaugă
 
-- zilele din streak: `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun` → `Lun`, `Mar`, `Mie`, `Joi`, `Vin`, `Sâm`, `Dum`;
-- zilele complete: `Monday`, `Tuesday`, etc. → `Luni`, `Marți`, etc.;
-- formularul de început / onboarding:
-  - `Name` → `Nume`;
-  - `First name` → `Prenume`;
-  - `Goal` → `Obiectiv`;
-  - `Choose your goal` → `Alege obiectivul`;
-  - `Choose your role` → `Alege rolul`;
-  - `Experience level` → `Nivel de experiență`;
-  - `Beginner` → `Începător`;
-  - `Start`, `Get started`, `Continue` → variante românești;
-- etichete precum `Quick Actions`, `Balanced`, `Guest · Beginner`, `Keep learning every day`.
+- selector plutitor **RO / EN** vizibil pe pagină;
+- câmp **Limbă / Language** în formularul de început, atunci când formularul este detectat;
+- salvarea limbii în `localStorage`, cheia `excel_quest_language`;
+- actualizarea atributului `<html lang="ro|en">`;
+- traducere bidirecțională RO ↔ EN pentru câmpuri și etichete;
+- traducere pentru `placeholder`, `aria-label`, `title`, `value` la butoane/input-uri;
+- traducerea opțiunilor din `<select>`;
+- traducerea zilelor din streak.
+
+## Câmpuri traduse în formularul de început
+
+- `Name` ↔ `Nume`;
+- `Your name` ↔ `Numele tău`;
+- `First name` ↔ `Prenume`;
+- `Role` ↔ `Rol`;
+- `Goal` ↔ `Obiectiv`;
+- `Learning goal` ↔ `Obiectiv de învățare`;
+- `Choose your goal` ↔ `Alege obiectivul`;
+- `Choose your role` ↔ `Alege rolul`;
+- `Choose your level` ↔ `Alege nivelul`;
+- `Experience level` ↔ `Nivel de experiență`;
+- `Beginner` ↔ `Începător`;
+- `Intermediate` ↔ `Intermediar`;
+- `Advanced` ↔ `Avansat`;
+- `Create profile` ↔ `Creează profilul`;
+- `Save profile` ↔ `Salvează profilul`;
+- `Let’s start` ↔ `Să începem`.
+
+## Zile traduse
+
+- `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun` ↔ `Lun`, `Mar`, `Mie`, `Joi`, `Vin`, `Sâm`, `Dum`;
+- `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday` ↔ `Luni`, `Marți`, `Miercuri`, `Joi`, `Vineri`, `Sâmbătă`, `Duminică`.
 
 ## Cum se integrează în `index.html`
 
@@ -25,14 +45,13 @@ Adaugă înainte de `</body>`:
 <script src="./romanian-ui-hotfix.js"></script>
 ```
 
-## De ce e separat
-
-`index.html` este foarte mare, iar conținutul complet este trunchiat la citire prin API. Pentru a evita suprascrierea accidentală a aplicației live, fixul este livrat separat și poate fi inclus cu o singură linie.
-
 ## Testare
 
-1. Deschide aplicația.
-2. Resetează localStorage sau intră într-un browser nou ca să apară formularul de început.
-3. Verifică formularul: toate etichetele și opțiunile trebuie să fie în română.
-4. Verifică zona de streak: zilele trebuie să fie în română.
-5. Verifică dashboard-ul: `Guest`, `Beginner`, `Quick Actions`, `Balanced`, `Keep learning every day` trebuie să fie adaptate.
+1. Deschide aplicația pe mobil sau desktop.
+2. Resetează `localStorage` sau intră într-un browser nou ca să apară formularul de început.
+3. Verifică selectorul plutitor **RO / EN**.
+4. Verifică dacă formularul are câmpul **Limbă / Language**.
+5. Alege **RO** și confirmă că toate câmpurile sunt în română.
+6. Alege **EN** și confirmă că aceleași câmpuri revin în engleză.
+7. Verifică zilele din streak.
+8. Verifică dashboard-ul: `Guest`, `Beginner`, `Quick Actions`, `Balanced`, `Keep learning every day`.
