@@ -1,44 +1,791 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excel Quest – Învață Excel interactiv</title>
-<meta name="description" content="Excel Quest este o aplicație educațională accesibilă pentru lecții Excel, proiecte, formule, misiuni, dashboard-uri și trasee de carieră.">
-<style>
-:root{--bg:#06090f;--card:#121c2f;--line:rgba(255,255,255,.14);--text:#eef6ff;--muted:#9fb0c7;--green:#34d399;--blue:#60a5fa;--gold:#f2b84b;--rose:#fb7185;--violet:#a78bfa;--cyan:#22d3ee;--orange:#fb923c;--focus:#facc15}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 10% 0,rgba(52,211,153,.16),transparent 32%),radial-gradient(circle at 100% 20%,rgba(96,165,250,.14),transparent 34%),var(--bg);color:var(--text);line-height:1.6}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.skip-link{position:absolute;left:16px;top:-80px;z-index:9999;background:#facc15;color:#111827;padding:10px 14px;border-radius:12px;font-weight:950;text-decoration:none}.skip-link:focus{top:14px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid var(--focus);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.top{position:sticky;top:0;z-index:20;background:rgba(6,9,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px;font-weight:950}.logo{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),#15803d);color:#06140d;font-weight:950}.links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.links a,.btn,.lang-btn,.a11y-btn{color:var(--text);text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:999px;padding:9px 12px;font-weight:850;cursor:pointer}.btn.primary,.lang-btn.active,.a11y-btn.active{background:linear-gradient(135deg,var(--green),#15803d);color:#06140d;border-color:rgba(52,211,153,.5)}.btn.blue{border-color:rgba(96,165,250,.42);color:#dcecff}.btn.gold{border-color:rgba(242,184,75,.42);color:var(--gold)}.btn.rose{border-color:rgba(251,113,133,.42);color:#ffd0d8}.btn.violet{border-color:rgba(167,139,250,.42);color:#e6dcff}.btn.cyan{border-color:rgba(34,211,238,.42);color:#cffafe}.btn.orange{border-color:rgba(251,146,60,.42);color:#fed7aa}.toggle{display:flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px;background:rgba(255,255,255,.04)}.toggle-label{color:var(--muted);font-size:.85rem;font-weight:850;padding:0 6px}.lang-btn{padding:7px 10px}.hero{padding:72px 0 34px}.badge{display:inline-flex;border:1px solid rgba(52,211,153,.42);background:rgba(52,211,153,.08);color:var(--green);border-radius:999px;padding:6px 12px;font-weight:950}h1{font-size:clamp(2.25rem,6vw,5rem);line-height:.98;letter-spacing:-.06em;margin:18px 0 16px}h2{font-size:clamp(1.45rem,3vw,2.25rem);letter-spacing:-.04em;margin:0 0 10px}h3{margin:0 0 8px}.lead,p,li,label{color:var(--muted)}.lead{max-width:920px;font-size:1.08rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}section{padding:30px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}.card,.panel,.mini{border:1px solid var(--line);background:rgba(18,28,47,.88);border-radius:24px;padding:18px}.card{display:flex;flex-direction:column;min-height:245px}.card p{flex:1}.tag{display:inline-flex;width:max-content;border:1px solid rgba(52,211,153,.34);background:rgba(52,211,153,.07);color:var(--green);border-radius:999px;padding:4px 9px;font-size:.78rem;font-weight:900;margin-bottom:10px}.blueTag{border-color:rgba(96,165,250,.34);background:rgba(96,165,250,.08);color:var(--blue)}.goldTag{border-color:rgba(242,184,75,.34);background:rgba(242,184,75,.08);color:var(--gold)}.roseTag{border-color:rgba(251,113,133,.34);background:rgba(251,113,133,.08);color:var(--rose)}.violetTag{border-color:rgba(167,139,250,.34);background:rgba(167,139,250,.08);color:var(--violet)}.cyanTag{border-color:rgba(34,211,238,.34);background:rgba(34,211,238,.08);color:var(--cyan)}.orangeTag{border-color:rgba(251,146,60,.34);background:rgba(251,146,60,.08);color:var(--orange)}input,select{width:100%;border:1px solid var(--line);border-radius:14px;background:#091321;color:var(--text);padding:11px;margin-top:6px}label{display:block;font-weight:800;margin:10px 0 2px}.help{font-size:.92rem;color:var(--muted);margin:4px 0 0}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:14px}.day{border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center;background:rgba(255,255,255,.04);font-weight:900;color:var(--text);cursor:pointer}.day.today{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.1);color:var(--green)}.result,.notice{margin-top:12px;border:1px solid rgba(52,211,153,.34);background:rgba(52,211,153,.08);border-radius:14px;padding:12px;color:#b9f8d7}.result{display:none}.dashboard{display:none}.dashboard.visible{display:block}.stat{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:14px}.stat strong{display:block;color:var(--green);font-size:1.6rem}.bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:999px}.tree{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}.node{border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:20px;padding:14px;min-height:190px;display:flex;flex-direction:column}.node.unlocked{border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.07)}.node p{flex:1}.list{list-style:none;margin:12px 0 0;padding:0}.list li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.07)}.list li:before{content:'✓';color:var(--green);font-weight:950;margin-right:8px}.a11y-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.keyboard-list kbd{display:inline-block;border:1px solid var(--line);background:rgba(255,255,255,.08);border-radius:7px;padding:2px 6px;color:var(--text);font-weight:900}footer{border-top:1px solid var(--line);margin-top:28px;padding:24px 0;color:var(--muted)}footer a{color:var(--text);text-decoration:none}.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}.legal{display:flex;gap:10px;flex-wrap:wrap}body.large-text{font-size:1.16rem}body.high-contrast{--bg:#000;--card:#000;--line:#fff;--text:#fff;--muted:#fff;--green:#00ff88;--blue:#8bd3ff;--gold:#ffdf6e;--rose:#ff9aad;--violet:#d8c2ff;--cyan:#89f7ff;--orange:#ffc28a;background:#000}body.high-contrast .card,body.high-contrast .panel,body.high-contrast .mini,body.high-contrast .stat,body.high-contrast .node{background:#000;border-color:#fff}body.high-contrast a,body.high-contrast button{border-color:#fff}body.reduced-motion *,body.reduced-motion *::before,body.reduced-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}@media(max-width:1400px){.grid7,.tree{grid-template-columns:repeat(3,1fr)}}@media(max-width:920px){.grid,.grid2,.grid4,.grid7,.tree{grid-template-columns:1fr}.days{grid-template-columns:repeat(2,1fr)}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F9D58" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0B1F3A" media="(prefers-color-scheme: dark)" />
+
+  <title>Excel-Quest — Învață Excel ca într-un joc</title>
+  <meta name="description" content="Aplicație web educațională pentru a învăța Microsoft Excel într-un mod practic, vizual și gamificat: lecții interactive, quiz-uri, formule explicate, simulatoare, quest-uri, Formula Vault, Excel Gym, insigne și șabloane." />
+  <meta name="author" content="Laura Andreea" />
+  <meta name="keywords" content="Excel, învață Excel, gamificare, lecții Excel, formule Excel, VLOOKUP, pivot tables, quest, Formula Vault, insigne Excel" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://laurandreea10.github.io/Excel-Quest/" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Excel-Quest" />
+  <meta property="og:title" content="Excel-Quest — Învață Excel ca într-un joc" />
+  <meta property="og:description" content="Lecții interactive, quest-uri, Formula Vault, Excel Gym, insigne. Învață Excel gamificat." />
+  <meta property="og:url" content="https://laurandreea10.github.io/Excel-Quest/" />
+  <meta property="og:image" content="https://laurandreea10.github.io/Excel-Quest/og-cover.png" />
+  <meta property="og:image:secure_url" content="https://laurandreea10.github.io/Excel-Quest/og-cover.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Excel-Quest — învață Excel ca într-un joc, cu quest-uri, formule și insigne" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Excel-Quest — Învață Excel ca într-un joc" />
+  <meta name="twitter:description" content="Lecții interactive, quest-uri, Formula Vault, Excel Gym, insigne." />
+  <meta name="twitter:image" content="https://laurandreea10.github.io/Excel-Quest/og-cover.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Excel-Quest",
+    "description": "Aplicație web educațională pentru a învăța Excel într-un mod gamificat: lecții, quiz-uri, formule explicate, simulatoare, quest-uri, Formula Vault, Excel Gym, insigne și șabloane.",
+    "url": "https://laurandreea10.github.io/Excel-Quest/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "inLanguage": ["ro", "en"],
+    "author": {
+      "@type": "Person",
+      "name": "Laura Andreea"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0F9D58;
+      --accent: #FFB400;
+      --deep: #0B1F3A;
+      --surface: #F7F9FC;
+      --surface-2: #ffffff;
+      --grid: #D6DDE5;
+      --text: #0B1F3A;
+      --text-muted: #475569;
+      --danger: #E5484D;
+      --info: #5B8DEF;
+      --radius: 14px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 1px 2px rgba(11,31,58,.06), 0 2px 8px rgba(11,31,58,.05);
+      --shadow-md: 0 4px 14px rgba(11,31,58,.08), 0 12px 40px rgba(11,31,58,.07);
+      --shadow-glow: 0 0 0 1px rgba(255,180,0,.35), 0 10px 30px rgba(255,180,0,.18);
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SF Mono, Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --surface: #0E1726;
+      --surface-2: #142036;
+      --grid: #1f2d44;
+      --text: #F7F9FC;
+      --text-muted: #94a3b8;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.3);
+      --shadow-md: 0 4px 14px rgba(0,0,0,.5), 0 12px 40px rgba(0,0,0,.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    /* Spreadsheet grid background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+      opacity: .35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ====== NAVBAR ====== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: color-mix(in oklab, var(--surface) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--grid) 60%, transparent);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--grid);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all .2s;
+      font-size: 14px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .icon-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+
+    /* ====== HERO ====== */
+    .hero {
+      padding: 80px 0 60px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 14%, transparent);
+      color: color-mix(in oklab, var(--accent) 70%, var(--text));
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: .02em;
+      margin-bottom: 24px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      margin-bottom: 22px;
+    }
+    h1 .accent {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+      position: relative;
+    }
+    h1 .accent::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 6px;
+      height: 12px;
+      background: color-mix(in oklab, var(--accent) 50%, transparent);
+      z-index: -1;
+      border-radius: 4px;
+    }
+    .lead {
+      font-size: 19px;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 32px;
+    }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all .2s;
+      font-family: var(--font-body);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px color-mix(in oklab, var(--primary) 35%, transparent);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px color-mix(in oklab, var(--primary) 45%, transparent); }
+    .btn-ghost {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--grid);
+    }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* Hero spreadsheet mock */
+    .sheet-mock {
+      background: var(--surface-2);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      border: 1px solid var(--grid);
+      transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
+      transition: transform .4s ease;
+    }
+    .sheet-mock:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(0); }
+    .sheet-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: color-mix(in oklab, var(--deep) 6%, var(--surface-2));
+      border-bottom: 1px solid var(--grid);
+    }
+    .sheet-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .sheet-dot:nth-child(1) { background: #ff5f57; }
+    .sheet-dot:nth-child(2) { background: #febc2e; }
+    .sheet-dot:nth-child(3) { background: #28c840; }
+    .sheet-formula {
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      border-bottom: 1px solid var(--grid);
+      display: flex; gap: 12px; align-items: center;
+    }
+    .sheet-formula .fx { color: var(--accent); font-weight: 700; }
+    .sheet-formula .formula { color: var(--text); }
+    .sheet-formula .formula .fn { color: var(--primary); font-weight: 600; }
+    .sheet-formula .formula .str { color: var(--info); }
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: 40px repeat(4, 1fr);
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+    .sheet-grid > div {
+      padding: 10px 12px;
+      border-right: 1px solid var(--grid);
+      border-bottom: 1px solid var(--grid);
+    }
+    .sheet-grid .head {
+      background: color-mix(in oklab, var(--deep) 4%, var(--surface-2));
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: center;
+    }
+    .sheet-grid .row-num {
+      background: color-mix(in oklab, var(--deep) 4%, var(--surface-2));
+      color: var(--text-muted);
+      text-align: center;
+      font-weight: 600;
+    }
+    .sheet-grid .active {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+      background: color-mix(in oklab, var(--accent) 12%, transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
+      50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 0%, transparent); }
+    }
+
+    /* XP badge floating */
+    .xp-badge {
+      position: absolute;
+      top: 30px;
+      right: -20px;
+      background: var(--accent);
+      color: var(--deep);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: var(--shadow-glow);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+
+    /* ====== FEATURE GRID ====== */
+    section { padding: 80px 0; }
+    .section-head { max-width: 640px; margin: 0 auto 56px; text-align: center; }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+    .section-head p { color: var(--text-muted); font-size: 17px; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--grid);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, color-mix(in oklab, var(--primary) 8%, transparent));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: var(--shadow-md); }
+    .card:hover::before { opacity: 1; }
+    .card > * { position: relative; z-index: 1; }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--primary) 14%, transparent);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+    .card-icon svg { width: 24px; height: 24px; }
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -.015em;
+    }
+    .card p { color: var(--text-muted); font-size: 15px; }
+    .card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: color-mix(in oklab, var(--accent) 18%, transparent);
+      color: color-mix(in oklab, var(--accent) 60%, var(--text));
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ====== STATS STRIP ====== */
+    .stats {
+      background: var(--deep);
+      color: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stats::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+    .stat { position: relative; z-index: 1; }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: rgba(255,255,255,.7);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--grid);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .foot-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--primary); }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+      .hero { padding: 48px 0 32px; }
+      section { padding: 56px 0; }
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
 </head>
-<body>
-<a class="skip-link" href="#main" data-i="skipLink">Sari la conținut</a>
-<div id="liveRegion" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-<header class="top" role="banner"><div class="wrap nav"><div class="brand"><span class="logo" aria-hidden="true">EQ</span><span>Excel Quest</span></div><nav class="links" aria-label="Navigare principală"><a href="#start" data-i="navStart">Start</a><a href="#dashboard" data-i="navDashboard">Dashboard</a><a href="#skilltree" data-i="navSkillTree">Skill Tree</a><a href="#accessibilitate" data-i="navAccessibility">Accesibilitate</a><a href="#experiente" data-i="navExperiences">Experiențe</a><a href="legal.html" data-i="navLegal">Legal</a><div class="toggle" aria-label="Selector limbă"><span class="toggle-label" data-i="languageLabel">Limbă</span><button class="lang-btn" type="button" data-lang="ro" aria-pressed="true">RO</button><button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button></div></nav></div></header>
-<main id="main" tabindex="-1">
-<section class="hero wrap" aria-labelledby="heroTitle"><span class="badge" data-i="badge">Învățare Excel interactivă</span><h1 id="heroTitle" data-i="heroTitle">Învață Excel printr-un traseu personalizat, nu prin pagini separate.</h1><p class="lead" data-i="heroLead">Completează formularul, primești un dashboard recomandat, apoi mergi prin Skill Tree către lecții, misiuni, proiecte și portofoliu.</p><div class="actions"><a class="btn primary" href="#start" data-i="heroCta">Alege traseul</a><a class="btn orange" href="index-wow-mvp-preview.html" data-i="btnWow">Wow MVP</a><a class="btn blue" href="#skilltree" data-i="btnSkillTree">Vezi Skill Tree</a></div></section>
-<section id="start" class="wrap" aria-labelledby="startTitle"><h2 id="startTitle" data-i="startTitle">Formular de început</h2><p class="lead" data-i="startLead">Alege obiectivul, nivelul și ziua de antrenament. Datele rămân local în browser.</p><div class="grid2"><article class="panel"><label for="nume" data-i="nameLabel">Numele tău</label><input id="nume" autocomplete="name" data-placeholder-ro="ex. Andreea" data-placeholder-en="e.g. Alex" placeholder="ex. Andreea" aria-describedby="nameHelp"><p id="nameHelp" class="help" data-i="nameHelp">Poți lăsa câmpul gol și vei continua ca Invitat.</p><label for="obiectiv" data-i="goalLabel">Obiectivul tău</label><select id="obiectiv" aria-describedby="goalHelp"><option value="school" data-i="goalSchool">Vreau să învăț Excel pentru școală</option><option value="budget" data-i="goalBudget">Vreau să-mi organizez bugetul</option><option value="jobs" data-i="goalJobs">Vreau să aplic la joburi</option><option value="reports" data-i="goalReports">Vreau să înțeleg rapoarte</option><option value="dashboards" data-i="goalDashboards">Vreau să construiesc dashboard-uri</option></select><p id="goalHelp" class="help" data-i="goalHelp">Alegerea personalizează lecția următoare și misiunea zilnică.</p><label for="nivel" data-i="levelLabel">Nivelul actual</label><select id="nivel"><option value="beginner" data-i="levelBeginner">Începător</option><option value="intermediate" data-i="levelIntermediate">Intermediar</option><option value="advanced" data-i="levelAdvanced">Avansat</option></select><div class="actions"><button class="btn primary" id="saveStart" type="button" data-i="saveStart">Salvează și construiește dashboard-ul</button></div><div class="result" id="startResult" role="status"></div></article><article class="panel"><h3 data-i="daysTitle">Ziua de antrenament</h3><p data-i="daysLead">Alege o zi pentru antrenamentul tău de 5 minute.</p><div class="days" role="group" aria-label="Zilele săptămânii"><button class="day" type="button" data-day="monday" data-i="monday" aria-pressed="false">Luni</button><button class="day" type="button" data-day="tuesday" data-i="tuesday" aria-pressed="false">Marți</button><button class="day" type="button" data-day="wednesday" data-i="wednesday" aria-pressed="false">Miercuri</button><button class="day" type="button" data-day="thursday" data-i="thursday" aria-pressed="false">Joi</button><button class="day" type="button" data-day="friday" data-i="friday" aria-pressed="false">Vineri</button><button class="day" type="button" data-day="saturday" data-i="saturday" aria-pressed="false">Sâmbătă</button><button class="day" type="button" data-day="sunday" data-i="sunday" aria-pressed="false">Duminică</button></div><div class="result" id="dayResult" role="status"></div></article></div></section>
-<section id="dashboard" class="wrap dashboard" aria-labelledby="dashboardTitle"><h2 id="dashboardTitle" data-i="dashboardTitle">Dashboard-ul tău</h2><p class="lead" id="dashboardLead">Completează formularul pentru recomandări personalizate.</p><div class="grid4"><div class="stat"><span data-i="pathLabel">Traseu</span><strong id="dashPath">-</strong></div><div class="stat"><span data-i="nextLessonLabel">Următoarea lecție</span><strong id="dashLesson">-</strong></div><div class="stat"><span data-i="dailyQuestLabel">Misiunea de azi</span><strong id="dashQuest">-</strong></div><div class="stat"><span data-i="certificateLabel">Certificat</span><strong id="dashCert">0%</strong></div></div><div class="panel" style="margin-top:14px"><h3 data-i="progressTitle">Progres către certificat</h3><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18" aria-label="Progres către certificat"><span id="certBar" style="width:18%"></span></div><p id="certText">18% · Completează 80% din lecții, 70% din quiz-uri și 3 proiecte.</p><div class="actions"><a class="btn primary" id="dashPrimary" href="index-content-rich-preview.html">Continuă</a><a class="btn blue" href="#skilltree" data-i="openSkillTree">Deschide Skill Tree</a><a class="btn gold" href="index-wow-mvp-preview.html" data-i="openBoss">Boss Battle</a></div></div></section>
-<section id="accessibilitate" class="wrap" aria-labelledby="accessibilityTitle"><h2 id="accessibilityTitle" data-i="accessibilityTitle">Accesibilitate</h2><p class="lead" data-i="accessibilityLead">Activează opțiuni pentru contrast, dimensiunea textului și reducerea animațiilor. Setările se salvează în browser.</p><div class="panel"><div class="a11y-controls" role="group" aria-label="Setări de accesibilitate"><button class="a11y-btn" type="button" id="contrastBtn" data-setting="highContrast" aria-pressed="false" data-i="contrastBtn">Contrast ridicat</button><button class="a11y-btn" type="button" id="textBtn" data-setting="largeText" aria-pressed="false" data-i="textBtn">Text mare</button><button class="a11y-btn" type="button" id="motionBtn" data-setting="reducedMotion" aria-pressed="false" data-i="motionBtn">Reduce animațiile</button></div><div class="notice keyboard-list"><strong data-i="keyboardTitle">Navigare din tastatură:</strong> <span data-i="keyboardHelp">folosește</span> <kbd>Tab</kbd>, <kbd>Shift</kbd> + <kbd>Tab</kbd>, <kbd>Enter</kbd> <span data-i="keyboardHelp2">și linkul „Sari la conținut”.</span></div></div></section>
-<section id="skilltree" class="wrap" aria-labelledby="skillTreeTitle"><h2 id="skillTreeTitle" data-i="skillTreeTitle">Skill Tree conectat</h2><p class="lead" data-i="skillTreeLead">Fiecare ramură deschide direct modulul potrivit. Începe cu Formula Basics și avansează spre job skills.</p><div class="tree"><article class="node unlocked"><span class="tag">1</span><h3 data-i="skillFormula">Formula Basics</h3><p data-i="skillFormulaText">SUM, AVERAGE, IF și formule explicate.</p><a class="btn primary" href="index-content-rich-preview.html" data-i="open">Deschide</a></article><article class="node unlocked"><span class="tag blueTag">2</span><h3 data-i="skillCleaning">Data Cleaning</h3><p data-i="skillCleaningText">Duplicate, valori lipsă, categorii și date greșite.</p><a class="btn blue" href="index-advanced-learning-modules-preview.html" data-i="open">Deschide</a></article><article class="node"><span class="tag goldTag">3</span><h3 data-i="skillCharts">Charts</h3><p data-i="skillChartsText">Grafice, interpretări și data storytelling.</p><a class="btn gold" href="index-career-growth-preview.html" data-i="open">Deschide</a></article><article class="node"><span class="tag goldTag">4</span><h3 data-i="skillPivot">Pivot Tables</h3><p data-i="skillPivotText">Pivot City, sumarizări și rapoarte pe categorii.</p><a class="btn gold" href="index-quest-systems-preview.html" data-i="open">Deschide</a></article><article class="node"><span class="tag roseTag">5</span><h3 data-i="skillDashboards">Dashboards</h3><p data-i="skillDashboardsText">KPI-uri, layout, grafice și concluzii.</p><a class="btn rose" href="index-game-modes-lab-preview.html" data-i="open">Deschide</a></article><article class="node"><span class="tag violetTag">6</span><h3 data-i="skillShortcuts">Shortcuts</h3><p data-i="skillShortcutsText">Keyboard-only challenges și viteză reală în Excel.</p><a class="btn violet" href="index-advanced-learning-modules-preview.html#keyboard" data-i="open">Deschide</a></article><article class="node"><span class="tag cyanTag">7</span><h3 data-i="skillJob">Job Skills</h3><p data-i="skillJobText">Inbox, audit, interviu, career paths și portfolio.</p><a class="btn cyan" href="index-wow-mvp-preview.html" data-i="open">Deschide</a></article></div></section>
-<section id="experiente" class="wrap" aria-labelledby="experiencesTitle"><h2 id="experiencesTitle" data-i="experiencesTitle">Experiențe</h2><div class="grid7"><article class="card"><span class="tag orangeTag" data-i="tagWow">MVP wow</span><h3 data-i="wowTitle">Skill Tree + Boss</h3><p data-i="wowText">Skill Tree interactiv, Inbox, Real File Simulator, Boss Battles, Formula Builder, Error Clinic și Reward Shop.</p><a class="btn orange" href="index-wow-mvp-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag" data-i="tagBase">Învățare de bază</span><h3 data-i="baseTitle">Lecții + proiecte</h3><p data-i="baseText">Lecții concrete, mini-challenge-uri, Formula Vault, misiune zilnică și certificat preview.</p><a class="btn primary" href="index-content-rich-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag blueTag" data-i="tagApplied">Module aplicate</span><h3 data-i="appliedTitle">Detective + cleaning</h3><p data-i="appliedText">Excel Detective, Formula Builder, Data Cleaning Lab, Confidence Meter și Portofoliu.</p><a class="btn blue" href="index-advanced-learning-modules-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag goldTag" data-i="tagQuest">Misiuni</span><h3 data-i="questTitle">Hartă + inbox</h3><p data-i="questText">Quest Map, Client Requests, Bad Spreadsheet Museum, Formula Duels, Audit și Collections.</p><a class="btn gold" href="index-quest-systems-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag roseTag" data-i="tagGames">Jocuri</span><h3 data-i="gamesTitle">Escape Room + Bingo</h3><p data-i="gamesText">Escape Room, Dashboard Builder, Excel Roast, Sandbox, Flashcards și Interview Mode.</p><a class="btn rose" href="index-game-modes-lab-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag violetTag" data-i="tagCareer">Carieră</span><h3 data-i="careerTitle">Paths + mentor</h3><p data-i="careerText">Career paths, Excel Gym, Design Score, Cheat Sheet, Exam și Template Library.</p><a class="btn violet" href="index-career-growth-preview.html" data-i="open">Deschide</a></article><article class="card"><span class="tag cyanTag" data-i="tagUnexpected">Unexpected</span><h3 data-i="unexpectedTitle">Courtroom + Ethics</h3><p data-i="unexpectedText">Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Future Inbox.</p><a class="btn cyan" href="index-unexpected-lab-preview.html" data-i="open">Deschide</a></article></div></section>
-<section id="include" class="wrap" aria-labelledby="includesTitle"><h2 id="includesTitle" data-i="includesTitle">Ce include aplicația</h2><div class="grid"><div class="mini"><h3 data-i="practicalTitle">Practic</h3><ul class="list"><li data-i="practical1">formule explicate pe pași</li><li data-i="practical2">challenge-uri în grid</li><li data-i="practical3">feedback clar și XP local</li></ul></div><div class="mini"><h3 data-i="realisticTitle">Realist</h3><ul class="list"><li data-i="realistic1">cereri de client și manager</li><li data-i="realistic2">fișiere simulate cu erori</li><li data-i="realistic3">audit și curățare de date</li></ul></div><div class="mini"><h3 data-i="portfolioTitle">Portofoliu</h3><ul class="list"><li data-i="portfolio1">proiecte reale</li><li data-i="portfolio2">șabloane utile</li><li data-i="portfolio3">certificat demo și timeline</li></ul></div></div></section>
-</main>
-<footer role="contentinfo"><div class="wrap foot"><span data-i="footerText">Excel Quest · proiect educațional local · progres salvat în browser</span><nav class="legal" aria-label="Linkuri legale"><a href="legal.html" data-i="legalFull">Politica de confidențialitate, notă și mențiune</a><a href="PRIVACY.md" data-i="privacy">Confidențialitate</a><a href="DISCLAIMER.md" data-i="disclaimer">Mențiune</a></nav></div></footer>
-<script>
-const I18N={ro:{skipLink:'Sari la conținut',languageLabel:'Limbă',navStart:'Start',navDashboard:'Dashboard',navSkillTree:'Skill Tree',navAccessibility:'Accesibilitate',navExperiences:'Experiențe',navLegal:'Legal',badge:'Învățare Excel interactivă',heroTitle:'Învață Excel printr-un traseu personalizat, nu prin pagini separate.',heroLead:'Completează formularul, primești un dashboard recomandat, apoi mergi prin Skill Tree către lecții, misiuni, proiecte și portofoliu.',heroCta:'Alege traseul',btnWow:'Wow MVP',btnSkillTree:'Vezi Skill Tree',startTitle:'Formular de început',startLead:'Alege obiectivul, nivelul și ziua de antrenament. Datele rămân local în browser.',nameLabel:'Numele tău',nameHelp:'Poți lăsa câmpul gol și vei continua ca Invitat.',goalLabel:'Obiectivul tău',goalHelp:'Alegerea personalizează lecția următoare și misiunea zilnică.',goalSchool:'Vreau să învăț Excel pentru școală',goalBudget:'Vreau să-mi organizez bugetul',goalJobs:'Vreau să aplic la joburi',goalReports:'Vreau să înțeleg rapoarte',goalDashboards:'Vreau să construiesc dashboard-uri',levelLabel:'Nivelul actual',levelBeginner:'Începător',levelIntermediate:'Intermediar',levelAdvanced:'Avansat',saveStart:'Salvează și construiește dashboard-ul',daysTitle:'Ziua de antrenament',daysLead:'Alege o zi pentru antrenamentul tău de 5 minute.',monday:'Luni',tuesday:'Marți',wednesday:'Miercuri',thursday:'Joi',friday:'Vineri',saturday:'Sâmbătă',sunday:'Duminică',dashboardTitle:'Dashboard-ul tău',pathLabel:'Traseu',nextLessonLabel:'Următoarea lecție',dailyQuestLabel:'Misiunea de azi',certificateLabel:'Certificat',progressTitle:'Progres către certificat',openSkillTree:'Deschide Skill Tree',openBoss:'Boss Battle',accessibilityTitle:'Accesibilitate',accessibilityLead:'Activează opțiuni pentru contrast, dimensiunea textului și reducerea animațiilor. Setările se salvează în browser.',contrastBtn:'Contrast ridicat',textBtn:'Text mare',motionBtn:'Reduce animațiile',keyboardTitle:'Navigare din tastatură:',keyboardHelp:'folosește',keyboardHelp2:'și linkul „Sari la conținut”.',skillTreeTitle:'Skill Tree conectat',skillTreeLead:'Fiecare ramură deschide direct modulul potrivit. Începe cu Formula Basics și avansează spre job skills.',skillFormula:'Formula Basics',skillFormulaText:'SUM, AVERAGE, IF și formule explicate.',skillCleaning:'Data Cleaning',skillCleaningText:'Duplicate, valori lipsă, categorii și date greșite.',skillCharts:'Charts',skillChartsText:'Grafice, interpretări și data storytelling.',skillPivot:'Pivot Tables',skillPivotText:'Pivot City, sumarizări și rapoarte pe categorii.',skillDashboards:'Dashboards',skillDashboardsText:'KPI-uri, layout, grafice și concluzii.',skillShortcuts:'Shortcuts',skillShortcutsText:'Keyboard-only challenges și viteză reală în Excel.',skillJob:'Job Skills',skillJobText:'Inbox, audit, interviu, career paths și portfolio.',experiencesTitle:'Experiențe',tagWow:'MVP wow',wowTitle:'Skill Tree + Boss',wowText:'Skill Tree interactiv, Inbox, Real File Simulator, Boss Battles, Formula Builder, Error Clinic și Reward Shop.',tagBase:'Învățare de bază',baseTitle:'Lecții + proiecte',baseText:'Lecții concrete, mini-challenge-uri, Formula Vault, misiune zilnică și certificat preview.',tagApplied:'Module aplicate',appliedTitle:'Detective + cleaning',appliedText:'Excel Detective, Formula Builder, Data Cleaning Lab, Confidence Meter și Portofoliu.',tagQuest:'Misiuni',questTitle:'Hartă + inbox',questText:'Quest Map, Client Requests, Bad Spreadsheet Museum, Formula Duels, Audit și Collections.',tagGames:'Jocuri',gamesTitle:'Escape Room + Bingo',gamesText:'Escape Room, Dashboard Builder, Excel Roast, Sandbox, Flashcards și Interview Mode.',tagCareer:'Carieră',careerTitle:'Paths + mentor',careerText:'Career paths, Excel Gym, Design Score, Cheat Sheet, Exam și Template Library.',tagUnexpected:'Unexpected',unexpectedTitle:'Courtroom + Ethics',unexpectedText:'Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Future Inbox.',open:'Deschide',includesTitle:'Ce include aplicația',practicalTitle:'Practic',practical1:'formule explicate pe pași',practical2:'challenge-uri în grid',practical3:'feedback clar și XP local',realisticTitle:'Realist',realistic1:'cereri de client și manager',realistic2:'fișiere simulate cu erori',realistic3:'audit și curățare de date',portfolioTitle:'Portofoliu',portfolio1:'proiecte reale',portfolio2:'șabloane utile',portfolio3:'certificat demo și timeline',footerText:'Excel Quest · proiect educațional local · progres salvat în browser',legalFull:'Politica de confidențialitate, notă și mențiune',privacy:'Confidențialitate',disclaimer:'Mențiune',welcome:(n,l,r)=>`Bun venit, ${n}! Nivel: ${l}. Ți-am construit dashboard-ul pentru traseul ${r}.`,dayChosen:d=>`Ai ales ziua de antrenament: ${d}.`,a11yChanged:s=>`Setare actualizată: ${s}.`,routes:{school:'Student',budget:'Buget personal',jobs:'Trasee de carieră',reports:'Analiză de rapoarte',dashboards:'Dashboard Builder'},lessons:{school:'Formule de bază',budget:'Buget personal',jobs:'Excel Career Paths',reports:'Pivot Tables',dashboards:'Build-a-Dashboard'},quests:{school:'Calculează media notelor',budget:'Găsește cea mai mare cheltuială',jobs:'Rezolvă un Excel Inbox',reports:'Explică un grafic',dashboards:'Construiește 3 KPI-uri'},continue:'Continuă'},en:{skipLink:'Skip to content',languageLabel:'Language',navStart:'Start',navDashboard:'Dashboard',navSkillTree:'Skill Tree',navAccessibility:'Accessibility',navExperiences:'Experiences',navLegal:'Legal',badge:'Interactive Excel learning',heroTitle:'Learn Excel through a personalized path, not separate pages.',heroLead:'Fill in the form, get a recommended dashboard, then move through the Skill Tree toward lessons, missions, projects, and portfolio.',heroCta:'Choose your path',btnWow:'Wow MVP',btnSkillTree:'View Skill Tree',startTitle:'Start form',startLead:'Choose your goal, level, and training day. The data stays local in your browser.',nameLabel:'Your name',nameHelp:'You can leave this empty and continue as Guest.',goalLabel:'Your goal',goalHelp:'This choice personalizes your next lesson and daily quest.',goalSchool:'I want to learn Excel for school',goalBudget:'I want to organize my budget',goalJobs:'I want to apply for jobs',goalReports:'I want to understand reports',goalDashboards:'I want to build dashboards',levelLabel:'Current level',levelBeginner:'Beginner',levelIntermediate:'Intermediate',levelAdvanced:'Advanced',saveStart:'Save and build my dashboard',daysTitle:'Training day',daysLead:'Choose a day for your 5-minute training.',monday:'Monday',tuesday:'Tuesday',wednesday:'Wednesday',thursday:'Thursday',friday:'Friday',saturday:'Saturday',sunday:'Sunday',dashboardTitle:'Your dashboard',pathLabel:'Path',nextLessonLabel:'Next lesson',dailyQuestLabel:'Daily quest',certificateLabel:'Certificate',progressTitle:'Certificate progress',openSkillTree:'Open Skill Tree',openBoss:'Boss Battle',accessibilityTitle:'Accessibility',accessibilityLead:'Turn on options for contrast, text size, and reduced motion. Settings are saved in your browser.',contrastBtn:'High contrast',textBtn:'Large text',motionBtn:'Reduce motion',keyboardTitle:'Keyboard navigation:',keyboardHelp:'use',keyboardHelp2:'and the “Skip to content” link.',skillTreeTitle:'Connected Skill Tree',skillTreeLead:'Each branch opens the right module directly. Start with Formula Basics and move toward job skills.',skillFormula:'Formula Basics',skillFormulaText:'SUM, AVERAGE, IF, and explained formulas.',skillCleaning:'Data Cleaning',skillCleaningText:'Duplicates, missing values, categories, and messy dates.',skillCharts:'Charts',skillChartsText:'Charts, interpretation, and data storytelling.',skillPivot:'Pivot Tables',skillPivotText:'Pivot City, summaries, and category reports.',skillDashboards:'Dashboards',skillDashboardsText:'KPIs, layout, charts, and conclusions.',skillShortcuts:'Shortcuts',skillShortcutsText:'Keyboard-only challenges and real Excel speed.',skillJob:'Job Skills',skillJobText:'Inbox, audit, interview mode, career paths, and portfolio.',experiencesTitle:'Experiences',tagWow:'Wow MVP',wowTitle:'Skill Tree + Boss',wowText:'Interactive Skill Tree, Inbox, Real File Simulator, Boss Battles, Formula Builder, Error Clinic, and Reward Shop.',tagBase:'Core learning',baseTitle:'Lessons + projects',baseText:'Concrete lessons, mini-challenges, Formula Vault, Daily Quest, and certificate preview.',tagApplied:'Applied modules',appliedTitle:'Detective + cleaning',appliedText:'Excel Detective, Formula Builder, Data Cleaning Lab, Confidence Meter, and Portfolio.',tagQuest:'Missions',questTitle:'Map + inbox',questText:'Quest Map, Client Requests, Bad Spreadsheet Museum, Formula Duels, Audit, and Collections.',tagGames:'Games',gamesTitle:'Escape Room + Bingo',gamesText:'Escape Room, Dashboard Builder, Excel Roast, Sandbox, Flashcards, and Interview Mode.',tagCareer:'Career',careerTitle:'Paths + mentor',careerText:'Career paths, Excel Gym, Design Score, Cheat Sheet, Exam, and Template Library.',tagUnexpected:'Unexpected',unexpectedTitle:'Courtroom + Ethics',unexpectedText:'Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories, and Future Inbox.',open:'Open',includesTitle:'What the app includes',practicalTitle:'Practical',practical1:'formulas explained step by step',practical2:'grid-based challenges',practical3:'clear feedback and local XP',realisticTitle:'Realistic',realistic1:'client and manager requests',realistic2:'simulated files with errors',realistic3:'audit and data cleaning',portfolioTitle:'Portfolio',portfolio1:'real projects',portfolio2:'useful templates',portfolio3:'demo certificate and timeline',footerText:'Excel Quest · local educational project · progress saved in browser',legalFull:'Privacy policy, note, and disclaimer',privacy:'Privacy',disclaimer:'Disclaimer',welcome:(n,l,r)=>`Welcome, ${n}! Level: ${l}. I built your dashboard for the ${r} path.`,dayChosen:d=>`You chose your training day: ${d}.`,a11yChanged:s=>`Setting updated: ${s}.`,routes:{school:'Student',budget:'Personal budget',jobs:'Career paths',reports:'Report analysis',dashboards:'Dashboard Builder'},lessons:{school:'Basic formulas',budget:'Personal budget',jobs:'Excel Career Paths',reports:'Pivot Tables',dashboards:'Build-a-Dashboard'},quests:{school:'Calculate grade averages',budget:'Find the biggest expense',jobs:'Solve an Excel Inbox',reports:'Explain a chart',dashboards:'Build 3 KPIs'},continue:'Continue'}};
-let currentLang=localStorage.getItem('eq_lang')||'ro';
-const a11y=JSON.parse(localStorage.getItem('eq_a11y')||'{"highContrast":false,"largeText":false,"reducedMotion":false}');
-function t(key){return I18N[currentLang][key]||I18N.ro[key]||key}
-function announce(msg){document.getElementById('liveRegion').textContent=msg}
-function applyA11y(){document.body.classList.toggle('high-contrast',!!a11y.highContrast);document.body.classList.toggle('large-text',!!a11y.largeText);document.body.classList.toggle('reduced-motion',!!a11y.reducedMotion);document.querySelectorAll('.a11y-btn').forEach(btn=>{const active=!!a11y[btn.dataset.setting];btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));});localStorage.setItem('eq_a11y',JSON.stringify(a11y));}
-function applyLanguage(lang){currentLang=lang;localStorage.setItem('eq_lang',lang);document.documentElement.lang=lang;document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t(key))el.textContent=t(key)});document.querySelectorAll('[data-placeholder-ro]').forEach(el=>{el.placeholder=el.dataset['placeholder'+(lang==='en'?'En':'Ro')]});document.querySelectorAll('.lang-btn').forEach(btn=>{const active=btn.dataset.lang===lang;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));});document.title=lang==='ro'?'Excel Quest – Învață Excel interactiv':'Excel Quest – Learn Excel interactively';updateDashboard(false);applyA11y();}
-function dashboardLink(goal){if(goal==='jobs')return 'index-career-growth-preview.html';if(goal==='reports')return 'index-quest-systems-preview.html';if(goal==='dashboards')return 'index-game-modes-lab-preview.html';return 'index-content-rich-preview.html'}
-function updateDashboard(scroll=true){const name=localStorage.getItem('eq_start_name');const goal=localStorage.getItem('eq_start_goal')||'school';const level=localStorage.getItem('eq_start_level')||'beginner';if(!name)return;const dash=document.getElementById('dashboard');dash.classList.add('visible');const levelText=t({beginner:'levelBeginner',intermediate:'levelIntermediate',advanced:'levelAdvanced'}[level]);const path=I18N[currentLang].routes[goal];document.getElementById('dashboardLead').textContent=I18N[currentLang].welcome(name,levelText,path);document.getElementById('dashPath').textContent=path;document.getElementById('dashLesson').textContent=I18N[currentLang].lessons[goal];document.getElementById('dashQuest').textContent=I18N[currentLang].quests[goal];document.getElementById('dashCert').textContent='18%';document.getElementById('certText').textContent=currentLang==='ro'?'18% · Completează 80% din lecții, 70% din quiz-uri și 3 proiecte.':'18% · Complete 80% of lessons, 70% of quizzes, and 3 projects.';document.getElementById('dashPrimary').href=dashboardLink(goal);document.getElementById('dashPrimary').textContent=t('continue');if(scroll)dash.scrollIntoView({behavior:a11y.reducedMotion?'auto':'smooth',block:'start'});}
-document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>{applyLanguage(btn.dataset.lang);announce(btn.dataset.lang==='ro'?'Limba a fost schimbată în română.':'Language changed to English.')}));
-document.querySelectorAll('.a11y-btn').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.setting;a11y[key]=!a11y[key];applyA11y();announce(I18N[currentLang].a11yChanged(btn.textContent));}));
-document.getElementById('saveStart').addEventListener('click',()=>{const nume=document.getElementById('nume').value.trim()||(currentLang==='ro'?'Invitat':'Guest');const goal=document.getElementById('obiectiv').value;const levelValue=document.getElementById('nivel').value;localStorage.setItem('eq_start_name',nume);localStorage.setItem('eq_start_goal',goal);localStorage.setItem('eq_start_level',levelValue);const box=document.getElementById('startResult');box.style.display='block';box.textContent=currentLang==='ro'?'Dashboard creat. Continuă mai jos.':'Dashboard created. Continue below.';announce(box.textContent);updateDashboard(true);});
-document.querySelectorAll('.day').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.day').forEach(d=>{d.classList.remove('today');d.setAttribute('aria-pressed','false')});btn.classList.add('today');btn.setAttribute('aria-pressed','true');const box=document.getElementById('dayResult');box.style.display='block';box.textContent=I18N[currentLang].dayChosen(btn.textContent);announce(box.textContent);localStorage.setItem('eq_training_day',btn.dataset.day);}));
-document.addEventListener('keydown',e=>{if(e.altKey&&e.key.toLowerCase()==='a'){e.preventDefault();document.getElementById('accessibilitate').scrollIntoView({behavior:a11y.reducedMotion?'auto':'smooth'});document.getElementById('contrastBtn').focus();}});
-applyLanguage(currentLang);
-</script>
+<body data-theme="light">
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">X</span>
+        Excel-Quest
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Funcționalități</a></li>
+        <li><a href="#stats">Conținut</a></li>
+        <li><a href="#start">Începe</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="lang-toggle" aria-label="Schimbă limba" title="Schimbă limba">RO</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Schimbă tema" title="Schimbă tema">☾</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">v1.0 · Beta deschisă</span>
+        <h1>Învață Excel<br>ca într-un <span class="accent">joc</span>.</h1>
+        <p class="lead">
+          Lecții interactive, quest-uri tematice, simulatoare reale, Formula Vault și Excel Gym —
+          tot ce-ți trebuie ca să stăpânești Excel-ul de la zero la nivel pro.
+        </p>
+        <div class="cta-row">
+          <a href="#start" class="btn btn-primary">
+            Pornește quest-ul →
+          </a>
+          <a href="#features" class="btn btn-ghost">Vezi funcționalitățile</a>
+        </div>
+      </div>
+
+      <div class="reveal" style="position: relative;">
+        <div class="xp-badge">+250 XP · Level Up!</div>
+        <div class="sheet-mock">
+          <div class="sheet-bar">
+            <span class="sheet-dot"></span>
+            <span class="sheet-dot"></span>
+            <span class="sheet-dot"></span>
+          </div>
+          <div class="sheet-formula">
+            <span class="fx">fx</span>
+            <span class="formula">=<span class="fn">VLOOKUP</span>(A2, <span class="str">"skills"</span>, 3, FALSE)</span>
+          </div>
+          <div class="sheet-grid">
+            <div class="head"></div>
+            <div class="head">A</div>
+            <div class="head">B</div>
+            <div class="head">C</div>
+            <div class="head">D</div>
+
+            <div class="row-num">1</div>
+            <div>Skill</div>
+            <div>Level</div>
+            <div>XP</div>
+            <div>Status</div>
+
+            <div class="row-num">2</div>
+            <div>VLOOKUP</div>
+            <div>3</div>
+            <div class="active">450</div>
+            <div>✓</div>
+
+            <div class="row-num">3</div>
+            <div>Pivot Tables</div>
+            <div>2</div>
+            <div>280</div>
+            <div>↑</div>
+
+            <div class="row-num">4</div>
+            <div>INDEX/MATCH</div>
+            <div>1</div>
+            <div>120</div>
+            <div>○</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Tot arsenalul, într-un singur loc</h2>
+        <p>Zece module gândite să transforme învățarea Excel într-o aventură progresivă.</p>
+      </div>
+
+      <div class="features">
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-5z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>Lecții interactive</h3>
+          <p>De la celule și formule de bază până la macro-uri și Power Query. Fiecare lecție e auto-evaluată.</p>
+          <span class="card-tag">Core</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>Quest-uri tematice</h3>
+          <p>Provocări reale: „Curăță un dataset murdar", „Construiește un dashboard de vânzări", „Salvează un raport".</p>
+          <span class="card-tag">Gameplay</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15v-3m4 3V8m4 7v-5"/></svg>
+          </div>
+          <h3>Simulatoare</h3>
+          <p>Mini-Excel funcțional în browser. Tastezi formule, vezi rezultate. Fără să instalezi nimic.</p>
+          <span class="card-tag">Hands-on</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3>Formula Vault</h3>
+          <p>Bibliotecă de 200+ formule explicate, cu exemple, capcane comune și variante echivalente.</p>
+          <span class="card-tag">Referință</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4v16M18 4v16M2 8h4M2 16h4M18 8h4M18 16h4M6 12h12"/></svg>
+          </div>
+          <h3>Excel Gym</h3>
+          <p>Antrenament zilnic: 5 exerciții pe zi, dificultate adaptivă, streak tracker.</p>
+          <span class="card-tag">Practică</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z"/></svg>
+          </div>
+          <h3>Quiz-uri</h3>
+          <p>Teste rapide la final de modul. Răspunsuri explicate, nu doar bifate.</p>
+          <span class="card-tag">Verificare</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+          </div>
+          <h3>Career Paths</h3>
+          <p>Trasee dedicate: Analist, Marketing, Finance, HR, Operațiuni. Fiecare cu skill-urile esențiale.</p>
+          <span class="card-tag">Direcție</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <h3>Scenarii de job</h3>
+          <p>Replici situații reale de la birou: „Șeful vrea raportul în 30 min". Lucrezi sub presiune.</p>
+          <span class="card-tag">Realism</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>Audit de spreadsheet</h3>
+          <p>Încarci un fișier, primești raport: formule fragile, referințe rupte, optimizări sugerate.</p>
+          <span class="card-tag">Pro</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 14l-2 8 5-3 5 3-2-8"/></svg>
+          </div>
+          <h3>Insigne</h3>
+          <p>Colecționează badge-uri pentru fiecare skill stăpânit. Streak-uri, milestones, achievement rare.</p>
+          <span class="card-tag">Reward</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="container">
+      <div class="stats reveal">
+        <div class="stat">
+          <div class="stat-value">120+</div>
+          <div class="stat-label">Lecții</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">200+</div>
+          <div class="stat-label">Formule</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">45</div>
+          <div class="stat-label">Quest-uri</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Career Paths</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Gata să-ți alegi clasa?</h2>
+        <p>Începe cu un test rapid de nivel — îți recomandăm primul quest în 2 minute.</p>
+      </div>
+      <div style="text-align: center;" class="reveal">
+        <a href="#" class="btn btn-primary" style="font-size: 17px; padding: 18px 32px;">
+          Începe testul de nivel →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <div>© 2026 Excel-Quest · construit de <a href="https://github.com/LaurAndreea10">Laura Andreea</a></div>
+      <div style="display:flex; gap:18px;">
+        <a href="https://github.com/LaurAndreea10/Excel-Quest">GitHub</a>
+        <a href="sitemap.xml">Sitemap</a>
+        <a href="#">Politică</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const root = document.body;
+    const savedTheme = localStorage.getItem('eq-theme');
+    if (savedTheme) root.dataset.theme = savedTheme;
+    themeBtn.textContent = root.dataset.theme === 'dark' ? '☀' : '☾';
+    themeBtn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      themeBtn.textContent = next === 'dark' ? '☀' : '☾';
+      localStorage.setItem('eq-theme', next);
+    });
+
+    // Language toggle (placeholder – ready for i18n hookup)
+    const langBtn = document.getElementById('lang-toggle');
+    const savedLang = localStorage.getItem('eq-lang') || 'RO';
+    langBtn.textContent = savedLang;
+    langBtn.addEventListener('click', () => {
+      const next = langBtn.textContent === 'RO' ? 'EN' : 'RO';
+      langBtn.textContent = next;
+      localStorage.setItem('eq-lang', next);
+      // TODO: hook i18n strings here
+    });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
 </html>

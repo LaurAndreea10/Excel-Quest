@@ -1,618 +1,81 @@
-# 📊 Excel Quest
-
-[🇷🇴 Română](#-română) · [🇬🇧 English](#-english)
-
-> Simulator educațional static pentru învățarea conceptelor Excel prin lecții, formule, proiecte, scenarii de job și moduri de joc.  
-> A static educational simulator for learning Excel concepts through lessons, formulas, projects, job scenarios, and game modes.
-
-🔗 **Live demo:** https://laurandreea10.github.io/Excel-Quest/
-
----
-
-# 🇷🇴 Română
-
-## ⚠️ Mențiune importantă
-
-**Excel Quest este doar un simulator educațional pentru învățare și antrenament.**
-
-Aplicația nu este un produs Microsoft, nu este afiliată cu Microsoft și nu oferă certificare oficială Excel. Conținutul, scorurile, certificatele preview, leaderboard-urile demo, examenele simulate, feedbackul de tip mentor și scenariile de job trebuie folosite ca suport de învățare, nu ca evaluare profesională oficială.
-
-Politica de confidențialitate: [`PRIVACY.md`](./PRIVACY.md)  
-Notă și mențiune: [`DISCLAIMER.md`](./DISCLAIMER.md)  
-Pagină legală publică: [`legal.html`](./legal.html)
-
----
-
-## ✨ Prezentare
-
-**Excel Quest** este o aplicație web educațională pentru utilizatorii care vor să învețe Excel într-un mod practic, vizual și gamificat. Include lecții, quiz-uri, formule explicate, simulatoare, proiecte de portofoliu, quest-uri, moduri de joc, career paths, scenarii de job, audit de spreadsheet, Formula Vault, Excel Gym, șabloane și certificare demo.
-
-Aplicația este gândită ca un spațiu de învățare modern, accesibil și motivant. Utilizatorul poate începe cu lecții simple, apoi poate trece la scenarii realiste precum rapoarte de vânzări, data cleaning, dashboard-uri, client requests, audit mode și job interview mode.
-
-Progresul este salvat local în browser prin `localStorage`. În versiunea actuală nu există autentificare, backend, bază de date externă sau colectare de date personale.
-
----
-
-## ✅ Vizibilitate pe pagina publică
-
-Pentru ca evaluatorii să vadă rapid că aplicația are fluxuri funcționale, pagina publică `index.html` este un homepage curat cu carduri către experiențele principale:
-
-- **Lecții + proiecte**;
-- **Module practice**;
-- **Quest map**;
-- **Game modes**;
-- **Career paths**;
-- link către pagina **Legal**.
-
-Fișiere principale:
-
-- `index.html` — homepage public curat;
-- `index-content-rich-preview.html` — lecții reale, Formula Vault, proiecte, Daily Quest și command palette;
-- `index-advanced-learning-modules-preview.html` — Excel Detective, roluri, Formula Builder, Cleaning Lab și Portfolio;
-- `index-quest-systems-preview.html` — Quest Map, inbox, audit, achievements și job simulation;
-- `index-game-modes-lab-preview.html` — Escape Room, Dashboard Builder, Sandbox, Bingo, Interview și Time Machine;
-- `index-career-growth-preview.html` — career paths, Excel Gym, Cheat Sheet Builder, Certification, Mentor Notes și Template Library;
-- `index-unexpected-lab-preview.html` — Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Future Inbox;
-- `legal.html` — Politica de confidențialitate, Notă și Mențiune.
-
----
-
-## 🚀 Funcționalități principale
-
-- 🏠 **Homepage public** cu intrări clare către toate modulele
-- 📚 **Lecții concrete** pentru formule, tabele, pivot, grafice și data cleaning
-- 🧪 **Mini-challenge după fiecare lecție**, conectat la simulator
-- 📊 **Grid Simulator** pentru formule și exerciții rapide
-- 🧠 **Feedback vizibil**: corect, aproape, hint și explicație
-- 🔎 **Search / Command Palette** cu `Ctrl + K`
-- 🧰 **Formula Vault** cu sintaxă, utilizare, exemple, greșeli și mini-exerciții
-- 🗂️ **Proiecte de portofoliu**: buget, tracker cheltuieli, sales report, gradebook, dashboard, inventory tracker
-- 🎯 **Daily Quest** și streak-style rewards
-- 🧾 **Certificate Preview** pentru progres educațional
-- 🧭 **Excel Quest Map** cu zone, misiuni și boss battles
-- 📨 **Excel Inbox** cu cereri de la manager, client, HR și finance
-- 🕵️ **Excel Detective** și **Audit Mode** pentru gândire critică
-- 🧼 **Data Cleaning Lab** pentru curățarea datelor murdare
-- 🧩 **Formula Builder** și **Explain My Formula** pentru începători
-- 🎮 **Game Modes**: Escape Room, Bingo, Flashcards, Sandbox, Time Machine
-- 💼 **Career Paths** pentru roluri profesionale
-- 🏋️ **Excel Gym** cu antrenamente de 5 minute
-- 📝 **Cheat Sheet Builder** pentru formule, shortcut-uri și explicații
-- 🧑‍🏫 **Excel Mentor Notes** cu feedback orientativ
-- 📚 **Template Library** cu șabloane pentru proiecte reale
-
----
-
-## 📚 Lecții + proiecte
-
-Fluxul principal de învățare demonstrează o experiență completă pentru începători:
-
-- 8 lecții concrete: Excel Basics, formule de bază, funcții logice, lookup, tabele și filtre, Pivot Tables, Charts, Data Cleaning;
-- mini-challenge după fiecare lecție;
-- Formula Vault extins;
-- proiecte cu scenarii reale;
-- Review Queue pentru lecțiile nefinalizate;
-- Daily Quest;
-- leaderboard local/demo;
-- Certificate Preview.
-
-Fișier: `index-content-rich-preview.html`
-
----
-
-## 🧩 Module practice
-
-Modulul de practică adaugă exerciții aplicate și mecanici pentru începători:
-
-- **Excel Detective** — investighează scăderi de profit, duplicate și valori anormale;
-- **Choose Your Role** — Student, Contabil, HR, Marketing, Antreprenor sau Data Analyst;
-- **Explain My Formula** — explică formule precum `IF`, `SUM`, `AVERAGE` și `XLOOKUP`;
-- **Formula Builder** — construiește formule din piese;
-- **Data Cleaning Lab** — curăță spații, duplicate, categorii și valori text;
-- **Real File Simulator** — simulează un fișier client dezordonat;
-- **Confidence Meter** — trimite lecțiile nesigure în Review Queue;
-- **Excel Myths** — demontează mituri despre Excel;
-- **Keyboard-Only Challenge** — antrenament fără mouse;
-- **Portfolio Page** — salvează proiecte finalizate local.
-
-Fișier: `index-advanced-learning-modules-preview.html`
-
----
-
-## 🗺️ Excel Quest Map și job simulation
-
-Quest Systems transformă aplicația într-o hartă de misiuni și scenarii profesionale:
-
-- **Formula Forest** — formule de bază și boss battle-uri;
-- **Pivot City** — pivot tables și sumarizări;
-- **Chart Mountains** — grafice și interpretare vizuală;
-- **Data Cleaning Lab** — curățare, duplicate și categorii;
-- **Dashboard Castle** — KPI, layout și storytelling;
-- **Shortcut Arena** — keyboard-only challenges.
-
-Include și Client Requests, Bad Spreadsheet Museum, Formula Duels, What Would Excel Do?, Mini Case Studies, Excel Personality, Streak Freeze, Excel Inbox, Audit Mode, Explain the Chart și Achievement Collections.
-
-Fișier: `index-quest-systems-preview.html`
-
----
-
-## 🎮 Game Modes Lab
-
-Excel Quest include moduri de joc pentru a face învățarea mai memorabilă și shareable:
-
-- **Excel Escape Room**;
-- **Build-a-Dashboard**;
-- **Excel Roast**;
-- **Guess the Formula**;
-- **Excel Sandbox**;
-- **Personal Goal Tracker**;
-- **Formula Flashcards**;
-- **Excel Bingo**;
-- **Scenario Generator**;
-- **Peer Review Mode**;
-- **Excel Time Machine**;
-- **Job Interview Mode**.
-
-Fișier: `index-game-modes-lab-preview.html`
-
----
-
-## 💼 Career Growth
-
-Secțiunea Career Growth organizează învățarea în funcție de roluri profesionale și obiective:
-
-- **Admin Assistant** — filtre, liste curate, calendar editorial, organizare;
-- **Junior Accountant** — SUMIF, bugete, reconcilieri, rapoarte de cheltuieli;
-- **Data Analyst** — data cleaning, pivot, charts, dashboard;
-- **HR Specialist** — attendance tracker, COUNTIF, liste filtrate, raport HR;
-- **Sales Analyst** — XLOOKUP, top produse, forecast, sales report;
-- **Project Manager** — task tracker, status dashboard, plan de proiect.
-
-Include One Formula, Many Uses, Excel Gym, Data Storytelling, Spreadsheet Design Score, Wrong Answer Gallery, Excel Habits, Cheat Sheet Builder, Mini Certification Exam, Progress Timeline, Excel Mentor Notes și Template Library.
-
-Fișier: `index-career-growth-preview.html`
-
----
-
-## 🧪 Testare cu utilizatori
-
-Flux recomandat pentru test:
-
-1. Utilizatorul explică ce crede că face aplicația după primele 10 secunde.
-2. Deschide **Lecții + proiecte** și alege o lecție.
-3. Rezolvă un mini-challenge în Grid Simulator.
-4. Caută o formulă în Formula Vault.
-5. Deschide **Module practice** și testează Formula Builder sau Data Cleaning Lab.
-6. Deschide **Quest map** și pornește o misiune din Excel Inbox.
-7. Deschide **Game modes** și rezolvă Escape Room.
-8. Deschide **Career growth** și alege un Career Path.
-9. Adaugă o formulă în Cheat Sheet Builder.
-10. Rulează Mini Certification Exam.
-11. Găsește Politica de confidențialitate, Nota și Mențiunea.
-
----
-
-## 🔒 Confidențialitate
-
-Excel Quest nu colectează, nu vinde și nu transmite către dezvoltator date personale introduse în aplicație.
-
-Date precum progresul, scorurile demo, proiectele salvate local, formulele introduse în simulatoare, obiectivele, portofoliul local și preferințele de interfață sunt salvate local în browser, prin `localStorage`.
-
-În versiunea actuală:
-
-- nu există autentificare;
-- nu există backend;
-- nu există bază de date externă;
-- nu se trimit formulele sau notițele către servicii AI;
-- nu trebuie introduse date personale, financiare sau confidențiale reale.
-
-Detalii: [`PRIVACY.md`](./PRIVACY.md) și [`legal.html`](./legal.html)
-
----
-
-## ⚖️ Notă și mențiune
-
-Excel Quest este un proiect educațional. Scorurile, certificatele preview, leaderboard-urile demo, examenele simulate, feedbackul de mentor și scenariile de job sunt orientative.
-
-Excel este marcă înregistrată Microsoft. Excel Quest nu este afiliat, sponsorizat, aprobat sau administrat de Microsoft.
-
-Detalii: [`DISCLAIMER.md`](./DISCLAIMER.md) și [`legal.html`](./legal.html)
-
----
-
-## 🧪 Checklist final de testare
-
-Testează obligatoriu:
-
-- homepage-ul `index.html`;
-- layout mobil;
-- linkurile către toate experiențele;
-- salvare locală în `localStorage`;
-- Lesson Player și Grid Simulator;
-- Formula Vault;
-- Formula Builder;
-- Explain My Formula;
-- Data Cleaning Lab;
-- Excel Quest Map;
-- Client Requests;
-- Excel Inbox;
-- Audit Mode;
-- Escape Room cu `=COUNTIF(A2:A5,"OK")`;
-- Build-a-Dashboard;
-- Excel Sandbox;
-- Cheat Sheet Builder;
-- Mini Certification Exam;
-- Template Library;
-- linkurile către `PRIVACY.md`, `DISCLAIMER.md` și `legal.html`.
-
----
-
-## 🛠️ Tehnologii
-
-- HTML
-- CSS
-- JavaScript vanilla
-- `localStorage`
-- GitHub Pages
-
----
-
-## ▶️ Rulare locală
-
-```bash
-git clone https://github.com/LaurAndreea10/Excel-Quest.git
-cd Excel-Quest
-python3 -m http.server 8000
+# Excel-Quest
+
+> Învață Excel ca într-un joc — lecții, quest-uri, Formula Vault, insigne.
+
+Aplicație web educațională pentru utilizatorii care vor să învețe Microsoft Excel într-un mod practic, vizual și gamificat.
+
+## Funcționalități
+
+- **Lecții interactive** — de la celule de bază la macro-uri și Power Query
+- **Quiz-uri** cu răspunsuri explicate
+- **Formule explicate** — biblioteca Formula Vault (200+)
+- **Simulatoare** — mini-Excel funcțional în browser
+- **Proiecte de portofoliu** — output real, exportabil
+- **Quest-uri** tematice cu storyline
+- **Moduri de joc** & dificultate adaptivă
+- **Career Paths** — trasee dedicate (Analist, Marketing, Finance, HR, Ops)
+- **Scenarii de job** — replici situații reale de la birou
+- **Audit de spreadsheet** — încarci un fișier, primești raport
+- **Excel Gym** — antrenament zilnic cu streak tracker
+- **Șabloane** profesionale gata de folosit
+- **Insigne** — colecționează badge-uri pentru skill-uri stăpânite
+
+## Structura fișierelor
+
+```
+Excel-Quest/
+├── index.html              ← pagina principală
+├── favicon.svg             ← favicon vector (suport dark mode)
+├── favicon-32.png          ← fallback PNG
+├── favicon-192.png         ← Android home screen
+├── favicon-512.png         ← PWA splash
+├── apple-touch-icon.png    ← iOS home screen (180×180)
+├── og-cover.svg            ← sursă vector OG cover
+├── og-cover.png            ← OG cover pentru social media (1200×630)
+├── manifest.webmanifest    ← PWA manifest
+├── sitemap.xml             ← pentru Google Search Console
+├── robots.txt
+└── README.md
 ```
 
-Apoi deschide:
+## Deploy pe GitHub Pages
 
-```text
-http://localhost:8000
-```
+1. Push toate fișierele în branch-ul `main`.
+2. Settings → Pages → Source: `main` / `(root)`.
+3. URL final: `https://laurandreea10.github.io/Excel-Quest/`
 
-Preview-uri utile:
+## Verificare după deploy
 
-```text
-http://localhost:8000/index-content-rich-preview.html
-http://localhost:8000/index-advanced-learning-modules-preview.html
-http://localhost:8000/index-quest-systems-preview.html
-http://localhost:8000/index-game-modes-lab-preview.html
-http://localhost:8000/index-career-growth-preview.html
-http://localhost:8000/index-unexpected-lab-preview.html
-http://localhost:8000/legal.html
-```
+- [ ] Favicon vizibil în tab
+- [ ] OG preview testat pe [opengraph.xyz](https://www.opengraph.xyz/) sau [Facebook Debugger](https://developers.facebook.com/tools/debug/)
+- [ ] Sitemap submis în Google Search Console
+- [ ] Lighthouse score 90+ la SEO și Accessibility
+- [ ] Dark mode toggle persistă între reload-uri (localStorage)
 
----
+## Paletă de culori
 
-## 🌐 Publicare
+| Token        | Hex       | Folosire                     |
+|--------------|-----------|------------------------------|
+| `--primary`  | `#0F9D58` | Quest, success, CTA primary  |
+| `--accent`   | `#FFB400` | XP, achievement, highlight   |
+| `--deep`     | `#0B1F3A` | Backbone, headers dark       |
+| `--surface`  | `#F7F9FC` | Light background             |
+| `--info`     | `#5B8DEF` | Info notices                 |
+| `--danger`   | `#E5484D` | Erori, alerte                |
 
-Site-ul este publicat prin **GitHub Pages**:
+## Tipografie
 
-https://laurandreea10.github.io/Excel-Quest/
+- **Display**: Fraunces (serif, opsz axis) — pentru titluri
+- **Body**: Manrope — text general
+- **Mono**: JetBrains Mono — formule, code, valori spreadsheet
 
-După modificări în `main`, GitHub Pages poate avea nevoie de câteva minute pentru publicare.
+## Tech stack
 
----
+- HTML5 / CSS3 / Vanilla JS — single-file, fără dependențe
+- CSS variables pentru theming
+- IntersectionObserver pentru scroll animations
+- localStorage pentru persistență (theme + lang)
 
-## 📌 Direcții viitoare
+## License
 
-- combinarea treptată a experiențelor într-un singur flux SPA;
-- export PDF real pentru Cheat Sheet;
-- capturi reale pentru README;
-- teste cu utilizatori reali;
-- accesibilitate completă cu focus vizibil și skip link;
-- PWA/offline;
-- backend opțional pentru conturi, progres sincronizat și leaderboard real;
-- extinderea șabloanelor și proiectelor de portofoliu.
-
----
-
-## 👩‍💻 Autor
-
-**Laura Andreea**
-
----
-
-# 🇬🇧 English
-
-## ⚠️ Important note
-
-**Excel Quest is an educational simulator for learning and practice only.**
-
-The application is not a Microsoft product, is not affiliated with Microsoft, and does not provide an official Excel certification. The content, scores, preview certificates, demo leaderboards, simulated exams, mentor-style feedback, and job scenarios are intended as learning support, not as an official professional evaluation.
-
-Privacy policy: [`PRIVACY.md`](./PRIVACY.md)  
-Disclaimer: [`DISCLAIMER.md`](./DISCLAIMER.md)  
-Public legal page: [`legal.html`](./legal.html)
-
----
-
-## ✨ Overview
-
-**Excel Quest** is an educational web application for users who want to learn Excel in a practical, visual, and gamified way. It includes lessons, quizzes, explained formulas, simulators, portfolio projects, quests, game modes, career paths, job scenarios, spreadsheet audit exercises, Formula Vault, Excel Gym, templates, and a demo certification flow.
-
-The app is designed as a modern, accessible, and motivating learning space. A user can start with simple lessons, then move into realistic scenarios such as sales reports, data cleaning, dashboards, client requests, audit mode, and job interview mode.
-
-Progress is saved locally in the browser through `localStorage`. In the current version, there is no authentication, backend, external database, or intentional collection of personal data.
-
----
-
-## ✅ Public page visibility
-
-To help reviewers quickly understand that the app has functional flows, the public `index.html` page is a clean homepage with cards that link to the main experiences:
-
-- **Lessons + projects**;
-- **Practice modules**;
-- **Quest map**;
-- **Game modes**;
-- **Career paths**;
-- link to the **Legal** page.
-
-Main files:
-
-- `index.html` — clean public homepage;
-- `index-content-rich-preview.html` — real lessons, Formula Vault, projects, Daily Quest, and command palette;
-- `index-advanced-learning-modules-preview.html` — Excel Detective, roles, Formula Builder, Cleaning Lab, and Portfolio;
-- `index-quest-systems-preview.html` — Quest Map, inbox, audit, achievements, and job simulation;
-- `index-game-modes-lab-preview.html` — Escape Room, Dashboard Builder, Sandbox, Bingo, Interview, and Time Machine;
-- `index-career-growth-preview.html` — career paths, Excel Gym, Cheat Sheet Builder, Certification, Mentor Notes, and Template Library;
-- `index-unexpected-lab-preview.html` — Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories, and Future Inbox;
-- `legal.html` — Privacy Policy, Educational Note, and Disclaimer.
-
----
-
-## 🚀 Main features
-
-- 🏠 **Public homepage** with clear entry points into all modules
-- 📚 **Concrete lessons** for formulas, tables, pivot tables, charts, and data cleaning
-- 🧪 **Mini-challenge after each lesson**, connected to the simulator
-- 📊 **Grid Simulator** for formulas and quick exercises
-- 🧠 **Visible feedback**: correct, close, hint, and explanation
-- 🔎 **Search / Command Palette** with `Ctrl + K`
-- 🧰 **Formula Vault** with syntax, use cases, examples, mistakes, and mini-exercises
-- 🗂️ **Portfolio projects**: budget, expense tracker, sales report, gradebook, dashboard, inventory tracker
-- 🎯 **Daily Quest** and streak-style rewards
-- 🧾 **Certificate Preview** for educational progress
-- 🧭 **Excel Quest Map** with zones, missions, and boss battles
-- 📨 **Excel Inbox** with manager, client, HR, and finance requests
-- 🕵️ **Excel Detective** and **Audit Mode** for critical thinking
-- 🧼 **Data Cleaning Lab** for messy data practice
-- 🧩 **Formula Builder** and **Explain My Formula** for beginners
-- 🎮 **Game Modes**: Escape Room, Bingo, Flashcards, Sandbox, Time Machine
-- 💼 **Career Paths** for professional roles
-- 🏋️ **Excel Gym** with 5-minute workouts
-- 📝 **Cheat Sheet Builder** for formulas, shortcuts, and explanations
-- 🧑‍🏫 **Excel Mentor Notes** with educational feedback
-- 📚 **Template Library** with templates for real-world projects
-
----
-
-## 📚 Lessons + projects
-
-The main learning flow demonstrates a complete beginner-friendly experience:
-
-- 8 concrete lessons: Excel Basics, basic formulas, logical functions, lookup, tables and filters, Pivot Tables, Charts, Data Cleaning;
-- mini-challenge after each lesson;
-- extended Formula Vault;
-- projects with realistic scenarios;
-- Review Queue for unfinished lessons;
-- Daily Quest;
-- local/demo leaderboard;
-- Certificate Preview.
-
-File: `index-content-rich-preview.html`
-
----
-
-## 🧩 Practice modules
-
-The practice module adds applied exercises and beginner-friendly mechanics:
-
-- **Excel Detective** — investigate profit drops, duplicates, and unusual values;
-- **Choose Your Role** — Student, Accountant, HR, Marketing, Entrepreneur, or Data Analyst;
-- **Explain My Formula** — explains formulas such as `IF`, `SUM`, `AVERAGE`, and `XLOOKUP`;
-- **Formula Builder** — build formulas from smaller parts;
-- **Data Cleaning Lab** — clean spaces, duplicates, categories, and text values;
-- **Real File Simulator** — simulate a messy client file;
-- **Confidence Meter** — sends uncertain lessons into the Review Queue;
-- **Excel Myths** — debunks common myths about Excel;
-- **Keyboard-Only Challenge** — practice without using a mouse;
-- **Portfolio Page** — saves completed projects locally.
-
-File: `index-advanced-learning-modules-preview.html`
-
----
-
-## 🗺️ Excel Quest Map and job simulation
-
-Quest Systems turns the app into a mission map and professional scenario simulator:
-
-- **Formula Forest** — basic formulas and boss battles;
-- **Pivot City** — pivot tables and summaries;
-- **Chart Mountains** — charts and visual interpretation;
-- **Data Cleaning Lab** — cleaning, duplicates, and categories;
-- **Dashboard Castle** — KPIs, layout, and storytelling;
-- **Shortcut Arena** — keyboard-only challenges.
-
-It also includes Client Requests, Bad Spreadsheet Museum, Formula Duels, What Would Excel Do?, Mini Case Studies, Excel Personality, Streak Freeze, Excel Inbox, Audit Mode, Explain the Chart, and Achievement Collections.
-
-File: `index-quest-systems-preview.html`
-
----
-
-## 🎮 Game Modes Lab
-
-Excel Quest includes game modes that make learning more memorable and shareable:
-
-- **Excel Escape Room**;
-- **Build-a-Dashboard**;
-- **Excel Roast**;
-- **Guess the Formula**;
-- **Excel Sandbox**;
-- **Personal Goal Tracker**;
-- **Formula Flashcards**;
-- **Excel Bingo**;
-- **Scenario Generator**;
-- **Peer Review Mode**;
-- **Excel Time Machine**;
-- **Job Interview Mode**.
-
-File: `index-game-modes-lab-preview.html`
-
----
-
-## 💼 Career Growth
-
-The Career Growth section organizes learning around professional roles and goals:
-
-- **Admin Assistant** — filters, clean lists, editorial calendar, organization;
-- **Junior Accountant** — SUMIF, budgets, reconciliations, expense reports;
-- **Data Analyst** — data cleaning, pivot tables, charts, dashboard;
-- **HR Specialist** — attendance tracker, COUNTIF, filtered lists, HR report;
-- **Sales Analyst** — XLOOKUP, top products, forecast, sales report;
-- **Project Manager** — task tracker, status dashboard, project plan.
-
-It also includes One Formula, Many Uses, Excel Gym, Data Storytelling, Spreadsheet Design Score, Wrong Answer Gallery, Excel Habits, Cheat Sheet Builder, Mini Certification Exam, Progress Timeline, Excel Mentor Notes, and Template Library.
-
-File: `index-career-growth-preview.html`
-
----
-
-## 🧪 User testing flow
-
-Recommended test flow:
-
-1. The user explains what they think the app does after the first 10 seconds.
-2. Open **Lessons + projects** and choose a lesson.
-3. Solve a mini-challenge in the Grid Simulator.
-4. Search for a formula in Formula Vault.
-5. Open **Practice modules** and test Formula Builder or Data Cleaning Lab.
-6. Open **Quest map** and start a mission from Excel Inbox.
-7. Open **Game modes** and solve the Escape Room.
-8. Open **Career growth** and choose a Career Path.
-9. Add a formula to Cheat Sheet Builder.
-10. Run the Mini Certification Exam.
-11. Find the Privacy Policy, Educational Note, and Disclaimer.
-
----
-
-## 🔒 Privacy
-
-Excel Quest does not collect, sell, or send personal data entered in the app to the developer.
-
-Data such as progress, demo scores, locally saved projects, formulas entered in simulators, goals, local portfolio, and interface preferences are stored locally in the browser through `localStorage`.
-
-In the current version:
-
-- there is no authentication;
-- there is no backend;
-- there is no external database;
-- formulas or notes are not sent to AI services;
-- users should not enter real personal, financial, or confidential data.
-
-Details: [`PRIVACY.md`](./PRIVACY.md) and [`legal.html`](./legal.html)
-
----
-
-## ⚖️ Disclaimer
-
-Excel Quest is an educational project. Scores, preview certificates, demo leaderboards, simulated exams, mentor feedback, and job scenarios are for learning purposes only.
-
-Excel is a registered trademark of Microsoft. Excel Quest is not affiliated with, sponsored by, approved by, or administered by Microsoft.
-
-Details: [`DISCLAIMER.md`](./DISCLAIMER.md) and [`legal.html`](./legal.html)
-
----
-
-## 🧪 Final testing checklist
-
-Test the following:
-
-- `index.html` homepage;
-- mobile layout;
-- links to all experiences;
-- local saving through `localStorage`;
-- Lesson Player and Grid Simulator;
-- Formula Vault;
-- Formula Builder;
-- Explain My Formula;
-- Data Cleaning Lab;
-- Excel Quest Map;
-- Client Requests;
-- Excel Inbox;
-- Audit Mode;
-- Escape Room with `=COUNTIF(A2:A5,"OK")`;
-- Build-a-Dashboard;
-- Excel Sandbox;
-- Cheat Sheet Builder;
-- Mini Certification Exam;
-- Template Library;
-- links to `PRIVACY.md`, `DISCLAIMER.md`, and `legal.html`.
-
----
-
-## 🛠️ Technologies
-
-- HTML
-- CSS
-- Vanilla JavaScript
-- `localStorage`
-- GitHub Pages
-
----
-
-## ▶️ Run locally
-
-```bash
-git clone https://github.com/LaurAndreea10/Excel-Quest.git
-cd Excel-Quest
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
-
-Useful previews:
-
-```text
-http://localhost:8000/index-content-rich-preview.html
-http://localhost:8000/index-advanced-learning-modules-preview.html
-http://localhost:8000/index-quest-systems-preview.html
-http://localhost:8000/index-game-modes-lab-preview.html
-http://localhost:8000/index-career-growth-preview.html
-http://localhost:8000/index-unexpected-lab-preview.html
-http://localhost:8000/legal.html
-```
-
----
-
-## 🌐 Deployment
-
-The site is published through **GitHub Pages**:
-
-https://laurandreea10.github.io/Excel-Quest/
-
-After changes are pushed to `main`, GitHub Pages may need a few minutes to publish the update.
-
----
-
-## 📌 Future directions
-
-- gradually combining the experiences into a single SPA flow;
-- real PDF export for Cheat Sheet;
-- real screenshots for README;
-- testing with real users;
-- full accessibility with visible focus and skip link;
-- PWA/offline mode;
-- optional backend for accounts, synced progress, and real leaderboard;
-- expanding templates and portfolio projects.
-
----
-
-## 👩‍💻 Author
-
-**Laura Andreea**
+MIT — by Laura Andreea (2026)

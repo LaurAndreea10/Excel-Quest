@@ -80,15 +80,15 @@
       <circle cx="22" cy="21" r="1.5" fill="#FFB400"/>
       <text x="40" y="27" fill="#F7F9FC">Quest-uri</text>
     </g>
-    <!-- Certificare (medal) -->
+    <!-- Insigne (medal) -->
     <g transform="translate(350, 0)">
-      <rect width="180" height="42" rx="21" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.25"/>
+      <rect width="150" height="42" rx="21" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.25"/>
       <circle cx="22" cy="20" r="8" fill="none" stroke="#FFB400" stroke-width="2"/>
       <path d="M 18 27 L 16 33 L 22 30 L 28 33 L 26 27" fill="none" stroke="#FFB400" stroke-width="2" stroke-linejoin="round"/>
-      <text x="40" y="27" fill="#F7F9FC">Certificare</text>
+      <text x="40" y="27" fill="#F7F9FC">Insigne</text>
     </g>
     <!-- Formula Vault (sigma) -->
-    <g transform="translate(545, 0)">
+    <g transform="translate(515, 0)">
       <rect width="200" height="42" rx="21" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.25"/>
       <text x="16" y="29" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#FFB400">Σ</text>
       <text x="36" y="27" fill="#F7F9FC">Formula Vault</text>

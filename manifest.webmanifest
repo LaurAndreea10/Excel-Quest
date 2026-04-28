@@ -1,7 +1,7 @@
 {
   "name": "Excel-Quest",
   "short_name": "Excel-Quest",
-  "description": "Învață Excel ca într-un joc — lecții, quest-uri, Formula Vault, certificare demo.",
+  "description": "Învață Excel ca într-un joc — lecții, quest-uri, Formula Vault, insigne.",
   "start_url": "/Excel-Quest/",
   "scope": "/Excel-Quest/",
   "display": "standalone",
