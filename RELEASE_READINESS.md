@@ -238,7 +238,26 @@ Badge-uri recomandate:
 - Error Fixer;
 - Portfolio Ready.
 
-## 10. Gate final înainte de publicare
+## 10. Adaptarea textului pentru persoane cu dizabilități
+
+Textele trebuie să respecte ghidul `ACCESSIBILITY.md`.
+
+Verifică în special:
+
+- propoziții scurte și clare;
+- instrucțiuni în pași numerotați;
+- butoane cu etichete clare, nu doar „OK” sau „Click aici”;
+- mesaje de eroare care explică următorul pas;
+- feedback care nu depinde doar de culoare;
+- descrieri text pentru grafice;
+- formule afișate lizibil în format monospaced;
+- linkuri și butoane accesibile din tastatură;
+- `aria-label` pentru input-uri și butoane importante;
+- `aria-live="polite"` pentru feedback din quiz/simulări;
+- texte potrivite pentru screen reader;
+- limbaj prietenos pentru persoane cu dislexie sau dificultăți cognitive.
+
+## 11. Gate final înainte de publicare
 
 Nu publica drept `index.html` final până când:
 
@@ -246,6 +265,9 @@ Nu publica drept `index.html` final până când:
 - [ ] mobile layout a fost testat;
 - [ ] onboarding este simplu și în română;
 - [ ] selectorul RO / EN funcționează;
+- [ ] textele sunt adaptate pentru persoane cu dizabilități;
+- [ ] feedbackul poate fi înțeles fără culoare;
+- [ ] graficele au descriere text;
 - [ ] privacy policy este vizibilă;
 - [ ] disclaimer-ul este vizibil;
 - [ ] simulările principale nu au buguri cunoscute;
