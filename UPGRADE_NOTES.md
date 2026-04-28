@@ -4,13 +4,77 @@ Acest branch adaugă versiuni preview pentru Excel Quest, aliniate ca experienț
 
 ## Preview-uri disponibile
 
-1. `index-content-rich-preview.html` — preview recomandat pentru conținut bogat: lecții, proiecte, Formula Vault, Daily Quest și command palette.
-2. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei de experiență aplicativă.
-3. `index-quest-map-preview.html` — preview gamification/job simulation cu hartă, inbox, audit și colecții.
-4. `index-game-modes-preview.html` — preview cu game modes: Escape Room, Dashboard Builder, Sandbox, Bingo, Interview și Time Machine.
-5. `index-career-learning-preview.html` — preview career learning: paths, gym, certification, mentor notes și templates.
-6. `index-unexpected-modes-preview.html` — preview unexpected: Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Fortune Cookies.
-7. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+1. `index-wow-product-preview.html` — preview strategic all-in-one cu toate cele 35 de module și MVP-ul wow.
+2. `index-content-rich-preview.html` — preview recomandat pentru conținut bogat: lecții, proiecte, Formula Vault, Daily Quest și command palette.
+3. `index-advanced-experience-preview.html` — preview advanced cu cele 10 idei de experiență aplicativă.
+4. `index-quest-map-preview.html` — preview gamification/job simulation cu hartă, inbox, audit și colecții.
+5. `index-game-modes-preview.html` — preview cu game modes: Escape Room, Dashboard Builder, Sandbox, Bingo, Interview și Time Machine.
+6. `index-career-learning-preview.html` — preview career learning: paths, gym, certification, mentor notes și templates.
+7. `index-unexpected-modes-preview.html` — preview unexpected: Courtroom, Translation Mode, Easter Eggs, Ethics, Horror Stories și Fortune Cookies.
+8. `index-upgrade-preview.html` — variantă mai simplă, bilingvă.
+
+## Ce include preview-ul WOW Product Layer
+
+`index-wow-product-preview.html` consolidează toate cele 35 de idei într-o singură direcție de produs.
+
+### MVP wow evidențiat
+
+- Excel Inbox;
+- Real File Simulator;
+- Formula Builder;
+- Boss Battles;
+- Portfolio Page.
+
+### Cele mai importante 10 pentru efect wow rapid
+
+- Skill Tree interactiv;
+- Excel Inbox;
+- Real File Simulator;
+- Boss Battles;
+- Formula Builder;
+- Explain My Formula;
+- Error Clinic;
+- Build-a-Dashboard;
+- Portfolio Page;
+- AI Hint Assistant / Mentor Notes.
+
+### Checklist 35/35 reprezentat în preview
+
+- Skill Tree interactiv;
+- Excel Quest Map;
+- Excel Inbox;
+- Real File Simulator;
+- Excel Detective;
+- Boss Battles;
+- Excel Escape Room;
+- Formula Builder;
+- Explain My Formula;
+- Excel Translation Mode;
+- Error Clinic;
+- Audit Mode;
+- Build-a-Dashboard;
+- Data Storytelling;
+- Spreadsheet Design Score;
+- Excel Career Paths;
+- Choose Your Role Onboarding;
+- Excel Gym;
+- Daily Quest + Streak Freeze;
+- Formula Flashcards;
+- Formula Duels;
+- Guess the Formula;
+- Bad Spreadsheet Museum;
+- Excel Roast;
+- Portfolio Page;
+- Mini Certification Exam;
+- Certificate Preview;
+- AI Hint Assistant / Mentor Notes;
+- Confidence Meter + Review Queue inteligent;
+- Cheat Sheet Builder;
+- Template Library;
+- Achievement Collections;
+- Avatar / Reward Shop;
+- Keyboard-Only Challenge;
+- Data Ethics Corner.
 
 ## Ce include preview-ul Unexpected Modes
 
