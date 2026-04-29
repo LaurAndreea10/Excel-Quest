@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Quest — Task Pane</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--g:#217346;--gd:#185c37;--gs:#2f8f57;--mint:#dff3e8;--cream:#f7f4ea;--ink:#1f2937;--muted:#4b5563;--border:rgba(31,41,55,0.1);--border-g:rgba(33,115,70,0.2);}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fbf8;color:var(--ink);font-size:13px;line-height:1.5;min-height:100vh;}
+
+.header{background:var(--gd);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:8px;}
+.header-brand{font-weight:800;font-size:14px;}
+.header-pill{background:rgba(255,255,255,.2);font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700;letter-spacing:.05em;}
+.xp-display{margin-left:auto;font-size:11px;font-weight:700;background:rgba(255,255,255,.15);padding:3px 8px;border-radius:99px;}
+
+.body{padding:12px;}
+
+/* TASK */
+.task-card{background:#fff;border:1px solid var(--border-g);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.task-header{background:rgba(33,115,70,.06);padding:8px 12px;border-bottom:1px solid var(--border-g);display:flex;align-items:center;gap:8px;}
+.task-num{font-size:10px;font-weight:800;color:var(--g);background:var(--mint);padding:2px 7px;border-radius:99px;}
+.task-body{padding:10px 12px;}
+.task-desc{font-size:12px;font-weight:600;margin-bottom:6px;}
+.task-hint{background:var(--mint);border:1px solid var(--border-g);border-radius:7px;padding:7px 10px;font-size:11px;color:var(--gd);margin-bottom:8px;}
+.task-hint strong{display:block;font-size:10px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;}
+
+/* FORMULA INPUT */
+.formula-zone{background:#f0f8f0;border:1.5px solid var(--border-g);border-radius:7px;padding:8px 10px;font-family:Consolas,monospace;font-size:12px;color:var(--gd);margin-bottom:8px;min-height:36px;cursor:text;position:relative;}
+.formula-zone.active{border-color:var(--g);box-shadow:0 0 0 2px rgba(33,115,70,.12);}
+.formula-label{font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+input.formula-input{width:100%;background:transparent;border:none;outline:none;font-family:Consolas,monospace;font-size:12px;color:var(--gd);font-weight:600;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:7px;font-family:inherit;font-weight:700;cursor:pointer;transition:.15s;font-size:12px;padding:7px 12px;}
+.btn-primary{background:var(--g);color:#fff;width:100%;}
+.btn-primary:hover{background:var(--gd);}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--border-g);font-size:11px;}
+.btn-ghost:hover{background:var(--mint);}
+.btn-row{display:flex;gap:6px;margin-top:6px;}
+.btn-sm{padding:5px 10px;font-size:11px;}
+
+/* FEEDBACK */
+.feedback{border-radius:7px;padding:8px 10px;font-size:11px;margin-top:8px;display:none;}
+.feedback.ok{background:rgba(33,115,70,.1);border:1px solid rgba(33,115,70,.2);color:var(--gd);}
+.feedback.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#b91c1c;}
+.feedback.hint{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);color:#b45309;}
+.feedback.show{display:block;}
+
+/* PROGRESS */
+.progress-section{margin-bottom:12px;}
+.progress-bar{background:#e8e3d5;border-radius:99px;height:5px;overflow:hidden;margin:5px 0;}
+.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gd),var(--g));transition:width .4s ease;}
+.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
+
+/* TASKS LIST */
+.tasks-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;}
+.task-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#fff;border:1px solid var(--border);border-radius:7px;font-size:11px;cursor:pointer;transition:.15s;}
+.task-item:hover{border-color:var(--border-g);}
+.task-item.active{border-color:var(--g);background:rgba(33,115,70,.04);}
+.task-item.done{color:var(--muted);text-decoration:line-through;}
+.task-item.done{border-color:rgba(33,115,70,.2);background:rgba(33,115,70,.03);}
+.task-check{width:14px;height:14px;flex-shrink:0;accent-color:var(--g);}
+
+/* HINT STEPS */
+.hints{display:flex;flex-direction:column;gap:5px;}
+.hint-step{padding:7px 10px;border-radius:7px;border-left:3px solid var(--border-g);background:#fff;font-size:11px;color:var(--muted);}
+.hint-step.active{border-left-color:var(--g);color:var(--ink);}
+.hint-step code{background:rgba(33,115,70,.1);padding:1px 4px;border-radius:3px;font-family:Consolas,monospace;color:var(--gd);}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:10px;}
+.tab{flex:1;padding:6px;background:#fff;border:1px solid var(--border);border-radius:7px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);text-align:center;transition:.15s;}
+.tab.active{background:var(--g);color:#fff;border-color:var(--g);}
+
+/* SECTION TITLE */
+.section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g);margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+
+/* XP ANIM */
+@keyframes xpPop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+.xp-pop{animation:xpPop .3s ease;}
+
+/* STREAK */
+.streak-row{display:flex;gap:6px;margin-bottom:10px;}
+.streak-day{flex:1;height:5px;border-radius:99px;background:#e8e3d5;}
+.streak-day.done{background:var(--g);}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:#c5d5c5;border-radius:2px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span style="font-size:1rem">✱</span>
+  <div class="header-brand">Excel Quest</div>
+  <span class="header-pill">ADD-IN</span>
+  <div class="xp-display" id="xp-display">0 XP</div>
+</div>
+
+<div class="body">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-section">
+    <div class="progress-label"><span>Task-uri completate</span><span id="tasks-done-label">0/5</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="tasks-bar" style="width:0%"></div></div>
+    <div class="streak-row" id="streak-row"></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('tasks',this)">📋 Tasks</button>
+    <button class="tab" onclick="switchTab('hints',this)">💡 Hints</button>
+    <button class="tab" onclick="switchTab('debug',this)">🔍 Debug</button>
+  </div>
+
+  <!-- TAB: TASKS -->
+  <div id="tab-tasks">
+    <div class="section-title">📋 Exerciții sesiune</div>
+    <div class="tasks-list" id="tasks-list"></div>
+
+    <!-- ACTIVE TASK -->
+    <div class="task-card" id="active-task-card">
+      <div class="task-header">
+        <span class="task-num" id="active-task-num">Task 1/5</span>
+        <span id="active-task-title" style="font-weight:700;font-size:12px">Formula Basics</span>
+        <span id="active-task-xp" style="margin-left:auto;font-size:10px;color:var(--g);font-weight:700">+25 XP</span>
+      </div>
+      <div class="task-body">
+        <div class="task-desc" id="active-task-desc">Calculează suma vânzărilor în celula C2.</div>
+        <div class="task-hint">
+          <strong>💡 Context</strong>
+          <span id="active-task-hint">Datele sunt în B2:B5. Folosește funcția SUM.</span>
+        </div>
+        <div class="formula-label">Formula ta (scrie în celula activă din Excel sau aici):</div>
+        <div class="formula-zone">
+          <input class="formula-input" id="formula-input" type="text" placeholder="=SUM(B2:B5)" onkeydown="if(event.key==='Enter')checkFormula()">
+        </div>
+        <button class="btn btn-primary" onclick="checkFormula()">✓ Verifică formula</button>
+        <div class="feedback" id="feedback"></div>
+        <div class="btn-row">
+          <button class="btn btn-ghost btn-sm" onclick="showHint()">💡 Hint</button>
+          <button class="btn btn-ghost btn-sm" onclick="showSolution()">👁 Soluție</button>
+          <button class="btn btn-ghost btn-sm" onclick="skipTask()">→ Skip</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: HINTS -->
+  <div id="tab-hints" style="display:none">
+    <div class="section-title">💡 Ghid progresiv</div>
+    <div class="hints" id="hints-list"></div>
+    <div class="btn-row" style="margin-top:10px">
+      <button class="btn btn-ghost btn-sm" onclick="nextHintStep()" style="flex:1">→ Hint următor</button>
+      <button class="btn btn-ghost btn-sm" onclick="resetHints()" style="flex:1">↺ Reset</button>
+    </div>
+    <div style="margin-top:12px">
+      <div class="section-title">🎓 Recap rapid</div>
+      <div id="recap-content" style="font-size:11px;color:var(--muted);line-height:1.6;background:#fff;border:1px solid var(--border);border-radius:7px;padding:8px 10px;"></div>
+    </div>
+  </div>
+
+  <!-- TAB: DEBUG -->
+  <div id="tab-debug" style="display:none">
+    <div class="section-title">🔍 Formula Debugger</div>
+    <div class="formula-label">Paste formula cu eroare:</div>
+    <div class="formula-zone" style="margin-bottom:8px">
+      <input class="formula-input" id="debug-input" type="text" placeholder="=VLOOKUP(A2,B:D,4,0)">
+    </div>
+    <button class="btn btn-primary" onclick="debugFormula()">🔍 Analizează</button>
+    <div class="feedback" id="debug-feedback" style="margin-top:8px"></div>
+    <div class="btn-row" style="margin-top:6px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debug-input').value='=VLOOKUP(A2,B:D,4,0)';debugFormula()">VLOOKUP</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debug-input').value='=SUM(A1:A10';debugFormula()">SUM rot</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debug-input').value='=IF(A1>0,OK)';debugFormula()">IF fără ""</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ST = JSON.parse(localStorage.getItem('eq-addin')||'{}');
+ST.xp = ST.xp||0;
+ST.done = ST.done||[];
+ST.hintStep = ST.hintStep||0;
+ST.streak = ST.streak||[false,false,false,true,true,false,false];
+function save(){localStorage.setItem('eq-addin',JSON.stringify(ST));}
+function addXP(n){ST.xp+=n;save();const el=document.getElementById('xp-display');el.textContent=ST.xp+' XP';el.classList.add('xp-pop');setTimeout(()=>el.classList.remove('xp-pop'),300);}
+function updateTasksBar(){
+  const done=ST.done.length; const total=TASKS.length;
+  document.getElementById('tasks-bar').style.width=Math.round(done/total*100)+'%';
+  document.getElementById('tasks-done-label').textContent=done+'/'+total;
+}
+
+const TASKS = [
+  {id:'t1',title:'Suma vânzărilor',desc:'Calculează suma vânzărilor din B2:B5 în celula C2.',hint:'Datele sunt în coloana B, rândurile 2 la 5. Funcția de adunare este SUM.',answer:'=sum(b2:b5)',solution:'=SUM(B2:B5)',xp:25,recap:'SUM(B2:B5) adună toate valorile din B2, B3, B4 și B5. Intervalul se scrie cu ":" între prima și ultima celulă.'},
+  {id:'t2',title:'Media vânzărilor',desc:'Calculează media vânzărilor din B2:B5 în celula C3.',hint:'Media aritmetică se calculează cu AVERAGE. Același interval ca la SUM.',answer:'=average(b2:b5)',solution:'=AVERAGE(B2:B5)',xp:25,recap:'AVERAGE(B2:B5) adună valorile și le împarte la numărul lor. Ignoră celulele goale.'},
+  {id:'t3',title:'Clasificare profit',desc:'În D2 scrie o formulă care afișează "Profit" dacă B2>E2, altfel "Pierdere".',hint:'Folosește IF cu comparație între B2 și E2. Textul merge între ghilimele.',answer:'=if(b2>e2',solution:'=IF(B2>E2,"Profit","Pierdere")',xp:30,recap:'IF(condiție, dacă_adevărat, dacă_fals). Ghilimelele sunt obligatorii pentru text în Excel.'},
+  {id:'t4',title:'VLOOKUP simplu',desc:'Caută valoarea din A2 în intervalul G:H și returnează coloana 2 în E2.',hint:'VLOOKUP(ce_caut, unde_caut, nr_col, 0). Ultimul 0 = potrivire exactă.',answer:'=vlookup(a2,g:h,2,0)',solution:'=VLOOKUP(A2,G:H,2,0)',xp:35,recap:'VLOOKUP caută în prima coloană a intervalului și returnează coloana specificată. 0 la final = potrivire exactă.'},
+  {id:'t5',title:'Suma condiționată',desc:'În F2 calculează totalul vânzărilor din B:B doar pentru produsul din A2.',hint:'SUMIF(unde_verifici_condiția, condiția, ce_aduni). Condiția poate fi o referință de celulă.',answer:'=sumif(a:a,a2,b:b)',solution:'=SUMIF(A:A,A2,B:B)',xp:40,recap:'SUMIF(interval_criteriu, criteriu, interval_sumat). Când criteriul e o celulă, nu pune ghilimele.'},
+];
+
+const HINT_STEPS = {
+  b:['Hint 1: Formulele Excel încep ÎNTOTDEAUNA cu <code>=</code>','Hint 2: <code>=SUM(B2:B5)</code> adună valorile din B2, B3, B4 și B5','Hint 3: F4 blochează o referință: <code>$B$2</code> nu se modifică la copiere','Hint 4: Ctrl+Shift+Enter pentru formule matrice'],
+};
+const RECAPS = {
+  b:'Nivel Beginner: SUM, AVERAGE, IF și VLOOKUP sunt cele mai folosite funcții la job. Stăpânind-le, poți face 80% din sarcinile Excel de zi cu zi.',
+};
+
+let currentTask = 0;
+let hintIndex = 0;
+
+function renderTasksList(){
+  document.getElementById('tasks-list').innerHTML = TASKS.map((t,i)=>`
+    <div class="task-item ${ST.done.includes(t.id)?'done':currentTask===i?'active':''}" onclick="jumpToTask(${i})">
+      <input type="checkbox" class="task-check" ${ST.done.includes(t.id)?'checked':''} onclick="event.stopPropagation()">
+      <span>${i+1}. ${t.title}</span>
+      <span style="margin-left:auto;font-size:10px;color:${ST.done.includes(t.id)?'#9ca3af':'var(--g)'}">+${t.xp}XP</span>
+    </div>
+  `).join('');
+}
+
+function renderActiveTask(){
+  const task = TASKS[currentTask];
+  document.getElementById('active-task-num').textContent = `Task ${currentTask+1}/${TASKS.length}`;
+  document.getElementById('active-task-title').textContent = task.title;
+  document.getElementById('active-task-desc').textContent = task.desc;
+  document.getElementById('active-task-hint').textContent = task.hint;
+  document.getElementById('active-task-xp').textContent = `+${task.xp} XP`;
+  document.getElementById('formula-input').value = '';
+  document.getElementById('formula-input').placeholder = task.solution;
+  hideFeedback();
+}
+
+function jumpToTask(i){ currentTask=i; renderActiveTask(); renderTasksList(); hintIndex=0; }
+
+function checkFormula(){
+  const input = document.getElementById('formula-input').value.trim().toLowerCase();
+  const task = TASKS[currentTask];
+  const fb = document.getElementById('feedback');
+  const correct = input.includes(task.answer.split('(')[0]) && input.includes(task.answer.split('(')[1].split(',')[0]);
+  if(input === task.answer || input.replace(/\s/g,'') === task.answer.replace(/\s/g,'') || (input.startsWith(task.answer.split(',')[0]) && input.length > 5)){
+    fb.className='feedback ok show';
+    fb.innerHTML=`✓ Corect! ${task.recap}`;
+    if(!ST.done.includes(task.id)){ST.done.push(task.id);addXP(task.xp);save();}
+    updateTasksBar(); renderTasksList();
+    setTimeout(()=>{if(currentTask<TASKS.length-1){currentTask++;renderActiveTask();renderTasksList();}else{fb.innerHTML='🎉 Toate task-urile completate! +XP bonus';addXP(50);}},1800);
+  } else {
+    fb.className='feedback err show';
+    fb.innerHTML=`✗ Nu exact. Ai scris: <code>${input||'(gol)'}</code>. Verifică sintaxa și încearcă din nou.`;
+  }
+}
+
+function showHint(){
+  const task=TASKS[currentTask];
+  const fb=document.getElementById('feedback');
+  hintIndex++;
+  if(hintIndex===1){fb.className='feedback hint show';fb.innerHTML=`💡 Hint: ${task.hint}`;}
+  else {fb.className='feedback hint show';fb.innerHTML=`👁 Soluție completă: <code>${task.solution}</code><br><small>${task.recap}</small>`;}
+}
+
+function showSolution(){
+  const task=TASKS[currentTask];
+  const fb=document.getElementById('feedback');
+  fb.className='feedback hint show';
+  fb.innerHTML=`👁 Soluție: <code>${task.solution}</code><br><small>${task.recap}</small>`;
+}
+
+function skipTask(){if(currentTask<TASKS.length-1){currentTask++;renderActiveTask();renderTasksList();hintIndex=0;}}
+
+function hideFeedback(){const fb=document.getElementById('feedback');fb.className='feedback';fb.innerHTML='';}
+
+// HINTS TAB
+function renderHintsList(){
+  const steps=HINT_STEPS.b;
+  document.getElementById('hints-list').innerHTML=steps.map((s,i)=>`
+    <div class="hint-step ${i<=ST.hintStep?'active':''}">${s.replace(/`([^`]+)`/g,'<code>$1</code>').replace(/<code>/g,'<code style="background:rgba(33,115,70,.1);padding:1px 4px;border-radius:3px;font-family:Consolas,monospace;color:var(--gd);">')}</div>
+  `).join('');
+  document.getElementById('recap-content').textContent=RECAPS.b;
+}
+function nextHintStep(){if(ST.hintStep<HINT_STEPS.b.length-1){ST.hintStep++;save();renderHintsList();}}
+function resetHints(){ST.hintStep=0;save();renderHintsList();}
+
+// TABS
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  ['tasks','hints','debug'].forEach(t=>document.getElementById('tab-'+t).style.display=t===name?'block':'none');
+}
+
+// DEBUGGER
+const DB_RULES=[
+  {test:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o!==c;},msg:'Paranteze nepereche',fix:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o>c?f+')'.repeat(o-c):f;}},
+  {test:f=>!/^=/.test(f.trim()),msg:'Formula nu începe cu =',fix:f=>'='+f.trim()},
+  {test:f=>/SUUM|AVRAGE|VLOKUP/i.test(f),msg:'Funcție scrisă greșit',fix:f=>f.replace(/SUUM/gi,'SUM').replace(/AVRAGE/gi,'AVERAGE').replace(/VLOKUP/gi,'VLOOKUP')},
+  {test:f=>/IF\s*\([^,]+,[^"',]+\s*\)$/i.test(f)&&!f.includes('"'),msg:'Text în IF fără ghilimele',fix:null},
+  {test:f=>/VLOOKUP.*,\s*TRUE\s*\)/i.test(f),msg:'VLOOKUP cu TRUE (aproximativ)',fix:f=>f.replace(/,\s*TRUE\s*\)/i,',0)')},
+];
+function debugFormula(){
+  const f=document.getElementById('debug-input').value.trim();
+  const fb=document.getElementById('debug-feedback');
+  if(!f){fb.className='feedback hint show';fb.textContent='Introdu o formulă.';return;}
+  for(const r of DB_RULES){
+    if(r.test(f)){
+      const fix=r.fix?r.fix(f):null;
+      fb.className='feedback err show';
+      fb.innerHTML=`✗ <strong>${r.msg}</strong>${fix?`<br>Fix: <code style="background:rgba(239,68,68,.1);padding:2px 5px;border-radius:3px;font-family:Consolas,monospace">${fix}</code>`:'<br>Verifică manual.'}`;
+      addXP(5);return;
+    }
+  }
+  fb.className='feedback ok show';
+  fb.innerHTML='✓ Formula pare validă sintactic. Dacă tot nu merge, verifică tipurile de date cu =ISNUMBER().';
+  addXP(5);
+}
+
+// STREAK DISPLAY
+function renderStreak(){
+  document.getElementById('streak-row').innerHTML=ST.streak.map(d=>`<div class="streak-day ${d?'done':''}"></div>`).join('');
+}
+
+// INIT
+document.getElementById('xp-display').textContent=ST.xp+' XP';
+renderTasksList();
+renderActiveTask();
+renderHintsList();
+updateTasksBar();
+renderStreak();
+</script>
+</body>
+</html>
