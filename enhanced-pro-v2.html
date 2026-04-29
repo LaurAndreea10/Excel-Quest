@@ -3,870 +3,728 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excel Quest Enhanced Pro — AI-powered learning</title>
+<title>Excel Quest — Pro Hub · Skill Tree complet</title>
 <style>
-/* ── STABILITY LAYER — overrides orice conflict extern ── */
-*, *::before, *::after { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
-html { scroll-behavior: smooth; }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap');
 
 :root {
-  /* Brand */
-  --pro-purple: #7c3aed;
-  --pro-purple-light: #a78bfa;
-  --pro-purple-dim: rgba(124,58,237,0.12);
-  --pro-gold: #f59e0b;
-  --pro-gold-dim: rgba(245,158,11,0.12);
-  --pro-teal: #0d9488;
-  --pro-teal-dim: rgba(13,148,136,0.1);
-  --pro-green: #16a34a;
-  --pro-green-light: #22c55e;
-  /* Surfaces */
-  --bg: #080b14;
-  --bg2: #0d1117;
-  --surface: #111827;
-  --surface2: #1f2937;
-  --surface3: #374151;
-  --text: #f9fafb;
-  --text-muted: #9ca3af;
-  --text-dim: #6b7280;
+  --bg: #0a0f0a;
+  --bg2: #0d140d;
+  --surface: #111911;
+  --surface2: #162116;
+  --surface3: #1b2a1b;
   --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(255,255,255,0.14);
-  --radius: 14px;
-  --radius-sm: 8px;
-  --radius-xs: 6px;
+  --border-green: rgba(34,197,94,0.20);
+  --border-gold: rgba(245,158,11,0.22);
+  --border-red: rgba(239,68,68,0.20);
+  --text: #e8f5e8;
+  --muted: #7a9b7a;
+  --dim: #4a644a;
+
+  --g: #22c55e;
+  --g-dark: #15803d;
+  --g-dim: rgba(34,197,94,0.10);
+  --gold: #f59e0b;
+  --gold-dim: rgba(245,158,11,0.10);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.10);
+  --blue: #3b82f6;
+
+  --radius: 16px;
+  --radius-sm: 10px;
 }
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  min-height: 100vh;
 }
 
-/* ── CANVAS RENDERER V2 — animated mesh background ── */
-#bg-canvas {
+/* ─── CANVAS ─── */
+#mesh {
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none; opacity: 0.4;
 }
 
-/* ── NAV ── */
+/* ─── NAV ─── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  height: 58px;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 60px; padding: 0 1.5rem;
   display: flex; align-items: center; gap: 1rem;
-  padding: 0 2rem;
-  background: rgba(8,11,20,0.9);
+  background: rgba(10,15,10,0.90);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 .nav-brand {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.1rem; color: var(--g); text-decoration: none;
   display: flex; align-items: center; gap: 0.5rem;
-  text-decoration: none; font-weight: 700; font-size: 1rem; color: var(--text);
 }
-.nav-brand .pro-pill {
-  background: var(--pro-purple); color: #fff;
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
-  padding: 2px 7px; border-radius: 99px; text-transform: uppercase;
+.nav-brand .hub-pill {
+  font-size: 0.6rem; padding: 2px 8px; border-radius: 99px;
+  background: rgba(34,197,94,0.15); border: 1px solid var(--border-green);
+  color: var(--g); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
 }
-.nav-links {
-  display: flex; gap: 0.15rem; margin-left: auto;
-}
+.nav-links { display: flex; gap: 0.25rem; margin-left: auto; }
 .nav-links a {
-  color: var(--text-muted); text-decoration: none; font-size: 0.8rem;
-  padding: 0.35rem 0.75rem; border-radius: var(--radius-xs);
+  color: var(--muted); text-decoration: none; font-size: 0.78rem;
+  padding: 0.35rem 0.7rem; border-radius: var(--radius-sm);
   transition: all 0.15s;
 }
-.nav-links a:hover { color: var(--text); background: var(--surface2); }
-.nav-cta {
-  background: var(--pro-purple); color: #fff; border: none; cursor: pointer;
-  padding: 0.45rem 1.1rem; border-radius: var(--radius-xs); font-size: 0.82rem;
-  font-weight: 600; transition: all 0.2s; margin-left: 0.5rem;
+.nav-links a:hover { color: var(--g); background: var(--g-dim); }
+.nav-xp {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  padding: 0.3rem 0.75rem; border-radius: 99px;
+  background: var(--g-dim); border: 1px solid var(--border-green);
+  color: var(--g); font-weight: 700;
 }
-.nav-cta:hover { background: #6d28d9; transform: translateY(-1px); }
-.nav-badge-xp {
-  font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 99px;
-  background: var(--pro-purple-dim); border: 1px solid rgba(124,58,237,0.3);
-  color: var(--pro-purple-light); font-weight: 600;
+.nav-back {
+  color: var(--muted); text-decoration: none; font-size: 0.78rem;
+  padding: 0.35rem 0.75rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); transition: all 0.15s;
 }
+.nav-back:hover { border-color: var(--border-green); color: var(--g); }
+@media (max-width:640px){ .nav-links{display:none;} }
 
-/* ── LAYOUT ── */
-main { padding-top: 58px; position: relative; z-index: 1; }
-.section { padding: 5rem 2rem; max-width: 1120px; margin: 0 auto; }
-.section-sm { padding: 3rem 2rem; max-width: 1120px; margin: 0 auto; }
+/* ─── MAIN ─── */
+main { padding-top: 60px; position: relative; z-index: 1; }
+.section { padding: 4rem 1.5rem; max-width: 1080px; margin: 0 auto; }
+.sep { height: 1px; background: linear-gradient(90deg,transparent,rgba(34,197,94,0.12),transparent); margin: 0 2rem; }
 
-/* ── TYPOGRAPHY ── */
-h1 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
-h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
-h3 { font-size: 1.05rem; font-weight: 600; }
-p { color: var(--text-muted); font-size: 0.95rem; }
-
-/* ── PRO HERO ── */
+/* ─── HERO ─── */
 #hero {
-  min-height: calc(100vh - 58px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 3rem 2rem;
-  background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(124,58,237,0.18) 0%, transparent 70%);
+  min-height: 88vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(ellipse 60% 50% at 50% -5%, rgba(34,197,94,0.13), transparent 70%);
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.6rem;
-  border: 1px solid rgba(124,58,237,0.35); background: rgba(124,58,237,0.08);
-  color: var(--pro-purple-light); padding: 0.4rem 1rem; border-radius: 99px;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
-  margin-bottom: 1.75rem;
+  border: 1px solid var(--border-green); background: var(--g-dim);
+  color: var(--g); padding: 0.4rem 1rem; border-radius: 99px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
 }
-.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pro-purple-light); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.gradient-text {
-  background: linear-gradient(135deg, var(--pro-purple-light) 0%, #c084fc 40%, var(--pro-gold) 100%);
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--g);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+h1 {
+  font-family: 'Syne', sans-serif; font-size: clamp(2.5rem,6vw,5rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.g-text {
+  background: linear-gradient(135deg, #22c55e, #86efac, #4ade80);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero-sub { max-width: 580px; margin: 1.25rem auto 0; font-size: 1.05rem; line-height: 1.7; }
-.btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; }
+.hero-sub { font-size: 1rem; color: var(--muted); max-width: 580px; margin: 0 auto 2rem; }
+.btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
 .btn {
-  padding: 0.75rem 1.75rem; border-radius: var(--radius-xs); font-weight: 600;
-  font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.2s;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.72rem 1.6rem; border-radius: var(--radius-sm);
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.88rem;
+  cursor: pointer; border: none; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.45rem;
 }
-.btn:focus-visible { outline: 2px solid var(--pro-purple-light); outline-offset: 2px; }
-.btn-pro { background: var(--pro-purple); color: #fff; box-shadow: 0 4px 20px rgba(124,58,237,0.3); }
-.btn-pro:hover { background: #6d28d9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
-.btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border-hover); }
-.btn-ghost:hover { background: var(--surface2); }
-.btn-sm { padding: 0.45rem 1rem; font-size: 0.8rem; }
-.btn-gold { background: var(--pro-gold); color: #000; }
-.btn-teal { background: var(--pro-teal); color: #fff; }
+.btn-green { background: var(--g); color: #061006; box-shadow: 0 8px 20px rgba(34,197,94,0.20); }
+.btn-green:hover { background: #4ade80; transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--border-green); color: var(--g); }
+.btn-sm { padding: 0.42rem 0.9rem; font-size: 0.78rem; }
+.btn-gold { background: rgba(245,158,11,0.15); color: var(--gold); border: 1px solid var(--border-gold); }
+.btn-gold:hover { background: rgba(245,158,11,0.25); }
+.btn-red { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid var(--border-red); }
+.btn-red:hover { background: rgba(239,68,68,0.22); }
 
-/* ── PRO BANNER (for V2 page link) ── */
-.pro-banner {
-  background: linear-gradient(135deg, #1e1040, #0f172a);
-  border: 1px solid rgba(124,58,237,0.3); border-radius: var(--radius);
-  padding: 1.25rem 1.75rem;
-  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: 2rem; position: relative; overflow: hidden;
-}
-.pro-banner::before {
-  content: ''; position: absolute; top: 0; right: 0;
-  width: 200px; height: 100%;
-  background: radial-gradient(ellipse at right, rgba(124,58,237,0.15), transparent);
-  pointer-events: none;
-}
-.pro-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
-.pro-banner-text { flex: 1; min-width: 200px; }
-.pro-banner-text strong { color: var(--text); font-size: 0.95rem; }
-.pro-banner-text p { font-size: 0.82rem; margin-top: 0.15rem; }
-
-/* ── FEATURE GRID ── */
-.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
-.feat-card {
+/* ─── LEVEL TABS ─── */
+.level-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.level-tab {
+  padding: 0.5rem 1.2rem; border-radius: var(--radius-sm);
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1.5rem;
-  transition: all 0.2s; position: relative; overflow: hidden;
+  color: var(--muted); transition: all 0.2s; font-family: 'Space Grotesk', sans-serif;
 }
-.feat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-.feat-card::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  opacity: 0; transition: opacity 0.2s;
-}
-.feat-card:hover::after { opacity: 1; }
-.feat-card.purple::after { background: var(--pro-purple); }
-.feat-card.gold::after { background: var(--pro-gold); }
-.feat-card.teal::after { background: var(--pro-teal); }
-.feat-icon-wrap {
-  width: 44px; height: 44px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; margin-bottom: 1rem;
-}
-.feat-icon-wrap.purple { background: var(--pro-purple-dim); }
-.feat-icon-wrap.gold { background: var(--pro-gold-dim); }
-.feat-icon-wrap.teal { background: var(--pro-teal-dim); }
-.pro-tag {
-  display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
-  padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 0.5rem;
-}
-.pro-tag.purple { background: var(--pro-purple-dim); color: var(--pro-purple-light); border: 1px solid rgba(124,58,237,0.2); }
-.pro-tag.gold { background: var(--pro-gold-dim); color: var(--pro-gold); border: 1px solid rgba(245,158,11,0.2); }
-.pro-tag.teal { background: var(--pro-teal-dim); color: #5eead4; border: 1px solid rgba(13,148,136,0.2); }
+.level-tab[data-lv="beginner"].active { background: rgba(34,197,94,0.12); border-color: var(--border-green); color: var(--g); }
+.level-tab[data-lv="intermediate"].active { background: var(--gold-dim); border-color: var(--border-gold); color: var(--gold); }
+.level-tab[data-lv="advanced"].active { background: var(--red-dim); border-color: var(--border-red); color: var(--red); }
+.level-tab:hover:not(.active) { border-color: rgba(255,255,255,0.14); color: var(--text); }
 
-/* ── AI MODULES ── */
-.ai-module {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem;
+/* ─── SECTION HEADERS ─── */
+.sec-head { margin-bottom: 2rem; }
+.sec-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem,3vw,2.1rem); font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+.sec-head p { color: var(--muted); font-size: 0.9rem; }
+.section-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  color: var(--g); border: 1px solid var(--border-green);
+  padding: 2px 8px; border-radius: 4px; margin-bottom: 0.75rem; display: inline-block;
 }
-.ai-module-header {
-  padding: 1rem 1.5rem; background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.ai-module-header h3 { font-size: 0.95rem; }
-.ai-module-body { padding: 1.5rem; }
-.module-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-.module-tab {
-  padding: 0.4rem 0.9rem; border-radius: var(--radius-xs); font-size: 0.8rem;
-  border: 1px solid var(--border); background: transparent; color: var(--text-muted);
-  cursor: pointer; transition: all 0.15s;
-}
-.module-tab.active { background: var(--pro-purple); border-color: var(--pro-purple); color: #fff; }
-.module-tab:hover:not(.active) { border-color: var(--border-hover); color: var(--text); }
 
-/* AI Chat */
-.chat-messages {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 1rem; min-height: 200px; max-height: 360px; overflow-y: auto;
-  margin-bottom: 0.75rem; display: flex; flex-direction: column; gap: 0.75rem;
-}
-.msg { display: flex; gap: 0.5rem; align-items: flex-start; }
-.msg-avatar {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; font-weight: 700;
-}
-.msg-avatar.ai { background: var(--pro-purple-dim); color: var(--pro-purple-light); }
-.msg-avatar.user { background: var(--surface3); color: var(--text); }
-.msg-bubble {
-  background: var(--surface2); border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
-  padding: 0.6rem 0.9rem; font-size: 0.875rem; line-height: 1.6; max-width: 85%;
-}
-.msg.user { flex-direction: row-reverse; }
-.msg.user .msg-bubble {
-  background: var(--pro-purple-dim); border: 1px solid rgba(124,58,237,0.2);
-  border-radius: var(--radius-sm) 0 var(--radius-sm) var(--radius-sm);
-}
-.msg-bubble code { background: var(--surface3); padding: 1px 5px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.8rem; color: var(--pro-purple-light); }
-.chat-input-row { display: flex; gap: 0.5rem; }
-.chat-input {
-  flex: 1; padding: 0.65rem 1rem; background: var(--surface2);
-  border: 1px solid var(--border); border-radius: var(--radius-xs);
-  color: var(--text); font-size: 0.875rem; resize: none; min-height: 44px;
-}
-.chat-input:focus { outline: none; border-color: var(--pro-purple); }
-.loading-dots {
-  display: inline-flex; gap: 3px; align-items: center; padding: 0.2rem 0;
-}
-.loading-dots span {
-  width: 5px; height: 5px; border-radius: 50%; background: var(--pro-purple-light);
-  animation: dots 1.2s infinite;
-}
-.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes dots { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
-
-/* Formula Debugger */
-.debugger-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 600px) { .debugger-grid { grid-template-columns: 1fr; } }
-.debugger-input-wrap { position: relative; }
-.formula-input {
-  width: 100%; padding: 0.75rem 1rem; background: var(--bg2);
-  border: 1px solid var(--border); border-radius: var(--radius-sm);
-  color: var(--pro-green-light, #4ade80); font-family: 'Consolas', monospace;
-  font-size: 0.9rem; min-height: 80px; resize: vertical;
-}
-.formula-input:focus { outline: none; border-color: var(--pro-purple); }
-.debug-result {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 1rem; min-height: 80px; font-size: 0.875rem;
-}
-.debug-error { color: #f87171; }
-.debug-ok { color: #4ade80; }
-.debug-suggestion { color: var(--pro-purple-light); margin-top: 0.5rem; }
-
-/* Formula Builder */
-.builder-steps { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
-.step-num {
-  width: 24px; height: 24px; border-radius: 50%; background: var(--pro-purple-dim);
-  border: 1px solid rgba(124,58,237,0.3); color: var(--pro-purple-light);
-  display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;
-  flex-shrink: 0;
-}
-.step-arrow { color: var(--text-dim); font-size: 0.75rem; }
-.builder-result {
-  background: var(--bg2); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius-sm);
-  padding: 1.25rem; margin-top: 1rem;
-}
-.builder-formula { font-family: 'Consolas', monospace; font-size: 1.1rem; color: #4ade80; margin-bottom: 0.75rem; }
-.builder-explanation { font-size: 0.85rem; line-height: 1.7; }
-.builder-example { background: var(--surface2); border-radius: var(--radius-xs); padding: 0.75rem; margin-top: 0.75rem; font-size: 0.82rem; font-family: 'Consolas', monospace; }
-
-/* CSV Analyzer */
-.upload-zone {
-  border: 2px dashed var(--border-hover); border-radius: var(--radius-sm);
-  padding: 2rem; text-align: center; cursor: pointer; transition: all 0.2s;
-  background: var(--bg2);
-}
-.upload-zone:hover, .upload-zone.drag-over { border-color: var(--pro-purple); background: var(--pro-purple-dim); }
-.upload-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-.csv-preview {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-  overflow: auto; margin-top: 1rem; max-height: 200px;
-}
-.csv-preview table { width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: 'Consolas', monospace; }
-.csv-preview th { background: var(--surface2); padding: 0.4rem 0.6rem; text-align: left; border-bottom: 1px solid var(--border); color: var(--pro-purple-light); }
-.csv-preview td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--border); color: var(--text-muted); }
-.exercise-generated {
-  background: var(--surface); border: 1px solid rgba(124,58,237,0.2);
-  border-radius: var(--radius-sm); padding: 1.25rem; margin-top: 1rem;
-}
-.exercise-generated h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
-.exercise-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
-.exercise-list li { font-size: 0.85rem; padding: 0.5rem 0.75rem; background: var(--surface2); border-radius: var(--radius-xs); }
-
-/* Weekly Challenges */
-.challenge-card {
-  background: linear-gradient(135deg, var(--surface), #1a1030);
-  border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius);
-  padding: 1.5rem; margin-bottom: 1rem; position: relative; overflow: hidden;
-}
-.challenge-card::before {
-  content: ''; position: absolute; top: -50%; right: -20%;
-  width: 300px; height: 300px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(124,58,237,0.08), transparent 60%);
-  pointer-events: none;
-}
-.challenge-timer {
-  display: flex; gap: 0.5rem; margin-top: 0.75rem;
-}
-.timer-block {
-  background: var(--surface2); border-radius: var(--radius-xs);
-  padding: 0.4rem 0.65rem; text-align: center; min-width: 48px;
-}
-.timer-val { font-size: 1.2rem; font-weight: 700; color: var(--pro-purple-light); }
-.timer-lbl { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
-.leaderboard { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
-.lb-row {
-  display: flex; align-items: center; gap: 0.75rem;
-  padding: 0.6rem 0.9rem; background: var(--surface); border-radius: var(--radius-xs);
-  border: 1px solid var(--border); font-size: 0.85rem;
-}
-.lb-rank { width: 22px; text-align: center; color: var(--text-dim); font-weight: 700; font-size: 0.8rem; }
-.lb-rank.gold { color: var(--pro-gold); }
-.lb-rank.silver { color: #9ca3af; }
-.lb-rank.bronze { color: #b45309; }
-.lb-name { flex: 1; }
-.lb-score { color: var(--pro-purple-light); font-weight: 600; }
-
-/* Portfolio */
-.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-.portfolio-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; transition: all 0.2s;
-}
-.portfolio-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-.portfolio-preview {
-  height: 120px; background: linear-gradient(135deg, var(--surface2), var(--surface));
-  display: flex; align-items: center; justify-content: center; font-size: 2rem;
-  border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
-}
-.portfolio-preview .overlay {
-  position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.2s;
-}
-.portfolio-card:hover .overlay { background: rgba(124,58,237,0.08); }
-.portfolio-body { padding: 1rem; }
-.portfolio-skills { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.skill-chip { font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; background: var(--surface2); color: var(--text-muted); }
-.portfolio-score { color: var(--pro-gold); font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem; }
-.portfolio-share-link { color: var(--pro-purple-light); font-size: 0.75rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; margin-top: 0.5rem; }
-
-/* Stats */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+/* ─── STAT CARDS ─── */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 1rem; margin-bottom: 2.5rem; }
 .stat-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 1.25rem; text-align: center;
 }
-.stat-val { font-size: 2rem; font-weight: 800; color: var(--pro-purple-light); }
-.stat-lbl { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem; letter-spacing: 0.03em; }
-.stat-delta { font-size: 0.7rem; color: var(--pro-green-light, #4ade80); margin-top: 0.15rem; }
+.stat-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--g); }
+.stat-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-/* Progress */
-.progress-wrap { background: var(--surface2); border-radius: 99px; height: 6px; overflow: hidden; margin: 0.5rem 0; }
-.progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--pro-purple), var(--pro-purple-light)); transition: width 0.6s ease; }
-.progress-fill.gold { background: linear-gradient(90deg, #d97706, var(--pro-gold)); }
-.progress-fill.teal { background: linear-gradient(90deg, #0f766e, var(--pro-teal)); }
-
-/* Adaptive Path */
-.path-track { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
-.path-node {
+/* ─── SKILL TREE ─── */
+.skill-tree-wrap { display: flex; flex-direction: column; gap: 0; }
+.level-block { margin-bottom: 2.5rem; }
+.level-header {
   display: flex; align-items: center; gap: 1rem;
+  padding: 0.75rem 1.25rem; border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem; border: 1px solid;
+}
+.level-header.beginner { background: rgba(34,197,94,0.07); border-color: var(--border-green); }
+.level-header.intermediate { background: var(--gold-dim); border-color: var(--border-gold); }
+.level-header.advanced { background: var(--red-dim); border-color: var(--border-red); }
+.level-header h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; }
+.level-header.beginner h3 { color: var(--g); }
+.level-header.intermediate h3 { color: var(--gold); }
+.level-header.advanced h3 { color: var(--red); }
+.skill-nodes { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1rem; }
+.skill-node {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+  cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
+}
+.skill-node:hover { transform: translateY(-2px); }
+.skill-node.unlocked:hover { border-color: var(--border-green); }
+.skill-node.locked { opacity: 0.55; cursor: not-allowed; }
+.skill-node.done { border-color: rgba(34,197,94,0.30); }
+.skill-node.done::after {
+  content: '✓'; position: absolute; top: 0.75rem; right: 0.75rem;
+  background: var(--g); color: #061006; width: 20px; height: 20px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 800;
+}
+.skill-node h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem; }
+.skill-node p { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+.skill-xp { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--g); }
+.skill-lock { font-size: 0.7rem; color: var(--dim); }
+.progress-bar { height: 4px; background: var(--surface3); border-radius: 99px; margin-top: 0.75rem; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg,var(--g-dark),var(--g)); transition: width 0.6s ease; }
+.progress-fill.gold { background: linear-gradient(90deg,#b45309,var(--gold)); }
+.progress-fill.red { background: linear-gradient(90deg,#b91c1c,var(--red)); }
+
+/* ─── INBOX ─── */
+.inbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.inbox-grid{grid-template-columns:1fr;}}
+.inbox-email {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+}
+.email-from { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.email-from .badge-lv { font-size: 0.6rem; padding: 1px 6px; border-radius: 4px; font-weight: 700; }
+.email-from .badge-lv.b { background: var(--g-dim); color: var(--g); border: 1px solid var(--border-green); }
+.email-from .badge-lv.i { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--border-gold); }
+.email-from .badge-lv.a { background: var(--red-dim); color: var(--red); border: 1px solid var(--border-red); }
+.email-subject { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.email-body { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+.active-mission-box {
+  background: var(--surface); border: 1px solid var(--border-green);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.mission-title { font-weight: 700; margin-bottom: 0.35rem; }
+.mission-desc { font-size: 0.82rem; color: var(--muted); }
+.no-mission { color: var(--dim); font-size: 0.85rem; font-style: italic; }
+
+/* ─── SIMULATOR ─── */
+.sim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.sim-grid{grid-template-columns:1fr;}}
+.sim-file {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+}
+.file-name {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+}
+.error-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.error-item {
+  display: flex; align-items: center; gap: 0.65rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.6rem 0.85rem; font-size: 0.8rem;
+}
+.err-icon { font-size: 0.9rem; flex-shrink: 0; }
+.repair-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+.checklist { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.check-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.6rem 0.9rem;
+  font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+}
+.check-item.done { border-color: rgba(34,197,94,0.25); color: var(--g); }
+.check-item input { accent-color: var(--g); cursor: pointer; }
+.result-box {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.85rem; font-size: 0.82rem;
+  color: var(--muted); min-height: 60px; margin-top: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── FORMULA TOOLS ─── */
+.tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.tools-grid{grid-template-columns:1fr;}}
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;
+}
+.tool-card h3 { font-size: 0.92rem; font-weight: 700; }
+.tool-card p { font-size: 0.8rem; color: var(--muted); }
+.formula-input-field {
+  width: 100%; padding: 0.75rem 1rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--g);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
+  resize: none; min-height: 72px;
+}
+.formula-input-field:focus { outline: none; border-color: var(--border-green); box-shadow: 0 0 0 3px rgba(34,197,94,0.08); }
+.result-panel {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.9rem;
+  font-size: 0.8rem; min-height: 64px; color: var(--muted);
+}
+.result-panel code { background: rgba(34,197,94,0.12); padding: 1px 5px; border-radius: 4px; color: var(--g); font-family: 'JetBrains Mono', monospace; }
+.result-panel .ok { color: var(--g); }
+.result-panel .err { color: var(--red); }
+.result-panel .warn { color: var(--gold); }
+.btn-row-small { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* ─── ERROR CLINIC ─── */
+.clinic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.clinic-grid{grid-template-columns:1fr;}}
+.error-codes { display: flex; flex-direction: column; gap: 0.5rem; }
+.error-code-btn {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.6rem 0.9rem;
+  cursor: pointer; transition: all 0.15s; font-size: 0.82rem;
+  text-align: left; color: var(--text);
+}
+.error-code-btn:hover { border-color: var(--border-green); }
+.error-code-btn.active { border-color: var(--border-green); background: var(--g-dim); }
+.code-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--red); font-weight: 700; min-width: 60px; }
+.clinic-detail {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.clinic-detail h4 { font-size: 0.92rem; margin-bottom: 0.75rem; color: var(--g); }
+.guide-line {
+  border-left: 2px solid rgba(34,197,94,0.30); padding: 0.6rem 0.9rem;
+  background: var(--surface2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem;
+}
+.fix-formula {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+  color: var(--g); background: var(--g-dim); border: 1px solid var(--border-green);
+  padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); margin-top: 0.75rem;
+}
+
+/* ─── BOSSES ─── */
+.boss-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.25rem; }
+.boss-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem; position: relative; overflow: hidden;
+  transition: all 0.2s;
+}
+.boss-card:hover { transform: translateY(-2px); }
+.boss-card.beginner:hover { border-color: var(--border-green); }
+.boss-card.intermediate:hover { border-color: var(--border-gold); }
+.boss-card.advanced:hover { border-color: var(--border-red); }
+.boss-card::before {
+  content: ''; position: absolute; bottom: -20px; right: -20px;
+  width: 100px; height: 100px; border-radius: 50%;
+  pointer-events: none; opacity: 0.4;
+}
+.boss-card.beginner::before { background: radial-gradient(circle, rgba(34,197,94,0.15), transparent); }
+.boss-card.intermediate::before { background: radial-gradient(circle, rgba(245,158,11,0.15), transparent); }
+.boss-card.advanced::before { background: radial-gradient(circle, rgba(239,68,68,0.15), transparent); }
+.boss-lv { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.boss-lv.b { color: var(--g); }
+.boss-lv.i { color: var(--gold); }
+.boss-lv.a { color: var(--red); }
+.boss-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.boss-card p { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+.boss-reward { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+.boss-card.beaten { border-color: rgba(34,197,94,0.25); }
+.boss-card.beaten::after { content:'✓ Învins'; position:absolute; top:0.75rem;right:0.75rem; font-size:0.65rem;color:var(--g);background:var(--g-dim);padding:2px 7px;border-radius:99px;border:1px solid var(--border-green); }
+
+/* ─── DASHBOARD BUILDER ─── */
+.dash-flow { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.dash-flow{grid-template-columns:1fr;}}
+.steps-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.step-row {
+  display: flex; align-items: center; gap: 0.85rem;
   padding: 0.75rem 1rem; background: var(--surface);
-  border: 1px solid var(--border); border-radius: var(--radius-sm); position: relative;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 0.82rem; color: var(--muted); transition: all 0.2s;
 }
-.path-node.recommended { border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.04); }
-.path-node.completed { border-color: rgba(34,197,94,0.25); }
-.path-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.path-dot.done { background: var(--pro-green-light, #22c55e); }
-.path-dot.next { background: var(--pro-purple-light); animation: pulse 2s infinite; }
-.path-dot.pending { background: var(--surface3); }
-.path-label { font-size: 0.85rem; flex: 1; }
-.path-reason { font-size: 0.75rem; color: var(--pro-purple-light); }
-.ai-reco-badge { font-size: 0.65rem; padding: 2px 8px; background: var(--pro-purple-dim); color: var(--pro-purple-light); border-radius: 4px; border: 1px solid rgba(124,58,237,0.2); }
+.step-row.done { border-color: rgba(34,197,94,0.22); color: var(--text); }
+.step-num {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 800;
+  background: var(--surface3); color: var(--muted);
+}
+.step-row.done .step-num { background: rgba(34,197,94,0.20); color: var(--g); }
+.score-display {
+  background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(74,222,128,0.06));
+  border: 1px solid var(--border-green);
+  border-radius: var(--radius); padding: 2rem; text-align: center;
+}
+.score-number { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--g); }
+.score-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.story-input {
+  width: 100%; padding: 0.75rem 1rem; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); font-size: 0.85rem; resize: none;
+  font-family: 'Space Grotesk', sans-serif; min-height: 72px; margin-top: 0.75rem;
+}
+.story-input:focus { outline: none; border-color: var(--border-green); }
 
-/* Add-in teaser */
-.addin-teaser {
-  background: linear-gradient(135deg, #0f172a, #1a0f30);
-  border: 1px solid rgba(245,158,11,0.25); border-radius: var(--radius);
-  padding: 2rem; text-align: center; position: relative; overflow: hidden;
+/* ─── MENTOR ─── */
+.mentor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.mentor-grid{grid-template-columns:1fr;}}
+.mentor-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
 }
-.addin-teaser::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.06), transparent 60%);
-  pointer-events: none;
+.hint-display {
+  background: var(--bg2); border-left: 3px solid var(--g);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1rem 1.25rem; font-size: 0.85rem; color: var(--text);
+  line-height: 1.7; min-height: 72px;
 }
-.addin-excel-window {
-  background: #1d6f42; border-radius: var(--radius-sm);
-  max-width: 480px; margin: 1.5rem auto 0; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
+.hint-display code { background: var(--g-dim); color: var(--g); padding: 1px 5px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+.feedback-panel {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1rem; font-size: 0.82rem;
+  color: var(--muted); line-height: 1.7; min-height: 72px;
 }
-.excel-titlebar { background: #185234; padding: 0.4rem 0.75rem; font-size: 0.72rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 0.5rem; }
-.excel-body { display: flex; background: #fff; }
-.excel-sheet { flex: 1; padding: 0.5rem; }
-.excel-cell { height: 24px; border-right: 1px solid #d0d7de; border-bottom: 1px solid #d0d7de; font-size: 0.7rem; color: #1f2937; display: flex; align-items: center; padding: 0 6px; min-width: 70px; }
-.excel-cell.header { background: #f3f4f6; font-weight: 600; }
-.excel-cell.active { background: #e8f0fe; border: 2px solid #1a73e8; }
-.excel-cell.formula { color: #15803d; font-family: 'Consolas', monospace; font-size: 0.65rem; }
-.excel-task-pane {
-  width: 180px; background: #f8fafc; border-left: 1px solid #d0d7de;
-  padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;
-}
-.pane-header { font-size: 0.7rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.25rem; }
-.pane-task { font-size: 0.65rem; color: #374151; line-height: 1.5; }
-.pane-hint { font-size: 0.6rem; color: #6b7280; background: #ede9fe; padding: 4px 6px; border-radius: 4px; }
-.pane-verify { background: #7c3aed; color: #fff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.65rem; cursor: pointer; width: 100%; }
 
-/* Comparison table */
-.compare-wrap { overflow-x: auto; margin-top: 2rem; }
-.compare-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.compare-table th { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); color: var(--text-muted); font-weight: 500; font-size: 0.78rem; }
-.compare-table th.highlight { color: var(--pro-purple-light); }
-.compare-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-muted); }
-.compare-table td:first-child { color: var(--text); }
-.compare-table td.highlight { background: rgba(124,58,237,0.04); }
-.chk { color: var(--pro-green-light, #4ade80); }
-.crs { color: var(--surface3); }
-.prt { color: var(--pro-gold); font-size: 0.75rem; }
+/* ─── PORTFOLIO ─── */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.25rem; }
+.portfolio-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; transition: all 0.2s;
+}
+.portfolio-card:hover { border-color: var(--border-green); transform: translateY(-2px); }
+.portfolio-thumb {
+  height: 110px; background: linear-gradient(135deg,var(--surface2),var(--surface3));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; border-bottom: 1px solid var(--border);
+}
+.portfolio-body { padding: 1rem; }
+.portfolio-body h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem; }
+.portfolio-skills { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.skill-chip { font-size: 0.62rem; padding: 2px 7px; border-radius: 4px; background: var(--g-dim); color: var(--g); border: 1px solid var(--border-green); }
+.portfolio-score { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); margin-top: 0.5rem; }
+.portfolio-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.add-project-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+.form-field label { font-size: 0.78rem; color: var(--muted); display: block; margin-bottom: 0.35rem; }
+.form-field input, .form-field select {
+  width: 100%; padding: 0.6rem 0.9rem; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); font-size: 0.85rem; font-family: 'Space Grotesk',sans-serif;
+}
+.form-field input:focus, .form-field select:focus { outline: none; border-color: var(--border-green); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
 
-/* Stripe section separators */
-.sep { height: 1px; background: linear-gradient(90deg, transparent, var(--border-hover), transparent); margin: 0 2rem; }
+/* ─── REWARDS ─── */
+.rewards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:700px){.rewards-grid{grid-template-columns:1fr;}}
+.shop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+.reward-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0.9rem; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 0.82rem; margin-bottom: 0.5rem; gap: 0.75rem;
+}
+.reward-price { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); font-weight: 700; }
+.collections-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.collection-item {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.8rem;
+  font-size: 0.78rem; text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.collection-item:hover { border-color: var(--border-green); color: var(--g); }
+.collection-item.owned { border-color: var(--border-green); color: var(--g); }
+.badge-showcase { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.badge {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.7rem; border-radius: var(--radius-sm);
+  font-size: 0.72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+}
+.badge.earned { border-color: var(--border-gold); color: var(--gold); }
 
-/* Toast */
-#toast-wrap { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; }
-.toast { background: var(--surface2); border: 1px solid var(--border-hover); border-radius: var(--radius-xs); padding: 0.7rem 1rem; font-size: 0.82rem; max-width: 300px; animation: slideIn 0.25s ease; display: flex; align-items: center; gap: 0.5rem; }
+/* ─── TOAST ─── */
+#toast-wrap { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300; display: flex; flex-direction: column; gap: 0.5rem; }
+.toast {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.65rem 1rem;
+  font-size: 0.8rem; max-width: 280px; display: flex; align-items: center; gap: 0.5rem;
+  animation: slideIn 0.25s ease;
+}
 @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
-.toast.ok { border-color: rgba(34,197,94,0.3); }
-.toast.pro { border-color: rgba(124,58,237,0.4); }
+.toast.ok { border-color: var(--border-green); }
+.toast.gold { border-color: var(--border-gold); }
+.toast.err { border-color: var(--border-red); }
 
-/* Responsive */
-@media (max-width: 700px) {
-  .section, .section-sm { padding: 3rem 1rem; }
-  .feat-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+/* ─── RESPONSIVE ─── */
+@media(max-width:640px){
+  .tools-grid,.clinic-grid,.dash-flow,.mentor-grid,.rewards-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
+/* ─── SCROLL REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- CANVAS RENDERER V2 -->
-<canvas id="bg-canvas"></canvas>
-
-<!-- TOAST -->
+<canvas id="mesh"></canvas>
 <div id="toast-wrap" aria-live="polite"></div>
 
 <!-- NAV -->
 <nav>
-  <a href="excel-quest-v2.html" class="nav-brand">
-    ✱ Excel Quest <span class="pro-pill">PRO</span>
+  <a class="nav-brand" href="https://laurandreea10.github.io/Excel-Quest/#content" target="_blank">
+    ✱ Excel Quest <span class="hub-pill">PRO HUB</span>
   </a>
   <div class="nav-links">
-    <a href="#ai-tools">AI Tools</a>
-    <a href="#csv-analyzer">CSV Analyzer</a>
-    <a href="#challenges">Challenges</a>
+    <a href="#skill-tree">Skill Tree</a>
+    <a href="#inbox">Inbox</a>
+    <a href="#bosses">Bosses</a>
+    <a href="#dashboard">Dashboard</a>
     <a href="#portfolio">Portofoliu</a>
-    <a href="#addin">Add-in</a>
+    <a href="#rewards">Rewards</a>
   </div>
-  <span class="nav-badge-xp" id="nav-xp">0 XP</span>
-  <button class="nav-cta" onclick="toast('Contul Pro e simulat — toate funcțiile sunt active!','pro')">✦ Activează Pro</button>
+  <a class="nav-back" href="https://laurandreea10.github.io/Excel-Quest/#content" target="_blank">← Main ↗</a>
+  <span class="nav-xp" id="nav-xp">0 XP</span>
 </nav>
 
 <main>
 
-<!-- ═════════════ HERO ═════════════ -->
+<!-- ═══ HERO ═══ -->
 <section id="hero">
-  <div class="hero-eyebrow">
-    <span class="dot"></span>
-    Excel Quest Enhanced Pro · AI-powered
-  </div>
-  <h1>
-    Învață Excel cu un<br>
-    <span class="gradient-text">tutor AI personal</span>
-  </h1>
+  <div class="hero-eyebrow"><span class="dot"></span> Hub secundar · Excel Quest Pro</div>
+  <h1>Skill Tree<br><span class="g-text">complet</span></h1>
   <p class="hero-sub">
-    Nu doar lecții — un sistem inteligent care înțelege greșelile tale, construiește un traseu personalizat și îți verifică formulele în timp real.
+    Toate cele 9 module Pro organizate pe nivelele 🟢 Beginner · 🟡 Intermediate · 🔴 Advanced. 
+    Se leagă direct de <a href="https://laurandreea10.github.io/Excel-Quest/#content" target="_blank" style="color:var(--g)">Main V2</a>.
   </p>
   <div class="btn-row">
-    <a href="#ai-tools" class="btn btn-pro">✦ Încearcă AI Tutor</a>
-    <a href="excel-quest-v2.html" class="btn btn-ghost">← Înapoi la V2</a>
+    <a href="#skill-tree" class="btn btn-green">🟢 Începe Skill Tree</a>
+    <a href="https://laurandreea10.github.io/Excel-Quest/#content" target="_blank" class="btn btn-ghost">← Main V2 ↗</a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-top:3rem;max-width:600px;width:100%">
+    <div class="stat-card"><div class="stat-val" id="h-xp">0</div><div class="stat-lbl">XP Total</div></div>
+    <div class="stat-card"><div class="stat-val" id="h-skills">0/12</div><div class="stat-lbl">Skill-uri</div></div>
+    <div class="stat-card"><div class="stat-val" id="h-bosses">0/6</div><div class="stat-lbl">Bosses</div></div>
+    <div class="stat-card"><div class="stat-val" id="h-projects">0</div><div class="stat-lbl">Proiecte</div></div>
   </div>
 </section>
 
 <div class="sep"></div>
 
-<!-- ═════════════ FEATURES ═════════════ -->
-<section class="section">
-
-  <div class="pro-banner">
-    <span class="pro-banner-icon">✦</span>
-    <div class="pro-banner-text">
-      <strong>Enhanced Pro adaugă inteligență deasupra platformei V2</strong>
-      <p>Toate lecțiile, game modes și proiectele din V2 rămân intacte. Pro adaugă AI, CSV analyzer, challenges și portofoliu public.</p>
-    </div>
-    <a href="excel-quest-v2.html" class="btn btn-ghost btn-sm">Vezi V2 →</a>
+<!-- ═══ 1. SKILL TREE ═══ -->
+<section id="skill-tree" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">01 / 09</div>
+    <h2>Skill Tree interactiv</h2>
+    <p>Trei ramuri clare, deblocare progresivă. Finalizează nivelul curent pentru a accesa următorul.</p>
   </div>
 
-  <h2 style="margin-bottom:0.75rem">Ce primești cu Pro</h2>
-  <p style="margin-bottom:2rem">Funcționalități care transformă platforma dintr-un site educațional într-un produs serios.</p>
+  <div class="level-tabs" id="skill-tabs">
+    <button class="level-tab active" data-lv="beginner">🟢 Beginner</button>
+    <button class="level-tab" data-lv="intermediate">🟡 Intermediate</button>
+    <button class="level-tab" data-lv="advanced">🔴 Advanced</button>
+  </div>
 
-  <div class="feat-grid">
-    <div class="feat-card purple">
-      <div class="feat-icon-wrap purple">🤖</div>
-      <span class="pro-tag purple">AI Tutor</span>
-      <h3>Chat cu Excel Expert AI</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Întreabă orice despre Excel în română. AI-ul răspunde cu formule exacte, exemple și explicații contextuale. Nu chatbot generic — expert Excel.</p>
+  <div class="skill-tree-wrap" id="skill-tree-body"></div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 2. INBOX ═══ -->
+<section id="inbox" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">02 / 09</div>
+    <h2>Excel Inbox</h2>
+    <p>Cereri realiste de la Manager, Client, HR și Finance. Transformă orice email în misiune jucabilă.</p>
+  </div>
+
+  <div class="inbox-grid">
+    <div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">📥 Inbox (8 mesaje)</div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem" id="inbox-list"></div>
     </div>
-    <div class="feat-card purple">
-      <div class="feat-icon-wrap purple">🔍</div>
-      <span class="pro-tag purple">Formula Debugger</span>
-      <h3>De ce e greșită formula mea</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Paste orice formulă → AI identifică eroarea, explică cauza și propune fix. Cu exemple concrete și variante alternative.</p>
-    </div>
-    <div class="feat-card purple">
-      <div class="feat-icon-wrap purple">🧩</div>
-      <span class="pro-tag purple">Formula Builder</span>
-      <h3>Descrie → primești formula</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">„Vreau să aflu totalul vânzărilor din luna Mai pentru produsul Mere" → AI generează formula completă pas cu pas.</p>
-    </div>
-    <div class="feat-card gold">
-      <div class="feat-icon-wrap gold">📂</div>
-      <span class="pro-tag gold">CSV Analyzer</span>
-      <h3>Exerciții pe datele tale</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Upload un CSV real → AI analizează structura și generează 5 exerciții personalizate pe datele tale. Înveți cu ce lucrezi zi de zi.</p>
-    </div>
-    <div class="feat-card gold">
-      <div class="feat-icon-wrap gold">🎯</div>
-      <span class="pro-tag gold">Adaptive Learning</span>
-      <h3>Traseu adaptat greșelilor tale</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">AI monitorizează ce greșești și reordonează lecțiile. Dacă gresești VLOOKUP de 3 ori, primești reforcementul automat.</p>
-    </div>
-    <div class="feat-card gold">
-      <div class="feat-icon-wrap gold">🏆</div>
-      <span class="pro-tag gold">Weekly Challenges</span>
-      <h3>Competiție săptămânală cu clasament</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Challenge nou în fiecare luni. Clasament live. Badge-uri rare pentru top 3. Motor de retenție real.</p>
-    </div>
-    <div class="feat-card teal">
-      <div class="feat-icon-wrap teal">🗂</div>
-      <span class="pro-tag teal">Portofoliu public</span>
-      <h3>Proiecte cu URL partajabil</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Proiectele finalizate apar pe un profil public cu preview, skill-uri și scor. Linkul e partajabil direct pe LinkedIn.</p>
-    </div>
-    <div class="feat-card teal">
-      <div class="feat-icon-wrap teal">📜</div>
-      <span class="pro-tag teal">Certificate Pro</span>
-      <h3>PDF branded + badge LinkedIn</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Certificate descărcabile în PDF cu design profesional. Badge digital compatibil LinkedIn Certifications.</p>
-    </div>
-    <div class="feat-card purple">
-      <div class="feat-icon-wrap purple">⚡</div>
-      <span class="pro-tag purple">Excel Add-in Preview</span>
-      <h3>Exerciții în Excel real</h3>
-      <p style="margin-top:0.5rem;font-size:0.875rem">Task pane în Excel: exercițiu → scrii în celulă → verificare automată → hint → XP sincronizat. Unic pe piața RO.</p>
+    <div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">⚡ Misiune activă</div>
+      <div class="active-mission-box" id="active-mission">
+        <p class="no-mission">Nicio misiune activată. Alege un email din inbox.</p>
+      </div>
+      <div id="mission-steps" style="display:none;margin-top:1rem"></div>
     </div>
   </div>
 </section>
 
 <div class="sep"></div>
 
-<!-- ═════════════ AI TOOLS ═════════════ -->
-<section class="section" id="ai-tools">
-  <h2 style="margin-bottom:0.5rem">AI Tools — live demo</h2>
-  <p style="margin-bottom:2rem">Toate modulele sunt funcționale. Alimentate de Claude AI.</p>
-
-  <!-- MODULE TABS -->
-  <div class="module-tabs" id="module-tabs">
-    <button class="module-tab active" data-module="chat">🤖 AI Tutor Chat</button>
-    <button class="module-tab" data-module="debugger">🔍 Formula Debugger</button>
-    <button class="module-tab" data-module="builder">🧩 Formula Builder</button>
-    <button class="module-tab" data-module="adaptive">🎯 Adaptive Path</button>
+<!-- ═══ 3. SIMULATOR ═══ -->
+<section id="simulator" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">03 / 09</div>
+    <h2>Real File Simulator</h2>
+    <p>Fișier haotic, checklist de reparare, feedback instant. Nivelat pe dificultate.</p>
   </div>
 
-  <!-- AI TUTOR CHAT -->
-  <div id="module-chat" class="ai-module">
-    <div class="ai-module-header">
-      <span>🤖</span>
-      <h3>Excel Expert AI — Chat în română</h3>
-      <span style="margin-left:auto;font-size:0.72rem;color:#4ade80">● Online</span>
-    </div>
-    <div class="ai-module-body">
-      <div class="chat-messages" id="chat-messages">
-        <div class="msg">
-          <div class="msg-avatar ai">AI</div>
-          <div class="msg-bubble">
-            Salut! Sunt tutorul tău Excel AI. Poți să mă întrebi orice despre formule, funcții, erori sau bune practici. Încearcă: <em>„De ce primesc #N/A la VLOOKUP?"</em> sau <em>„Cum calculez marja de profit?"</em>
-          </div>
-        </div>
-      </div>
-      <div class="chat-input-row">
-        <textarea class="chat-input" id="chat-input" rows="1"
-          placeholder="Întreabă orice despre Excel..."
-          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
-        <button class="btn btn-pro btn-sm" onclick="sendChat()">Trimite →</button>
-      </div>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem">
-        <button class="btn btn-ghost btn-sm" onclick="setChat('De ce primesc #N/A la VLOOKUP?')">De ce #N/A la VLOOKUP?</button>
-        <button class="btn btn-ghost btn-sm" onclick="setChat('Cum calculez marja de profit dacă am coloanele Cost și Preț?')">Calcul marjă profit</button>
-        <button class="btn btn-ghost btn-sm" onclick="setChat('Care e diferența dintre SUMIF și SUMIFS?')">SUMIF vs SUMIFS</button>
-        <button class="btn btn-ghost btn-sm" onclick="setChat('Cum fac un Pivot Table dinamic cu Slicers?')">Pivot + Slicers</button>
-      </div>
-    </div>
+  <div class="level-tabs" id="sim-tabs">
+    <button class="level-tab active" data-lv="beginner">🟢 Beginner</button>
+    <button class="level-tab" data-lv="intermediate">🟡 Intermediate</button>
+    <button class="level-tab" data-lv="advanced">🔴 Advanced</button>
   </div>
 
-  <!-- FORMULA DEBUGGER -->
-  <div id="module-debugger" class="ai-module" style="display:none">
-    <div class="ai-module-header">
-      <span>🔍</span>
-      <h3>Formula Debugger — identifică eroarea instantaneu</h3>
-    </div>
-    <div class="ai-module-body">
-      <p style="margin-bottom:1rem;font-size:0.875rem">Paste formula ta Excel (cu sau fără =) și AI-ul identifică problema, explică cauza și propune fix.</p>
-      <div class="debugger-grid">
-        <div>
-          <label style="font-size:0.8rem;color:var(--text-muted);display:block;margin-bottom:0.4rem">Formula ta:</label>
-          <textarea class="formula-input" id="debug-input" placeholder="=VLOOKUP(A2,B:D,4,0)&#10;=SUM(A1:A&#10;=IF(A1>0,&quot;OK&quot;)"></textarea>
-          <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap">
-            <button class="btn btn-pro btn-sm" onclick="debugFormula()">🔍 Analizează</button>
-            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debug-input').value='=VLOOKUP(A2,B:D,4,0)'">Exemplu VLOOKUP</button>
-            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debug-input').value='=IF(A1>100,\"Mare\")'">Exemplu IF</button>
-          </div>
-        </div>
-        <div>
-          <label style="font-size:0.8rem;color:var(--text-muted);display:block;margin-bottom:0.4rem">Analiză AI:</label>
-          <div class="debug-result" id="debug-result">
-            <span style="color:var(--text-dim);font-size:0.82rem">Introdu o formulă și apasă Analizează...</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="sim-grid" id="sim-body"></div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 4. FORMULA TOOLS ═══ -->
+<section id="formula-tools" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">04 / 09</div>
+    <h2>Formula Builder + Debugger</h2>
+    <p>Descrie ce vrei → primești formula. Paste o formulă → identifici eroarea instant.</p>
   </div>
 
-  <!-- FORMULA BUILDER -->
-  <div id="module-builder" class="ai-module" style="display:none">
-    <div class="ai-module-header">
-      <span>🧩</span>
-      <h3>Formula Builder — descrie ce vrei, primești formula</h3>
-    </div>
-    <div class="ai-module-body">
-      <div class="builder-steps" style="margin-bottom:1rem">
-        <div class="step-num">1</div><span style="font-size:0.8rem;color:var(--text-muted)">Descrie</span>
-        <span class="step-arrow">→</span>
-        <div class="step-num">2</div><span style="font-size:0.8rem;color:var(--text-muted)">AI generează</span>
-        <span class="step-arrow">→</span>
-        <div class="step-num">3</div><span style="font-size:0.8rem;color:var(--text-muted)">Explică + exemplu</span>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <h3>🧩 Formula Builder</h3>
+      <p>Scrie în cuvinte ce vrei să calculezi.</p>
+      <textarea class="formula-input-field" id="builder-input" placeholder="Ex: suma vânzărilor din coloana B doar pentru produsele din A care conțin Mere"></textarea>
+      <div class="btn-row-small">
+        <button class="btn btn-green btn-sm" onclick="buildFormula()">✦ Generează</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('builder-input').value='suma vânzărilor pe regiune Nord';buildFormula()">Demo</button>
       </div>
-      <textarea class="formula-input" id="builder-input" style="min-height:70px;color:var(--text)"
-        placeholder="Ex: Vreau să calculez totalul vânzărilor din coloana B doar pentru produsele din coloana A care conțin cuvântul 'Mere'"></textarea>
+      <div class="result-panel" id="builder-result">Descrie ce vrei și generez formula potrivită.</div>
+    </div>
+    <div class="tool-card">
+      <h3>🔍 Formula Debugger</h3>
+      <p>Paste formula cu eroare → fix instant.</p>
+      <textarea class="formula-input-field" id="debugger-input" placeholder="=VLOOKUP(A2,B:D,4,0)&#10;=SUM(A1:A&#10;=IF(A1>0,OK)"></textarea>
+      <div class="btn-row-small">
+        <button class="btn btn-green btn-sm" onclick="debugFormula()">🔍 Analizează</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debugger-input').value='=VLOOKUP(A2,B:D,4,0)';debugFormula()">Demo VLOOKUP</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('debugger-input').value='=SUM(A1:A10';debugFormula()">Demo SUM</button>
+      </div>
+      <div class="result-panel" id="debugger-result">Introdu o formulă și apasă Analizează.</div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 5. ERROR CLINIC ═══ -->
+<section id="error-clinic" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">05 / 09</div>
+    <h2>Error Clinic</h2>
+    <p>Click pe eroarea primită → cauza, fix și exemple concrete.</p>
+  </div>
+
+  <div class="clinic-grid">
+    <div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">Selectează eroarea:</div>
+      <div class="error-codes" id="error-codes"></div>
+    </div>
+    <div class="clinic-detail" id="clinic-detail">
+      <h4>Selectează o eroare din stânga</h4>
+      <p style="font-size:0.82rem;color:var(--muted)">Click pe orice cod de eroare pentru a vedea cauza, fix-ul și exemple.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 6. BOSSES ═══ -->
+<section id="bosses" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">06 / 09</div>
+    <h2>Boss Battles</h2>
+    <p>Luptele finale per nivel. Câte un boss mai greu pe fiecare ramură. XP mare la victorie.</p>
+  </div>
+
+  <div class="level-tabs" id="boss-tabs">
+    <button class="level-tab active" data-lv="beginner">🟢 Beginner Bosses</button>
+    <button class="level-tab" data-lv="intermediate">🟡 Intermediate Bosses</button>
+    <button class="level-tab" data-lv="advanced">🔴 Advanced Bosses</button>
+  </div>
+
+  <div class="boss-grid" id="boss-grid"></div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 7. DASHBOARD BUILDER ═══ -->
+<section id="dashboard" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">07 / 09</div>
+    <h2>Build-a-Dashboard + Data Storytelling</h2>
+    <p>Flux pas-cu-pas: curăți → calculezi → vizualizezi → povestești. Scor de claritate la final.</p>
+  </div>
+
+  <div class="level-tabs" id="dash-tabs">
+    <button class="level-tab active" data-lv="beginner">🟢 Beginner</button>
+    <button class="level-tab" data-lv="intermediate">🟡 Intermediate</button>
+    <button class="level-tab" data-lv="advanced">🔴 Advanced</button>
+  </div>
+
+  <div class="dash-flow" id="dash-body"></div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ 8. MENTOR ═══ -->
+<section id="mentor" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">08 / 09</div>
+    <h2>AI Hint Assistant & Mentor Notes</h2>
+    <p>Hint-uri progresive și feedback personalizat pe nivelul tău curent.</p>
+  </div>
+
+  <div class="mentor-grid">
+    <div class="mentor-card">
+      <h3 style="font-size:0.92rem;margin-bottom:0.75rem">💡 Indiciu progresiv</h3>
+      <div class="hint-display" id="hint-display">Hint 1/4: Formulele Excel încep întotdeauna cu <code>=</code></div>
       <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap">
-        <button class="btn btn-pro btn-sm" onclick="buildFormula()">✦ Generează formula</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('builder-input').value='Vreau suma vânzărilor din B doar pentru luna Ianuarie din coloana A'">Exemplu 1</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('builder-input').value='Caută codul produsului din E1 în coloana A și returnează prețul din coloana C'">Exemplu 2</button>
+        <button class="btn btn-green btn-sm" onclick="nextHint()">Următorul indiciu →</button>
+        <button class="btn btn-ghost btn-sm" onclick="resetHints()">↺ Resetează</button>
       </div>
-      <div id="builder-result" style="display:none" class="builder-result">
-        <div class="builder-formula" id="builder-formula"></div>
-        <div class="builder-explanation" id="builder-explanation"></div>
-        <div class="builder-example" id="builder-example"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ADAPTIVE PATH -->
-  <div id="module-adaptive" class="ai-module" style="display:none">
-    <div class="ai-module-header">
-      <span>🎯</span>
-      <h3>Adaptive Learning Path — reordonat pe greșelile tale</h3>
-    </div>
-    <div class="ai-module-body">
-      <p style="font-size:0.875rem;margin-bottom:1rem">AI-ul a analizat sesiunile tale și a reordonat traseul. Lecțiile cu greșeli frecvente apar mai devreme.</p>
-      <div style="background:var(--bg2);border:1px solid rgba(124,58,237,0.15);border-radius:var(--radius-sm);padding:1rem;margin-bottom:1rem;font-size:0.82rem;">
-        <strong style="color:var(--pro-purple-light)">Analiză AI:</strong>
-        <span style="color:var(--text-muted);margin-left:0.5rem">Ai greșit VLOOKUP de 3 ori și INDEX+MATCH de 2 ori. Am prioritizat întărirea lookup-urilor înainte de Advanced.</span>
-      </div>
-      <div class="path-track">
-        <div class="path-node completed">
-          <div class="path-dot done"></div>
-          <div class="path-label">SUM, AVERAGE, COUNT <span style="font-size:0.75rem;color:var(--text-dim)">— completat</span></div>
-        </div>
-        <div class="path-node completed">
-          <div class="path-dot done"></div>
-          <div class="path-label">IF, AND, OR <span style="font-size:0.75rem;color:var(--text-dim)">— completat</span></div>
-        </div>
-        <div class="path-node recommended">
-          <div class="path-dot next"></div>
-          <div style="flex:1">
-            <div class="path-label">VLOOKUP aprofundat + erori comune</div>
-            <div class="path-reason">🔴 3 greșeli recente</div>
-          </div>
-          <span class="ai-reco-badge">AI recomandat</span>
-        </div>
-        <div class="path-node recommended">
-          <div class="path-dot next"></div>
-          <div style="flex:1">
-            <div class="path-label">INDEX + MATCH — de ce e mai bun</div>
-            <div class="path-reason">🟡 2 greșeli recente</div>
-          </div>
-          <span class="ai-reco-badge">AI recomandat</span>
-        </div>
-        <div class="path-node">
-          <div class="path-dot pending"></div>
-          <div class="path-label" style="color:var(--text-dim)">XLOOKUP, FILTER, SORT</div>
-        </div>
-        <div class="path-node">
-          <div class="path-dot pending"></div>
-          <div class="path-label" style="color:var(--text-dim)">Dashboard building avansat</div>
-        </div>
-      </div>
-      <button class="btn btn-pro btn-sm" style="margin-top:1rem" onclick="regeneratePath()">✦ Regenerează traseul AI</button>
-    </div>
-  </div>
-
-</section>
-
-<div class="sep"></div>
-
-<!-- ═════════════ CSV ANALYZER ═════════════ -->
-<section class="section" id="csv-analyzer">
-  <h2 style="margin-bottom:0.5rem">CSV Analyzer</h2>
-  <p style="margin-bottom:2rem">Încarcă un fișier CSV real → AI generează exerciții personalizate pe datele tale.</p>
-
-  <div class="upload-zone" id="upload-zone"
-    ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="this.classList.remove('drag-over')"
-    onclick="document.getElementById('csv-file').click()">
-    <div class="upload-icon">📂</div>
-    <p style="font-weight:600;color:var(--text)">Trage un CSV aici sau click</p>
-    <p style="font-size:0.8rem;margin-top:0.25rem">Maxim 500KB · coloane detectate automat</p>
-    <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="loadCSV(event)">
-  </div>
-
-  <div id="csv-preview-wrap" style="display:none">
-    <div class="csv-preview" id="csv-preview"></div>
-    <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap">
-      <button class="btn btn-pro btn-sm" onclick="generateExercises()">✦ Generează exerciții</button>
-      <button class="btn btn-ghost btn-sm" onclick="loadDemoCSV()">Demo CSV</button>
-    </div>
-    <div id="exercises-wrap" style="display:none" class="exercise-generated">
-      <h4>Exerciții generate pe datele tale:</h4>
-      <ul class="exercise-list" id="exercise-list"></ul>
-    </div>
-  </div>
-
-  <!-- Demo CSV fallback -->
-  <div style="margin-top:1rem">
-    <button class="btn btn-ghost btn-sm" onclick="loadDemoCSV()">📋 Încearcă cu demo CSV (Vânzări Q1)</button>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═════════════ WEEKLY CHALLENGES ═════════════ -->
-<section class="section" id="challenges">
-  <h2 style="margin-bottom:0.5rem">Weekly Challenge</h2>
-  <p style="margin-bottom:2rem">Un challenge nou în fiecare luni. Clasament live. Badge-uri rare pentru top 3.</p>
-
-  <div class="challenge-card">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
-      <div>
-        <span class="pro-tag gold" style="margin-bottom:0.5rem">Săptămâna 18 · 2026</span>
-        <h3>Challenge: Sales Report Automation</h3>
-        <p style="margin-top:0.35rem;font-size:0.875rem">Construiește un raport de vânzări care calculează automat: total per regiune (SUMIFS), top 3 produse (LARGE + XLOOKUP) și variație față de luna anterioară (formule dinamice).</p>
-      </div>
-      <div>
-        <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.35rem">Se termină în:</div>
-        <div class="challenge-timer" id="challenge-timer">
-          <div class="timer-block"><div class="timer-val" id="t-days">4</div><div class="timer-lbl">Zile</div></div>
-          <div class="timer-block"><div class="timer-val" id="t-hours">12</div><div class="timer-lbl">Ore</div></div>
-          <div class="timer-block"><div class="timer-val" id="t-min">30</div><div class="timer-lbl">Min</div></div>
+      <div style="margin-top:0.75rem">
+        <div class="level-tabs" style="margin-bottom:0">
+          <button class="level-tab active btn-sm" data-lv="beginner" onclick="setHintLevel('beginner',this)">🟢</button>
+          <button class="level-tab btn-sm" data-lv="intermediate" onclick="setHintLevel('intermediate',this)">🟡</button>
+          <button class="level-tab btn-sm" data-lv="advanced" onclick="setHintLevel('advanced',this)">🔴</button>
         </div>
       </div>
     </div>
-    <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap">
-      <span style="font-size:0.8rem;color:var(--text-muted)">🏆 +500 XP · 🥇 Badge „Sales Wizard"</span>
-      <button class="btn btn-gold btn-sm" onclick="toast('Challenge acceptat! +50 XP pentru participare 🎯','pro')">Participă →</button>
-    </div>
-  </div>
-
-  <h3 style="margin-top:1.5rem;margin-bottom:0.75rem">Clasament săptămânal</h3>
-  <div class="leaderboard" id="leaderboard">
-    <div class="lb-row"><div class="lb-rank gold">1</div><div class="lb-name">Mihai D.</div><div class="lb-score">2340 XP</div><span class="pro-tag purple" style="font-size:0.65rem">Sales Wizard</span></div>
-    <div class="lb-row"><div class="lb-rank silver">2</div><div class="lb-name">Ana P.</div><div class="lb-score">2100 XP</div></div>
-    <div class="lb-row"><div class="lb-rank bronze">3</div><div class="lb-name">Radu S.</div><div class="lb-score">1890 XP</div></div>
-    <div class="lb-row"><div class="lb-rank">4</div><div class="lb-name">Elena M.</div><div class="lb-score">1650 XP</div></div>
-    <div class="lb-row" style="border-color:rgba(124,58,237,0.3);background:var(--pro-purple-dim)">
-      <div class="lb-rank" style="color:var(--pro-purple-light)">—</div>
-      <div class="lb-name" style="color:var(--pro-purple-light)">Tu (neînscriat)</div>
-      <div class="lb-score">0 XP</div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═════════════ PORTFOLIO ═════════════ -->
-<section class="section" id="portfolio">
-  <h2 style="margin-bottom:0.5rem">Portofoliu public</h2>
-  <p style="margin-bottom:2rem">Proiectele finalizate generează un profil public cu URL partajabil pe LinkedIn.</p>
-
-  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.6rem 1rem;margin-bottom:1.5rem;font-size:0.82rem;font-family:'Consolas',monospace;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-    <span style="color:var(--text-muted)">URL profil:</span>
-    <span style="color:var(--pro-purple-light)">exceltquest.app/portfolio/<strong>laura-andreea</strong></span>
-    <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="toast('Link copiat în clipboard!','ok')">📋 Copiază</button>
-  </div>
-
-  <div class="portfolio-grid">
-    <div class="portfolio-card">
-      <div class="portfolio-preview">
-        📊
-        <div class="overlay"></div>
-      </div>
-      <div class="portfolio-body">
-        <h3 style="font-size:0.9rem">Sales Dashboard executiv</h3>
-        <div class="portfolio-skills">
-          <span class="skill-chip">XLOOKUP</span><span class="skill-chip">SUMIFS</span>
-          <span class="skill-chip">PivotTable</span><span class="skill-chip">Power Query</span>
-        </div>
-        <div class="portfolio-score">⭐ 94/100</div>
-        <a href="#" class="portfolio-share-link" onclick="toast('Link public: exceltquest.app/p/sales-dashboard','ok');return false">🔗 Partajează</a>
-      </div>
-    </div>
-    <div class="portfolio-card">
-      <div class="portfolio-preview">
-        👥
-        <div class="overlay"></div>
-      </div>
-      <div class="portfolio-body">
-        <h3 style="font-size:0.9rem">HR Employee Tracker</h3>
-        <div class="portfolio-skills">
-          <span class="skill-chip">VLOOKUP</span><span class="skill-chip">DATEDIF</span>
-          <span class="skill-chip">Tables</span>
-        </div>
-        <div class="portfolio-score">⭐ 88/100</div>
-        <a href="#" class="portfolio-share-link" onclick="toast('Link public generat!','ok');return false">🔗 Partajează</a>
-      </div>
-    </div>
-    <div class="portfolio-card" style="border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:220px;cursor:pointer" onclick="toast('Finalizează un proiect pentru a-l adăuga!','pro')">
-      <div style="text-align:center">
-        <div style="font-size:1.5rem;margin-bottom:0.5rem">＋</div>
-        <p style="font-size:0.82rem">Finalizează un proiect</p>
+    <div class="mentor-card">
+      <h3 style="font-size:0.92rem;margin-bottom:0.75rem">🧠 Mentor Notes</h3>
+      <div class="feedback-panel" id="feedback-panel">Apasă pentru feedback bazat pe progresul tău.</div>
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap">
+        <button class="btn btn-green btn-sm" onclick="getMentorFeedback()">✦ Primește feedback</button>
+        <button class="btn btn-ghost btn-sm" onclick="getNextLesson()">→ Lecția recomandată</button>
       </div>
     </div>
   </div>
@@ -874,694 +732,848 @@ p { color: var(--text-muted); font-size: 0.95rem; }
 
 <div class="sep"></div>
 
-<!-- ═════════════ EXCEL ADD-IN ═════════════ -->
-<section class="section" id="addin">
-  <h2 style="margin-bottom:0.5rem">Excel Add-in — Preview</h2>
-  <p style="margin-bottom:2rem">Exerciții direct în Excel. Verificare celule live. Task pane integrat. Unic pe piața RO.</p>
+<!-- ═══ 9. PORTFOLIO + REWARDS ═══ -->
+<section id="portfolio" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">09a / 09</div>
+    <h2>Portofoliu public</h2>
+    <p>Proiectele finalizate cu URL partajabil pe LinkedIn.</p>
+  </div>
 
-  <div class="addin-teaser">
-    <span class="pro-tag gold" style="margin-bottom:0.75rem">Coming soon · Sprint 4</span>
-    <h3 style="color:var(--pro-gold)">Practică în Excel real, nu în simulatoare</h3>
-    <p style="max-width:500px;margin:0.75rem auto;font-size:0.875rem">
-      Add-in-ul se instalează direct în Microsoft Excel. Deschizi un workbook, primești task-ul în task pane, lucrezi în celule reale, și AI-ul verifică instant.
-    </p>
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.6rem 1.1rem;margin-bottom:1.5rem;font-size:0.78rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+    <span style="color:var(--muted)">URL profil:</span>
+    <span style="font-family:'JetBrains Mono',monospace;color:var(--g)">excelquest.app/p/<strong id="profile-slug">laura-andreea</strong></span>
+    <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="toast('Link copiat!','ok')">📋 Copiază</button>
+  </div>
 
-    <div class="addin-excel-window">
-      <div class="excel-titlebar">
-        <span>📊</span> Excel Quest — Exercitiu 1.xlsx · Excel
-      </div>
-      <div class="excel-body">
-        <div class="excel-sheet">
-          <div style="display:flex">
-            <div class="excel-cell header" style="min-width:30px;color:#6b7280">·</div>
-            <div class="excel-cell header">A</div>
-            <div class="excel-cell header">B</div>
-            <div class="excel-cell header">C</div>
-          </div>
-          <div style="display:flex">
-            <div class="excel-cell header" style="min-width:30px">1</div>
-            <div class="excel-cell header">Produs</div>
-            <div class="excel-cell header">Vânzări</div>
-            <div class="excel-cell header">Total</div>
-          </div>
-          <div style="display:flex">
-            <div class="excel-cell header" style="min-width:30px">2</div>
-            <div class="excel-cell">Mere</div>
-            <div class="excel-cell">1200</div>
-            <div class="excel-cell active formula">=SUM(B2:B5)</div>
-          </div>
-          <div style="display:flex">
-            <div class="excel-cell header" style="min-width:30px">3</div>
-            <div class="excel-cell">Pere</div>
-            <div class="excel-cell">850</div>
-            <div class="excel-cell"></div>
-          </div>
-          <div style="display:flex">
-            <div class="excel-cell header" style="min-width:30px">4</div>
-            <div class="excel-cell">Prune</div>
-            <div class="excel-cell">640</div>
-            <div class="excel-cell"></div>
-          </div>
-        </div>
-        <div class="excel-task-pane">
-          <div class="pane-header">✱ Excel Quest</div>
-          <div class="pane-task">Task 1/5: Calculează suma vânzărilor în C2</div>
-          <div class="pane-hint">💡 Folosește =SUM() cu intervalul B2:B5</div>
-          <div style="height:8px"></div>
-          <button class="pane-verify" onclick="toast('Formulă corectă! +25 XP','ok')">✓ Verifică</button>
-          <div style="font-size:0.6rem;color:#9ca3af;margin-top:6px">XP sesiune: 75</div>
-        </div>
-      </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+    <div>
+      <div class="portfolio-grid" id="portfolio-grid"></div>
     </div>
-
-    <div style="margin-top:1.5rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-gold btn-sm" onclick="toast('Add-in în development! Notifică-mă la lansare.','pro')">⚡ Notifică-mă la lansare</button>
-      <button class="btn btn-ghost btn-sm" onclick="toast('Planul tehnic: Office.js + React Task Pane + API sync','ok')">📋 Plan tehnic</button>
+    <div class="add-project-form">
+      <h3 style="font-size:0.9rem;margin-bottom:1rem">Adaugă proiect</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Titlu proiect</label>
+          <input type="text" id="proj-name" placeholder="Sales Dashboard">
+        </div>
+        <div class="form-field">
+          <label>Nivel</label>
+          <select id="proj-level">
+            <option value="beginner">🟢 Beginner</option>
+            <option value="intermediate">🟡 Intermediate</option>
+            <option value="advanced">🔴 Advanced</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:0.75rem">
+        <label>Skill-uri demonstrate</label>
+        <input type="text" id="proj-skills" placeholder="XLOOKUP, SUMIFS, PivotTable">
+      </div>
+      <div class="form-field" style="margin-bottom:1rem">
+        <label>Scor estimat</label>
+        <input type="number" id="proj-score" placeholder="85" min="0" max="100">
+      </div>
+      <button class="btn btn-green" onclick="addProject()" style="width:100%">＋ Adaugă în portofoliu</button>
     </div>
   </div>
 </section>
 
 <div class="sep"></div>
 
-<!-- ═════════════ COMPARISON ═════════════ -->
-<section class="section-sm">
-  <h2 style="margin-bottom:1.5rem">V2 Free vs Enhanced Pro</h2>
-  <div class="compare-wrap">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Funcționalitate</th>
-          <th>V2 Free</th>
-          <th class="highlight">Enhanced Pro</th>
-          <th>Add-in</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>30 lecții complete</td><td><span class="chk">✓</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="prt">5 lecții</span></td></tr>
-        <tr><td>Game Modes jucabile (5)</td><td><span class="chk">✓</span></td><td class="highlight"><span class="chk">✓ + noi</span></td><td><span class="crs">—</span></td></tr>
-        <tr><td>Dashboard progres</td><td><span class="chk">✓</span></td><td class="highlight"><span class="chk">✓ avansat</span></td><td><span class="chk">✓ sync</span></td></tr>
-        <tr><td>AI Tutor Chat</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>Formula Debugger AI</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>Formula Builder AI</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-        <tr><td>Adaptive Learning Path</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
-        <tr><td>CSV Analyzer personal</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
-        <tr><td>Weekly Challenges</td><td><span class="crs">—</span></td><td class="highlight"><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
-        <tr><td>Portofoliu public URL</td><td><span class="prt">local</span></td><td class="highlight"><span class="chk">✓ URL partajabil</span></td><td><span class="crs">—</span></td></tr>
-        <tr><td>Certificate</td><td><span class="prt">HTML download</span></td><td class="highlight"><span class="chk">PDF + LinkedIn</span></td><td><span class="prt">mini cert</span></td></tr>
-        <tr><td>Exerciții în Excel real</td><td><span class="crs">—</span></td><td class="highlight"><span class="crs">—</span></td><td><span class="chk">✓</span></td></tr>
-      </tbody>
-    </table>
+<section id="rewards" class="section">
+  <div class="sec-head reveal">
+    <div class="section-num">09b / 09</div>
+    <h2>Avatar / Reward Shop + Collections</h2>
+    <p>Cheltuiește XP pe avataruri, teme și achievement collections.</p>
+  </div>
+
+  <div class="rewards-grid">
+    <div class="shop-card">
+      <h3 style="font-size:0.92rem;margin-bottom:1rem">🛒 Reward Shop</h3>
+      <div id="shop-items"></div>
+    </div>
+    <div class="shop-card">
+      <h3 style="font-size:0.92rem;margin-bottom:1rem">🏆 Achievement Collections</h3>
+      <div class="collections-grid" id="collections-grid"></div>
+      <h3 style="font-size:0.88rem;margin-top:1.25rem;margin-bottom:0.75rem">Badge-uri câștigate</h3>
+      <div class="badge-showcase" id="badge-showcase"></div>
+    </div>
   </div>
 </section>
 
 </main>
 
-<footer style="border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text-dim);font-size:0.8rem;position:relative;z-index:1">
-  <p>© 2026 Excel Quest Enhanced Pro · construit de Laura Andreea</p>
-  <p style="margin-top:0.5rem">
-    <a href="excel-quest-v2.html" style="color:var(--text-muted)">← V2 Free</a> ·
-    <a href="https://github.com/LaurAndreea10/Excel-Quest" style="color:var(--text-muted)">GitHub</a>
+<footer style="border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;color:var(--dim);font-size:0.78rem;position:relative;z-index:1">
+  <p>© 2026 Excel Quest Pro Hub · construit de Laura Andreea ·
+    <a href="https://laurandreea10.github.io/Excel-Quest/#content" target="_blank" style="color:var(--muted)">Main V2 ↗</a> ·
+    <a href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" style="color:var(--muted)">GitHub</a>
   </p>
 </footer>
 
 <script>
-// ═══════════════════════════════════════
-// CANVAS RENDERER V2 — animated mesh
-// ═══════════════════════════════════════
-(function() {
-  const canvas = document.getElementById('bg-canvas');
+// ══════════════════════════════════════════════
+// CANVAS MESH
+// ══════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('mesh');
   const ctx = canvas.getContext('2d');
-  let w, h, particles;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-
-  function initParticles() {
-    particles = Array.from({length: 60}, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
-      r: Math.random() * 2 + 0.5,
-      color: Math.random() > 0.5 ? '124,58,237' : '245,158,11'
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.color},0.6)`;
-      ctx.fill();
-    });
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(124,58,237,${0.12 * (1 - dist/120)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
+  let w, h, pts;
+  function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; }
+  function init(){ pts = Array.from({length:55},()=>({ x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25, r:Math.random()*1.5+.4 })); }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    pts.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(34,197,94,.5)'; ctx.fill(); });
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(34,197,94,${.09*(1-d/130)})`; ctx.lineWidth=.6; ctx.stroke(); }
     }
     requestAnimationFrame(draw);
   }
-
-  resize();
-  initParticles();
-  draw();
-  window.addEventListener('resize', () => { resize(); initParticles(); });
+  resize(); init(); draw();
+  window.addEventListener('resize',()=>{resize();init();});
 })();
 
-// ═══════════════════════════════════════
+// ══════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════
-const state = JSON.parse(localStorage.getItem('eqpro') || '{}');
-state.xp = state.xp || 0;
-state.chatHistory = state.chatHistory || [];
+// ══════════════════════════════════════════════
+const ST = JSON.parse(localStorage.getItem('eqhub')||'{}');
+ST.xp = ST.xp||0;
+ST.skills = ST.skills||[];
+ST.bosses = ST.bosses||[];
+ST.portfolio = ST.portfolio||[];
+ST.collections = ST.collections||[];
+ST.badges = ST.badges||[];
+ST.hintIdx = ST.hintIdx||0;
+ST.hintLevel = ST.hintLevel||'beginner';
+ST.dashSteps = ST.dashSteps||{};
+ST.owned = ST.owned||[];
 
-function saveState() { localStorage.setItem('eqpro', JSON.stringify(state)); }
-function addXP(n) { state.xp += n; saveState(); document.getElementById('nav-xp').textContent = state.xp + ' XP'; }
+function save(){ localStorage.setItem('eqhub',JSON.stringify(ST)); }
+function addXP(n){ ST.xp+=n; save(); updateStats(); toast(`+${n} XP`,'ok'); }
+function updateStats(){
+  document.getElementById('nav-xp').textContent = ST.xp+' XP';
+  document.getElementById('h-xp').textContent = ST.xp;
+  document.getElementById('h-skills').textContent = ST.skills.length+'/12';
+  document.getElementById('h-bosses').textContent = ST.bosses.length+'/6';
+  document.getElementById('h-projects').textContent = ST.portfolio.length;
+}
 
-// ═══════════════════════════════════════
-// MODULE TABS
-// ═══════════════════════════════════════
-document.getElementById('module-tabs').addEventListener('click', e => {
-  const btn = e.target.closest('[data-module]');
-  if (!btn) return;
-  document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  ['chat','debugger','builder','adaptive'].forEach(m => {
-    document.getElementById('module-'+m).style.display = m === btn.dataset.module ? 'block' : 'none';
+// ══════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════
+const SKILLS = {
+  beginner:[
+    {id:'b1',title:'Formula Basics',desc:'SUM, AVERAGE, COUNT, MAX, MIN',xp:20},
+    {id:'b2',title:'IF Logic',desc:'IF, AND, OR, nested conditions',xp:20},
+    {id:'b3',title:'VLOOKUP Mastery',desc:'Căutare verticală cu erori',xp:25},
+    {id:'b4',title:'Vizualizare Date',desc:'Charts, Conditional Formatting',xp:20},
+  ],
+  intermediate:[
+    {id:'i1',title:'SUMIFS / COUNTIFS',desc:'Condiții multiple simultane',xp:30},
+    {id:'i2',title:'INDEX + MATCH',desc:'Alternativa superioară VLOOKUP',xp:35},
+    {id:'i3',title:'Pivot Tables',desc:'Rezumate dinamice, Slicers',xp:35},
+    {id:'i4',title:'Text & Date Functions',desc:'LEFT/RIGHT/MID, TODAY/DATEDIF',xp:30},
+  ],
+  advanced:[
+    {id:'a1',title:'XLOOKUP + Dynamic Arrays',desc:'FILTER, SORT, UNIQUE',xp:50},
+    {id:'a2',title:'Power Query',desc:'ETL vizual, auto-refresh',xp:50},
+    {id:'a3',title:'Dashboard Architecture',desc:'3 fișe, KPI cards, design',xp:45},
+    {id:'a4',title:'Audit & Troubleshoot',desc:'Trace Precedents, Evaluate Formula',xp:40},
+  ]
+};
+
+const BOSSES = {
+  beginner:[
+    {id:'boss-b1',title:'Bugetul Haotic',desc:'Construiește un buget cu SUM, IF și Conditional Formatting. 3 greșeli permise.',xp:60,badge:'Budget Hero'},
+    {id:'boss-b2',title:'Catalogul Rupt',desc:'Repară notele greșite, calculează medii și clasifică elevii.',xp:50,badge:'Grade Fixer'},
+  ],
+  intermediate:[
+    {id:'boss-i1',title:'Raportul Stricat',desc:'Curăță duplicate, repară VLOOKUP-uri și construiește un Pivot simplu.',xp:100,badge:'Report Wizard'},
+    {id:'boss-i2',title:'HR Nightmare',desc:'DATEDIF pentru vechime, AVERAGEIF per departament, alertă aniversare.',xp:90,badge:'HR Pro'},
+  ],
+  advanced:[
+    {id:'boss-a1',title:'Dashboard Dragon',desc:'Power Query + XLOOKUP + Pivot + Slicers + 3 fișe separate.',xp:200,badge:'Dashboard Dragon'},
+    {id:'boss-a2',title:'Finance Monster',desc:'P&L cu SUMIFS, variații dinamice, FORECAST.LINEAR, design executiv.',xp:180,badge:'Finance Monster'},
+  ]
+};
+
+const EMAILS = [
+  {id:'e1',from:'Manager — Roxana D.',subject:'Raport vânzări pe regiuni',body:'Salut, am nevoie urgent de totalul vânzărilor grupat pe regiuni pentru Q1. Și evidențiază regiunea cu cel mai bun rezultat.',level:'b',mission:'Grupează pe regiuni, calculează totalul cu SUMIFS și evidențiază maximul.',steps:['SUMIFS pentru total per regiune','MAX pentru top regiune','Conditional Formatting pe valoarea maximă','Diagrama Bar Chart cu rezultatele']},
+  {id:'e2',from:'Client — Firma ABC',subject:'Tabelul are formule stricate',body:'Tabelul trimis ieri are #N/A peste tot și totalurile nu se potrivesc cu suma manuală. Te rog verifică.',level:'b',mission:'Debug formule, repară VLOOKUP-urile și reconciliază totalurile.',steps:['Identifică toate celulele cu #N/A','Repară VLOOKUP cu IFERROR','Verifică totalurile cu SUM vs valori manuale','Curăță formatarea']},
+  {id:'e3',from:'HR — Andreea M.',subject:'Listă angajați cu absențe > 3 zile',body:'Am nevoie de lista filtrată cu angajații care au mai mult de 3 absențe luna aceasta.',level:'i',mission:'COUNTIF pentru absențe, FILTER sau Sort pentru extragere.',steps:['COUNTIF pentru absențe per angajat','FILTER sau Advanced Filter pentru >3','Sortare după număr absențe descendent','Export ca PDF']},
+  {id:'e4',from:'Finance — Mihai C.',subject:'Totaluri lunare și variații',body:'Calculează totalurile pe luni și variația față de luna precedentă. % pozitiv = verde, negativ = roșu.',level:'i',mission:'SUMIFS lunar, variație dinamică, Conditional Formatting pe procent.',steps:['SUMIFS pentru fiecare lună','Formula variație: (Luna N - Luna N-1)/Luna N-1','Conditional Formatting pe procente','Mini grafic Line Chart']},
+  {id:'e5',from:'CEO — Dan P.',subject:'Dashboard executiv Q1',body:'Am nevoie de un dashboard complet pentru board meeting vineri: KPI-uri, grafice, regiuni, top produse.',level:'a',mission:'Dashboard full: Power Query, XLOOKUP, Pivot, Slicers, 3 fișe.',steps:['Import date cu Power Query','XLOOKUP pentru date produse','SUMIFS multi-criteriu pentru KPI','Pivot + Slicers interactive','Design: 3 fișe Date/Calcule/Dashboard']},
+  {id:'e6',from:'Ops — Lucia T.',subject:'Inventar la risc de stockout',body:'Identifică produsele cu stoc sub safety stock. Calculează zile de stoc și clasifică riscul.',level:'a',mission:'XLOOKUP furnizori, FILTER produse critice, IF+AND clasificare risc.',steps:['XLOOKUP pentru date furnizori','Zile stoc = Cantitate/Vânzare medie zilnică','IF+AND pentru Critic/Moderat/OK','FILTER pentru produse Critice','Grafic Scatter: Stoc vs Vânzare']},
+  {id:'e7',from:'Marketing — Elena R.',subject:'Analiza campaniei pe canale',body:'Vreau CTR, conversii și ROI per canal de marketing. Și un grafic comparativ.',level:'i',mission:'Calcule de marketing cu formule simple și vizualizare.',steps:['CTR = Clicks/Impresii','Conversie = Comenzi/Clicks','ROI = (Venit-Cost)/Cost','Grafic Bar comparat pe canale']},
+  {id:'e8',from:'IT — Radu S.',subject:'Curăță baza de date de utilizatori',body:'Avem 3000 de rânduri cu spații extra, nume în format greșit și date ca text. Curăță totul.',level:'a',mission:'Power Query + TRIM + PROPER + VALUE pentru conversie date.',steps:['Power Query: Remove Duplicates','TRIM + PROPER pe coloanele de text','VALUE sau DATEVALUE pentru date','Validare după curățare cu COUNTA']},
+];
+
+const SIM_DATA = {
+  beginner:{
+    file:'Buget_Personal_FINAL_corect_v3.xlsx',
+    errors:[
+      {icon:'⚠️',text:'Coloana "Chelt??" în loc de "Cheltuieli"'},
+      {icon:'⚠️',text:'Rândul 5 complet gol în mijlocul datelor'},
+      {icon:'⚠️',text:'Total manual = 3420, dar SUM dă 3180'},
+      {icon:'⚠️',text:'3 valori negative introduse ca text "-150"'},
+    ],
+    checks:['Redenumesc coloana la "Cheltuieli"','Elimin rândul gol din mijloc','Refac totalul cu =SUM()','Convertesc textul negativ la număr cu VALUE()'],
+    xp:30,
+  },
+  intermediate:{
+    file:'Raport_Vanzari_Q1_v9_OK.xlsx',
+    errors:[
+      {icon:'🔴',text:'#N/A în 40% din celulele VLOOKUP'},
+      {icon:'🔴',text:'Duplicate pentru 3 clienți (același cod)'},
+      {icon:'⚠️',text:'Date calendaristice ca text "01/03/2026"'},
+      {icon:'⚠️',text:'Pivot Table nu se actualizează automat'},
+      {icon:'⚠️',text:'Formule hard-coded în loc de referințe'},
+    ],
+    checks:['Repară VLOOKUP cu IFERROR','Elimin duplicate cu Data → Remove Duplicates','Convertesc date cu DATEVALUE()','Refac Pivot cu auto-refresh','Înlocuiesc valorile hard-coded'],
+    xp:70,
+  },
+  advanced:{
+    file:'Finance_Monthly_FINAL_final_V12.xlsx',
+    errors:[
+      {icon:'🔴',text:'Power Query nu are refresh automat'},
+      {icon:'🔴',text:'XLOOKUP caută în coloana greșită (off by 1)'},
+      {icon:'🔴',text:'Formula FORECAST cu date lipsă produce #VALUE!'},
+      {icon:'⚠️',text:'Dashboard-ul are calcule pe fișa de prezentare'},
+      {icon:'⚠️',text:'Fișa Date nu e protejată cu parolă'},
+      {icon:'⚠️',text:'Named Ranges neactualizate după restructurare'},
+    ],
+    checks:['Activez refresh automat în Power Query','Corectez col_index în XLOOKUP','IFERROR pe FORECAST pentru date lipsă','Mut calculele pe fișa dedicată Calcule','Protejez fișa Date cu Review → Protect','Actualizez Named Ranges în Name Manager'],
+    xp:120,
+  }
+};
+
+const BOSS_DATA_FLAT = Object.values(BOSSES).flat();
+
+const ERRORS = [
+  {code:'#N/A',short:'Valoare negăsită',cause:'VLOOKUP/XLOOKUP nu găsesc valoarea căutată în interval.',fix:'=IFERROR(VLOOKUP(A2,B:D,2,0),"Nu există")',detail:'Verifică: 1) Spații extra — TRIM(). 2) Tip date diferit (număr vs text). 3) Ultimul argument = 0 pentru potrivire exactă.',level:'b'},
+  {code:'#DIV/0!',short:'Împărțire la zero',cause:'Formula încearcă să împartă la 0 sau la o celulă goală.',fix:'=IFERROR(A1/B1,0) sau =IF(B1=0,0,A1/B1)',detail:'Apare la formule de tip Rată, %, ROI când numitorul poate fi 0.',level:'b'},
+  {code:'#VALUE!',short:'Tip de date greșit',cause:'Formula primește text unde așteaptă număr sau vice-versa.',fix:'=VALUE(A1) pentru conversie text→număr',detail:'Comun când datele sunt importate ca text. Verifică cu =ISNUMBER(A1).',level:'b'},
+  {code:'#REF!',short:'Referință invalidă',cause:'O celulă sau coloană la care face referire formula a fost ștearsă.',fix:'Refă manual referința sau Ctrl+Z pentru undo',detail:'Apare după delete row/column. Caută #REF! cu Ctrl+H.',level:'i'},
+  {code:'#NAME?',short:'Funcție necunoscută',cause:'Funcția e scrisă greșit sau textul din formulă nu are ghilimele.',fix:'Verifică spelling: SUUM → SUM, adaugă "" pentru text',detail:'=IF(A1>0,OK) → OK fără ghilimele produce #NAME?',level:'i'},
+  {code:'#NUM!',short:'Număr invalid',cause:'Formula produce un număr imposibil sau prea mare pentru Excel.',fix:'=IFERROR(SQRT(A1),"număr negativ")',detail:'Comun la SQRT() cu valori negative, IRR() fără soluție.',level:'a'},
+  {code:'#NULL!',short:'Interval invalid',cause:'Operatorul spațiu (intersecție) e folosit greșit.',fix:'Înlocuiește spațiul cu virgulă sau cu ":" pentru interval',detail:'=SUM(A1 A10) → ar trebui =SUM(A1:A10)',level:'a'},
+];
+
+const HINTS = {
+  beginner:['Hint 1/4: Formulele Excel încep întotdeauna cu <code>=</code>','Hint 2/4: <code>=SUM(A1:A10)</code> adună toate celulele din A1 la A10. Caracterul ":" înseamnă "de la... până la..."','Hint 3/4: <code>=IF(condiție, dacă_adevărat, dacă_fals)</code> — ghilimelele sunt obligatorii pentru text în argumente','Hint 4/4: Copiezi o formulă → F4 o face absolută ($A$1) ca să nu se modifice la copiere'],
+  intermediate:['Hint 1/4: <code>=SUMIF(interval_condiție, condiție, interval_sumat)</code> — ordinea contează!','Hint 2/4: INDEX+MATCH: <code>=INDEX(B:B, MATCH(E1, A:A, 0))</code> — MATCH găsește poziția, INDEX returnează valoarea','Hint 3/4: IFERROR învelește orice formulă: <code>=IFERROR(formula_ta, "alternativa")</code>','Hint 4/4: Tabel Excel (Ctrl+T) + Pivot + Slicer = dashboard dinamic complet în 10 minute'],
+  advanced:['Hint 1/4: XLOOKUP: <code>=XLOOKUP(valoare, col_căutare, col_returnat, "Nu există")</code> — mai flexibil decât VLOOKUP','Hint 2/4: FILTER: <code>=FILTER(A1:C100, (B1:B100="Nord")*(C1:C100>1000))</code> — înmulțirea = AND logic','Hint 3/4: Power Query: fiecare pas e reversibil și se actualizează automat la Refresh','Hint 4/4: 3 fișe: Date | Calcule | Dashboard. Niciodată formule pe fișa de prezentare'],
+};
+
+const MENTOR_FEEDBACK = {
+  beginner:['Feedback mentor: Ai o bază bună pe formule elementare. Următorul pas: exersează IF cu AND/OR pentru condiții multiple — apare în 90% din joburile entry-level Excel.','Feedback mentor: SUM și AVERAGE sunt bine fixate. Concentrează-te pe VLOOKUP — e cea mai testată funcție la interviuri pentru poziții de junior analyst.'],
+  intermediate:['Feedback mentor: INDEX+MATCH e investiția cheie acum. Odată ce înțelegi cum funcționează MATCH ca "localizator", totul devine clar. Revizuiește lecția dedicată.','Feedback mentor: Pivot Tables sunt puternice, dar Slicers le transformă. Practică să conectezi un Slicer la 2-3 Pivot-uri simultan — asta impresionează la interviuri.'],
+  advanced:['Feedback mentor: Power Query e separatorul mare între "știe Excel" și "Excel professional". Automatizarea importului te face de 10x mai rapid pe orice task de date.','Feedback mentor: Dashboard design-ul tău are logică solidă. Lucrează la Data Storytelling — concluzia de sub grafice e ce citește un CEO înainte de orice altceva.'],
+};
+
+const BUILDER_KB = [
+  {keys:['suma','total','aduna','sum'],formula:'=SUMIF(col_criteriu:col_criteriu,"criteriu",col_valori:col_valori)',example:'=SUMIF(A:A,"Nord",B:B)',explain:'SUMIF adună valorile din col_valori doar unde col_criteriu îndeplinește condiția.'},
+  {keys:['suma mai multe','sumifs','conditii multiple'],formula:'=SUMIFS(col_suma:col_suma,col1:col1,"crit1",col2:col2,"crit2")',example:'=SUMIFS(C:C,A:A,"Nord",B:B,">1000")',explain:'SUMIFS adună cu condiții multiple simultane. Col de sumat vine PRIMUL.'},
+  {keys:['medie','media','average'],formula:'=AVERAGEIF(col_conditie:col_conditie,"criteriu",col_valori:col_valori)',example:'=AVERAGEIF(A:A,"Mere",B:B)',explain:'AVERAGEIF calculează media doar pentru rândurile care îndeplinesc condiția.'},
+  {keys:['cauta','gaseste','lookup','vlookup'],formula:'=IFERROR(VLOOKUP(A2,Tabel!A:D,3,0),"Nu există")',example:'=IFERROR(VLOOKUP(E2,Produse!A:C,3,0),"—")',explain:'VLOOKUP caută în prima coloană și returnează coloana specificată. IFERROR gestionează cazurile fără rezultat.'},
+  {keys:['xlookup','cauta modern'],formula:'=XLOOKUP(valoare,col_cautare:col_cautare,col_returnat:col_returnat,"Nu există")',example:'=XLOOKUP(A2,Produse[Cod],Produse[Pret],"—")',explain:'XLOOKUP este versiunea modernă a VLOOKUP. Caută în orice direcție, nu necesită numărul coloanei.'},
+  {keys:['numara','countif','count','frecventa'],formula:'=COUNTIFS(col1:col1,"crit1",col2:col2,"crit2")',example:'=COUNTIFS(A:A,"Activ",B:B,">100")',explain:'COUNTIFS numără rândurile care îndeplinesc toate condițiile simultane.'},
+  {keys:['daca','if','conditie','clasificare'],formula:'=IF(AND(condit1,condit2),"Adevărat","Fals")',example:'=IF(AND(B2>=5,C2<>"Absent"),"Promovat","Respins")',explain:'IF cu AND: ambele condiții trebuie să fie adevărate. Ghilimelele sunt obligatorii pentru text.'},
+  {keys:['filtrare','filter','subset','extrage'],formula:'=FILTER(A1:C100,(B1:B100="criteriu")*(C1:C100>valoare))',example:'=FILTER(A1:C50,B1:B50="Nord")',explain:'FILTER returnează dinamic toate rândurile care îndeplinesc condiția. Se actualizează automat.'},
+  {keys:['unic','unique','fara duplicate'],formula:'=SORT(UNIQUE(A1:A100))',example:'=UNIQUE(A2:A500)',explain:'UNIQUE returnează valorile fără duplicate. Combinat cu SORT obții lista ordonată.'},
+  {keys:['text','uneste','concatena','textjoin'],formula:'=TEXTJOIN(", ",TRUE,A1:A20)',example:'=TEXTJOIN(" | ",TRUE,B2:B10)',explain:'TEXTJOIN unește valorile dintr-un interval cu separatorul ales, ignorând celulele goale.'},
+  {keys:['marja','profit','procent','roi'],formula:'=(Pret-Cost)/Pret',example:'=(B2-C2)/B2 — formatat ca %',explain:'Marja brută: (Preț-Cost)/Preț. Formatează celula ca procent cu Ctrl+Shift+%.'},
+  {keys:['rank','clasament','loc','ordine'],formula:'=RANK(B2,$B$2:$B$100,0)',example:'=RANK(B2,$B$2:$B$100,0)',explain:'RANK returnează locul unui număr față de intervalul dat. 0 = descrescător (1=cel mai mare).'},
+  {keys:['data','date','azi','today','vechime'],formula:'=DATEDIF(data_start,TODAY(),"Y")&" ani și "&DATEDIF(data_start,TODAY(),"YM")&" luni"',example:'=DATEDIF(B2,TODAY(),"Y")',explain:'DATEDIF calculează diferența între două date. "Y"=ani, "M"=luni, "D"=zile.'},
+];
+
+const DEBUG_RULES = [
+  {test:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o!==c;},status:'error',problem:'Paranteze nepereche',cause:'Fiecare ( trebuie să aibă un ) corespunzător',fix:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o>c?f+')'.repeat(o-c):f;},explain:'Numără parantezele sau folosește Evaluate Formula.'},
+  {test:f=>/[""„‚'']/.test(f),status:'error',problem:'Ghilimele tipografice',cause:'Excel acceptă doar ghilimele drepte "',fix:f=>f.replace(/[""„‚'']/g,'"'),explain:'Se întâmplă la copy-paste din Word/PDF.'},
+  {test:f=>!/^=/.test(f.trim()),status:'warning',problem:'Formula nu începe cu =',cause:'Fără = Excel tratează conținutul ca text',fix:f=>'='+f.trim(),explain:'Adaugă = la începutul formulei.'},
+  {test:f=>/SUUM|AVRAGE|VLOKUP|INDEXX|\bMACH\b|CONUT/i.test(f),status:'error',problem:'Funcție scrisă greșit',cause:'Numele funcției nu e recunoscut de Excel',fix:f=>f.replace(/SUUM/gi,'SUM').replace(/AVRAGE/gi,'AVERAGE').replace(/VLOKUP/gi,'VLOOKUP').replace(/INDEXX/gi,'INDEX').replace(/\bMACH\b/gi,'MATCH').replace(/CONUT/gi,'COUNT'),explain:'Excel e case-insensitive dar nu acceptă typo-uri.'},
+  {test:f=>/VLOOKUP\s*\([^,]+,[^,]+,\s*(\d+)/i.test(f)&&parseInt((f.match(/VLOOKUP\s*\([^,]+,[^,]+,\s*(\d+)/i)||[0,0])[1])>20,status:'warning',problem:'nr_coloană suspect (>20)',cause:'Tabelul probabil nu are atâtea coloane',fix:null,explain:'VLOOKUP returnează coloana N. Dacă tabelul are puține coloane apare #REF!.'},
+  {test:f=>/IF\s*\([^,]+,[^,]+\)/i.test(f)&&(f.match(/\(/g)||[]).length===1,status:'warning',problem:'IF cu doar 2 argumente',cause:'IF necesită 3 argumente: condiție, adevărat, fals',fix:null,explain:'=IF(A1>0,"OK") → trebuie =IF(A1>0,"OK","NU")'},
+  {test:f=>/VLOOKUP.*,\s*TRUE\s*\)/i.test(f),status:'warning',problem:'VLOOKUP cu TRUE (aproximativ)',cause:'TRUE face potrivire aproximativă — datele trebuie sortate',fix:f=>f.replace(/,\s*TRUE\s*\)/i,',0)'),explain:'Folosește FALSE sau 0 pentru potrivire exactă.'},
+];
+
+const DASH_LEVELS = {
+  beginner:{steps:['Selectez datele și elimin rândurile goale','Calculez totaluri cu SUM per categorie','Creez o diagramă Bar Chart simplă','Adaug titlu și legendă clară','Scriu concluzia principală'],xp:40,story:'Inserați concluzia: ex. "Cheltuielile au depășit bugetul în luna X cu Y%."'},
+  intermediate:{steps:['Curăț datele și elimin duplicate','SUMIFS pentru KPI-uri multi-criteriu','Pivot Table + Slicer interactiv','2 grafice: Line (evoluție) + Bar (comparație)','Concluzie executivă cu recomandare'],xp:80,story:'Inserați insight-ul: ex. "Regiunea Est performează cu 23% sub medie."'},
+  advanced:{steps:['Power Query import + clean automat','XLOOKUP pentru date auxiliare','Pivot Tables cu câmpuri calculate','Dashboard 3 fișe (Date/Calcule/Dashboard)','KPI cards, Slicers, grafice dinamice'],xp:150,story:'Inserați narativa executivă: ce s-a întâmplat, de ce, ce urmează.'},
+};
+
+const SHOP_ITEMS = [
+  {id:'fw',name:'Formula Wizard',desc:'Avatar exclusiv',cost:40,icon:'🧙'},
+  {id:'dd',name:'Dashboard Dragon',desc:'Titlu special',cost:80,icon:'🐉'},
+  {id:'dm',name:'Dark Mode Premium',desc:'Temă ultra-dark',cost:60,icon:'🌑'},
+  {id:'sb',name:'Streak Freeze',desc:'Păstrează streak-ul',cost:30,icon:'🧊'},
+  {id:'lf',name:'LinkedIn Frame',desc:'Ramă certificat',cost:100,icon:'💼'},
+];
+
+const COLLECTIONS = [
+  {id:'fs',name:'Formula Starter Pack',icon:'📐',items:['SUM','IF','AVERAGE','COUNT']},
+  {id:'db',name:'Dashboard Builder Pack',icon:'📊',items:['Pivot','Slicers','Charts','3 fișe']},
+  {id:'dc',name:'Data Cleaner Pack',icon:'🧹',items:['TRIM','Power Query','Duplicates','Types']},
+  {id:'pm',name:'Pivot Master Pack',icon:'🔄',items:['PivotTable','GETPIVOTDATA','Grouping','Calculated Fields']},
+];
+
+const BADGES_ALL = [
+  {id:'b-first','label':'Prima lecție','icon':'🏅'},
+  {id:'b-5','label':'5 lecții','icon':'⭐'},
+  {id:'b-escape','label':'Escape Room','icon':'🔑'},
+  {id:'b-boss','label':'Primul Boss','icon':'⚔️'},
+  {id:'b-dash','label':'Dashboard complet','icon':'📊'},
+  {id:'b-port','label':'Portofoliu public','icon':'🗂'},
+];
+
+// ══════════════════════════════════════════════
+// RENDER SKILL TREE
+// ══════════════════════════════════════════════
+let currentSkillLv = 'beginner';
+function renderSkillTree(lv){
+  currentSkillLv = lv;
+  const body = document.getElementById('skill-tree-body');
+  const order = ['beginner','intermediate','advanced'];
+  const completedPerLv = l => SKILLS[l].filter(s=>ST.skills.includes(s.id)).length;
+  body.innerHTML = '';
+
+  ['beginner','intermediate','advanced'].forEach(level => {
+    if(level !== lv) return;
+    const completed = completedPerLv(level);
+    const total = SKILLS[level].length;
+    const locked = level==='intermediate' && completedPerLv('beginner')<3;
+    const locked2 = level==='advanced' && completedPerLv('intermediate')<3;
+    const isLocked = locked || locked2;
+    const color = {beginner:'var(--g)',intermediate:'var(--gold)',red:'var(--red)'}[level]||'var(--red)';
+    const barClass = level==='intermediate'?'gold':level==='advanced'?'red':'';
+    const icon = level==='beginner'?'🟢':level==='intermediate'?'🟡':'🔴';
+
+    const block = document.createElement('div');
+    block.className = 'level-block';
+    block.innerHTML = `
+      <div class="level-header ${level}">
+        <span style="font-size:1.2rem">${icon}</span>
+        <h3>${level.charAt(0).toUpperCase()+level.slice(1)}</h3>
+        <span style="font-size:0.75rem;color:var(--muted);margin-left:auto">${completed}/${total} skill-uri completate</span>
+        ${isLocked?`<span style="font-size:0.72rem;color:var(--dim)">🔒 Completează nivelul anterior</span>`:''}
+      </div>
+      <div class="progress-bar" style="margin-bottom:1.25rem">
+        <div class="progress-fill ${barClass}" style="width:${Math.round(completed/total*100)}%"></div>
+      </div>
+      <div class="skill-nodes">
+        ${SKILLS[level].map((s,i)=>{
+          const done = ST.skills.includes(s.id);
+          const nodeLocked = isLocked || (i>0 && !ST.skills.includes(SKILLS[level][i-1].id));
+          return `<div class="skill-node ${done?'done':nodeLocked?'locked':'unlocked'}" onclick="${nodeLocked?'toast("Finalizează skill-ul anterior mai întâi!","err")':'finishSkill("'+s.id+'","'+level+'")'}">
+            <h4>${s.title}</h4>
+            <p>${s.desc}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span class="skill-xp">+${s.xp} XP</span>
+              ${nodeLocked?'<span class="skill-lock">🔒</span>':''}
+            </div>
+            <div class="progress-bar"><div class="progress-fill ${barClass}" style="width:${done?100:0}%"></div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+    body.appendChild(block);
   });
+}
+
+function finishSkill(id, level) {
+  if(!ST.skills.includes(id)){
+    const skill = SKILLS[level].find(s=>s.id===id);
+    ST.skills.push(id);
+    addXP(skill.xp);
+    checkBadges();
+    renderSkillTree(currentSkillLv);
+    toast(`Skill "${skill.title}" completat! +${skill.xp} XP`,'ok');
+  } else {
+    toast('Skill deja completat!','ok');
+  }
+}
+
+document.getElementById('skill-tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-lv]');
+  if(!btn) return;
+  document.querySelectorAll('#skill-tabs .level-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderSkillTree(btn.dataset.lv);
 });
 
-// ═══════════════════════════════════════════════════════════════
-// KNOWLEDGE BASE — 200+ Q&A Excel în română, zero API cost
-// ═══════════════════════════════════════════════════════════════
-const KB = [
-  // ── VLOOKUP ──
-  { keys:['n/a','vlookup','nu gaseste','#n/a'], answer:'`#N/A` la VLOOKUP înseamnă că valoarea căutată nu există în prima coloană a tabelului. Verifică: 1) Spații extra — folosește `=TRIM()` pe ambele coloane. 2) Tipuri diferite (număr vs text). 3) Ultimul argument — pune `0` pentru potrivire exactă. Fix rapid: `=IFERROR(VLOOKUP(A2,B:D,2,0),"Nu există")`' },
-  { keys:['vlookup','cum','cauta','cautare verticala'], answer:'VLOOKUP caută o valoare în prima coloană a unui tabel și returnează valoarea dintr-o altă coloană. Sintaxă: `=VLOOKUP(ce_caut, tabel, nr_coloana, 0)`. Exemplu: `=VLOOKUP(A2, Produse!A:C, 3, 0)` caută A2 în coloana A din Produse și returnează coloana C.' },
-  { keys:['vlookup','stanga','la stanga','coloana din stanga'], answer:'VLOOKUP nu poate căuta spre stânga — e limitarea lui principală. Folosește `=INDEX(A:A, MATCH(E1, C:C, 0))` sau mai simplu `=XLOOKUP(E1, C:C, A:A)` care caută în orice direcție.' },
-  { keys:['xlookup','diferenta','vs vlookup'], answer:'XLOOKUP este înlocuitorul modern al VLOOKUP. Avantaje: caută în orice direcție, returnează matrice întregi, gestionează erorile nativ, nu necesită numărul coloanei. Sintaxă: `=XLOOKUP(valoare, interval_cautare, interval_returnat, "Nu există")`. Disponibil în Excel 365/2021.' },
-  // ── SUM / SUMIF / SUMIFS ──
-  { keys:['sum','suma','aduna'], answer:'`=SUM(A1:A10)` adună toate valorile din A1 la A10. Mai eficient decât `=A1+A2+...`. Poți aduna intervale multiple: `=SUM(A1:A5, C1:C5)`. Cu Ctrl+Shift+Enter poți face sume pe matrice.' },
-  { keys:['sumif','conditie','suma conditie'], answer:'SUMIF adună valorile care îndeplinesc o condiție. Sintaxă: `=SUMIF(interval_conditie, conditie, interval_sumat)`. Exemplu: `=SUMIF(A:A,"Mere",B:B)` — adună tot din B unde A conține "Mere". Condiția poate fi: `">100"`, `"<>"&E1`, text exact.' },
-  { keys:['sumifs','multiple conditii','mai multe conditii'], answer:'SUMIFS permite mai multe condiții simultan. Sintaxă: `=SUMIFS(ce_aduni, range1, crit1, range2, crit2,...)`. Exemplu: `=SUMIFS(C:C, A:A,"Nord", B:B,">2024")` — suma din C unde A=Nord ȘI B>2024. Notă: range-ul de adunat vine PRIMUL.' },
-  // ── IF / AND / OR ──
-  { keys:['if','daca','conditie','logic'], answer:'IF testează o condiție și returnează valori diferite. Sintaxă: `=IF(conditie, daca_adevarat, daca_fals)`. Exemplu: `=IF(A1>=5,"Promovat","Respins")`. Ghilimelele sunt obligatorii pentru text. Poți imbrica: `=IF(A1>90,"Excelent",IF(A1>70,"Bine","Slab"))`.' },
-  { keys:['if','and','ambele conditii'], answer:'`=IF(AND(A1>50,B1="Nord"),"Bonus","Standard")` — returnează "Bonus" doar dacă AMBELE condiții sunt adevărate. AND poate combina până la 255 condiții. Alternativ: `=IF((A1>50)*(B1="Nord"),"Bonus","Standard")`.' },
-  { keys:['if','or','sau','cel putin una'], answer:'`=IF(OR(A1>100,B1="VIP"),"Premium","Normal")` — returnează "Premium" dacă CEL PUȚIN O condiție e adevărată. OR poate combina până la 255 condiții. Util pentru clasificări cu criterii multiple.' },
-  { keys:['iferror','eroare','ascunde eroare','#value','#ref'], answer:'IFERROR învelește orice formulă și returnează o alternativă la eroare. Sintaxă: `=IFERROR(formula, alternativa)`. Exemplu: `=IFERROR(VLOOKUP(A2,B:D,2,0),0)`. Prinde: #N/A, #VALUE!, #REF!, #DIV/0!, #NAME?. Versiune mai specifică: IFNA prinde doar #N/A.' },
-  // ── COUNT ──
-  { keys:['count','numara','countif'], answer:'`=COUNT(A1:A20)` numără celule cu NUMERE. `=COUNTA(A1:A20)` numără celule NEVIDE (orice). `=COUNTBLANK(A1:A20)` numără celule GOALE. `=COUNTIF(A:A,">100")` numără cu condiție. `=COUNTIFS(A:A,"Nord",B:B,"2024")` cu mai multe condiții.' },
-  { keys:['countif','conditie','numara dupa'], answer:'`=COUNTIF(interval, conditie)` numără celulele care îndeplinesc o condiție. Exemple: `=COUNTIF(A:A,"Mere")` — câte celule conțin "Mere". `=COUNTIF(B:B,">100")` — câte valori peste 100. `=COUNTIF(C:C,"<>"&"")` — câte nevide.' },
-  // ── AVERAGE ──
-  { keys:['average','medie','averageif'], answer:'`=AVERAGE(A1:A10)` calculează media aritmetică ignorând celulele goale. `=AVERAGEIF(A:A,"Nord",B:B)` — media din B unde A="Nord". `=MEDIAN(A1:A10)` — mediana (valoarea din mijloc, mai robustă la outlieri).' },
-  // ── INDEX / MATCH ──
-  { keys:['index match','index si match','alternativa vlookup'], answer:'INDEX+MATCH este mai flexibil decât VLOOKUP. MATCH găsește poziția, INDEX returnează valoarea. `=INDEX(B:B, MATCH(E1,A:A,0))` — găsește E1 în A și returnează valoarea corespunzătoare din B. Avantaj: funcționează în orice direcție, nu depinde de nr coloanei.' },
-  { keys:['match','pozitie','gaseste pozitia'], answer:'`=MATCH(valoare, interval, 0)` returnează poziția (numărul rândului) unde e găsită valoarea. Al treilea argument: 0=exact, 1=mai mic sau egal (crescător), -1=mai mare sau egal (descrescător). Util combinat cu INDEX.' },
-  // ── TEXT FUNCTIONS ──
-  { keys:['left','right','mid','extrage','text'], answer:'`=LEFT(A1,3)` — primele 3 caractere. `=RIGHT(A1,4)` — ultimele 4. `=MID(A1,3,5)` — 5 caractere începând de la poziția 3. `=LEN(A1)` — lungimea textului. Utile pentru coduri, numere de telefon, date structurate.' },
-  { keys:['concatena','&','uneste','textjoin','concat'], answer:'`=A1&" "&B1` unește conținutul celulelor. `=CONCAT(A1:A10)` unește un interval fără separator. `=TEXTJOIN(", ",TRUE,A1:A10)` unește cu separator și ignoră celulele goale — cel mai puternic. `=CONCATENATE(A1,B1)` — varianta veche.' },
-  { keys:['trim','spatii','curata text','spatii extra'], answer:'`=TRIM(A1)` elimină spațiile extra din text (rămân doar cele simple dintre cuvinte). Esențial înainte de VLOOKUP când datele vin din surse externe. `=CLEAN(A1)` elimină caracterele neimprimabile. Combinate: `=TRIM(CLEAN(A1))`.' },
-  { keys:['upper','lower','proper','majuscule'], answer:'`=UPPER(A1)` — text cu MAJUSCULE. `=LOWER(A1)` — text cu minuscule. `=PROPER(A1)` — Prima Literă Majusculă. Utile pentru standardizarea datelor din formulare sau sisteme externe.' },
-  // ── DATE FUNCTIONS ──
-  { keys:['today','azi','data curenta'], answer:'`=TODAY()` returnează data de azi (se actualizează zilnic). `=NOW()` returnează data și ora curentă. `=TODAY()-A1` calculează câte zile au trecut de la data din A1. Nu au argumente — se scriu cu parantezele goale.' },
-  { keys:['datedif','diferenta zile','vechime','ani diferenta'], answer:'`=DATEDIF(data_start, data_sfarsit, "D")` — zile. `"M"` — luni întregi. `"Y"` — ani întregi. `"YM"` — luni în plus față de ani. Exemplu vechime: `=DATEDIF(A2,TODAY(),"Y")&" ani și "&DATEDIF(A2,TODAY(),"YM")&" luni"`. Funcție ascunsă — nu apare în autocomplete.' },
-  { keys:['year','month','day','an','luna','zi'], answer:'`=YEAR(A1)` — extrage anul. `=MONTH(A1)` — luna (1-12). `=DAY(A1)` — ziua. `=WEEKDAY(A1,2)` — ziua săptămânii (1=Luni cu al doilea argument 2). `=EOMONTH(A1,0)` — ultima zi a lunii din A1.' },
-  // ── PIVOT TABLES ──
-  { keys:['pivot','pivot table','tabel pivot'], answer:'Pivot Table rezumă date mari instant. Cum: selectezi datele → Insert → PivotTable. Tragi câmpuri în Rows (categorii), Columns (comparații), Values (ce calculezi), Filters (filtre). Dublu-click pe o valoare din Pivot arată datele de baza care o compun.' },
-  { keys:['slicer','filtru vizual','pivot filtru'], answer:'Slicers sunt filtre vizuale pentru Pivot Tables. Insert → Slicer → alegi câmpul. Afișează butoane clickable. Poți conecta un Slicer la mai multe Pivot-uri: click dreapta pe Slicer → Report Connections. Mult mai elegant decât filtrele clasice.' },
-  // ── CHARTS ──
-  { keys:['grafic','diagrama','chart','cum fac grafic'], answer:'Selectezi datele → Insert → Charts → alegi tipul. Bar/Column pentru comparații, Line pentru evoluție în timp, Pie pentru proporții (maxim 5-6 segmente), Scatter pentru corelații. Click pe grafic → Design → Switch Row/Column dacă e inversat.' },
-  // ── FORMATTING ──
-  { keys:['conditional formatting','formatare conditionata','culori automate'], answer:'Home → Conditional Formatting. Highlight Cells Rules pentru valori simple (mai mare ca, text conținând). Data Bars/Color Scales pentru vizualizare automată. New Rule → Use a formula pentru condiții complexe: `=A1>AVERAGE($A:$A)` colorează valorile peste medie.' },
-  // ── TABLES ──
-  { keys:['tabel','ctrl t','table','structured'], answer:'Ctrl+T transformă un interval în Tabel structurat. Avantaje: se extinde automat la date noi, formule cu nume structurate `[@Vanzari]`, filtrare automată, formatare consistentă. Tabelele sunt baza pentru Pivot Tables dinamice și Power Query.' },
-  // ── FILTER / SORT ──
-  { keys:['filter','filtrare','dynamic array'], answer:'`=FILTER(A1:C100, B1:B100="Nord")` returnează dinamic doar rândurile unde B="Nord". Se actualizează automat la schimbarea datelor. Combini: `=FILTER(A1:C100,(B1:B100="Nord")*(C1:C100>1000))` — filtrare cu AND. Disponibil Excel 365/2021.' },
-  { keys:['sort','sortare dinamica','unique'], answer:'`=SORT(A1:A20)` sortează crescător dinamic. `=SORT(A1:B20,2,-1)` sortează după coloana 2 descrescător. `=UNIQUE(A1:A50)` returnează valorile unice. Combinate: `=SORT(UNIQUE(A1:A50))` — unice sortate.' },
-  // ── POWER QUERY ──
-  { keys:['power query','import date','get data','refresh'], answer:'Power Query (Data → Get Data) importă și transformă date automat. Conectezi sursa, aplici transformări vizual (remove duplicates, split columns, merge), încarci în Excel. La Refresh (Ctrl+Alt+F5), tot procesul rulează automat. Zero cod, repetabil.' },
-  // ── SHORTCUTS ──
-  { keys:['shortcut','scurtatura','rapid','tastatura'], answer:'Scurtături esențiale Excel: `Ctrl+T` tabel, `Ctrl+Shift+L` filtre, `Alt+Enter` rând nou în celulă, `Ctrl+D` copiază în jos, `Ctrl+R` copiază la dreapta, `F4` repetă ultima acțiune, `Ctrl+Home` mergi la A1, `Ctrl+End` ultima celulă cu date, `Alt+=` SUM automat.' },
-  { keys:['f4','referinta absoluta','dollar','blocheaza celula'], answer:'F4 comută tipul referinței: `A1` → `$A$1` (absolut) → `A$1` (rândul blocat) → `$A1` (coloana blocată) → `A1`. Folosești `$` când copiezi formula și nu vrei să se schimbe referința. Exemplu: `=B1*$D$1` — D1 rămâne fix când copiezi formula.' },
-  // ── ERRORS ──
-  { keys:['div/0','impartire la zero','#div/0'], answer:'`#DIV/0!` apare când împarți la zero sau la o celulă goală. Fix: `=IFERROR(A1/B1,0)` sau `=IF(B1=0,0,A1/B1)`. Înainte de a ascunde eroarea, verifică dacă B1 chiar trebuie să fie 0 — poate e o problemă de date.' },
-  { keys:['value','#value','tip gresit','eroare tip'], answer:'`#VALUE!` apare când formula primește tipul greșit de date (text în loc de număr, sau invers). Verifică: celulele conțin text care arată ca număr? Folosește `=VALUE(A1)` sau `=N(A1)` pentru conversie. `=ISNUMBER(A1)` verifică dacă e număr.' },
-  { keys:['ref','#ref','referinta invalida'], answer:'`#REF!` apare când o celulă la care face referire formula a fost ștearsă. Nu da Undo — deja s-a propagat. Dă click pe celula cu `#REF!` și corectează manual referința. Caută cu Ctrl+H → `#REF!` → înlocuiește cu referința corectă.' },
-  { keys:['name','#name','eroare nume','formula scrisa gresit'], answer:'`#NAME?` apare când Excel nu recunoaște un nume în formulă: funcție scrisă greșit (`SUUM`), named range șters, ghilimele lipsă pentru text, funcție nouă în versiune veche. Verifică: e formula scrisă corect? Textele sunt între ghilimele duble `""`?' },
-  // ── LOOKUP GENERAL ──
-  { keys:['gaseste','cauta','lookup','find'], answer:'Opțiuni de căutare în Excel: `VLOOKUP` — simplu, coloana de căutare trebuie să fie prima. `INDEX+MATCH` — flexibil, orice direcție. `XLOOKUP` — cel mai modern, returnează matrice, gestionează erori nativ. `MATCH` — returnează poziția, nu valoarea.' },
-  // ── DASHBOARD ──
-  { keys:['dashboard','cum fac dashboard','raport vizual'], answer:'Structura unui dashboard profesional: Sheet1=Date brute, Sheet2=Calcule/Pivot, Sheet3=Dashboard (fără gridlines: View → Gridlines off). Pe dashboard: KPI cards cu formule simple, grafice legate la Pivot-uri, Slicers pentru filtrare interactivă. Nimic se calculează direct pe dashboard.' },
-  // ── DATA CLEANING ──
-  { keys:['duplicate','elimina duplicate','remove duplicates'], answer:'Elimini duplicate: selectezi datele → Data → Remove Duplicates → bifezi coloanele relevanate. Alternativ, cu formula: `=COUNTIF($A$1:A1,A1)>1` marchează duplicatele. Cu UNIQUE: `=UNIQUE(A1:A100)` returnează doar valorile unice.' },
-  // ── FREEZE ──
-  { keys:['freeze','ingheata','randul se misca','antet'], answer:'View → Freeze Panes → Freeze Top Row (îngheață primul rând). Freeze First Column (prima coloană). Sau selectezi o celulă și Freeze Panes — îngheață tot ce e deasupra și la stânga. Util pentru tabele mari. Dezactivezi cu Unfreeze Panes.' },
-  // ── NAMED RANGES ──
-  { keys:['named range','nume interval','definit name'], answer:'Selectezi intervalul → click pe Name Box (stânga sus, afișează adresa) → scrii numele → Enter. Ex: `Vanzari`. Acum `=SUM(Vanzari)` funcționează. Gestionezi cu Formulas → Name Manager. Fac formulele lizibile și ușor de menținut.' },
-  // ── DATA VALIDATION ──
-  { keys:['dropdown','lista dropdown','validare date','data validation'], answer:'Data → Data Validation → List. În Source: `Mere,Pere,Prune` (direct) sau `=A1:A10` (referință la un interval). Poți combina cu Named Range pentru liste care se actualizează automat. Adaugă mesaj de input și alertă de eroare pentru UX complet.' },
-  // ── PROTECT ──
-  { keys:['protectie','parola','protect sheet','blocare celule'], answer:'Protejezi o foaie: Review → Protect Sheet → parola (opțională). Înainte, debifezi celulele pe care utilizatorii le pot edita: selectezi, Format Cells → Protection → debifezi Locked. Implicit, toate celulele sunt locked — se activează la Protect Sheet.' },
-];
-
-// ═══════════════════════════════════════════════════════════════
-// FUZZY MATCH ENGINE — scorare pe keywords
-// ═══════════════════════════════════════════════════════════════
-function fuzzyMatch(query) {
-  const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const tokens = q.split(/\s+/).filter(t => t.length > 2);
-
-  let best = null, bestScore = 0;
-  for (const item of KB) {
-    let score = 0;
-    for (const key of item.keys) {
-      const k = key.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-      if (q.includes(k)) score += 3;
-      for (const tok of tokens) {
-        if (k.includes(tok)) score += 2;
-        if (tok.includes(k)) score += 1;
-      }
-    }
-    // Bonus for formula keywords in question
-    const formulaWords = ['sum','if','vlookup','xlookup','index','match','countif','sumif','pivot','filter','sort','unique','iferror','average','count','left','right','mid','trim','today','datedif'];
-    for (const fw of formulaWords) {
-      if (q.includes(fw) && item.keys.some(k=>k.includes(fw))) score += 4;
-    }
-    if (score > bestScore) { bestScore = score; best = item; }
-  }
-
-  return bestScore >= 2 ? best : null;
-}
-
-// Fallback răspunsuri contextuale când nu există potrivire
-function contextualFallback(query) {
-  const q = query.toLowerCase();
-  if (q.includes('cum') || q.includes('ce') || q.includes('care')) {
-    return 'Întrebarea ta e despre Excel, dar n-am un răspuns exact pregătit. Încearcă să reformulezi cu numele formulei (ex: "cum funcționează SUMIF?") sau cu eroarea exactă (ex: "de ce primesc #N/A?"). Poți căuta și în <strong>Formula Builder</strong> de mai jos.';
-  }
-  if (q.includes('eroare') || q.includes('nu merge') || q.includes('problem')) {
-    return 'Pentru erori Excel, spune-mi exact ce apare: <code>#N/A</code>, <code>#VALUE!</code>, <code>#REF!</code>, <code>#DIV/0!</code>, <code>#NAME?</code> sau <code>#NULL!</code>. Fiecare are o cauză specifică. Sau folosește <strong>Formula Debugger</strong> din tabul de sus.';
-  }
-  return 'Sunt specializat în formule și funcții Excel. Încearcă: "cum funcționează XLOOKUP?", "de ce primesc #N/A?", "cum fac un Pivot Table?", "cum calculez media cu condiție?" sau orice altă întrebare concretă despre Excel.';
-}
-
-// Typing simulation — scrie litera cu litera ca un tutor real
-function typeText(bubble, text, callback) {
-  bubble.innerHTML = '';
-  const html = text.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  // Parse HTML corect
-  const temp = document.createElement('div');
-  temp.innerHTML = html;
-  const finalHTML = temp.innerHTML;
-  // Type effect la nivel de caractere vizibile
-  let i = 0;
-  const chars = finalHTML.split('');
-  let inTag = false, buffer = '';
-  function next() {
-    if (i >= chars.length) { if (callback) callback(); return; }
-    const c = chars[i];
-    if (c === '<') inTag = true;
-    if (inTag) { buffer += c; if (c === '>') { inTag = false; bubble.innerHTML += buffer; buffer = ''; } }
-    else { bubble.innerHTML += c; }
-    i++;
-    setTimeout(next, inTag ? 0 : 8);
-  }
-  next();
-}
-
-// ═══════════════════════════════════════
-// AI TUTOR CHAT — zero cost, local engine
-// ═══════════════════════════════════════
-function setChat(text) {
-  document.getElementById('chat-input').value = text;
-  sendChat();
-}
-
-function appendMsg(role, content) {
-  const container = document.getElementById('chat-messages');
-  const isUser = role === 'user';
-  const div = document.createElement('div');
-  div.className = `msg ${isUser ? 'user' : ''}`;
-  div.innerHTML = `
-    <div class="msg-avatar ${isUser ? 'user' : 'ai'}">${isUser ? 'Tu' : 'AI'}</div>
-    <div class="msg-bubble">${isUser ? content : ''}</div>
-  `;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  return div.querySelector('.msg-bubble');
-}
-
-function sendChat() {
-  const input = document.getElementById('chat-input');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-
-  appendMsg('user', text);
-
-  const bubble = appendMsg('ai', '');
-  bubble.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
-
-  // Simulate thinking delay 400-900ms
-  const delay = 400 + Math.random() * 500;
-  setTimeout(() => {
-    const match = fuzzyMatch(text);
-    const answer = match ? match.answer : contextualFallback(text);
-    bubble.innerHTML = '';
-    typeText(bubble, answer, () => {
-      addXP(5);
-      document.getElementById('chat-messages').scrollTop = 999999;
-    });
-  }, delay);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// FORMULA DEBUGGER — regex engine, zero cost
-// ═══════════════════════════════════════════════════════════════
-const DEBUG_RULES = [
-  // Parenteze
-  { test: f => { let o=0,c=0; for(const ch of f){if(ch==='(')o++;if(ch===')')c++;} return o!==c; }, status:'error', problem:'Paranteze nepereche', cause:`${''} deschise nu se potrivesc cu cele închise`, fix: f => { let o=0,c=0; for(const ch of f){if(ch==='(')o++;if(ch===')')c++;} return o>c ? f+')'.repeat(o-c) : f; }, explanation:'Numără parantezele: fiecare ( trebuie să aibă un ) corespunzător.' },
-  // VLOOKUP col index prea mare
-  { test: f => /VLOOKUP\s*\([^,]+,[^,]+,\s*(\d+)/i.test(f) && parseInt(f.match(/VLOOKUP\s*\([^,]+,[^,]+,\s*(\d+)/i)[1]) > 20, status:'warning', problem:'Număr de coloană suspect de mare în VLOOKUP', cause:'Al treilea argument al VLOOKUP e mai mare ca 20 — verifică dacă tabelul are atâtea coloane', fix: null, explanation:'VLOOKUP returnează coloana N din tabel. Dacă tabelul are 3 coloane și tu ceri coloana 5, apare #REF!.' },
-  // Ghilimele incorecte (smart quotes)
-  { test: f => /[""''‚„]/.test(f), status:'error', problem:'Ghilimele tipografice detectate', cause:'Excel acceptă doar ghilimele drepte " — ghilimelele „" sau "" din Word cauzează #NAME?', fix: f => f.replace(/[""„‚'']/g, '"'), explanation:'Copiază formula din Word sau PDF și ghilimelele se transformă în „" — Excel nu le recunoaște.' },
-  // Punct în loc de virgulă ca separator
-  { test: f => /=\w+\([^)]+\.[^)]+\)/.test(f) && !/\d\.\d/.test(f), status:'warning', problem:'Separator posibil incorect', cause:'Dacă folosești punct (.) în loc de virgulă (,) între argumente, formula poate să nu funcționeze în setări europene', fix: null, explanation:'În Excel cu setări RO, separatorul de argumente e ; (punct-virgulă), nu virgulă.' },
-  // VLOOKUP cu TRUE în loc de 0/FALSE
-  { test: f => /VLOOKUP\s*\([^)]+,\s*TRUE\s*\)/i.test(f), status:'warning', problem:'VLOOKUP cu TRUE — potrivire aproximativă', cause:'TRUE ca ultim argument face potrivire aproximativă — datele trebuie sortate crescător altfel returnează valori greșite', fix: f => f.replace(/,\s*TRUE\s*\)/i, ',0)'), explanation:'Folosește FALSE sau 0 pentru potrivire exactă. TRUE e corect doar pentru tabele de interval (ex: grile de taxe).' },
-  // IF cu mai mult de 3 argumente
-  { test: f => /IF\s*\([^,]+,[^,]+,[^,]+,[^)]+\)/i.test(f) && (f.match(/,/g)||[]).length > 3 && !/SUMIF|COUNTIF|AVERAGEIF|SUMIFS|COUNTIFS/i.test(f), status:'warning', problem:'IF cu prea multe argumente', cause:'IF acceptă exact 3 argumente: condiție, dacă_adevărat, dacă_fals', fix: null, explanation:'Pentru mai multe ramuri, imbricați IFs sau folosiți IFS(): =IFS(A1>90,"Excelent",A1>70,"Bine",TRUE,"Slab").' },
-  // Formulă fără =
-  { test: f => !/^=/.test(f.trim()), status:'warning', problem:'Formula nu începe cu =', cause:'Toate formulele Excel trebuie să înceapă cu semnul egal', fix: f => '=' + f.trim(), explanation:'Fără = Excel tratează conținutul ca text simplu, nu ca formulă.' },
-  // #REF! în formulă
-  { test: f => /#REF!/i.test(f), status:'error', problem:'#REF! detectat în formulă', cause:'Formula referențiază o celulă sau interval șters', fix: null, explanation:'Identifică celula cu #REF! și corectează manual referința. Caută originea cu Formulas → Trace Precedents.' },
-  // Funcție inexistentă comună (greșeli frecvente)
-  { test: f => /=SUUM|=AVRAGE|=VLOKUP|=INDEXX|=MACH\b/i.test(f), status:'error', problem:'Funcție scrisă greșit', cause:'Numele funcției nu este recunoscut de Excel', fix: f => f.replace(/SUUM/gi,'SUM').replace(/AVRAGE/gi,'AVERAGE').replace(/VLOKUP/gi,'VLOOKUP').replace(/INDEXX/gi,'INDEX').replace(/\bMACH\b/gi,'MATCH'), explanation:'Excel e case-insensitive pentru funcții, dar sensibil la spelling.' },
-];
-
-function localDebugFormula(formula) {
-  const f = formula.trim();
-
-  for (const rule of DEBUG_RULES) {
-    if (rule.test(f)) {
-      const fixed = rule.fix ? rule.fix(f) : null;
-      return {
-        status: rule.status,
-        problem: rule.problem,
-        cause: rule.cause,
-        fix: fixed,
-        explanation: rule.explanation
-      };
-    }
-  }
-
-  // Dacă trece toate regulile, pare OK
-  // Verificare suplimentară: funcții Excel recunoscute
-  const knownFuncs = ['SUM','AVERAGE','COUNT','COUNTA','COUNTBLANK','IF','AND','OR','NOT','VLOOKUP','HLOOKUP','XLOOKUP','INDEX','MATCH','SUMIF','SUMIFS','COUNTIF','COUNTIFS','AVERAGEIF','AVERAGEIFS','LEFT','RIGHT','MID','LEN','TRIM','CLEAN','UPPER','LOWER','PROPER','CONCATENATE','CONCAT','TEXTJOIN','TODAY','NOW','DATE','YEAR','MONTH','DAY','DATEDIF','EOMONTH','WEEKDAY','MAX','MIN','LARGE','SMALL','RANK','IFERROR','IFNA','IFS','SWITCH','CHOOSE','OFFSET','INDIRECT','ADDRESS','ROW','COLUMN','ROWS','COLUMNS','FILTER','SORT','SORTBY','UNIQUE','SEQUENCE','LET','LAMBDA','PIVOT','TEXT','VALUE','N','ISBLANK','ISNUMBER','ISTEXT','ISERROR'];
-  const usedFuncs = f.match(/[A-Z]{2,}(?=\s*\()/gi) || [];
-  const unknown = usedFuncs.filter(fn => !knownFuncs.includes(fn.toUpperCase()));
-  if (unknown.length > 0) {
-    return { status:'warning', problem:`Funcție necunoscută: ${unknown.join(', ')}`, cause:'Poate fi o funcție din versiuni mai noi sau scrisă greșit', fix: null, explanation:'Verifică dacă funcția există în versiunea ta de Excel. XLOOKUP și FILTER necesită Excel 365/2021.' };
-  }
-
-  return { status:'ok', problem:null, cause:null, fix:null, explanation:'Formula pare validă din punct de vedere sintactic. Dacă tot primești erori, verifică tipurile de date din celulele referențiate.' };
-}
-
-function debugFormula() {
-  const formula = document.getElementById('debug-input').value.trim();
-  if (!formula) return;
-  const result = document.getElementById('debug-result');
-  result.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
-
-  setTimeout(() => {
-    const r = localDebugFormula(formula);
-    result.innerHTML = `
-      <div class="${r.status === 'ok' ? 'debug-ok' : 'debug-error'}" style="font-weight:600;margin-bottom:0.5rem">
-        ${r.status === 'ok' ? '✓ Formula pare corectă' : r.status === 'warning' ? `⚠ Atenție: ${r.problem}` : `✗ Eroare: ${r.problem}`}
+// ══════════════════════════════════════════════
+// RENDER INBOX
+// ══════════════════════════════════════════════
+function renderInbox(){
+  const list = document.getElementById('inbox-list');
+  list.innerHTML = EMAILS.map(e=>`
+    <div class="inbox-email">
+      <div class="email-from">
+        De la: ${e.from}
+        <span class="badge-lv ${e.level}">${{b:'🟢 Beginner',i:'🟡 Intermediate',a:'🔴 Advanced'}[e.level]}</span>
       </div>
-      ${r.cause ? `<div style="font-size:0.82rem;margin-bottom:0.4rem"><strong>Cauza:</strong> ${r.cause}</div>` : ''}
-      ${r.fix ? `<div class="debug-suggestion" style="margin-bottom:0.4rem"><strong>Fix sugerat:</strong> <code style="background:var(--surface3);padding:2px 6px;border-radius:4px;word-break:break-all">${r.fix}</code></div>` : ''}
-      <div style="font-size:0.78rem;color:var(--text-dim);margin-top:0.4rem;border-top:1px solid var(--border);padding-top:0.4rem">${r.explanation}</div>
-    `;
-    addXP(10);
-  }, 350);
+      <div class="email-subject">${e.subject}</div>
+      <div class="email-body">${e.body}</div>
+      <button class="btn btn-green btn-sm" onclick="activateMission('${e.id}')">⚡ Activează misiunea</button>
+    </div>
+  `).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════
-// FORMULA BUILDER — template engine, zero cost
-// ═══════════════════════════════════════════════════════════════
-const BUILDER_TEMPLATES = [
-  // SUM variants
-  { keys:['suma','total','aduna','insumez'], formula:'=SUM({col}:{col})', explanation:'SUM adună toate valorile dintr-un interval. Poți specifica un interval exact (B1:B100) sau o coloană întreagă (B:B). Este cea mai folosită funcție Excel.', example:'Dacă coloana B conține vânzările: =SUM(B:B) → totalul tuturor vânzărilor', complexity:'simplu' },
-  // SUMIF
-  { keys:['suma daca','total pentru','suma pe categorie','suma unde','sumif'], formula:'=SUMIF({col_conditie}:{col_conditie},{criteriu},{col_valori}:{col_valori})', explanation:'SUMIF adună valorile dintr-o coloană doar pentru rândurile care îndeplinesc o condiție dintr-o altă coloană. Primul argument: unde verifici. Al doilea: ce verifici. Al treilea: ce aduni.', example:'=SUMIF(A:A,"Mere",B:B) → adună toate valorile din B unde coloana A conține "Mere"', complexity:'mediu' },
-  // SUMIFS
-  { keys:['suma mai multe conditii','total cu conditii multiple','sumifs'], formula:'=SUMIFS({col_suma}:{col_suma},{col1}:{col1},{crit1},{col2}:{col2},{crit2})', explanation:'SUMIFS adună cu mai multe condiții simultane (AND logic). Primul argument este coloana de adunat, apoi perechi interval-criteriu. Ordinea diferă față de SUMIF.', example:'=SUMIFS(C:C,A:A,"Nord",B:B,">1000") → suma din C unde A=Nord ȘI B>1000', complexity:'mediu' },
-  // COUNTIF
-  { keys:['numara','count','cate','frecventa','countif'], formula:'=COUNTIF({col}:{col},{criteriu})', explanation:'COUNTIF numără câte celule dintr-un interval îndeplinesc o condiție. Criteriul poate fi: text exact, număr, operator cu număr (">100"), wildcard ("*Mere*").', example:'=COUNTIF(A:A,"Mere") → câte celule din A conțin "Mere". =COUNTIF(B:B,">100") → câte valori peste 100', complexity:'simplu' },
-  // AVERAGE
-  { keys:['medie','media','average','medie cu conditie'], formula:'=AVERAGE({col}:{col})', explanation:'AVERAGE calculează media aritmetică ignorând celulele goale. Pentru medie cu condiție folosești AVERAGEIF. Pentru medie robustă la extreme, MEDIAN este mai bun.', example:'=AVERAGE(B2:B100) → media vânzărilor. =AVERAGEIF(A:A,"Nord",B:B) → media pentru Nord', complexity:'simplu' },
-  // VLOOKUP
-  { keys:['cauta','gaseste','lookup','vlookup','corespondent'], formula:'=VLOOKUP({valoare},{tabel},{nr_col},0)', explanation:'VLOOKUP caută o valoare în prima coloană a unui tabel și returnează valoarea dintr-o coloană specificată. Ultimul argument 0 înseamnă potrivire exactă — aproape întotdeauna ce vrei.', example:'=VLOOKUP(A2,Produse!A:C,3,0) → caută A2 în prima coloană din Produse și returnează coloana C', complexity:'mediu' },
-  // XLOOKUP
-  { keys:['xlookup','cauta modern','cauta oriunde','lookup modern'], formula:'=XLOOKUP({valoare},{col_cautare}:{col_cautare},{col_returnat}:{col_returnat},"Nu există")', explanation:'XLOOKUP este versiunea modernă a VLOOKUP. Nu e limitat la prima coloană, returnează o valoare dacă nu găsește în loc de eroare, și poate returna matrice întregi.', example:'=XLOOKUP(A2,Produse[Cod],Produse[Pret],"Nu există") → caută A2 în Cod și returnează Prețul', complexity:'mediu' },
-  // INDEX MATCH
-  { keys:['index match','cauta la stanga','alternativa vlookup'], formula:'=INDEX({col_rezultat}:{col_rezultat},MATCH({valoare},{col_cautare}:{col_cautare},0))', explanation:'INDEX+MATCH: MATCH găsește poziția valorii în coloana de căutare, INDEX returnează valoarea de la acea poziție din coloana de rezultat. Mai flexibil decât VLOOKUP.', example:'=INDEX(A:A,MATCH(E1,C:C,0)) → găsește E1 în C și returnează valoarea corespunzătoare din A', complexity:'avansat' },
-  // IF
-  { keys:['daca','conditie','if','clasificare','nota'], formula:'=IF({conditie},"{valoare_adevarat}","{valoare_fals}")', explanation:'IF returnează prima valoare dacă condiția e adevărată, a doua dacă e falsă. Textele se pun între ghilimele. Poți imbrica IFs pentru mai multe ramuri sau folosi IFS().', example:'=IF(B2>=5,"Promovat","Respins") — dacă nota din B2 e minim 5, afișează Promovat', complexity:'simplu' },
-  // IFERROR
-  { keys:['iferror','ascunde eroare','daca eroare'], formula:'=IFERROR({formula_ta},0)', explanation:'IFERROR învelește orice formulă și returnează o alternativă când apare o eroare (#N/A, #VALUE!, #REF!, etc.). Al doilea argument poate fi 0, "" (gol), sau orice text sau formulă.', example:'=IFERROR(VLOOKUP(A2,B:D,2,0),"Nu s-a găsit") → dacă VLOOKUP eșuează, afișează textul', complexity:'simplu' },
-  // TODAY / date
-  { keys:['data','astazi','today','acum','data curenta'], formula:'=TODAY()', explanation:'TODAY() returnează data de azi și se actualizează automat zilnic. Diferența dintre date: =TODAY()-A1 dă numărul de zile. DATEDIF pentru ani și luni. Nu necesită argumente.', example:'=TODAY()-B2 → câte zile au trecut de la data din B2. =YEAR(TODAY()) → anul curent', complexity:'simplu' },
-  // FILTER
-  { keys:['filtreaza','filtrare dinamica','returneaza subset','filter'], formula:'=FILTER({interval},{conditie})', explanation:'FILTER returnează dinamic toate rândurile care îndeplinesc condiția. Se actualizează automat la modificarea datelor. Disponibil în Excel 365/2021. "Spill" — ocupă automat celulele necesare.', example:'=FILTER(A1:C100,B1:B100="Nord") → toate rândurile unde B="Nord"', complexity:'avansat' },
-  // UNIQUE
-  { keys:['unic','valori unice','fara duplicate','unique'], formula:'=UNIQUE({interval})', explanation:'UNIQUE returnează lista valorilor unice dintr-un interval, eliminând duplicatele automat. Dinamic — se actualizează la schimbarea datelor. Combini cu SORT: =SORT(UNIQUE(A:A)).', example:'=UNIQUE(A2:A100) → lista de produse unice. =SORT(UNIQUE(A:A)) → sortate alfabetic', complexity:'mediu' },
-  // TEXT JOIN
-  { keys:['uneste','concatena','combina text','textjoin'], formula:'=TEXTJOIN(", ",TRUE,{interval})', explanation:'TEXTJOIN unește valorile dintr-un interval cu un separator specificat. Al doilea argument TRUE ignoră celulele goale. Mai puternic decât & sau CONCAT.', example:'=TEXTJOIN(", ",TRUE,A2:A10) → "Mere, Pere, Prune" (ignoră golurile)', complexity:'mediu' },
-  // MARJA
-  { keys:['marja','profit','procent','calcul procentual'], formula:'=({pret}-{cost})/{pret}', explanation:'Marja de profit = (Preț - Cost) / Preț × 100%. Formatezi celula ca Procent (%). Sau: =(B2-C2)/B2 dacă B=Preț și C=Cost. Marja brută vs netă depinde dacă incluzi toate costurile.', example:'Dacă B2=100 (preț) și C2=70 (cost): =(B2-C2)/B2 → 30% marjă', complexity:'simplu' },
-  // RANK
-  { keys:['clasament','rank','loc','ordine','top'], formula:'=RANK({celula},{interval},0)', explanation:'RANK returnează locul unui număr în ierarhia unui interval. Al treilea argument: 0=descrescător (1=cel mai mare), 1=crescător (1=cel mai mic). RANK.EQ e versiunea modernă.', example:'=RANK(B2,$B$2:$B$100,0) → locul vânzărilor din B2 față de toate vânzările', complexity:'mediu' },
-  // MAX MIN
-  { keys:['maxim','minim','cel mai mare','cel mai mic','max','min'], formula:'=MAX({interval})', explanation:'MAX returnează cea mai mare valoare dintr-un interval. MIN returnează cea mai mică. LARGE(interval,2) returnează al doilea cel mai mare. SMALL(interval,2) al doilea cel mai mic.', example:'=MAX(B:B) → cea mai mare vânzare. =LARGE(B:B,3) → a treia cea mai mare', complexity:'simplu' },
+function activateMission(id){
+  const email = EMAILS.find(e=>e.id===id);
+  const box = document.getElementById('active-mission');
+  box.innerHTML = `
+    <div class="mission-title">⚡ ${email.subject}</div>
+    <div class="mission-desc" style="margin-top:0.35rem;margin-bottom:0.75rem">${email.mission}</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem">Pași de completat:</div>
+    ${email.steps.map((s,i)=>`
+      <div class="check-item" id="mstep-${id}-${i}" onclick="toggleMissionStep('${id}',${i})">
+        <input type="checkbox" id="mc-${id}-${i}"> ${s}
+      </div>
+    `).join('')}
+  `;
+  const stepsWrap = document.getElementById('mission-steps');
+  stepsWrap.style.display = 'block';
+  addXP(10);
+  toast(`Misiune activată! +10 XP`,'ok');
+}
+
+function toggleMissionStep(id, i){
+  const key = `m-${id}-${i}`;
+  const el = document.getElementById(`mstep-${id}-${i}`);
+  const cb = document.getElementById(`mc-${id}-${i}`);
+  if(!ST[key]){ ST[key]=true; save(); el.classList.add('done'); cb.checked=true; addXP(15); }
+}
+
+// ══════════════════════════════════════════════
+// RENDER SIMULATOR
+// ══════════════════════════════════════════════
+let simLv = 'beginner';
+function renderSim(lv){
+  simLv = lv;
+  const data = SIM_DATA[lv];
+  const key = `sim-${lv}`;
+  const doneChecks = ST[key] || [];
+  document.getElementById('sim-body').innerHTML = `
+    <div class="sim-file">
+      <div class="file-name">📊 ${data.file}</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">Probleme detectate (${data.errors.length}):</div>
+      <div class="error-list">
+        ${data.errors.map(e=>`
+          <div class="error-item">
+            <span class="err-icon">${e.icon}</span>
+            <span style="font-size:0.8rem">${e.text}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="repair-box">
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">Checklist de reparare (${data.xp} XP):</div>
+      <div class="checklist">
+        ${data.checks.map((c,i)=>`
+          <div class="check-item ${doneChecks.includes(i)?'done':''}" onclick="repairCheck('${lv}',${i},'${key}')">
+            <input type="checkbox" ${doneChecks.includes(i)?'checked':''}>
+            <span>${c}</span>
+          </div>
+        `).join('')}
+      </div>
+      <button class="btn btn-green btn-sm" onclick="finishSim('${lv}')">✓ Finalizează fișierul</button>
+      <div class="result-box" id="sim-result-${lv}">Bifează toți pașii pentru a finaliza.</div>
+    </div>
+  `;
+}
+
+function repairCheck(lv, i, key){
+  const arr = ST[key] || [];
+  if(!arr.includes(i)){ arr.push(i); ST[key]=arr; save(); addXP(8); renderSim(lv); }
+}
+
+function finishSim(lv){
+  const data = SIM_DATA[lv];
+  const key = `sim-${lv}`;
+  const done = (ST[key]||[]).length;
+  const result = document.getElementById(`sim-result-${lv}`);
+  if(done === data.checks.length){
+    result.textContent = `✅ Fișier complet reparat! +${data.xp} XP bonus`;
+    result.style.color = 'var(--g)';
+    addXP(data.xp);
+    earnBadge('b-dash');
+  } else {
+    result.textContent = `⚠ Mai ai ${data.checks.length-done} pași de completat.`;
+    result.style.color = 'var(--gold)';
+  }
+}
+
+document.getElementById('sim-tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-lv]');
+  if(!btn) return;
+  document.querySelectorAll('#sim-tabs .level-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderSim(btn.dataset.lv);
+});
+
+// ══════════════════════════════════════════════
+// FORMULA BUILDER
+// ══════════════════════════════════════════════
+function buildFormula(){
+  const q = document.getElementById('builder-input').value.trim().toLowerCase();
+  if(!q) return;
+  const norm = s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const qn = norm(q);
+  let best=null, bestScore=0;
+  for(const t of BUILDER_KB){
+    let score=0;
+    for(const k of t.keys){ const kn=norm(k); if(qn.includes(kn)) score+=4; if(kn.includes(qn.split(' ')[0])) score+=2; }
+    if(score>bestScore){bestScore=score;best=t;}
+  }
+  const result = document.getElementById('builder-result');
+  if(best && bestScore>=2){
+    result.innerHTML = `<span class="ok">Formula generată:</span><br><code>${best.formula}</code><br><br><strong>Exemplu:</strong> <code>${best.example}</code><br><br>${best.explain}`;
+    addXP(15);
+  } else {
+    result.innerHTML = `<span class="warn">Nu am putut determina formula exactă.</span><br>Încearcă cuvinte cheie: sumă, medie, caută, numără, dacă, filtrează, concatenă.`;
+  }
+}
+
+// ══════════════════════════════════════════════
+// FORMULA DEBUGGER
+// ══════════════════════════════════════════════
+function debugFormula(){
+  const f = document.getElementById('debugger-input').value.trim();
+  if(!f) return;
+  const result = document.getElementById('debugger-result');
+  for(const rule of DEBUG_RULES){
+    if(rule.test(f)){
+      const fix = rule.fix ? rule.fix(f) : null;
+      result.innerHTML = `<span class="${rule.status==='error'?'err':'warn'}">
+        ${rule.status==='error'?'✗':'⚠'} ${rule.problem}
+      </span><br><strong>Cauza:</strong> ${rule.cause}${fix?`<br><strong>Fix:</strong> <code>${fix}</code>`:''}<br><span style="font-size:0.75rem;color:var(--muted)">${rule.explain}</span>`;
+      addXP(10);
+      return;
+    }
+  }
+  result.innerHTML = `<span class="ok">✓ Formula pare validă sintactic.</span><br>Dacă tot primești erori, verifică tipurile de date din celulele referențiate cu =ISNUMBER() sau =ISTEXT().`;
+  addXP(5);
+}
+
+// ══════════════════════════════════════════════
+// ERROR CLINIC
+// ══════════════════════════════════════════════
+function renderErrorClinic(){
+  document.getElementById('error-codes').innerHTML = ERRORS.map(e=>`
+    <button class="error-code-btn" onclick="showError('${e.code}',this)">
+      <span class="code-tag">${e.code}</span>
+      <span>${e.short}</span>
+      <span style="margin-left:auto;font-size:0.65rem;color:var(--dim)">${{b:'🟢',i:'🟡',a:'🔴'}[e.level]}</span>
+    </button>
+  `).join('');
+}
+
+function showError(code, btn){
+  document.querySelectorAll('.error-code-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const e = ERRORS.find(x=>x.code===code);
+  document.getElementById('clinic-detail').innerHTML = `
+    <h4>${e.code} — ${e.short}</h4>
+    <div class="guide-line"><strong>Cauza:</strong> ${e.cause}</div>
+    <div class="guide-line">${e.detail}</div>
+    <div class="fix-formula">${e.fix}</div>
+    <button class="btn btn-green btn-sm" style="margin-top:0.75rem" onclick="addXP(10);toast('Eroare tratată! +10 XP','ok')">✓ Am aplicat fix-ul (+10 XP)</button>
+  `;
+}
+
+// ══════════════════════════════════════════════
+// BOSSES
+// ══════════════════════════════════════════════
+let bosslv = 'beginner';
+function renderBosses(lv){
+  bosslv = lv;
+  const grid = document.getElementById('boss-grid');
+  grid.innerHTML = BOSSES[lv].map(b=>`
+    <div class="boss-card ${lv} ${ST.bosses.includes(b.id)?'beaten':''}">
+      <div class="boss-lv ${lv[0]}">${{beginner:'🟢 Beginner',intermediate:'🟡 Intermediate',advanced:'🔴 Advanced'}[lv]}</div>
+      <h4>${b.title}</h4>
+      <p>${b.desc}</p>
+      <div class="boss-reward">🏆 +${b.xp} XP · Badge: ${b.badge}</div>
+      ${ST.bosses.includes(b.id)?
+        '<div style="font-size:0.78rem;color:var(--g);margin-top:0.75rem">✓ Deja învins</div>':
+        `<button class="btn btn-${lv==='beginner'?'green':lv==='intermediate'?'gold':'red'} btn-sm" style="margin-top:1rem" onclick="winBoss('${b.id}','${b.title}',${b.xp},'${b.badge}')">⚔️ Atacă Boss-ul</button>`
+      }
+    </div>
+  `).join('');
+}
+
+function winBoss(id, name, xp, badge){
+  if(!ST.bosses.includes(id)){
+    ST.bosses.push(id);
+    addXP(xp);
+    earnBadge('b-boss');
+    renderBosses(bosslv);
+    toast(`Boss "${name}" învins! +${xp} XP 🎉`,'gold');
+  }
+}
+
+document.getElementById('boss-tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-lv]');
+  if(!btn) return;
+  document.querySelectorAll('#boss-tabs .level-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderBosses(btn.dataset.lv);
+});
+
+// ══════════════════════════════════════════════
+// DASHBOARD BUILDER
+// ══════════════════════════════════════════════
+let dashLv = 'beginner';
+function renderDash(lv){
+  dashLv = lv;
+  const data = DASH_LEVELS[lv];
+  const key = `dash-${lv}`;
+  const done = ST.dashSteps[key] || [];
+  const score = Math.round(done.length/data.steps.length*100);
+  document.getElementById('dash-body').innerHTML = `
+    <div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">Pași dashboard ${lv}:</div>
+      <div class="steps-list">
+        ${data.steps.map((s,i)=>`
+          <div class="step-row ${done.includes(i)?'done':''}" onclick="dashStep('${lv}',${i})">
+            <div class="step-num">${i+1}</div>
+            <span>${s}</span>
+            ${done.includes(i)?'<span style="color:var(--g);font-size:0.8rem">✓</span>':''}
+          </div>
+        `).join('')}
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:0.75rem">Story / concluzie:</div>
+      <textarea class="story-input" id="story-${lv}" placeholder="${data.story}"></textarea>
+      <button class="btn btn-green btn-sm" style="margin-top:0.5rem" onclick="scoreDash('${lv}')">✓ Calculează scor</button>
+    </div>
+    <div>
+      <div class="score-display">
+        <div class="score-number" id="dash-score-${lv}">${score}%</div>
+        <div class="score-label">Claritate dashboard</div>
+      </div>
+      <div style="margin-top:1rem;font-size:0.8rem;color:var(--muted)">
+        ${score>=80?'🎉 Dashboard professional! Gata de portofoliu.':score>=50?'📈 Bun progres. Completează pașii rămași.':'💡 Completează pașii pentru un scor mai bun.'}
+      </div>
+    </div>
+  `;
+}
+
+function dashStep(lv, i){
+  const key = `dash-${lv}`;
+  if(!ST.dashSteps[key]) ST.dashSteps[key]=[];
+  if(!ST.dashSteps[key].includes(i)){
+    ST.dashSteps[key].push(i);
+    save(); addXP(12); renderDash(lv);
+  }
+}
+
+function scoreDash(lv){
+  const data = DASH_LEVELS[lv];
+  const key = `dash-${lv}`;
+  const done = ST.dashSteps[key]||[];
+  const story = document.getElementById(`story-${lv}`)?.value||'';
+  const score = Math.round((done.length/data.steps.length*0.7 + (story.length>30?0.3:story.length/100*0.3))*100);
+  document.getElementById(`dash-score-${lv}`).textContent = score+'%';
+  if(score>=80){ addXP(data.xp); toast(`Dashboard scorat: ${score}%! +${data.xp} XP`,'gold'); }
+  else { toast(`Scor: ${score}%. Completează mai mulți pași.`,'ok'); }
+}
+
+document.getElementById('dash-tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-lv]');
+  if(!btn) return;
+  document.querySelectorAll('#dash-tabs .level-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderDash(btn.dataset.lv);
+});
+
+// ══════════════════════════════════════════════
+// MENTOR / HINTS
+// ══════════════════════════════════════════════
+let hintLv = 'beginner';
+function showHint(){
+  const hints = HINTS[hintLv];
+  const idx = Math.min(ST.hintIdx, hints.length-1);
+  document.getElementById('hint-display').innerHTML = hints[idx];
+}
+function nextHint(){
+  const hints = HINTS[hintLv];
+  ST.hintIdx = (ST.hintIdx+1) % hints.length;
+  save(); showHint(); addXP(3);
+}
+function resetHints(){ ST.hintIdx=0; save(); showHint(); }
+function setHintLevel(lv, btn){
+  hintLv=lv; ST.hintLevel=lv; ST.hintIdx=0; save();
+  document.querySelectorAll('[onclick*="setHintLevel"]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  showHint();
+}
+function getMentorFeedback(){
+  const fb = MENTOR_FEEDBACK[hintLv];
+  document.getElementById('feedback-panel').textContent = fb[Math.floor(Math.random()*fb.length)];
+  addXP(5);
+}
+function getNextLesson(){
+  const recs = {beginner:'VLOOKUP — lecția B9 din Main V2',intermediate:'INDEX+MATCH — lecția I3 din Main V2',advanced:'XLOOKUP + FILTER — lecțiile A1 și A3 din Main V2'};
+  document.getElementById('feedback-panel').textContent = `📚 Recomandare: ${recs[hintLv]}. Link: laurandreea10.github.io/Excel-Quest/#lessons`;
+  addXP(5);
+}
+
+// ══════════════════════════════════════════════
+// PORTFOLIO
+// ══════════════════════════════════════════════
+const DEFAULT_PROJECTS = [
+  {name:'Sales Dashboard executiv',level:'advanced',skills:'XLOOKUP, SUMIFS, PivotTable, Power Query',score:94,icon:'📊'},
+  {name:'HR Employee Tracker',level:'intermediate',skills:'VLOOKUP, DATEDIF, Tables',score:88,icon:'👥'},
 ];
 
-function localBuildFormula(description) {
-  const q = description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const tokens = q.split(/\s+/).filter(t => t.length > 2);
+function renderPortfolio(){
+  const grid = document.getElementById('portfolio-grid');
+  const projs = ST.portfolio.length ? ST.portfolio : DEFAULT_PROJECTS;
+  grid.innerHTML = projs.map(p=>`
+    <div class="portfolio-card">
+      <div class="portfolio-thumb">${p.icon||'📋'}</div>
+      <div class="portfolio-body">
+        <h4>${p.name}</h4>
+        <div class="portfolio-skills">
+          ${(p.skills||'').split(',').map(s=>`<span class="skill-chip">${s.trim()}</span>`).join('')}
+        </div>
+        <div class="portfolio-score">⭐ ${p.score||0}/100</div>
+        <div class="portfolio-actions">
+          <button class="btn btn-ghost btn-sm" onclick="toast('Link copiat: excelquest.app/p/${(p.name||'').toLowerCase().replace(/\s/g,'-')}','ok')">🔗 Partajează</button>
+        </div>
+      </div>
+    </div>
+  `).join('') + `
+    <div class="portfolio-card" style="border-style:dashed;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:200px" onclick="document.getElementById('proj-name').focus()">
+      <div style="text-align:center;color:var(--dim)">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem">＋</div>
+        <div style="font-size:0.78rem">Adaugă proiect</div>
+      </div>
+    </div>
+  `;
+}
 
-  let best = null, bestScore = 0;
-  for (const tpl of BUILDER_TEMPLATES) {
-    let score = 0;
-    for (const key of tpl.keys) {
-      const k = key.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-      if (q.includes(k)) score += 4;
-      for (const tok of tokens) { if (k.includes(tok)) score += 2; }
-    }
-    if (score > bestScore) { bestScore = score; best = tpl; }
+function addProject(){
+  const name = document.getElementById('proj-name').value.trim();
+  const level = document.getElementById('proj-level').value;
+  const skills = document.getElementById('proj-skills').value.trim();
+  const score = parseInt(document.getElementById('proj-score').value)||75;
+  if(!name){ toast('Completează titlul proiectului!','err'); return; }
+  const icons = {beginner:'📗',intermediate:'📘',advanced:'📙'};
+  ST.portfolio.push({name,level,skills,score,icon:icons[level]});
+  save(); renderPortfolio();
+  earnBadge('b-port');
+  addXP(20);
+  document.getElementById('proj-name').value='';
+  document.getElementById('proj-skills').value='';
+  toast(`"${name}" adăugat în portofoliu! +20 XP`,'ok');
+}
+
+// ══════════════════════════════════════════════
+// REWARDS / SHOP
+// ══════════════════════════════════════════════
+function renderShop(){
+  document.getElementById('shop-items').innerHTML = SHOP_ITEMS.map(i=>`
+    <div class="reward-item">
+      <span>${i.icon} ${i.name}</span>
+      <span style="font-size:0.75rem;color:var(--muted)">${i.desc}</span>
+      <span class="reward-price">${i.cost} XP</span>
+      ${ST.owned.includes(i.id)?
+        '<span style="font-size:0.72rem;color:var(--g)">✓ Deținut</span>':
+        `<button class="btn btn-gold btn-sm" onclick="buyItem('${i.id}',${i.cost},'${i.name}')">Cumpără</button>`
+      }
+    </div>
+  `).join('');
+}
+
+function buyItem(id, cost, name){
+  if(ST.xp < cost){ toast(`Îți lipsesc ${cost-ST.xp} XP!`,'err'); return; }
+  ST.xp -= cost; ST.owned.push(id); save();
+  renderShop(); updateStats();
+  toast(`${name} cumpărat! 🎉`,'gold');
+}
+
+function renderCollections(){
+  document.getElementById('collections-grid').innerHTML = COLLECTIONS.map(c=>`
+    <div class="collection-item ${ST.collections.includes(c.id)?'owned':''}" onclick="completeCollection('${c.id}','${c.name}')">
+      <div style="font-size:1.1rem;margin-bottom:0.25rem">${c.icon}</div>
+      <div style="font-size:0.75rem;font-weight:600">${c.name}</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:0.2rem">${c.items.join(', ')}</div>
+    </div>
+  `).join('');
+}
+
+function completeCollection(id, name){
+  if(!ST.collections.includes(id)){
+    ST.collections.push(id);
+    addXP(25);
+    renderCollections();
+    toast(`Colecție "${name}" completată! +25 XP`,'gold');
+  } else {
+    toast('Colecție deja completată!','ok');
   }
+}
 
-  if (!best || bestScore < 2) {
-    // Fallback generic
-    return {
-      formula: '— nu am putut determina formula exactă —',
-      explanation: 'Descrierea nu se potrivește cu un template cunoscut. Încearcă să incluzi cuvinte cheie: "sumă", "media", "caută", "numără", "dacă", "filtrează". Sau întreabă direct în AI Chat.',
-      example: 'Exemplu: "suma vânzărilor pe produs" → SUMIF. "găsește prețul după cod" → VLOOKUP.',
-      complexity: '—'
-    };
+// ══════════════════════════════════════════════
+// BADGES
+// ══════════════════════════════════════════════
+function renderBadges(){
+  document.getElementById('badge-showcase').innerHTML = BADGES_ALL.map(b=>`
+    <div class="badge ${ST.badges.includes(b.id)?'earned':''}">
+      ${b.icon} ${b.label}
+    </div>
+  `).join('');
+}
+function earnBadge(id){
+  if(!ST.badges.includes(id)){
+    ST.badges.push(id); save();
+    renderBadges();
+    toast(`Badge nou: ${BADGES_ALL.find(b=>b.id===id)?.label||id}! 🏅`,'gold');
   }
-
-  // Personalizare formulă cu coloane detectate din descriere
-  let formula = best.formula;
-  const colMatch = q.match(/coloana?\s+([a-z])\b/i);
-  if (colMatch) {
-    formula = formula.replace(/{col}/g, colMatch[1].toUpperCase());
-  }
-  formula = formula.replace(/{col}/g, 'B').replace(/{col_conditie}/g,'A').replace(/{col_valori}/g,'B').replace(/{col_suma}/g,'C').replace(/{col_cautare}/g,'A').replace(/{col_returnat}/g,'B').replace(/{col_rezultat}/g,'B').replace(/{col1}/g,'A').replace(/{col2}/g,'B').replace(/{criteriu}/g,'"criteriu"').replace(/{crit1}/g,'"crit1"').replace(/{crit2}/g,'"crit2"').replace(/{valoare}/g,'A2').replace(/{tabel}/g,'Sheet2!A:D').replace(/{nr_col}/g,'2').replace(/{interval}/g,'A1:A100').replace(/{conditie}/g,'B1:B100="criteriu"').replace(/{pret}/g,'B2').replace(/{cost}/g,'C2').replace(/{celula}/g,'B2');
-
-  return { formula, explanation: best.explanation, example: best.example, complexity: best.complexity };
+}
+function checkBadges(){
+  if(ST.skills.length>=1) earnBadge('b-first');
+  if(ST.skills.length>=5) earnBadge('b-5');
 }
 
-function buildFormula() {
-  const desc = document.getElementById('builder-input').value.trim();
-  if (!desc) return;
-  const resWrap = document.getElementById('builder-result');
-  resWrap.style.display = 'block';
-  document.getElementById('builder-formula').textContent = '...generez...';
-  document.getElementById('builder-explanation').textContent = '';
-  document.getElementById('builder-example').textContent = '';
-
-  setTimeout(() => {
-    const r = localBuildFormula(desc);
-    document.getElementById('builder-formula').textContent = r.formula;
-    document.getElementById('builder-explanation').innerHTML = r.explanation;
-    document.getElementById('builder-example').textContent = '📋 ' + r.example;
-    if (r.formula !== '— nu am putut determina formula exactă —') {
-      addXP(15);
-      toast('Formula generată! +15 XP', 'ok');
-    }
-  }, 500);
-}
-
-// ═══════════════════════════════════════
-// ADAPTIVE PATH REGENERATE — local logic
-// ═══════════════════════════════════════
-function regeneratePath() {
-  toast('Analizez sesiunile tale...', 'pro');
-  setTimeout(() => {
-    // Simulăm reordonarea bazat pe XP și lecții completate
-    const lessons = state.mistakes || [];
-    toast('Traseu actualizat! 3 lecții reprioritizate pe baza activității tale.', 'ok');
-  }, 1400);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// CSV ANALYZER — local column detection + exercise templates
-// ═══════════════════════════════════════════════════════════════
-let csvData = [];
-let csvHeaders = [];
-
-function handleDragOver(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').classList.add('drag-over');
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) parseCSVFile(file);
-}
-
-function loadCSV(e) {
-  const file = e.target.files[0];
-  if (file) parseCSVFile(file);
-}
-
-function parseCSVFile(file) {
-  const reader = new FileReader();
-  reader.onload = ev => parseCSVText(ev.target.result);
-  reader.readAsText(file);
-}
-
-function parseCSVText(text) {
-  const rows = text.trim().split('\n').map(r => r.split(/[,;]/).map(c => c.trim().replace(/^"|"$/g,'')));
-  csvHeaders = rows[0];
-  csvData = rows.slice(1, 9);
-  renderCSVPreview();
-}
-
-function renderCSVPreview() {
-  const preview = document.getElementById('csv-preview');
-  document.getElementById('csv-preview-wrap').style.display = 'block';
-  preview.innerHTML = `<table>
-    <tr>${csvHeaders.map(h=>`<th>${h}</th>`).join('')}</tr>
-    ${csvData.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}
-  </table>`;
-}
-
-function loadDemoCSV() {
-  parseCSVText(`Luna,Produs,Regiune,Vanzari,Cost,Profit\nIanuarie,Mere,Nord,12500,8000,4500\nIanuarie,Pere,Sud,8900,5500,3400\nFebruarie,Mere,Est,11200,7100,4100\nFebruarie,Prune,Nord,6700,4200,2500\nMartie,Mere,Sud,14800,9300,5500\nMartie,Pere,Vest,7300,4600,2700`);
-  toast('Demo CSV încărcat!', 'ok');
-}
-
-// Detectează tipul coloanei (numeric / text / date)
-function detectColType(colIdx) {
-  const vals = csvData.map(r => r[colIdx]).filter(Boolean);
-  const numericCount = vals.filter(v => !isNaN(parseFloat(v))).length;
-  return numericCount > vals.length / 2 ? 'numeric' : 'text';
-}
-
-// Generează exerciții inteligente pe baza structurii CSV detectate
-function generateExercises() {
-  const wrap = document.getElementById('exercises-wrap');
-  const list = document.getElementById('exercise-list');
-  wrap.style.display = 'block';
-  list.innerHTML = '<li style="color:var(--text-muted)">⏳ Analizez structura CSV...</li>';
-
-  setTimeout(() => {
-    const cols = csvHeaders;
-    const numericCols = cols.filter((_, i) => detectColType(i) === 'numeric');
-    const textCols = cols.filter((_, i) => detectColType(i) === 'text');
-    const firstNum = numericCols[0] || cols[cols.length-1];
-    const secondNum = numericCols[1] || firstNum;
-    const firstText = textCols[0] || cols[0];
-    const secondText = textCols[1] || firstText;
-    const colLetter = i => String.fromCharCode(65 + i);
-    const numColLetter = colLetter(cols.indexOf(firstNum));
-    const textColLetter = colLetter(cols.indexOf(firstText));
-    const sampleVal = csvData[0] ? csvData[0][cols.indexOf(firstText)] : 'Valoare';
-
-    const exercises = [
-      `Calculează totalul coloanei <strong>${firstNum}</strong>: <code>=SUM(${numColLetter}:${numColLetter})</code>`,
-      `Calculează media coloanei <strong>${firstNum}</strong> și comparo cu maximul: <code>=AVERAGE(${numColLetter}:${numColLetter})</code> vs <code>=MAX(${numColLetter}:${numColLetter})</code>`,
-      `Adună valorile din <strong>${firstNum}</strong> doar pentru <em>${firstText}</em> = "${sampleVal}": <code>=SUMIF(${textColLetter}:${textColLetter},"${sampleVal}",${numColLetter}:${numColLetter})</code>`,
-      `Numără câte rânduri au <strong>${firstText}</strong> egal cu "${sampleVal}": <code>=COUNTIF(${textColLetter}:${textColLetter},"${sampleVal}")</code>`,
-      `${numericCols.length >= 2 ? `Calculează diferența dintre <strong>${firstNum}</strong> și <strong>${secondNum}</strong> și verifică dacă e pozitivă: <code>=IF(${numColLetter}2-${colLetter(cols.indexOf(secondNum))}2>0,"Profit","Pierdere")</code>` : `Creează o coloană nouă cu valoarea din <strong>${firstNum}</strong> clasificată: <code>=IF(${numColLetter}2>AVERAGE(${numColLetter}:${numColLetter}),"Peste medie","Sub medie")</code>`}`,
-    ];
-
-    list.innerHTML = exercises.map((ex, i) => `
-      <li><span style="color:var(--pro-purple-light);font-weight:600">${i+1}.</span> ${ex}</li>
-    `).join('');
-    addXP(30);
-    toast('+30 XP — exerciții generate pe datele tale!', 'ok');
-  }, 700);
-}
-
-// ═══════════════════════════════════════
-// COUNTDOWN TIMER
-// ═══════════════════════════════════════
-function updateTimer() {
-  const now = new Date();
-  const nextMonday = new Date();
-  nextMonday.setDate(now.getDate() + (8 - now.getDay()) % 7 || 7);
-  nextMonday.setHours(8, 0, 0, 0);
-  const diff = nextMonday - now;
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  const td = document.getElementById('t-days');
-  const th = document.getElementById('t-hours');
-  const tm = document.getElementById('t-min');
-  if (td) td.textContent = days;
-  if (th) th.textContent = hours;
-  if (tm) tm.textContent = mins;
-}
-updateTimer();
-setInterval(updateTimer, 30000);
-
-// ═══════════════════════════════════════
+// ══════════════════════════════════════════════
 // TOAST
-// ═══════════════════════════════════════
-function toast(msg, type='ok') {
+// ══════════════════════════════════════════════
+function toast(msg, type='ok'){
   const wrap = document.getElementById('toast-wrap');
   const el = document.createElement('div');
   el.className = `toast ${type}`;
-  el.innerHTML = `${type==='ok'?'✓':type==='pro'?'✦':'ℹ'} ${msg}`;
+  el.textContent = (type==='ok'?'✓':type==='gold'?'⭐':type==='err'?'✗':'ℹ')+' '+msg;
   wrap.appendChild(el);
-  setTimeout(() => el.remove(), 3500);
+  setTimeout(()=>el.remove(), 3500);
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════════════════════
+// SCROLL REVEAL
+// ══════════════════════════════════════════════
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ══════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════
-document.getElementById('nav-xp').textContent = state.xp + ' XP';
+// ══════════════════════════════════════════════
+renderSkillTree('beginner');
+renderInbox();
+renderSim('beginner');
+renderErrorClinic();
+renderBosses('beginner');
+renderDash('beginner');
+renderPortfolio();
+renderShop();
+renderCollections();
+renderBadges();
+showHint();
+updateStats();
 </script>
 </body>
 </html>
