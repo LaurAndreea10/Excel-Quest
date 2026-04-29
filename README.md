@@ -4,6 +4,12 @@
 
 Aplicație web educațională pentru utilizatorii care vor să învețe Microsoft Excel într-un mod practic, vizual și gamificat.
 
+## Live pages
+
+- **Main version**: `https://laurandreea10.github.io/Excel-Quest/`
+- **Enhanced Main**: `https://laurandreea10.github.io/Excel-Quest/enhanced-main.html`
+- **Enhanced Pro v2**: `https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html`
+
 ## Funcționalități
 
 - **Lecții interactive** — de la celule de bază la macro-uri și Power Query
@@ -24,16 +30,18 @@ Aplicație web educațională pentru utilizatorii care vor să învețe Microsof
 
 ```
 Excel-Quest/
-├── index.html              ← pagina principală
-├── favicon.svg             ← favicon vector (suport dark mode)
-├── favicon-32.png          ← fallback PNG
-├── favicon-192.png         ← Android home screen
-├── favicon-512.png         ← PWA splash
-├── apple-touch-icon.png    ← iOS home screen (180×180)
-├── og-cover.svg            ← sursă vector OG cover
-├── og-cover.png            ← OG cover pentru social media (1200×630)
-├── manifest.webmanifest    ← PWA manifest
-├── sitemap.xml             ← pentru Google Search Console
+├── index.html                    ← pagina principală
+├── enhanced-main.html            ← variantă landing page extinsă
+├── enhanced-pro-v2.html          ← variantă premium compactă
+├── favicon.svg                   ← favicon vector (suport dark mode)
+├── favicon-32.png                ← fallback PNG
+├── favicon-192.png               ← Android home screen
+├── favicon-512.png               ← PWA splash
+├── apple-touch-icon.png          ← iOS home screen (180×180)
+├── og-cover.svg                  ← sursă vector OG cover
+├── og-cover.png                  ← OG cover pentru social media (1200×630)
+├── manifest.webmanifest          ← PWA manifest
+├── sitemap.xml                   ← pentru Google Search Console
 ├── robots.txt
 └── README.md
 ```
@@ -42,39 +50,23 @@ Excel-Quest/
 
 1. Push toate fișierele în branch-ul `main`.
 2. Settings → Pages → Source: `main` / `(root)`.
-3. URL final: `https://laurandreea10.github.io/Excel-Quest/`
+3. URL principal: `https://laurandreea10.github.io/Excel-Quest/`
+4. Link direct Enhanced Main: `https://laurandreea10.github.io/Excel-Quest/enhanced-main.html`
+5. Link direct Enhanced Pro v2: `https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html`
 
 ## Verificare după deploy
 
 - [ ] Favicon vizibil în tab
-- [ ] OG preview testat pe [opengraph.xyz](https://www.opengraph.xyz/) sau [Facebook Debugger](https://developers.facebook.com/tools/debug/)
-- [ ] Sitemap submis în Google Search Console
+- [ ] Pagina principală se încarcă corect
+- [ ] Enhanced Main se încarcă corect
+- [ ] Enhanced Pro v2 se încarcă corect
 - [ ] Lighthouse score 90+ la SEO și Accessibility
-- [ ] Dark mode toggle persistă între reload-uri (localStorage)
-
-## Paletă de culori
-
-| Token        | Hex       | Folosire                     |
-|--------------|-----------|------------------------------|
-| `--primary`  | `#0F9D58` | Quest, success, CTA primary  |
-| `--accent`   | `#FFB400` | XP, achievement, highlight   |
-| `--deep`     | `#0B1F3A` | Backbone, headers dark       |
-| `--surface`  | `#F7F9FC` | Light background             |
-| `--info`     | `#5B8DEF` | Info notices                 |
-| `--danger`   | `#E5484D` | Erori, alerte                |
-
-## Tipografie
-
-- **Display**: Fraunces (serif, opsz axis) — pentru titluri
-- **Body**: Manrope — text general
-- **Mono**: JetBrains Mono — formule, code, valori spreadsheet
 
 ## Tech stack
 
 - HTML5 / CSS3 / Vanilla JS — single-file, fără dependențe
 - CSS variables pentru theming
-- IntersectionObserver pentru scroll animations
-- localStorage pentru persistență (theme + lang)
+- localStorage pentru persistență demo
 
 ## License
 
