@@ -319,6 +319,26 @@ footer a{color:var(--gd);}
 
 /* ── PRO BANNER ── */
 .pro-banner{padding:1.25rem 1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-bottom:2rem;background:linear-gradient(135deg,#f4f1e7,#fbfaf5);border-color:var(--border-g);}
+
+/* ── RESET BTN ── */
+.nav-reset{border:1px solid rgba(239,68,68,.22);background:rgba(239,68,68,.06);color:#b91c1c;border-radius:var(--rx);font-size:.72rem;font-weight:700;padding:.3rem .65rem;cursor:pointer;transition:.15s;font-family:inherit;}
+.nav-reset:hover{background:rgba(239,68,68,.14);}
+
+/* ── QUICK LINKS BAR ── */
+.quick-links-bar{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;}
+.quick-link-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.2rem;border-radius:var(--rx);font-size:.82rem;font-weight:700;text-decoration:none;border:1px solid;transition:all .2s;cursor:pointer;}
+.quick-link-btn.onboarding{background:rgba(33,115,70,.08);border-color:rgba(33,115,70,.25);color:var(--gd);}
+.quick-link-btn.onboarding:hover{background:rgba(33,115,70,.15);transform:translateY(-1px);}
+.quick-link-btn.addin{background:rgba(145,169,91,.1);border-color:rgba(145,169,91,.3);color:#5a7830;}
+.quick-link-btn.addin:hover{background:rgba(145,169,91,.2);transform:translateY(-1px);}
+
+/* ── ADDIN EMBEDDED ── */
+.addin-embed-wrap{margin-top:1.75rem;border-radius:var(--r);overflow:hidden;border:1px solid var(--border-g);box-shadow:0 16px 40px rgba(31,41,55,.08);}
+.addin-embed-header{background:var(--gd);color:#fff;padding:.65rem 1rem;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:.6rem;}
+.addin-embed-header .pill{background:rgba(255,255,255,.2);font-size:.6rem;padding:2px 7px;border-radius:99px;font-weight:700;letter-spacing:.06em;}
+.addin-frame{width:100%;border:none;display:block;background:#f8fbf8;}
+.addin-context{display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start;margin-top:1.25rem;}
+@media(max-width:760px){.addin-context{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -337,6 +357,7 @@ footer a{color:var(--gd);}
   </div>
   <span class="streak-badge" id="streak-badge">🔥 <span id="streak-count">0</span> zile</span>
   <span class="nav-xp" id="nav-xp">0 XP</span>
+  <button class="nav-reset" onclick="resetProgress()" title="Resetează tot progresul la 0">↺ Reset</button>
   <button class="nav-cta" onclick="toast('Pro activ — toate modulele disponibile!','ok')">✦ Green Pro</button>
 </nav>
 
@@ -351,6 +372,15 @@ footer a{color:var(--gd);}
     <div class="btn-row">
       <a class="btn btn-primary" href="#skill-tree">✦ Începe Skill Tree</a>
       <a class="btn btn-ghost" href="https://laurandreea10.github.io/Excel-Quest/" target="_blank">← Main V2</a>
+    </div>
+
+    <div class="quick-links-bar">
+      <a class="quick-link-btn onboarding" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html#onboarding" target="_blank">
+        🚀 Onboarding — începe de la zero
+      </a>
+      <a class="quick-link-btn addin" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html#addin" target="_blank">
+        ⚡ Excel Add-in — practică în Excel real
+      </a>
     </div>
 
     <div class="onboarding-reassure">
@@ -705,15 +735,132 @@ footer a{color:var(--gd);}
 
 <!-- ══ ADD-IN ══ -->
 <section class="section" id="addin">
-  <h2 style="margin-bottom:.6rem">Excel Add-in</h2>
-  <p style="margin-bottom:1rem">Integrare live pentru task pane-ul Excel Quest. Poți testa exact UI-ul add-in direct din pagină.</p>
-  <div class="addin-teaser" style="text-align:left;">
-    <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem;">
-      <a class="btn btn-gold" href="./addin-taskpane.html" target="_blank" rel="noopener">🚀 Deschide add-in complet</a>
-      <button class="btn btn-ghost btn-sm" onclick="toast('Fișier integrat: addin-taskpane.html','ok')">📄 Fișier integrat</button>
+  <h2 style="margin-bottom:.6rem">Excel Add-in — Task Pane</h2>
+  <p style="margin-bottom:1.5rem">Task pane funcțional, integrat direct aici. 5 exerciții progresive, debugger live și hint-uri pas cu pas.</p>
+
+  <div class="addin-context">
+    <!-- LEFT: context + excel window -->
+    <div>
+      <div class="addin-teaser" style="text-align:left;padding:1.4rem;">
+        <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.85rem">
+          <span class="tag gold" style="margin-bottom:0">⚡ Add-in Preview</span>
+          <span style="font-size:.78rem;color:var(--muted)">Funcționează fără Excel instalat</span>
+        </div>
+        <h3 style="font-size:1.1rem;margin-bottom:.55rem">Simulare task pane Excel</h3>
+        <p style="font-size:.85rem;margin-bottom:1.1rem">Așa arată add-in-ul în Excel real. Task pane-ul din dreapta e funcțional — scrie formule, verifică și primești XP.</p>
+        <div class="excel-window">
+          <div class="excel-title">📊 Excel Quest — Exercițiu 1.xlsx · Excel</div>
+          <div class="excel-body">
+            <div class="sheet">
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">·</div><div class="cell header">A</div><div class="cell header">B</div><div class="cell header">C</div></div>
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">1</div><div class="cell header">Produs</div><div class="cell header">Vânzări</div><div class="cell header">Total</div></div>
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">2</div><div class="cell">Mere</div><div class="cell">1200</div><div class="cell active" id="cell-c2">&nbsp;</div></div>
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">3</div><div class="cell">Pere</div><div class="cell">850</div><div class="cell"></div></div>
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">4</div><div class="cell">Prune</div><div class="cell">640</div><div class="cell"></div></div>
+              <div class="sheet-row"><div class="cell header" style="min-width:30px">5</div><div class="cell">Caise</div><div class="cell">320</div><div class="cell"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap">
+          <a class="btn btn-ghost btn-sm" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html#addin" target="_blank">↗ Deschide pagina Pro v2</a>
+          <button class="btn btn-ghost btn-sm" onclick="toast('Stack tehnic: Office.js + React Task Pane + localStorage sync','ok')">📋 Plan tehnic</button>
+        </div>
+      </div>
     </div>
-    <iframe src="./addin-taskpane.html" title="Excel Quest Add-in Task Pane" style="width:100%;height:860px;border:1px solid var(--border-g);border-radius:14px;background:#fff;"></iframe>
-  </div>
+
+    <!-- RIGHT: embedded task pane -->
+    <div class="addin-embed-wrap">
+      <div class="addin-embed-header">
+        <span>✱</span> Excel Quest <span class="pill">ADD-IN</span>
+        <span style="margin-left:auto;font-size:.7rem;opacity:.8" id="addin-xp-nav">0 XP</span>
+      </div>
+      <!-- TASK PANE INLINE -->
+      <div style="background:#f8fbf8;padding:12px;font-family:'Segoe UI',sans-serif;font-size:13px;color:#1f2937;">
+
+        <!-- progress -->
+        <div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#6b7280;margin-bottom:4px">
+            <span>Task-uri completate</span><span id="ap-label">0/5</span>
+          </div>
+          <div style="background:#e8e3d5;border-radius:99px;height:5px;overflow:hidden">
+            <div id="ap-bar" style="height:100%;border-radius:99px;background:linear-gradient(90deg,#185c37,#217346);transition:width .4s;width:0%"></div>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:5px" id="ap-streak"></div>
+        </div>
+
+        <!-- tabs -->
+        <div style="display:flex;gap:4px;margin-bottom:10px" id="ap-tabs">
+          <button class="ap-tab ap-tab-active" onclick="apSwitchTab('tasks',this)">📋 Tasks</button>
+          <button class="ap-tab" onclick="apSwitchTab('hints',this)">💡 Hints</button>
+          <button class="ap-tab" onclick="apSwitchTab('debug',this)">🔍 Debug</button>
+        </div>
+
+        <!-- TAB TASKS -->
+        <div id="ap-tab-tasks">
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#217346;margin-bottom:7px">📋 Exerciții sesiune</div>
+          <div id="ap-tasks-list" style="display:flex;flex-direction:column;gap:4px;margin-bottom:9px"></div>
+          <!-- active task card -->
+          <div style="background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:10px;overflow:hidden">
+            <div style="background:rgba(33,115,70,.06);padding:7px 11px;border-bottom:1px solid rgba(33,115,70,.15);display:flex;align-items:center;gap:7px">
+              <span id="ap-task-num" style="font-size:10px;font-weight:800;color:#217346;background:#dff3e8;padding:2px 7px;border-radius:99px">Task 1/5</span>
+              <span id="ap-task-title" style="font-weight:700;font-size:12px">Suma vânzărilor</span>
+              <span id="ap-task-xp" style="margin-left:auto;font-size:10px;color:#217346;font-weight:700">+25 XP</span>
+            </div>
+            <div style="padding:10px 11px">
+              <div id="ap-task-desc" style="font-size:12px;font-weight:600;margin-bottom:6px">Calculează suma vânzărilor din B2:B5 în celula C2.</div>
+              <div style="background:#dff3e8;border:1px solid rgba(33,115,70,.2);border-radius:7px;padding:6px 9px;font-size:11px;color:#185c37;margin-bottom:8px">
+                <strong style="display:block;font-size:10px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em">💡 Context</strong>
+                <span id="ap-task-hint">Datele sunt în B2:B5. Funcția de adunare este SUM.</span>
+              </div>
+              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Formula ta:</div>
+              <div style="background:#f0f8f0;border:1.5px solid rgba(33,115,70,.2);border-radius:7px;padding:7px 9px;margin-bottom:7px">
+                <input id="ap-formula" type="text" placeholder="=SUM(B2:B5)"
+                  style="width:100%;background:transparent;border:none;outline:none;font-family:Consolas,monospace;font-size:12px;color:#185c37;font-weight:600"
+                  onkeydown="if(event.key==='Enter')apCheck()">
+              </div>
+              <button onclick="apCheck()" style="width:100%;background:#217346;color:#fff;border:none;border-radius:7px;padding:7px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit">✓ Verifică formula</button>
+              <div id="ap-feedback" style="display:none;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px"></div>
+              <div style="display:flex;gap:5px;margin-top:6px">
+                <button onclick="apHint()" style="flex:1;background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:6px;padding:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">💡 Hint</button>
+                <button onclick="apSolution()" style="flex:1;background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:6px;padding:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">👁 Soluție</button>
+                <button onclick="apSkip()" style="flex:1;background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:6px;padding:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">→ Skip</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB HINTS -->
+        <div id="ap-tab-hints" style="display:none">
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#217346;margin-bottom:7px">💡 Ghid progresiv</div>
+          <div id="ap-hints-list" style="display:flex;flex-direction:column;gap:4px"></div>
+          <div style="display:flex;gap:5px;margin-top:9px">
+            <button onclick="apNextHint()" style="flex:1;background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:6px;padding:5px 8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">→ Hint următor</button>
+            <button onclick="apResetHints()" style="flex:1;background:#fff;border:1px solid rgba(33,115,70,.2);border-radius:6px;padding:5px 8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">↺ Reset</button>
+          </div>
+          <div style="margin-top:11px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#217346;margin-bottom:6px">🎓 Recap rapid</div>
+          <div id="ap-recap" style="font-size:11px;color:#6b7280;background:#fff;border:1px solid rgba(31,41,55,.08);border-radius:7px;padding:8px 10px;line-height:1.6"></div>
+        </div>
+
+        <!-- TAB DEBUG -->
+        <div id="ap-tab-debug" style="display:none">
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#217346;margin-bottom:7px">🔍 Formula Debugger</div>
+          <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Paste formula cu eroare:</div>
+          <div style="background:#f0f8f0;border:1.5px solid rgba(33,115,70,.2);border-radius:7px;padding:7px 9px;margin-bottom:7px">
+            <input id="ap-debug-input" type="text" placeholder="=VLOOKUP(A2,B:D,4,0)"
+              style="width:100%;background:transparent;border:none;outline:none;font-family:Consolas,monospace;font-size:12px;color:#185c37;font-weight:600">
+          </div>
+          <button onclick="apDebug()" style="width:100%;background:#217346;color:#fff;border:none;border-radius:7px;padding:7px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;margin-bottom:6px">🔍 Analizează</button>
+          <div id="ap-debug-fb" style="display:none;border-radius:7px;padding:7px 9px;font-size:11px;margin-bottom:7px"></div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            <button onclick="document.getElementById('ap-debug-input').value='=VLOOKUP(A2,B:D,4,0)';apDebug()" style="background:#fff;border:1px solid rgba(33,115,70,.15);border-radius:5px;padding:4px 7px;font-size:10px;cursor:pointer;font-family:inherit">VLOOKUP</button>
+            <button onclick="document.getElementById('ap-debug-input').value='=SUM(A1:A10';apDebug()" style="background:#fff;border:1px solid rgba(33,115,70,.15);border-radius:5px;padding:4px 7px;font-size:10px;cursor:pointer;font-family:inherit">SUM rot</button>
+            <button onclick="document.getElementById('ap-debug-input').value='=IF(A1>0,OK)';apDebug()" style="background:#fff;border:1px solid rgba(33,115,70,.15);border-radius:5px;padding:4px 7px;font-size:10px;cursor:pointer;font-family:inherit">IF fără ""</button>
+          </div>
+        </div>
+
+      </div><!-- end task pane -->
+    </div><!-- end embed wrap -->
+  </div><!-- end context grid -->
 </section>
 
 <div class="sep"></div>
@@ -1277,7 +1424,193 @@ function toast(msg, type='ok') {
   setTimeout(()=>el.remove(), 3500);
 }
 
-// ═══════════════════════════ CANVAS ═══════════════════════════
+// ═══════════════════════════ RESET ═══════════════════════════
+function resetProgress() {
+  if (!confirm('Resetezi tot progresul la 0? Acțiunea nu poate fi anulată.')) return;
+  localStorage.removeItem('eq-enhanced');
+  localStorage.removeItem('eq-addin-inline');
+  location.reload();
+}
+
+// ═══════════════════════════ ADD-IN INLINE ═══════════════════════════
+const APT = JSON.parse(localStorage.getItem('eq-addin-inline') || '{}');
+APT.xp = APT.xp || 0;
+APT.done = APT.done || [];
+APT.hintStep = APT.hintStep || 0;
+
+function apSave() { localStorage.setItem('eq-addin-inline', JSON.stringify(APT)); }
+function apAddXP(n) {
+  APT.xp += n; apSave();
+  document.getElementById('addin-xp-nav').textContent = APT.xp + ' XP';
+}
+
+const AP_TASKS = [
+  {id:'t1',title:'Suma vânzărilor',desc:'Calculează suma vânzărilor din B2:B5 în celula C2.',hint:'Datele sunt în B2:B5. Funcția de adunare este SUM.',answer:'=sum(b2:b5)',solution:'=SUM(B2:B5)',xp:25,recap:'SUM(B2:B5) adună toate valorile din B2 la B5. ":" înseamnă "de la... până la...".'},
+  {id:'t2',title:'Media vânzărilor',desc:'Calculează media vânzărilor din B2:B5 în celula C3.',hint:'Media se calculează cu AVERAGE, același interval ca SUM.',answer:'=average(b2:b5)',solution:'=AVERAGE(B2:B5)',xp:25,recap:'AVERAGE(B2:B5) adună valorile și le împarte la numărul lor. Ignoră celulele goale.'},
+  {id:'t3',title:'Clasificare profit',desc:'În D2 scrie: "Profit" dacă B2>E2, altfel "Pierdere".',hint:'Folosește IF cu comparație B2>E2. Textul merge între ghilimele.',answer:'=if(b2>e2',solution:'=IF(B2>E2,"Profit","Pierdere")',xp:30,recap:'IF(condiție, dacă_adevărat, dacă_fals). Ghilimelele sunt obligatorii pentru text.'},
+  {id:'t4',title:'VLOOKUP simplu',desc:'Caută valoarea din A2 în G:H și returnează coloana 2 în E2.',hint:'VLOOKUP(ce_caut, unde, nr_col, 0). Ultimul 0 = potrivire exactă.',answer:'=vlookup(a2,g:h,2,0)',solution:'=VLOOKUP(A2,G:H,2,0)',xp:35,recap:'VLOOKUP caută în prima coloană și returnează coloana N specificată.'},
+  {id:'t5',title:'Suma condiționată',desc:'În F2 calculează totalul din B:B doar pentru produsul din A2.',hint:'SUMIF(unde_verifici, condiția, ce_aduni). Criteriu = referință de celulă.',answer:'=sumif(a:a,a2,b:b)',solution:'=SUMIF(A:A,A2,B:B)',xp:40,recap:'SUMIF(criteriu_range, criteriu, sum_range). Fără ghilimele când criteriul e o celulă.'},
+];
+
+const AP_HINTS = [
+  'Hint 1: Formulele Excel încep ÎNTOTDEAUNA cu <b style="color:#185c37">=</b>',
+  'Hint 2: <code style="background:rgba(33,115,70,.1);padding:1px 4px;border-radius:3px;font-family:Consolas;color:#185c37">=SUM(B2:B5)</code> adună valorile din B2, B3, B4, B5',
+  'Hint 3: F4 blochează o referință: <code style="background:rgba(33,115,70,.1);padding:1px 4px;border-radius:3px;font-family:Consolas;color:#185c37">$B$2</code> nu se modifică la copiere',
+  'Hint 4: Ctrl+Shift+L activează filtrele automate. Alt+= inserează SUM automat.',
+];
+
+let apCurrentTask = 0;
+let apHintIdx = 0;
+
+function apRenderTasksList() {
+  const el = document.getElementById('ap-tasks-list');
+  if (!el) return;
+  el.innerHTML = AP_TASKS.map((t,i) => `
+    <div onclick="apJumpTo(${i})" style="display:flex;align-items:center;gap:7px;padding:6px 9px;background:#fff;border:1px solid ${apCurrentTask===i?'#217346':APT.done.includes(t.id)?'rgba(33,115,70,.2)':'rgba(31,41,55,.08)'};border-radius:7px;font-size:11px;cursor:pointer;${APT.done.includes(t.id)?'color:#9ca3af;text-decoration:line-through':''}">
+      <input type="checkbox" ${APT.done.includes(t.id)?'checked':''} onclick="event.stopPropagation()" style="accent-color:#217346;width:13px;height:13px">
+      <span>${i+1}. ${t.title}</span>
+      <span style="margin-left:auto;font-size:10px;color:${APT.done.includes(t.id)?'#9ca3af':'#217346'};font-weight:700">+${t.xp}XP</span>
+    </div>
+  `).join('');
+}
+
+function apRenderActiveTask() {
+  const t = AP_TASKS[apCurrentTask];
+  const s = (id, v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+  s('ap-task-num', `Task ${apCurrentTask+1}/${AP_TASKS.length}`);
+  s('ap-task-title', t.title);
+  s('ap-task-desc', t.desc);
+  s('ap-task-hint', t.hint);
+  s('ap-task-xp', `+${t.xp} XP`);
+  const inp = document.getElementById('ap-formula');
+  if (inp) { inp.value=''; inp.placeholder=t.solution; }
+  apHideFb();
+  apHintIdx = 0;
+  // sync cell C2 display
+  const cell = document.getElementById('cell-c2');
+  if (cell) cell.textContent = APT.done.includes('t1') ? '=SUM(B2:B5)' : '\u00a0';
+}
+
+function apJumpTo(i) { apCurrentTask=i; apRenderActiveTask(); apRenderTasksList(); }
+
+function apCheck() {
+  const inp = document.getElementById('ap-formula');
+  const fb = document.getElementById('ap-feedback');
+  if (!inp || !fb) return;
+  const val = inp.value.trim().toLowerCase().replace(/\s/g,'');
+  const t = AP_TASKS[apCurrentTask];
+  const ans = t.answer.replace(/\s/g,'');
+  const ok = val === ans || val.startsWith(ans.split(',')[0]) && val.length > 5;
+  if (ok) {
+    fb.style.display='block';
+    fb.style.cssText='display:block;background:rgba(33,115,70,.1);border:1px solid rgba(33,115,70,.2);color:#185c37;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px';
+    fb.innerHTML = `✓ Corect! ${t.recap}`;
+    if (!APT.done.includes(t.id)) { APT.done.push(t.id); apAddXP(t.xp); apSave(); }
+    apUpdateBar(); apRenderTasksList();
+    if (t.id === 't1') { const c=document.getElementById('cell-c2'); if(c) c.textContent='=SUM(B2:B5)'; }
+    setTimeout(() => {
+      if (apCurrentTask < AP_TASKS.length-1) { apCurrentTask++; apRenderActiveTask(); apRenderTasksList(); }
+      else { fb.innerHTML='🎉 Toate task-urile completate! +50 XP bonus'; apAddXP(50); }
+    }, 1800);
+  } else {
+    fb.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#b91c1c;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px';
+    fb.innerHTML = `✗ Nu exact. Ai scris: <code style="font-family:Consolas">${val||'(gol)'}</code>. Verifică sintaxa.`;
+  }
+}
+
+function apHideFb() { const fb=document.getElementById('ap-feedback'); if(fb){fb.style.display='none';fb.innerHTML='';} }
+
+function apHint() {
+  const t=AP_TASKS[apCurrentTask], fb=document.getElementById('ap-feedback');
+  if (!fb) return;
+  apHintIdx++;
+  if (apHintIdx===1) {
+    fb.style.cssText='display:block;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);color:#b45309;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px';
+    fb.innerHTML=`💡 Hint: ${t.hint}`;
+  } else {
+    fb.style.cssText='display:block;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);color:#b45309;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px';
+    fb.innerHTML=`👁 Soluție: <code style="font-family:Consolas;font-weight:700">${t.solution}</code><br><small>${t.recap}</small>`;
+  }
+}
+
+function apSolution() {
+  const t=AP_TASKS[apCurrentTask], fb=document.getElementById('ap-feedback');
+  if (!fb) return;
+  fb.style.cssText='display:block;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);color:#b45309;border-radius:7px;padding:7px 9px;font-size:11px;margin-top:7px';
+  fb.innerHTML=`👁 Soluție: <code style="font-family:Consolas;font-weight:700">${t.solution}</code><br><small>${t.recap}</small>`;
+}
+
+function apSkip() { if(apCurrentTask<AP_TASKS.length-1){apCurrentTask++;apRenderActiveTask();apRenderTasksList();} }
+
+function apUpdateBar() {
+  const done=APT.done.length,total=AP_TASKS.length;
+  const b=document.getElementById('ap-bar'), l=document.getElementById('ap-label');
+  if(b) b.style.width=Math.round(done/total*100)+'%';
+  if(l) l.textContent=done+'/'+total;
+}
+
+function apSwitchTab(name, btn) {
+  document.querySelectorAll('.ap-tab').forEach(t=>{t.classList.remove('ap-tab-active');});
+  btn.classList.add('ap-tab-active');
+  ['tasks','hints','debug'].forEach(t=>{const el=document.getElementById('ap-tab-'+t);if(el)el.style.display=t===name?'block':'none';});
+}
+
+function apRenderHints() {
+  const el=document.getElementById('ap-hints-list');
+  if(!el) return;
+  el.innerHTML=AP_HINTS.map((h,i)=>`
+    <div style="padding:6px 9px;border-radius:7px;border-left:3px solid ${i<=APT.hintStep?'#217346':'rgba(33,115,70,.2)'};background:#fff;font-size:11px;color:${i<=APT.hintStep?'#1f2937':'#9ca3af'}">${h}</div>
+  `).join('');
+  const r=document.getElementById('ap-recap');
+  if(r) r.textContent='Nivel Beginner: SUM, AVERAGE, IF și VLOOKUP sunt cele mai folosite funcții la job. Stăpânind-le, poți face 80% din sarcinile Excel de zi cu zi.';
+}
+
+function apNextHint(){if(APT.hintStep<AP_HINTS.length-1){APT.hintStep++;apSave();apRenderHints();}}
+function apResetHints(){APT.hintStep=0;apSave();apRenderHints();}
+
+const AP_DB=[
+  {test:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o!==c;},msg:'Paranteze nepereche',fix:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o>c?f+')'.repeat(o-c):f;}},
+  {test:f=>!/^=/.test(f.trim()),msg:'Formula nu începe cu =',fix:f=>'='+f.trim()},
+  {test:f=>/SUUM|AVRAGE|VLOKUP/i.test(f),msg:'Funcție scrisă greșit',fix:f=>f.replace(/SUUM/gi,'SUM').replace(/AVRAGE/gi,'AVERAGE').replace(/VLOKUP/gi,'VLOOKUP')},
+  {test:f=>/VLOOKUP.*,\s*TRUE\s*\)/i.test(f),msg:'VLOOKUP cu TRUE — potrivire aproximativă',fix:f=>f.replace(/,\s*TRUE\s*\)/i,',0)')},
+];
+
+function apDebug() {
+  const f=document.getElementById('ap-debug-input')?.value.trim(), fb=document.getElementById('ap-debug-fb');
+  if(!f||!fb) return;
+  fb.style.display='block';
+  for(const r of AP_DB){
+    if(r.test(f)){
+      const fix=r.fix?r.fix(f):null;
+      fb.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#b91c1c;border-radius:7px;padding:7px 9px;font-size:11px';
+      fb.innerHTML=`✗ <strong>${r.msg}</strong>${fix?`<br>Fix: <code style="font-family:Consolas;background:rgba(239,68,68,.1);padding:1px 4px;border-radius:3px">${fix}</code>`:'<br>Verifică manual.'}`;
+      return;
+    }
+  }
+  fb.style.cssText='display:block;background:rgba(33,115,70,.1);border:1px solid rgba(33,115,70,.2);color:#185c37;border-radius:7px;padding:7px 9px;font-size:11px';
+  fb.innerHTML='✓ Formula pare validă sintactic.';
+}
+
+// Render streak dots for addin
+function apRenderStreak() {
+  const el=document.getElementById('ap-streak'); if(!el) return;
+  const days=['L','M','M','J','V','S','D'];
+  const today=new Date().getDay();
+  el.innerHTML=days.map((_,i)=>`<div title="${days[i]}" style="flex:1;height:5px;border-radius:99px;background:${i<today?'#217346':'#e8e3d5'}"></div>`).join('');
+}
+
+// Inject AP tab styles
+const apStyle=document.createElement('style');
+apStyle.textContent=`.ap-tab{flex:1;padding:6px;background:#fff;border:1px solid rgba(31,41,55,.1);border-radius:7px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;color:#6b7280;text-align:center;transition:.15s;}.ap-tab-active{background:#217346;color:#fff;border-color:#217346;}`;
+document.head.appendChild(apStyle);
+
+// Init add-in
+apRenderTasksList();
+apRenderActiveTask();
+apRenderHints();
+apUpdateBar();
+apRenderStreak();
+document.getElementById('addin-xp-nav').textContent = APT.xp + ' XP';
 (()=>{
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
