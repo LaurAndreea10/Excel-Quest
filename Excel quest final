@@ -1090,8 +1090,87 @@ function initSkillTree(){
   });
   updateTierProgress();
 }
+const EQV2_TOTALS = { lessons:30, projects:9, badges:6, exams:3 };
+function readEqV2State(){
+  const eqv2 = readJSON('eqv2');
+  return eqv2 && typeof eqv2 === 'object' ? eqv2 : null;
+}
+function getEqV2CompletedProjectCount(eqv2){
+  const completed = Array.isArray(eqv2?.completedProjects) ? eqv2.completedProjects : [];
+  const projectDefs = [
+    { id:'bp1', tasks:6 },{ id:'bp2', tasks:5 },{ id:'bp3', tasks:5 },
+    { id:'ip1', tasks:6 },{ id:'ip2', tasks:6 },{ id:'ip3', tasks:5 },
+    { id:'ap1', tasks:7 },{ id:'ap2', tasks:6 },{ id:'ap3', tasks:7 }
+  ];
+  return projectDefs.filter(project => Array.from({length:project.tasks}, (_,i)=>`${project.id}-${i}`).every(key => completed.includes(key))).length;
+}
+function guessEqV2Next(eqv2){
+  const completedLessons = Array.isArray(eqv2?.completedLessons) ? eqv2.completedLessons : [];
+  const examScores = eqv2?.examScores && typeof eqv2.examScores === 'object' ? eqv2.examScores : {};
+  const completedProjects = Array.isArray(eqv2?.completedProjects) ? eqv2.completedProjects : [];
+  const lessonOrder = {
+    beginner:['b1','b2','b3','b4','b5','b6','b7','b8','b9','b10'],
+    intermediate:['i1','i2','i3','i4','i5','i6','i7','i8','i9','i10'],
+    advanced:['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10']
+  };
+  const lessonTitles = {
+    b1:'Introducere în Excel', b2:'SUM — Suma valorilor', b3:'AVERAGE — Media aritmetică', b4:'COUNT și COUNTA', b5:'MAX și MIN',
+    b6:'IF — Condiție simplă', b7:'Formatare condiționată', b8:'Sort și Filter', b9:'VLOOKUP — Căutare verticală', b10:'Diagrame de bază',
+    i1:'SUMIF — Sumă cu condiție', i2:'COUNTIF — Numărare cu condiție', i3:'INDEX + MATCH', i4:'IFERROR — Gestionarea erorilor', i5:'Tabele Excel',
+    i6:'Pivot Tables — Introducere', i7:'Text Functions', i8:'Date Functions', i9:'Named Ranges', i10:'Data Validation',
+    a1:'XLOOKUP', a2:'SUMIFS / COUNTIFS', a3:'FILTER', a4:'SORT și UNIQUE', a5:'Logică imbricată', a6:'Pivot Tables avansate',
+    a7:'Power Query', a8:'TEXTJOIN / CONCAT', a9:'Dashboard building', a10:'Troubleshooting & Audit'
+  };
+  const projects = {
+    beginner:[{id:'bp1',tasks:6,title:'Proiect · Buget personal lunar'},{id:'bp2',tasks:5,title:'Proiect · Catalog de note'},{id:'bp3',tasks:5,title:'Proiect · Lista de inventar'}],
+    intermediate:[{id:'ip1',tasks:6,title:'Proiect · Raport de vânzări lunar'},{id:'ip2',tasks:6,title:'Proiect · HR Employee Tracker'},{id:'ip3',tasks:5,title:'Proiect · Urmăritor de proiecte'}],
+    advanced:[{id:'ap1',tasks:7,title:'Proiect · Sales Dashboard executiv'},{id:'ap2',tasks:6,title:'Proiect · Inventory Risk Tracker'},{id:'ap3',tasks:7,title:'Proiect · Finance Monthly Summary'}]
+  };
+  for(const level of ['beginner','intermediate','advanced']){
+    const firstIncompleteLesson = lessonOrder[level].find(id => !completedLessons.includes(id));
+    if(firstIncompleteLesson) return lessonTitles[firstIncompleteLesson] || 'Lecția următoare';
+    const projectDone = projects[level].some(project => Array.from({length:project.tasks}, (_,i)=>`${project.id}-${i}`).every(key => completedProjects.includes(key)));
+    if(!projectDone) return projects[level][0].title;
+    if((Number(examScores[level]) || 0) < 70) return `${level === 'beginner' ? 'Beginner' : level === 'intermediate' ? 'Intermediate' : 'Advanced'} Exam`;
+  }
+  return 'Certificat Advanced';
+}
+function resetSkillTreeLocal(){
+  localStorage.removeItem(skillTreeKey);
+  toast('Skill tree-ul local a fost resetat');
+  location.reload();
+}
+function runEqv2Diagnostic(){
+  const eqv2 = readEqV2State();
+  if(!eqv2){ toast('Nu există încă obiectul eqv2 în browser'); return; }
+  const lessons = Array.isArray(eqv2.completedLessons) ? eqv2.completedLessons.length : 0;
+  const projects = getEqV2CompletedProjectCount(eqv2);
+  const examsPassed = Object.values(eqv2.examScores || {}).filter(score => Number(score) >= 70).length;
+  toast(`eqv2 detectat: ${eqv2.xp || 0} XP · ${lessons} lecții · ${projects} proiecte · ${examsPassed} examene`);
+}
+document.getElementById('skillResetLocal')?.addEventListener('click', resetSkillTreeLocal);
+document.getElementById('skillEqv2Diagnostic')?.addEventListener('click', runEqv2Diagnostic);
+
 function bridgeProgress(){
-  // Put your exact Pro v2 keys first here when you know them.
+  const eqv2 = readEqV2State();
+  if(eqv2){
+    const xp = Number(eqv2.xp) || 0;
+    const lessons = Array.isArray(eqv2.completedLessons) ? eqv2.completedLessons.length : 0;
+    const badges = Array.isArray(eqv2.badges) ? eqv2.badges.length : 0;
+    const projects = getEqV2CompletedProjectCount(eqv2);
+    const examsPassed = Object.values(eqv2.examScores || {}).filter(score => Number(score) >= 70).length;
+    const next = guessEqV2Next(eqv2);
+    const progress = Math.max(
+      Math.round((lessons / EQV2_TOTALS.lessons) * 100),
+      Math.round((projects / EQV2_TOTALS.projects) * 100),
+      Math.round((badges / EQV2_TOTALS.badges) * 100),
+      Math.round((examsPassed / EQV2_TOTALS.exams) * 100),
+      Math.round((Math.min(xp, 3000) / 3000) * 100)
+    );
+    const level = lessons >= 20 || xp >= 1800 ? 'Advanced' : (lessons >= 10 || xp >= 700 ? 'Intermediate' : 'Beginner');
+    return { xp, skills: lessons, badges, projects, examsPassed, next, progress, level, source:'eqv2' };
+  }
+
   const xpDirect = getFirstValue(['eq-xp','eqXP','excelQuestXP','proV2XP','xp','eq_pro_xp']);
   const skillsDirect = getFirstValue(['eq-skills','eqSkills','excelQuestSkills','proV2Skills','skills','eq_pro_skills']);
   const badgesDirect = getFirstValue(['eq-badges','eqBadges','excelQuestBadges','proV2Badges','badges','eq_pro_badges']);
@@ -1110,7 +1189,7 @@ function bridgeProgress(){
     Math.round((badges/totalBadges)*100)
   );
 
-  return {xp, skills, badges, next, progress, level:computeLevel(xp, skills)};
+  return {xp, skills, badges, projects:0, examsPassed:0, next, progress, level:computeLevel(xp, skills), source:'fallback'};
 }
 function renderBridge(){
   const p = bridgeProgress();
@@ -1120,13 +1199,17 @@ function renderBridge(){
   document.getElementById('statSkills').textContent = p.skills;
   document.getElementById('statBadges').textContent = p.badges;
   document.getElementById('statLevel').textContent = p.level;
+  const skillsLabel = document.querySelector('.db-stat:nth-child(2) span');
+  const badgesLabel = document.querySelector('.db-stat:nth-child(3) span');
+  if(skillsLabel) skillsLabel.textContent = p.source === 'eqv2' ? 'Lecții completate' : 'Skill-uri';
+  if(badgesLabel) badgesLabel.textContent = p.source === 'eqv2' ? 'Badge-uri' : 'Badges';
   document.getElementById('proofXp').textContent = p.xp;
   document.getElementById('progressFill').style.width = p.progress + '%';
   document.getElementById('progressPercent').textContent = p.progress + '% progres estimat';
   document.getElementById('nextNodeText').textContent = p.next;
 
   const resumeHrefValue = resumeHref(p.next);
-  ['resumeLink','heroContinue','finalContinue'].forEach(id => {
+  ['resumeLink','finalContinue'].forEach(id => {
     const a = document.getElementById(id);
     if(a) a.href = resumeHrefValue;
   });
@@ -1134,9 +1217,9 @@ function renderBridge(){
   if(hasProgress){
     document.getElementById('memoryStatus').textContent = 'Memorie găsită';
     document.getElementById('dashboardTitle').textContent = 'Hub-ul te recunoaște';
-    document.getElementById('dashboardSub').textContent = 'Progresul citit din browser schimbă mesajul: nu mai e landing generic, e tablou de bord de reluare.';
+    document.getElementById('dashboardSub').textContent = p.source === 'eqv2' ? 'Hub-ul citește direct obiectul localStorage eqv2: XP, lecții, proiecte, badge-uri și examene promovate.' : 'Progresul citit din browser schimbă mesajul: nu mai e landing generic, e tablou de bord de reluare.';
     document.getElementById('resumeLabel').textContent = 'Continuă de unde ai rămas';
-    document.getElementById('resumeSub').textContent = `Estimare: următorul punct relevant este „${p.next}”.`;
+    document.getElementById('resumeSub').textContent = p.source === 'eqv2' ? `Următorul pas real din Pro v2: „${p.next}”.` : `Estimare: următorul punct relevant este „${p.next}”.`; 
     document.getElementById('resumeLink').textContent = `Continuă de unde ai rămas → ${p.next}`;
     document.getElementById('heroContinue').textContent = 'Continuă quest-ul →';
     document.getElementById('finalContinue').textContent = `Continuă → ${p.next}`;
@@ -1148,9 +1231,12 @@ function renderBridge(){
     document.getElementById('resumeSub').textContent = 'Enhanced Main pentru început, Pro v2 pentru provocare.';
     document.getElementById('resumeLink').textContent = 'Intră în Pro v2 →';
     document.getElementById('heroContinue').textContent = 'Vezi skill tree-ul →';
+    document.getElementById('heroContinue').href = '#skill-tree';
+    document.getElementById('resumeLink').href = 'https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html';
     document.getElementById('finalContinue').textContent = 'Începe quest-ul →';
   }
 }
+window.addEventListener('storage', (event) => { if(event.key === 'eqv2' || event.key === skillTreeKey){ renderBridge(); initSkillTree(); } });
 renderBridge();
 initSkillTree();
 
