@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excel Quest · Hub — continuă de unde ai rămas</title>
+<title>Excel Quest · Hub v5 — continuă de unde ai rămas</title>
 <meta name="description" content="Hub Excel Quest conectat la progresul real din Pro v2: XP, skill-uri, badges, demo de 60 secunde, changelog public și trasee clare.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Geist',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;font-size:15.5px;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--excel-mid);color:#fff}
-a{color:inherit;text-decoration:none} button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none} button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}.skip-link{position:absolute;left:12px;top:-48px;z-index:1000;background:var(--excel-darkest);color:#fff;padding:10px 14px;border-radius:10px;transition:top .2s}.skip-link:focus{top:12px}.lang-toggle{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 12px;border-radius:8px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft)}.lang-toggle:hover{border-color:var(--excel-mid);color:var(--excel-dark)}
 .ribbon{position:sticky;top:0;z-index:50;background:rgba(250,247,239,.92);backdrop-filter:blur(12px) saturate(140%);border-bottom:1px solid var(--rule)}
 .ribbon-row{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px}.brand-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--excel-darkest),var(--excel-mid));display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),var(--shadow-sm);font-family:'Fraunces',serif}
@@ -230,20 +230,21 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
 </style>
 </head>
 <body>
+<a class="skip-link" href="#skill-tree">Sari la conținut / Skip to content</a>
 <header class="ribbon">
   <div class="ribbon-row">
     <a href="#" class="brand">
       <div class="brand-mark">EQ</div>
-      <div class="brand-text"><strong>Excel Quest</strong><small>Hub</small></div>
+      <div class="brand-text"><strong>Excel Quest</strong><small>Hub v5</small></div>
     </a>
     <nav class="ribbon-nav">
-      <a class="r-link" href="#skill-tree">Skill Tree</a>
-      <a class="r-link" href="#choose">Alege traseul</a>
-      <a class="r-link" href="#demo">Demo 60s</a>
-      <a class="r-link" href="#changelog">Changelog</a>
-      <a class="r-link" href="#features">Funcții</a>
-      <span class="r-divider"></span>
-            <a class="r-cta" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">Intră în Pro v2 →</a>
+      <a class="r-link" id="navSkillTree" href="#skill-tree">Skill Tree</a>
+      <a class="r-link" id="navChoose" href="#choose">Alege traseul</a>
+      <a class="r-link" id="navDemo" href="#demo">Demo 60s</a>
+      <a class="r-link" id="navChangelog" href="#changelog">Changelog</a>
+      <a class="r-link" id="navFeatures" href="#features">Funcții</a>
+      <button class="lang-toggle" id="langToggleHub" aria-label="Change language">RO / EN</button><span class="r-divider"></span>
+            <a class="r-cta" id="proCtaTop" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">Intră în Pro v2 →</a>
     </nav>
   </div>
 </header>
@@ -251,14 +252,14 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="eyebrow"><span class="eyebrow-dot"></span> hub conectat · orientare + reluare progres</div>
-      <h1 class="title">Învață Excel<br>ca un <em>joc</em>.<br>Aplică-l ca un profesionist.</h1>
-      <p class="lede">
+      <div class="eyebrow" id="heroEyebrow"><span class="eyebrow-dot"></span> hub conectat · orientare + reluare progres</div>
+      <h1 class="title" id="heroTitle">Învață Excel<br>ca un <em>joc</em>.<br>Aplică-l ca un profesionist.</h1>
+      <p class="lede" id="heroLede">
         Patru pagini, un singur drum. Onboarding tutorial pentru începători, skill tree gamificat pentru ritm, simulator real pentru practică, add-in integrat pentru direct în Excel. Românește, de la zero la dashboard executiv.
       </p>
       <div class="hero-cta">
         <a class="btn-primary" id="heroContinue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">Vezi skill tree-ul →</a>
-        <a class="btn-ghost" href="#demo">Vezi demo 60s</a>
+        <a class="btn-ghost" id="heroDemoBtn" href="#demo">Vezi demo 60s</a>
       </div>
 
       <div class="hero-grid-bottom">
@@ -675,8 +676,8 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
 
 <section class="section" id="choose">
   <div class="section-head reveal">
-    <span class="section-tag">02 / Decizie</span>
-    <h2>Spune direct: <em>pe ce dai click</em> și de ce.</h2>
+    <span class="section-tag" id="tagChoose">02 / Decizie</span>
+    <h2 id="chooseHeading">Spune direct: <em>pe ce dai click</em> și de ce.</h2>
     <p class="section-lede">Nu trei carduri cu ton apropiat. Trei decizii clare. Omul trebuie să știe în 5 secunde unde intră.</p>
   </div>
 
@@ -721,8 +722,8 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
 
 <section class="section" id="demo">
   <div class="section-head reveal">
-    <span class="section-tag">03 / Sample</span>
-    <h2>Un sample mic, <em>nu o copie a Pro v2</em>.</h2>
+    <span class="section-tag" id="tagDemo">03 / Sample</span>
+    <h2 id="demoHeading">Un sample mic, <em>nu o copie a Pro v2</em>.</h2>
     <p class="section-lede">În loc de încă un skill tree fals, hub-ul poate oferi o singură micro-experiență care durează sub 30 de secunde.</p>
   </div>
 
@@ -829,8 +830,8 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
 
 <section class="section" id="features">
   <div class="section-head reveal">
-    <span class="section-tag">05 / Reparații</span>
-    <h2>Ce repară versiunea asta <em>concret</em>.</h2>
+    <span class="section-tag" id="tagFeatures">05 / Reparații</span>
+    <h2 id="featuresHeading">Ce repară versiunea asta <em>concret</em>.</h2>
     <p class="section-lede">Nu doar polish vizual. Schimbă rolul paginii și o aliniază cu restul ecosistemului.</p>
   </div>
 
@@ -868,9 +869,23 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
   </div>
 </section>
 
+
+<section class="section" id="accessibility">
+  <div class="section-head reveal">
+    <span class="section-tag" id="tagAccess">06 / Accesibilitate</span>
+    <h2 id="accessHeading">Conceput și pentru <em>accesibilitate</em>.</h2>
+    <p class="section-lede" id="accessLede">Hub-ul include îmbunătățiri de bază pentru persoane cu dizabilități și pentru utilizatori care au nevoie de navigare mai clară.</p>
+  </div>
+  <div class="feat-grid reveal">
+    <div class="feat-block"><div class="feat-icon">⌨</div><h3 id="accessCard1Title">Navigare cu tastatura</h3><p id="accessCard1Text">Skip link, ordine clară de focus și butoane accesibile pentru zonele interactive principale.</p></div>
+    <div class="feat-block"><div class="feat-icon">🌍</div><h3 id="accessCard2Title">Suport română / engleză</h3><p id="accessCard2Text">Toggle rapid pentru etichetele esențiale, CTA-uri și secțiunile principale ale hub-ului.</p></div>
+    <div class="feat-block"><div class="feat-icon">👁</div><h3 id="accessCard3Title">Claritate vizuală</h3><p id="accessCard3Text">Contrast bun, text lizibil, feedback textual și structură respirabilă pentru citire mai ușoară.</p></div>
+  </div>
+</section>
+
 <section class="section" style="padding-top:34px">
   <div class="final-cta reveal">
-    <h2>Hub-ul bun nu repetă produsul. Îl <em>orientează</em>.</h2>
+    <h2 id="finalHeading">Hub-ul bun nu repetă produsul. Îl <em>orientează</em>.</h2>
     <p>Arată progresul real, explică unde intri, demonstrează repede ce construiești și lasă urme publice de iterație. Așa devine și util, și memorabil.</p>
     <div class="final-actions">
       <a class="btn-cream" id="finalContinue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">Continuă quest-ul →</a>
@@ -913,7 +928,7 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
   </div>
   <div class="foot-bottom">
     <span>© 2026 · Laura Andreea · Excel Quest</span>
-    <span>Hub · orientare + resume dashboard</span>
+    <span>Hub v5 · orientare + resume dashboard</span>
   </div>
 </footer>
 
@@ -1090,87 +1105,8 @@ function initSkillTree(){
   });
   updateTierProgress();
 }
-const EQV2_TOTALS = { lessons:30, projects:9, badges:6, exams:3 };
-function readEqV2State(){
-  const eqv2 = readJSON('eqv2');
-  return eqv2 && typeof eqv2 === 'object' ? eqv2 : null;
-}
-function getEqV2CompletedProjectCount(eqv2){
-  const completed = Array.isArray(eqv2?.completedProjects) ? eqv2.completedProjects : [];
-  const projectDefs = [
-    { id:'bp1', tasks:6 },{ id:'bp2', tasks:5 },{ id:'bp3', tasks:5 },
-    { id:'ip1', tasks:6 },{ id:'ip2', tasks:6 },{ id:'ip3', tasks:5 },
-    { id:'ap1', tasks:7 },{ id:'ap2', tasks:6 },{ id:'ap3', tasks:7 }
-  ];
-  return projectDefs.filter(project => Array.from({length:project.tasks}, (_,i)=>`${project.id}-${i}`).every(key => completed.includes(key))).length;
-}
-function guessEqV2Next(eqv2){
-  const completedLessons = Array.isArray(eqv2?.completedLessons) ? eqv2.completedLessons : [];
-  const examScores = eqv2?.examScores && typeof eqv2.examScores === 'object' ? eqv2.examScores : {};
-  const completedProjects = Array.isArray(eqv2?.completedProjects) ? eqv2.completedProjects : [];
-  const lessonOrder = {
-    beginner:['b1','b2','b3','b4','b5','b6','b7','b8','b9','b10'],
-    intermediate:['i1','i2','i3','i4','i5','i6','i7','i8','i9','i10'],
-    advanced:['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10']
-  };
-  const lessonTitles = {
-    b1:'Introducere în Excel', b2:'SUM — Suma valorilor', b3:'AVERAGE — Media aritmetică', b4:'COUNT și COUNTA', b5:'MAX și MIN',
-    b6:'IF — Condiție simplă', b7:'Formatare condiționată', b8:'Sort și Filter', b9:'VLOOKUP — Căutare verticală', b10:'Diagrame de bază',
-    i1:'SUMIF — Sumă cu condiție', i2:'COUNTIF — Numărare cu condiție', i3:'INDEX + MATCH', i4:'IFERROR — Gestionarea erorilor', i5:'Tabele Excel',
-    i6:'Pivot Tables — Introducere', i7:'Text Functions', i8:'Date Functions', i9:'Named Ranges', i10:'Data Validation',
-    a1:'XLOOKUP', a2:'SUMIFS / COUNTIFS', a3:'FILTER', a4:'SORT și UNIQUE', a5:'Logică imbricată', a6:'Pivot Tables avansate',
-    a7:'Power Query', a8:'TEXTJOIN / CONCAT', a9:'Dashboard building', a10:'Troubleshooting & Audit'
-  };
-  const projects = {
-    beginner:[{id:'bp1',tasks:6,title:'Proiect · Buget personal lunar'},{id:'bp2',tasks:5,title:'Proiect · Catalog de note'},{id:'bp3',tasks:5,title:'Proiect · Lista de inventar'}],
-    intermediate:[{id:'ip1',tasks:6,title:'Proiect · Raport de vânzări lunar'},{id:'ip2',tasks:6,title:'Proiect · HR Employee Tracker'},{id:'ip3',tasks:5,title:'Proiect · Urmăritor de proiecte'}],
-    advanced:[{id:'ap1',tasks:7,title:'Proiect · Sales Dashboard executiv'},{id:'ap2',tasks:6,title:'Proiect · Inventory Risk Tracker'},{id:'ap3',tasks:7,title:'Proiect · Finance Monthly Summary'}]
-  };
-  for(const level of ['beginner','intermediate','advanced']){
-    const firstIncompleteLesson = lessonOrder[level].find(id => !completedLessons.includes(id));
-    if(firstIncompleteLesson) return lessonTitles[firstIncompleteLesson] || 'Lecția următoare';
-    const projectDone = projects[level].some(project => Array.from({length:project.tasks}, (_,i)=>`${project.id}-${i}`).every(key => completedProjects.includes(key)));
-    if(!projectDone) return projects[level][0].title;
-    if((Number(examScores[level]) || 0) < 70) return `${level === 'beginner' ? 'Beginner' : level === 'intermediate' ? 'Intermediate' : 'Advanced'} Exam`;
-  }
-  return 'Certificat Advanced';
-}
-function resetSkillTreeLocal(){
-  localStorage.removeItem(skillTreeKey);
-  toast('Skill tree-ul local a fost resetat');
-  location.reload();
-}
-function runEqv2Diagnostic(){
-  const eqv2 = readEqV2State();
-  if(!eqv2){ toast('Nu există încă obiectul eqv2 în browser'); return; }
-  const lessons = Array.isArray(eqv2.completedLessons) ? eqv2.completedLessons.length : 0;
-  const projects = getEqV2CompletedProjectCount(eqv2);
-  const examsPassed = Object.values(eqv2.examScores || {}).filter(score => Number(score) >= 70).length;
-  toast(`eqv2 detectat: ${eqv2.xp || 0} XP · ${lessons} lecții · ${projects} proiecte · ${examsPassed} examene`);
-}
-document.getElementById('skillResetLocal')?.addEventListener('click', resetSkillTreeLocal);
-document.getElementById('skillEqv2Diagnostic')?.addEventListener('click', runEqv2Diagnostic);
-
 function bridgeProgress(){
-  const eqv2 = readEqV2State();
-  if(eqv2){
-    const xp = Number(eqv2.xp) || 0;
-    const lessons = Array.isArray(eqv2.completedLessons) ? eqv2.completedLessons.length : 0;
-    const badges = Array.isArray(eqv2.badges) ? eqv2.badges.length : 0;
-    const projects = getEqV2CompletedProjectCount(eqv2);
-    const examsPassed = Object.values(eqv2.examScores || {}).filter(score => Number(score) >= 70).length;
-    const next = guessEqV2Next(eqv2);
-    const progress = Math.max(
-      Math.round((lessons / EQV2_TOTALS.lessons) * 100),
-      Math.round((projects / EQV2_TOTALS.projects) * 100),
-      Math.round((badges / EQV2_TOTALS.badges) * 100),
-      Math.round((examsPassed / EQV2_TOTALS.exams) * 100),
-      Math.round((Math.min(xp, 3000) / 3000) * 100)
-    );
-    const level = lessons >= 20 || xp >= 1800 ? 'Advanced' : (lessons >= 10 || xp >= 700 ? 'Intermediate' : 'Beginner');
-    return { xp, skills: lessons, badges, projects, examsPassed, next, progress, level, source:'eqv2' };
-  }
-
+  // Put your exact Pro v2 keys first here when you know them.
   const xpDirect = getFirstValue(['eq-xp','eqXP','excelQuestXP','proV2XP','xp','eq_pro_xp']);
   const skillsDirect = getFirstValue(['eq-skills','eqSkills','excelQuestSkills','proV2Skills','skills','eq_pro_skills']);
   const badgesDirect = getFirstValue(['eq-badges','eqBadges','excelQuestBadges','proV2Badges','badges','eq_pro_badges']);
@@ -1189,7 +1125,7 @@ function bridgeProgress(){
     Math.round((badges/totalBadges)*100)
   );
 
-  return {xp, skills, badges, projects:0, examsPassed:0, next, progress, level:computeLevel(xp, skills), source:'fallback'};
+  return {xp, skills, badges, next, progress, level:computeLevel(xp, skills)};
 }
 function renderBridge(){
   const p = bridgeProgress();
@@ -1199,17 +1135,13 @@ function renderBridge(){
   document.getElementById('statSkills').textContent = p.skills;
   document.getElementById('statBadges').textContent = p.badges;
   document.getElementById('statLevel').textContent = p.level;
-  const skillsLabel = document.querySelector('.db-stat:nth-child(2) span');
-  const badgesLabel = document.querySelector('.db-stat:nth-child(3) span');
-  if(skillsLabel) skillsLabel.textContent = p.source === 'eqv2' ? 'Lecții completate' : 'Skill-uri';
-  if(badgesLabel) badgesLabel.textContent = p.source === 'eqv2' ? 'Badge-uri' : 'Badges';
   document.getElementById('proofXp').textContent = p.xp;
   document.getElementById('progressFill').style.width = p.progress + '%';
   document.getElementById('progressPercent').textContent = p.progress + '% progres estimat';
   document.getElementById('nextNodeText').textContent = p.next;
 
   const resumeHrefValue = resumeHref(p.next);
-  ['resumeLink','finalContinue'].forEach(id => {
+  ['resumeLink','heroContinue','finalContinue'].forEach(id => {
     const a = document.getElementById(id);
     if(a) a.href = resumeHrefValue;
   });
@@ -1217,9 +1149,9 @@ function renderBridge(){
   if(hasProgress){
     document.getElementById('memoryStatus').textContent = 'Memorie găsită';
     document.getElementById('dashboardTitle').textContent = 'Hub-ul te recunoaște';
-    document.getElementById('dashboardSub').textContent = p.source === 'eqv2' ? 'Hub-ul citește direct obiectul localStorage eqv2: XP, lecții, proiecte, badge-uri și examene promovate.' : 'Progresul citit din browser schimbă mesajul: nu mai e landing generic, e tablou de bord de reluare.';
+    document.getElementById('dashboardSub').textContent = 'Progresul citit din browser schimbă mesajul: nu mai e landing generic, e tablou de bord de reluare.';
     document.getElementById('resumeLabel').textContent = 'Continuă de unde ai rămas';
-    document.getElementById('resumeSub').textContent = p.source === 'eqv2' ? `Următorul pas real din Pro v2: „${p.next}”.` : `Estimare: următorul punct relevant este „${p.next}”.`; 
+    document.getElementById('resumeSub').textContent = `Estimare: următorul punct relevant este „${p.next}”.`;
     document.getElementById('resumeLink').textContent = `Continuă de unde ai rămas → ${p.next}`;
     document.getElementById('heroContinue').textContent = 'Continuă quest-ul →';
     document.getElementById('finalContinue').textContent = `Continuă → ${p.next}`;
@@ -1231,12 +1163,9 @@ function renderBridge(){
     document.getElementById('resumeSub').textContent = 'Enhanced Main pentru început, Pro v2 pentru provocare.';
     document.getElementById('resumeLink').textContent = 'Intră în Pro v2 →';
     document.getElementById('heroContinue').textContent = 'Vezi skill tree-ul →';
-    document.getElementById('heroContinue').href = '#skill-tree';
-    document.getElementById('resumeLink').href = 'https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html';
     document.getElementById('finalContinue').textContent = 'Începe quest-ul →';
   }
 }
-window.addEventListener('storage', (event) => { if(event.key === 'eqv2' || event.key === skillTreeKey){ renderBridge(); initSkillTree(); } });
 renderBridge();
 initSkillTree();
 
@@ -1271,6 +1200,10 @@ const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const HUB_I18N={ro:{navChoose:'Alege traseul',navDemo:'Demo 60s',navFeatures:'Funcții',proCtaTop:'Intră în Pro v2 →',heroEyebrow:'hub conectat · orientare + reluare progres',heroTitle:'Învață Excel<br>ca un <em>joc</em>.<br>Aplică-l ca un profesionist.',heroLede:'Patru pagini, un singur drum. Onboarding tutorial pentru începători, skill tree gamificat pentru ritm, simulator real pentru practică, add-in integrat pentru direct în Excel. Românește, de la zero la dashboard executiv.',heroDemoBtn:'Vezi demo 60s',tagChoose:'02 / Decizie',tagDemo:'03 / Sample',tagFeatures:'05 / Reparații',tagAccess:'06 / Accesibilitate',chooseHeading:'Spune direct: <em>pe ce dai click</em> și de ce.',demoHeading:'Un sample mic, <em>nu o copie a Pro v2</em>.',featuresHeading:'Ce repară versiunea asta <em>concret</em>.',accessHeading:'Conceput și pentru <em>accesibilitate</em>.',accessLede:'Hub-ul include îmbunătățiri de bază pentru persoane cu dizabilități și pentru utilizatori care au nevoie de navigare mai clară.',accessCard1Title:'Navigare cu tastatura',accessCard1Text:'Skip link, ordine clară de focus și butoane accesibile pentru zonele interactive principale.',accessCard2Title:'Suport română / engleză',accessCard2Text:'Toggle rapid pentru etichetele esențiale, CTA-uri și secțiunile principale ale hub-ului.',accessCard3Title:'Claritate vizuală',accessCard3Text:'Contrast bun, text lizibil, feedback textual și structură respirabilă pentru citire mai ușoară.',finalHeading:'Hub-ul bun nu repetă produsul. Îl <em>orientează</em>.'},en:{navChoose:'Choose your path',navDemo:'60s demo',navFeatures:'Features',proCtaTop:'Open Pro v2 →',heroEyebrow:'connected hub · orientation + resume progress',heroTitle:'Learn Excel<br>like a <em>game</em>.<br>Use it like a professional.',heroLede:'Four pages, one journey. Guided onboarding for beginners, a gamified skill tree for momentum, realistic practice, and a direct bridge into Excel. From zero to executive dashboard.',heroDemoBtn:'Watch 60s demo',tagChoose:'02 / Decision',tagDemo:'03 / Sample',tagFeatures:'05 / Fixes',tagAccess:'06 / Accessibility',chooseHeading:'Say it clearly: <em>what should you click</em> and why.',demoHeading:'A small sample, <em>not a copy of Pro v2</em>.',featuresHeading:'What this version <em>actually fixes</em>.',accessHeading:'Designed with <em>accessibility</em> in mind.',accessLede:'The Hub includes core improvements for people with disabilities and for users who need clearer navigation.',accessCard1Title:'Keyboard navigation',accessCard1Text:'Skip link, visible focus order, and accessible controls for the main interactive areas.',accessCard2Title:'Romanian / English support',accessCard2Text:'Quick toggle for essential labels, CTAs, and the main hub sections.',accessCard3Title:'Visual clarity',accessCard3Text:'Good contrast, readable text, textual feedback, and breathing room for easier reading.',finalHeading:'A good hub does not repeat the product. It <em>orients</em> it.'}};
+function applyHubLanguage(lang){document.documentElement.lang=lang;const map=HUB_I18N[lang]||HUB_I18N.ro;Object.keys(map).forEach(id=>{const el=document.getElementById(id);if(el) el.innerHTML=map[id]});localStorage.setItem('eq-hub-lang',lang)}
+const savedHubLang=localStorage.getItem('eq-hub-lang')||'ro';applyHubLanguage(savedHubLang);document.getElementById('langToggleHub').addEventListener('click',()=>{const next=(localStorage.getItem('eq-hub-lang')||'ro')==='ro'?'en':'ro';applyHubLanguage(next);toast(next==='en'?'English enabled':'Română activată','info')});
 </script>
 </body>
 </html>
