@@ -135,17 +135,227 @@ p{color:var(--muted);}
 .level-tab.active.a{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#b91c1c;}
 .level-tab:hover:not(.active){background:var(--mint2);}
 
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.9rem;}
-.skill-card{background:#fff;border:1px solid var(--border);border-radius:var(--rs);padding:1.1rem;cursor:pointer;transition:all .2s;position:relative;}
-.skill-card.unlocked:hover{border-color:var(--border-g);transform:translateY(-2px);box-shadow:0 8px 20px rgba(33,115,70,.1);}
-.skill-card.locked{opacity:.55;cursor:not-allowed;}
-.skill-card.done{border-color:rgba(33,115,70,.28);}
-.skill-card.done::after{content:'✓';position:absolute;top:.7rem;right:.7rem;background:var(--g);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;}
-.skill-card h4{font-size:.85rem;font-weight:700;margin-bottom:.3rem;}
-.skill-card p{font-size:.72rem;color:var(--muted);margin-bottom:.6rem;}
-.skill-xp{font-size:.7rem;font-weight:700;color:var(--g);font-family:Consolas,monospace;}
-.skill-progress{height:3px;background:#e8e3d5;border-radius:99px;margin-top:.6rem;overflow:hidden;}
+/* ── INTERACTIVE SKILL CARDS ── */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+
+.skill-card{
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;min-height:160px;
+}
+.skill-card::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:3px;
+  background:var(--g);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;
+}
+.skill-card.unlocked:hover::before,.skill-card.active-card::before{transform:scaleX(1);}
+.skill-card.unlocked:hover,.skill-card.active-card{
+  border-color:rgba(33,115,70,.35);
+  box-shadow:0 12px 32px rgba(33,115,70,.12);
+  transform:translateY(-3px);
+}
+.skill-card.locked{opacity:.52;cursor:not-allowed;}
+.skill-card.done{border-color:rgba(33,115,70,.3);background:linear-gradient(160deg,#fff,#f4fbf6);}
+.skill-card.done::before{transform:scaleX(1);}
+
+.skill-card-top{padding:1.1rem 1.1rem .65rem;}
+.skill-card-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:1.1rem;margin-bottom:.7rem;background:rgba(33,115,70,.08);}
+.skill-card.lv-i .skill-card-icon{background:rgba(245,158,11,.08);}
+.skill-card.lv-a .skill-card-icon{background:rgba(239,68,68,.08);}
+
+.skill-card h4{font-size:.88rem;font-weight:800;margin-bottom:.25rem;color:var(--ink);}
+.skill-card-desc{font-size:.73rem;color:var(--muted);line-height:1.5;}
+
+.skill-card-meta{
+  margin-top:auto;padding:.75rem 1.1rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(247,244,234,.5);
+}
+.skill-xp{font-size:.72rem;font-weight:800;color:var(--g);font-family:Consolas,monospace;}
+.skill-card.lv-i .skill-xp{color:#b45309;}
+.skill-card.lv-a .skill-xp{color:#b91c1c;}
+.skill-done-check{width:20px;height:20px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;margin-left:auto;}
+.skill-lock-icon{margin-left:auto;font-size:.82rem;opacity:.6;}
+
+/* hover reveal button */
+.skill-card-cta{
+  display:none;
+  position:absolute;inset:0;
+  background:rgba(33,115,70,.06);
+  align-items:flex-end;justify-content:center;
+  padding-bottom:1rem;
+}
+.skill-card.unlocked:hover .skill-card-cta{display:flex;}
+.skill-card-cta-btn{
+  background:var(--g);color:#fff;border:none;border-radius:8px;
+  padding:.5rem 1.1rem;font-weight:800;font-size:.78rem;cursor:pointer;
+  font-family:inherit;box-shadow:0 4px 14px rgba(33,115,70,.25);
+  transition:.15s;letter-spacing:.01em;
+}
+.skill-card-cta-btn:hover{background:var(--gd);}
+.skill-card.done .skill-card-cta-btn{background:var(--teal);}
+.skill-progress{height:3px;background:#e8e3d5;border-radius:99px;margin:0 1.1rem .8rem;overflow:hidden;}
 .skill-progress-fill{height:100%;border-radius:99px;background:var(--g);}
+
+/* ── CHALLENGE PANEL ── */
+.challenge-panel{
+  margin-top:1.5rem;
+  background:#fff;border-radius:18px;
+  border:2px solid rgba(33,115,70,.2);
+  box-shadow:0 16px 48px rgba(33,115,70,.1);
+  overflow:hidden;
+  animation:panelIn .35s cubic-bezier(.34,1.2,.64,1);
+}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.cp-banner{
+  background:linear-gradient(135deg,var(--gd) 0%,var(--gs) 100%);
+  color:#fff;padding:1.4rem 1.6rem;
+  display:flex;align-items:flex-start;gap:1.1rem;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.cp-banner::after{
+  content:'';position:absolute;right:-40px;top:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.cp-banner-icon{
+  width:52px;height:52px;border-radius:14px;flex-shrink:0;
+  background:rgba(255,255,255,.18);display:grid;place-items:center;
+  font-size:1.5rem;border:1px solid rgba(255,255,255,.25);
+}
+.cp-banner-info{flex:1;min-width:200px;}
+.cp-banner-badges{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:.5rem;}
+.cp-badge{
+  padding:3px 9px;border-radius:999px;font-size:.62rem;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;
+}
+.cp-badge.lv{background:rgba(255,255,255,.25);color:#fff;}
+.cp-badge.lv.i{background:rgba(245,158,11,.35);}
+.cp-badge.lv.a{background:rgba(239,68,68,.35);}
+.cp-badge.xp{background:rgba(255,255,255,.15);color:#d6f0df;border:1px solid rgba(255,255,255,.2);}
+.cp-title{font-size:1.15rem;font-weight:800;margin-bottom:.2rem;letter-spacing:-.02em;}
+.cp-subtitle{font-size:.8rem;opacity:.85;}
+.cp-xp-display{
+  text-align:center;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);border-radius:12px;
+  padding:.75rem 1.1rem;min-width:80px;
+}
+.cp-xp-val{font-size:1.6rem;font-weight:900;line-height:1;}
+.cp-xp-lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;opacity:.8;margin-top:.2rem;}
+
+.cp-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media(max-width:760px){.cp-body{grid-template-columns:1fr;}}
+
+.cp-left{padding:1.4rem 1.6rem;border-right:1px solid var(--border);}
+@media(max-width:760px){.cp-left{border-right:0;border-bottom:1px solid var(--border);}}
+.cp-right{padding:1.4rem 1.6rem;}
+
+.cp-section-label{
+  font-size:.65rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--gd);margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.cp-section-label::after{content:'';flex:1;height:1px;background:rgba(33,115,70,.15);}
+
+.cp-goal{
+  background:rgba(33,115,70,.05);border:1px solid rgba(33,115,70,.15);
+  border-radius:10px;padding:.9rem 1rem;margin-bottom:1.1rem;
+  font-size:.85rem;color:var(--ink);line-height:1.6;
+}
+
+.cp-steps{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.1rem;}
+.cp-step{
+  display:flex;align-items:flex-start;gap:.7rem;
+  padding:.65rem .85rem;background:#fff;
+  border:1px solid var(--border);border-radius:9px;
+  font-size:.8rem;color:var(--ink2);cursor:pointer;
+  transition:all .18s;position:relative;
+}
+.cp-step:hover{border-color:rgba(33,115,70,.25);background:var(--mint2);}
+.cp-step.step-done{
+  background:rgba(33,115,70,.04);border-color:rgba(33,115,70,.22);
+  color:var(--gd);text-decoration:line-through;text-decoration-color:rgba(33,115,70,.35);
+}
+.cp-step-num{
+  width:20px;height:20px;border-radius:50%;border:2px solid rgba(33,115,70,.3);
+  display:grid;place-items:center;font-size:.65rem;font-weight:800;
+  color:var(--gd);flex-shrink:0;transition:all .18s;
+}
+.cp-step.step-done .cp-step-num{background:var(--g);border-color:var(--g);color:#fff;}
+.cp-step.step-done .cp-step-num::before{content:'✓';}
+
+.cp-hint-toggle{
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);
+  border-radius:9px;padding:.6rem .9rem;cursor:pointer;
+  font-size:.78rem;font-weight:700;color:#92660d;transition:.15s;
+  font-family:inherit;width:100%;text-align:left;
+}
+.cp-hint-toggle:hover{background:rgba(245,158,11,.12);}
+.cp-hint-body{
+  display:none;margin-top:.55rem;
+  background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);
+  border-radius:9px;padding:.75rem .9rem;font-size:.8rem;color:#7a5109;line-height:1.6;
+}
+.cp-hint-body.visible{display:block;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.cp-deliverable{
+  background:rgba(43,110,91,.06);border:1px solid rgba(43,110,91,.18);
+  border-radius:9px;padding:.7rem .9rem;margin-top:.85rem;
+  font-size:.78rem;color:var(--teal);line-height:1.5;
+}
+.cp-deliverable strong{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.2rem;opacity:.8;}
+
+.cp-textarea{
+  width:100%;background:#faf8f4;border:1.5px solid var(--border);
+  border-radius:10px;padding:.9rem 1rem;resize:vertical;
+  min-height:120px;font:inherit;color:var(--ink);
+  font-size:.85rem;line-height:1.6;transition:.2s;
+}
+.cp-textarea:focus{outline:none;border-color:rgba(33,115,70,.4);background:#fff;box-shadow:0 0 0 3px rgba(33,115,70,.08);}
+.cp-textarea.done-mode{border-color:rgba(33,115,70,.3);background:rgba(33,115,70,.03);}
+
+.cp-char-count{font-size:.7rem;color:var(--dim);text-align:right;margin-top:.35rem;transition:.2s;}
+.cp-char-count.ready{color:var(--gd);font-weight:700;}
+
+.cp-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.85rem;}
+.cp-submit{
+  flex:1;min-width:180px;
+  background:linear-gradient(135deg,var(--gd),var(--gs));
+  color:#fff;border:none;border-radius:10px;
+  padding:.75rem 1.1rem;font-weight:800;font-size:.84rem;
+  cursor:pointer;font-family:inherit;
+  box-shadow:0 8px 22px rgba(33,115,70,.2);
+  transition:.2s;letter-spacing:.01em;
+}
+.cp-submit:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(33,115,70,.28);}
+.cp-submit.done-mode{background:linear-gradient(135deg,var(--teal),#3a8f78);}
+.cp-btn-next{
+  background:#fff;color:var(--ink);border:1px solid var(--border);
+  border-radius:10px;padding:.75rem 1rem;font-weight:700;font-size:.82rem;
+  cursor:pointer;font-family:inherit;transition:.2s;white-space:nowrap;
+}
+.cp-btn-next:hover{border-color:var(--border-g);background:var(--mint2);}
+
+.cp-status{
+  margin-top:.75rem;padding:.65rem .9rem;border-radius:9px;
+  font-size:.8rem;font-weight:600;display:none;
+}
+.cp-status.visible{display:block;}
+.cp-status.ok{background:rgba(33,115,70,.08);border:1px solid rgba(33,115,70,.18);color:var(--gd);}
+.cp-status.err{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.18);color:#b91c1c;}
+.cp-status.gold{background:rgba(145,169,91,.12);border:1px solid rgba(145,169,91,.25);color:#5a7830;}
+
+.cp-steps-progress{
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem;font-size:.72rem;color:var(--muted);
+}
+.cp-steps-bar{flex:1;height:4px;background:#e8e3d5;border-radius:99px;overflow:hidden;}
+.cp-steps-bar-fill{height:100%;background:var(--g);border-radius:99px;transition:width .4s ease;}
+
 
 /* ── LEVEL HEADER ── */
 .level-section-header{padding:.75rem 1.1rem;border-radius:var(--rs);margin-bottom:1rem;border:1px solid;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
@@ -473,6 +683,7 @@ footer a{color:var(--gd);}
     <button class="level-tab a" data-lv="a">🔴 Advanced</button>
   </div>
   <div id="skill-body"></div>
+  <div id="skill-task-wrap"></div>
 </section>
 
 <div class="sep"></div>
@@ -916,6 +1127,8 @@ ST.xpToday = ST.xpToday || 0;
 ST.todayDate = ST.todayDate || null;
 ST.challengeSubmitted = ST.challengeSubmitted || false;
 ST.missionSteps = ST.missionSteps || {};
+ST.skillAnswers = ST.skillAnswers || {};
+ST.skillSteps = ST.skillSteps || {};
 
 function save() {
   localStorage.setItem('eq-enhanced', JSON.stringify(ST));
@@ -1009,7 +1222,24 @@ const SKILLS_DATA = {
 };
 
 const LV_NAMES = {b:'Beginner',i:'Intermediate',a:'Advanced'};
+const SKILL_TASKS = {
+  b1:{goal:'Calculează totalul și media vânzărilor pentru B2:B10.',steps:['Scrie =SUM(B2:B10)','Scrie =AVERAGE(B2:B10)','Formatează rezultatul ca Number cu 2 zecimale'],deliverable:'Obții totalul și media fără erori.'},
+  b2:{goal:'Clasifică fiecare rezultat ca OK / Verifică folosind IF.',steps:['Compară valoarea din C2 cu targetul din D2','Folosește IF pentru textul final','Copiază formula pe toată coloana'],deliverable:'Toate rândurile afișează eticheta corectă.'},
+  b3:{goal:'Caută prețul produsului din A2 într-un tabel separat.',steps:['Folosește VLOOKUP cu potrivire exactă','Adaugă IFERROR pentru cazurile lipsă','Testează cu un cod inexistent'],deliverable:'Primești prețul corect sau mesaj fallback.'},
+  b4:{goal:'Evidențiază top valoarea și creează un grafic simplu.',steps:['Aplică Conditional Formatting pe coloana de valori','Identifică maximul','Inserează un Bar Chart'],deliverable:'Ai un mini-raport vizual clar.'},
+  i1:{goal:'Construiește un total multi-criteriu pe regiune și lună.',steps:['Folosește SUMIFS cu coloana de sumat prima','Adaugă criteriu pentru regiune','Adaugă criteriu pentru lună'],deliverable:'Raportul returnează totalul corect pe 2 condiții.'},
+  i2:{goal:'Înlocuiește un VLOOKUP cu INDEX + MATCH.',steps:['MATCH găsește poziția după cod','INDEX returnează valoarea din coloana finală','Verifică rezultatul cu un exemplu real'],deliverable:'Formula funcționează și la căutare spre stânga.'},
+  i3:{goal:'Fă un Pivot Table pentru total pe produs și regiune.',steps:['Inserează un Pivot Table nou','Adaugă Produs în Rows','Adaugă Regiune în Columns și Total în Values'],deliverable:'Ai un sumar interactiv al datelor.'},
+  i4:{goal:'Curăță nume și date folosind funcții text și date.',steps:['Extrage prenumele cu LEFT/FIND','Calculează vechimea cu DATEDIF','Formatează data corect'],deliverable:'Setul de date devine curat și consistent.'},
+  a1:{goal:'Folosește XLOOKUP și FILTER pentru un rezultat dinamic.',steps:['Scrie un XLOOKUP cu fallback','Filtrează doar rândurile relevante','Testează schimbând criteriul dintr-o celulă'],deliverable:'Rezultatul se actualizează automat.'},
+  a2:{goal:'Importă și transformă datele cu Power Query.',steps:['Încarcă un CSV în Power Query','Elimină coloanele inutile','Închide și încarcă într-un sheet nou'],deliverable:'Ai un flow care poate fi dat refresh.'},
+  a3:{goal:'Construiește un dashboard pe 3 fișe.',steps:['Separă Date / Calcule / Dashboard','Adaugă KPI cards','Conectează un chart și un slicer'],deliverable:'Dashboard-ul este curat și gata de prezentat.'},
+  a4:{goal:'Auditează o formulă complexă și explică fixul.',steps:['Folosește Evaluate Formula','Verifică referințele cu Trace Precedents','Rescrie formula mai clar'],deliverable:'Ai un diagnostic și o versiune mai robustă.'}
+};
 let currentSkillLv = 'b';
+let activeSkillTaskId = null;
+
+const SKILL_ICONS = {b1:'➕',b2:'🔀',b3:'🔍',b4:'📊',i1:'∑',i2:'🔗',i3:'🗂️',i4:'🧹',a1:'⚡',a2:'🔄',a3:'🖥️',a4:'🩺'};
 
 function renderSkillTree(lv) {
   currentSkillLv = lv;
@@ -1022,7 +1252,7 @@ function renderSkillTree(lv) {
 
   const doneCount = skills.filter(s=>ST.skills.includes(s.id)).length;
   const pct = Math.round(doneCount/skills.length*100);
-  const colorClass = lv;
+  const barColor = lv==='i'?'background:linear-gradient(90deg,#b45309,#f59e0b);':lv==='a'?'background:linear-gradient(90deg,#b91c1c,#ef4444);':'';
 
   let html = `
     <div class="level-section-header ${lv}">
@@ -1031,38 +1261,267 @@ function renderSkillTree(lv) {
       <span class="pct-badge" style="color:${lv==='b'?'var(--gd)':lv==='i'?'#b45309':'#b91c1c'}">${pct}%</span>
       ${lvLocked ? `<span style="font-size:.75rem;color:var(--muted);margin-left:.5rem">🔒 Completează nivelul anterior (3+ skill-uri)</span>` : ''}
     </div>
-    <div class="progress-wrap" style="margin-bottom:1.25rem"><div class="progress-fill" style="width:${pct}%;${lv==='i'?'background:linear-gradient(90deg,#b45309,#f59e0b);':lv==='a'?'background:linear-gradient(90deg,#b91c1c,#ef4444);':''}"></div></div>
+    <div class="progress-wrap" style="margin-bottom:1.25rem">
+      <div class="progress-fill" style="width:${pct}%;${barColor}"></div>
+    </div>
     <div class="skill-grid">
   `;
 
-  skills.forEach((s, idx) => {
+  skills.forEach((s) => {
     const done = ST.skills.includes(s.id);
     const prevDone = !s.prev || ST.skills.includes(s.prev);
     const locked = lvLocked || (!done && !prevDone);
+    const isActive = activeSkillTaskId === s.id;
+    const icon = SKILL_ICONS[s.id] || '📘';
+    const clickAction = locked
+      ? `toast('Finalizează skill-ul anterior mai întâi! 🔒','err')`
+      : `openSkillTask('${s.id}')`;
+
     html += `
-      <div class="skill-card ${done?'done':locked?'locked':'unlocked'}"
-           onclick="${locked ? "toast('Finalizează skill-ul anterior mai întâi! 🔒','err')" : `activateSkill('${s.id}')`}"
-           title="${locked ? 'Finalizează skill-ul anterior' : ''}">
-        <h4>${s.title}</h4>
-        <p>${s.desc}</p>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="skill-xp">+${s.xp} XP</span>
-          ${locked ? '<span style="font-size:.8rem">🔒</span>' : ''}
+      <div class="skill-card lv-${lv} ${done?'done':locked?'locked':'unlocked'}${isActive?' active-card':''}"
+           onclick="${clickAction}">
+        <div class="skill-card-top">
+          <div class="skill-card-icon">${icon}</div>
+          <h4>${s.title}</h4>
+          <div class="skill-card-desc">${s.desc}</div>
         </div>
-        <div class="skill-progress"><div class="skill-progress-fill" style="width:${done?100:0}%"></div></div>
+        <div class="skill-card-meta">
+          <span class="skill-xp">+${s.xp} XP</span>
+          ${done ? `<span class="skill-done-check">✓</span>` : locked ? `<span class="skill-lock-icon">🔒</span>` : ''}
+        </div>
+        <div class="skill-progress">
+          <div class="skill-progress-fill" style="width:${done?100:0}%"></div>
+        </div>
+        ${!locked ? `
+        <div class="skill-card-cta">
+          <button class="skill-card-cta-btn">${done ? '↻ Revedeți task' : '▶ Începe task'}</button>
+        </div>` : ''}
       </div>
     `;
   });
 
   html += `</div>`;
   document.getElementById('skill-body').innerHTML = html;
+  // Re-render task panel if one is active
+  if (activeSkillTaskId) renderSkillTaskPanel(activeSkillTaskId);
+}
+
+// Track step completions per skill
+ST.skillSteps = ST.skillSteps || {};
+
+function openSkillTask(id) {
+  activeSkillTaskId = id;
+  renderSkillTree(currentSkillLv);
+  setTimeout(()=>{
+    const panel = document.getElementById('skill-task-wrap');
+    if(panel) panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 100);
+}
+
+function getLevelLabel(lv){
+  return lv==='b'?'Beginner':lv==='i'?'Intermediate':'Advanced';
+}
+function getLevelEmoji(lv){return lv==='b'?'🟢':lv==='i'?'🟡':'🔴';}
+
+function getSkillHint(id){
+  const hints = {
+    b1:'Hint: începe cu =SUM(...) și =AVERAGE(...) pe același interval.',
+    b2:'Hint: IF are forma =IF(condiție,"adevărat","fals").',
+    b3:'Hint: folosește potrivire exactă și învelește formula în IFERROR.',
+    b4:'Hint: întâi evidențiezi maximul, apoi construiești un chart simplu.',
+    i1:'Hint: la SUMIFS, intervalul de sumat vine primul.',
+    i2:'Hint: MATCH găsește poziția, INDEX întoarce valoarea.',
+    i3:'Hint: Rows, Columns, Values — exact în ordinea asta.',
+    i4:'Hint: combină funcții text cu DATEDIF pentru curățare și vechime.',
+    a1:'Hint: XLOOKUP pentru un singur rezultat, FILTER pentru listă dinamică.',
+    a2:'Hint: importă CSV, transformă, apoi Close & Load.',
+    a3:'Hint: separă clar Date / Calcule / Dashboard.',
+    a4:'Hint: explică mai întâi problema, apoi fixul.'
+  };
+  return hints[id] || 'Hint: descrie pașii și formula principală folosită.';
+}
+
+function getNextSkillId(id){
+  const all = [...SKILLS_DATA.b,...SKILLS_DATA.i,...SKILLS_DATA.a];
+  const idx = all.findIndex(s=>s.id===id);
+  for(let i=idx+1;i<all.length;i++){
+    const skill = all[i];
+    if (!ST.skills.includes(skill.id) && (!skill.prev || ST.skills.includes(skill.prev))) return skill.id;
+  }
+  return null;
+}
+
+function renderSkillTaskPanel(id) {
+  if (!id) return;
+  activeSkillTaskId = id;
+  const wrap = document.getElementById('skill-task-wrap');
+  const allSkills = [...SKILLS_DATA.b,...SKILLS_DATA.i,...SKILLS_DATA.a];
+  const skill = allSkills.find(s=>s.id===id);
+  const task = SKILL_TASKS[id];
+  if (!wrap || !skill || !task) return;
+  const lv = id.charAt(0);
+  const done = ST.skills.includes(id);
+  const nextId = getNextSkillId(id);
+  const savedAnswer = ST.skillAnswers[id] || '';
+  const icon = SKILL_ICONS[id] || '📘';
+  const doneSteps = ST.skillSteps[id] || [];
+  const stepsDoneCount = doneSteps.filter(Boolean).length;
+  const stepsTotal = task.steps.length;
+  const stepsPct = Math.round(stepsDoneCount/stepsTotal*100);
+
+  const lvColor = lv==='i'?'#b45309':lv==='a'?'#b91c1c':'var(--gd)';
+  const lvBg = lv==='i'?'rgba(245,158,11,.35)':lv==='a'?'rgba(239,68,68,.35)':'rgba(255,255,255,.25)';
+
+  wrap.innerHTML = `
+    <div class="challenge-panel" id="cp-${id}">
+      <!-- BANNER -->
+      <div class="cp-banner">
+        <div class="cp-banner-icon">${icon}</div>
+        <div class="cp-banner-info">
+          <div class="cp-banner-badges">
+            <span class="cp-badge lv ${lv}">${getLevelEmoji(lv)} ${getLevelLabel(lv)}</span>
+            <span class="cp-badge xp">+${skill.xp} XP</span>
+            ${done?`<span class="cp-badge" style="background:rgba(145,169,91,.35);color:#d6f0df">✓ Completat</span>`:''}
+          </div>
+          <div class="cp-title">${skill.title}</div>
+          <div class="cp-subtitle">${skill.desc}</div>
+        </div>
+        <div class="cp-xp-display">
+          <div class="cp-xp-val">${skill.xp}</div>
+          <div class="cp-xp-lbl">XP</div>
+        </div>
+      </div>
+
+      <!-- BODY -->
+      <div class="cp-body">
+        <!-- LEFT: task + steps -->
+        <div class="cp-left">
+          <div class="cp-section-label">📋 Cerința</div>
+          <div class="cp-goal">${task.goal}</div>
+
+          <div class="cp-section-label">🪜 Pași de lucru</div>
+          <div class="cp-steps-progress">
+            <span>${stepsDoneCount}/${stepsTotal} pași</span>
+            <div class="cp-steps-bar"><div class="cp-steps-bar-fill" id="cp-steps-bar" style="width:${stepsPct}%"></div></div>
+            <span>${stepsPct}%</span>
+          </div>
+          <div class="cp-steps" id="cp-steps-list">
+            ${task.steps.map((step,i)=>{
+              const s = doneSteps[i];
+              return `<div class="cp-step ${s?'step-done':''}" onclick="toggleStep('${id}',${i})">
+                <div class="cp-step-num">${s?'':i+1}</div>
+                <span>${step}</span>
+              </div>`;
+            }).join('')}
+          </div>
+
+          <button class="cp-hint-toggle" onclick="toggleHint('${id}')">
+            💡 Arată hint <span id="cp-hint-arrow" style="margin-left:auto">▼</span>
+          </button>
+          <div class="cp-hint-body" id="cp-hint-${id}">${getSkillHint(id)}</div>
+
+          <div class="cp-deliverable">
+            <strong>🎯 Rezultat așteptat:</strong>
+            ${task.deliverable}
+          </div>
+        </div>
+
+        <!-- RIGHT: answer -->
+        <div class="cp-right">
+          <div class="cp-section-label">✍ Răspunsul tău</div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem;line-height:1.55">
+            Descrie formula folosită, pașii parcurși sau ce ai observat. Minim 20 de caractere.
+          </p>
+          <textarea
+            class="cp-textarea ${done?'done-mode':''}"
+            id="cp-answer-${id}"
+            placeholder="Ex: Am folosit =SUM(B2:B10) pentru total și =AVERAGE(B2:B10) pentru medie. Am formatat rezultatul ca Number cu 2 zecimale din Format Cells..."
+            oninput="updateCharCount('${id}')"
+          >${savedAnswer}</textarea>
+          <div class="cp-char-count ${savedAnswer.length>=20?'ready':''}" id="cp-chars-${id}">
+            ${savedAnswer.length}/20+ caractere ${savedAnswer.length>=20?'✓':''}
+          </div>
+
+          <div class="cp-actions">
+            <button class="cp-submit ${done?'done-mode':''}" onclick="submitSkillTask('${id}')">
+              ${done?'↻ Actualizează răspunsul':'✓ Trimite și completează skill-ul'}
+            </button>
+            ${nextId ? `<button class="cp-btn-next" onclick="openSkillTask('${nextId}')">→ Skill următor</button>` : ''}
+          </div>
+          <div class="cp-status" id="cp-status-${id}"></div>
+
+          ${done ? `<div style="margin-top:1rem;padding:.8rem 1rem;background:rgba(33,115,70,.06);border:1px solid rgba(33,115,70,.18);border-radius:10px;font-size:.78rem;color:var(--gd);">
+            🎉 Skill completat! Răspunsul tău este salvat. Poți oricând reveni pentru a-l actualiza.
+          </div>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleStep(skillId, stepIdx) {
+  if (!ST.skillSteps[skillId]) ST.skillSteps[skillId] = [];
+  ST.skillSteps[skillId][stepIdx] = !ST.skillSteps[skillId][stepIdx];
+  save();
+  renderSkillTaskPanel(skillId);
+}
+
+function toggleHint(id) {
+  const el = document.getElementById('cp-hint-'+id);
+  const arrow = document.getElementById('cp-hint-arrow');
+  if (!el) return;
+  const open = el.classList.toggle('visible');
+  if (arrow) arrow.textContent = open ? '▲' : '▼';
+}
+
+function updateCharCount(id) {
+  const ta = document.getElementById('cp-answer-'+id);
+  const ct = document.getElementById('cp-chars-'+id);
+  if (!ta || !ct) return;
+  const len = ta.value.length;
+  ct.textContent = `${len}/20+ caractere ${len>=20?'✓':''}`;
+  ct.className = 'cp-char-count' + (len>=20?' ready':'');
+}
+function submitSkillTask(id){
+  const textarea = document.getElementById('cp-answer-'+id);
+  const status = document.getElementById('cp-status-'+id);
+  const text = textarea ? textarea.value.trim() : '';
+
+  if (text.length < 20){
+    if(status){
+      status.className='cp-status err visible';
+      status.textContent='✗ Mai scrie puțin — cel puțin 20 de caractere cu formula sau pașii folosiți.';
+    }
+    toast('Scrie un răspuns mai complet pentru task.','err');
+    return;
+  }
+
+  ST.skillAnswers[id] = text;
+  save();
+
+  if (!ST.skills.includes(id)) {
+    activateSkill(id);
+    if(status){
+      status.className='cp-status gold visible';
+      status.textContent='🎉 Task trimis! Skill completat și XP adăugat!';
+    }
+    toast('Task trimis — skill completat! 🎉','gold');
+    setTimeout(()=>renderSkillTaskPanel(id), 800);
+  } else {
+    if(status){
+      status.className='cp-status ok visible';
+      status.textContent='✓ Răspuns actualizat și salvat local.';
+    }
+    toast('Răspunsul actualizat.','ok');
+  }
 }
 
 function activateSkill(id) {
   const allSkills = [...SKILLS_DATA.b,...SKILLS_DATA.i,...SKILLS_DATA.a];
   const skill = allSkills.find(s=>s.id===id);
   if (!skill) return;
-  if (ST.skills.includes(id)) { toast(`"${skill.title}" deja completat!`,'ok'); return; }
+  activeSkillTaskId = id;
+  if (ST.skills.includes(id)) { toast(`"${skill.title}" deja completat!`,'ok'); renderSkillTree(currentSkillLv); return; }
   ST.skills.push(id);
   addXP(skill.xp, skill.title);
   checkBadges();
