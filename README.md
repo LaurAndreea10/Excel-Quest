@@ -9,6 +9,7 @@ Aplicație web educațională pentru utilizatorii care vor să învețe Microsof
 - **Main version**: `https://laurandreea10.github.io/Excel-Quest/`
 - **Enhanced Main**: `https://laurandreea10.github.io/Excel-Quest/enhanced-main.html`
 - **Enhanced Pro v2**: `https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html`
+- **Excel Quest Hub**: `https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html`
 
 ## Funcționalități
 
@@ -33,6 +34,7 @@ Excel-Quest/
 ├── index.html                    ← pagina principală
 ├── enhanced-main.html            ← variantă landing page extinsă
 ├── enhanced-pro-v2.html          ← variantă premium compactă
+├── excel-quest-hub.html          ← hub de orientare și reluare progres
 ├── favicon.svg                   ← favicon vector (suport dark mode)
 ├── favicon-32.png                ← fallback PNG
 ├── favicon-192.png               ← Android home screen
@@ -53,6 +55,7 @@ Excel-Quest/
 3. URL principal: `https://laurandreea10.github.io/Excel-Quest/`
 4. Link direct Enhanced Main: `https://laurandreea10.github.io/Excel-Quest/enhanced-main.html`
 5. Link direct Enhanced Pro v2: `https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html`
+6. Link direct Excel Quest Hub: `https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html`
 
 ## Verificare după deploy
 
@@ -60,6 +63,7 @@ Excel-Quest/
 - [ ] Pagina principală se încarcă corect
 - [ ] Enhanced Main se încarcă corect
 - [ ] Enhanced Pro v2 se încarcă corect
+- [ ] Excel Quest Hub se încarcă corect
 - [ ] Lighthouse score 90+ la SEO și Accessibility
 
 ## Tech stack
