@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Excel Quest V2 este o platformă gamificată pentru învățarea Excel: onboarding, dashboard, 30 de lecții, jocuri, proiecte și certificate.">
+<title>Excel Quest V2 – Învață Excel ca într-un joc</title>
+<meta name="description" content="Excel Quest este o platformă interactivă pentru învățarea Excel: onboarding, lecții practice, jocuri, proiecte, examene și certificate.">
 <meta name="theme-color" content="#0f172a">
-<meta property="og:title" content="Excel Quest V2 – Platformă completă de învățare Excel">
-<meta property="og:description" content="Învață Excel ca într-un joc: lecții, practică, proiecte, examene și certificate.">
+<meta property="og:title" content="Excel Quest V2">
+<meta property="og:description" content="Învață Excel ca într-un joc: lecții, practică, proiecte și certificate.">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='40' fill='%230f172a'/%3E%3Cpath fill='%2322c55e' d='M64 56h128a8 8 0 0 1 8 8v128a8 8 0 0 1-8 8H64a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8Z'/%3E%3Cpath fill='%23064e3b' d='M64 56h58v144H64a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8Z'/%3E%3Cpath fill='white' d='m80 96 18 28 18-28h20l-28 40 30 44h-21l-19-30-19 30H58l30-44-28-40h20Z'/%3E%3C/svg%3E">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='34' fill='%2322c55e'%3E%E2%9C%B1%3C/text%3E%3C/svg%3E">
-<title>Excel Quest V2 – Platformă completă de învățare Excel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Cpath fill='%2322c55e' d='M16 14h32a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z'/%3E%3Cpath fill='%23064e3b' d='M16 14h14v36H16a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z'/%3E%3Cpath fill='white' d='m22 24 5 8 5-8h5l-8 11 8 11h-5l-5-8-5 8h-5l8-11-8-11h5Z'/%3E%3C/svg%3E">
 <style>
   :root {
     --green: #16a34a;
@@ -49,6 +49,7 @@
     overflow-x: hidden;
   }
 
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(15,23,42,0.95);
@@ -72,6 +73,7 @@
     padding: 0.2rem 0.6rem; border-radius: 99px; font-weight: 600;
   }
 
+  /* ── SKIP LINK ── */
   .skip-link {
     position: absolute; top: -999px; left: 0;
     background: var(--accent); color: #000; padding: 0.5rem 1rem;
@@ -79,6 +81,7 @@
   }
   .skip-link:focus { top: 0; }
 
+  /* ── MAIN LAYOUT ── */
   main { padding-top: 56px; }
   .section { padding: 4rem 1.5rem; max-width: 1100px; margin: 0 auto; }
   h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; }
@@ -86,6 +89,7 @@
   h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
   p { color: var(--text-muted); margin-bottom: 1rem; }
 
+  /* ── HERO ── */
   #hero {
     min-height: 90vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center; text-align: center;
@@ -119,7 +123,11 @@
   .btn-blue { background: var(--blue); color: #fff; }
   .btn-red { background: var(--red); color: #fff; }
   .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:disabled, .guess-btn:disabled, .exam-opt:disabled { opacity: 0.72; cursor: not-allowed; }
+  .section > p { max-width: 760px; }
+  .field input::placeholder, #cmd-input::placeholder { color: var(--text-muted); }
 
+  /* ── ONBOARDING ── */
   #onboarding { border-top: 1px solid var(--border); }
   .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
   .field label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; }
@@ -137,6 +145,7 @@
   }
   .day-btn.active { background: var(--green-dark); border-color: var(--green); color: #fff; }
 
+  /* ── DASHBOARD ── */
   #dashboard { border-top: 1px solid var(--border); }
   .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
   .stat-card {
@@ -167,6 +176,7 @@
   }
   .badge.earned { border-color: var(--gold); color: var(--gold); }
 
+  /* ── LESSONS ── */
   #lessons { border-top: 1px solid var(--border); }
   .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
   .lesson-card {
@@ -190,6 +200,7 @@
   .tag.intermediate { background: rgba(245,158,11,0.15); color: var(--gold); }
   .tag.advanced { background: rgba(239,68,68,0.15); color: var(--red); }
 
+  /* ── LESSON MODAL ── */
   .modal-overlay {
     position: fixed; inset: 0; z-index: 200;
     background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
@@ -236,6 +247,7 @@
   .hint.show { display: block; }
   .recap-box { background: var(--surface2); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.875rem; }
 
+  /* ── GAME MODES ── */
   #games { border-top: 1px solid var(--border); }
   .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
   .game-card {
@@ -280,6 +292,7 @@
   .score-display { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
   .interview-q { background: var(--bg); border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; font-style: italic; }
 
+  /* ── PROJECTS ── */
   #projects { border-top: 1px solid var(--border); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
   .project-card {
@@ -297,6 +310,7 @@
   .project-xp { color: var(--gold); font-weight: 700; font-size: 0.85rem; margin-top: 0.75rem; }
   .project-skills { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
 
+  /* ── EXAM ── */
   #exam { border-top: 1px solid var(--border); }
   .exam-question { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
   .exam-options { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
@@ -310,6 +324,7 @@
   .exam-opt.correct-opt { border-color: var(--green); background: rgba(22,163,74,0.15); }
   .exam-opt.wrong-opt { border-color: var(--red); background: rgba(239,68,68,0.1); }
 
+  /* ── CERTIFICATES ── */
   #certificates { border-top: 1px solid var(--border); }
   .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
   .cert-card {
@@ -327,18 +342,21 @@
   .cert-title { font-weight: 700; font-size: 1.1rem; color: var(--gold); }
   .cert-req { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
 
+  /* ── ACCESSIBILITY ── */
   #accessibility { border-top: 1px solid var(--border); }
   .a11y-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
   .a11y-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
   .a11y-card ul { padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-muted); }
   .a11y-card li { margin-top: 0.4rem; }
 
+  /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border); padding: 2rem 1.5rem;
     text-align: center; color: var(--text-muted); font-size: 0.85rem;
   }
   footer a { color: var(--text-muted); }
 
+  /* ── TOAST ── */
   #toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 500; display: flex; flex-direction: column; gap: 0.5rem; }
   .toast {
     background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
@@ -350,6 +368,7 @@
   .toast.error { border-color: var(--red); }
   .toast.info { border-color: var(--blue); }
 
+  /* ── COMMAND PALETTE ── */
   #cmd-overlay {
     position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.7);
     display: none; align-items: flex-start; justify-content: center;
@@ -364,6 +383,7 @@
   .cmd-item:hover { background: var(--surface2); }
   .cmd-type { font-size: 0.7rem; color: var(--text-muted); background: var(--surface2); padding: 0.1rem 0.4rem; border-radius: 4px; }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .nav-links { display: none; }
     .section { padding: 2.5rem 1rem; }
@@ -372,9 +392,11 @@
 </style>
 </head>
 <body data-lang="ro">
+<noscript><div style="background:#111827;color:#fff;padding:0.85rem 1rem;text-align:center;font-family:Segoe UI,system-ui,sans-serif">Excel Quest are nevoie de JavaScript activ pentru onboarding, lecții, jocuri și progres local.</div></noscript>
 
 <a class="skip-link" href="#main-content">Sari la conținut</a>
 
+<!-- NAV -->
 <nav role="navigation" aria-label="Navigare principală">
   <a href="#" class="nav-brand">✱ Excel Quest</a>
   <div class="nav-links">
@@ -395,6 +417,7 @@
   </div>
 </nav>
 
+<!-- COMMAND PALETTE -->
 <div id="cmd-overlay" role="dialog" aria-label="Command palette" aria-modal="true">
   <div id="cmd-box">
     <input id="cmd-input" type="text" placeholder="Caută lecții, formule, jocuri..." autocomplete="off" aria-label="Caută">
@@ -402,6 +425,7 @@
   </div>
 </div>
 
+<!-- LESSON MODAL -->
 <div id="lesson-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
     <div class="modal-header">
@@ -418,6 +442,8 @@
 <div id="toast-container" aria-live="polite"></div>
 
 <main id="main-content">
+
+<!-- ══════════════ HERO ══════════════ -->
 <section id="hero" aria-label="Pagina principală">
   <div class="hero-badge">v2.0 · Platformă completă</div>
   <h1>
@@ -440,11 +466,12 @@
       <span class="ro">Dashboard</span><span class="en">Dashboard</span>
     </a>
     <a href="#games" class="btn btn-outline">
-      <span class="ro">Game Modes</span><span class="en">Game Modes</span>
+      <span class="ro">Moduri de joc</span><span class="en">Game Modes</span>
     </a>
   </div>
 </section>
 
+<!-- ══════════════ ONBOARDING ══════════════ -->
 <section id="onboarding" class="section" aria-label="Onboarding">
   <h2>
     <span class="ro">Formular de început</span>
@@ -463,7 +490,7 @@
       <label for="user-goal"><span class="ro">Obiectivul tău</span><span class="en">Your goal</span></label>
       <select id="user-goal">
         <option value="school">Școală / facultate</option>
-        <option value="budget">Buget personal</option>
+        <option value="budget">Budget personal</option>
         <option value="job">Aplicat la joburi</option>
         <option value="reports">Rapoarte</option>
         <option value="dashboards">Dashboard-uri</option>
@@ -494,8 +521,10 @@
     <span class="ro">Salvează și construiește dashboard-ul →</span>
     <span class="en">Save and build dashboard →</span>
   </button>
+<div style="margin-top:0.85rem;display:flex;gap:0.75rem;flex-wrap:wrap"><button class="btn btn-outline btn-sm" id="reset-progress-btn"><span class="ro">Resetează progresul local</span><span class="en">Reset local progress</span></button><span style="font-size:0.8rem;color:var(--text-muted)"><span class="ro">Șterge doar progresul salvat în acest browser.</span><span class="en">Removes only the progress stored in this browser.</span></span></div>
 </section>
 
+<!-- ══════════════ DASHBOARD ══════════════ -->
 <section id="dashboard" class="section" aria-label="Dashboard progres">
   <h2>
     <span class="ro">Dashboard — Progres real</span>
@@ -538,7 +567,7 @@
     <h3>🎓 Excel Quest Beginner Certificate</h3>
     <p style="color:var(--text-muted);margin-top:0.5rem;" class="ro">Ai completat toate lecțiile Beginner!</p>
     <p style="color:var(--text-muted);margin-top:0.5rem;" class="en">You completed all Beginner lessons!</p>
-    <button class="btn btn-gold btn-sm" style="margin-top:1rem" onclick="downloadCert('beginner')">⬇ Descarcă certificatul</button>
+    <button class="btn btn-gold btn-sm" style="margin-top:1rem" onclick="downloadCert('Beginner')">⬇ Descarcă certificatul</button>
   </div>
 
   <div style="margin-top:1.5rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);">
@@ -548,6 +577,7 @@
   </div>
 </section>
 
+<!-- ══════════════ LESSONS ══════════════ -->
 <section id="lessons" class="section" aria-label="Lecții">
   <h2>
     <span class="ro">Lecții — Beginner · Intermediate · Advanced</span>
@@ -568,7 +598,8 @@
   <div class="lessons-grid" id="lessons-grid"></div>
 </section>
 
-<section id="games" class="section" aria-label="Game Modes">
+<!-- ══════════════ GAME MODES ══════════════ -->
+<section id="games" class="section" aria-label="Moduri de joc">
   <h2>
     <span class="ro">Game Modes — Jucabile, nu doar prezentate</span>
     <span class="en">Game Modes — Playable, not just showcased</span>
@@ -580,6 +611,7 @@
   <div class="games-grid" id="games-grid"></div>
 </section>
 
+<!-- ══════════════ PROJECTS ══════════════ -->
 <section id="projects" class="section" aria-label="Proiecte">
   <h2>
     <span class="ro">Proiecte — 3 per nivel</span>
@@ -598,6 +630,7 @@
   <div class="projects-grid" id="projects-grid"></div>
 </section>
 
+<!-- ══════════════ EXAM ══════════════ -->
 <section id="exam" class="section" aria-label="Examen per nivel">
   <h2>
     <span class="ro">Examen — 1 per nivel</span>
@@ -624,6 +657,7 @@
   <div id="exam-result" style="margin-top:1rem;display:none;padding:1rem;border-radius:8px;"></div>
 </section>
 
+<!-- ══════════════ CERTIFICATES ══════════════ -->
 <section id="certificates" class="section" aria-label="Certificate și badge-uri">
   <h2>
     <span class="ro">Certificate și Badge-uri</span>
@@ -636,6 +670,7 @@
   <div class="cert-grid" id="cert-grid"></div>
 </section>
 
+<!-- ══════════════ ACCESSIBILITY ══════════════ -->
 <section id="accessibility" class="section" aria-label="Accesibilitate">
   <h2>Accesibilitate</h2>
   <div class="a11y-grid">
@@ -677,17 +712,21 @@
     </div>
   </div>
 </section>
+
 </main>
 
 <footer>
   <p>© 2026 Excel Quest · construit de Laura Andreea</p>
   <p style="margin-top:0.5rem;">
     <a href="https://github.com/LaurAndreea10/Excel-Quest">GitHub</a> ·
-    v2.0 · Beta deschisă · date locale, fără autentificare
+    v2.0 · Beta deschisă · date locale · fără autentificare
   </p>
 </footer>
 
 <script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
 const state = JSON.parse(localStorage.getItem('eqv2') || '{}');
 state.xp = state.xp || 0;
 state.completedLessons = state.completedLessons || [];
@@ -695,87 +734,81 @@ state.completedProjects = state.completedProjects || [];
 state.badges = state.badges || [];
 state.gamesWon = state.gamesWon || 0;
 state.examScores = state.examScores || {};
-state.rewardFlags = state.rewardFlags || {};
-state.profile = state.profile || {};
-state.ui = state.ui || { lang: document.body?.dataset?.lang || 'ro', theme: '', reducedMotion: false };
+state.awardedXp = state.awardedXp || { projectTasks: [], games: [], exams: [] };
+state.profile = state.profile || { days: [] };
+state.dailyQuest = state.dailyQuest || { date: new Date().toDateString(), lessonsCompleted: 0 };
 
 function saveState() { localStorage.setItem('eqv2', JSON.stringify(state)); }
-function addXP(n) {
+function addXP(n, silent = false) {
   state.xp += n;
   saveState();
   updateDashboard();
-  toast(`+${n} XP`, 'success');
+  if (!silent) toast(`+${n} XP`, 'success');
 }
-function normalizeValue(value) {
-  return String(value || '')
+
+function normalizeAnswer(value) {
+  return (value || '')
     .toLowerCase()
-    .trim()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
     .replace(/\s+/g, '')
-    .replace(/;/g, ',');
-}
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-function shouldReduceMotion() {
-  return document.documentElement.hasAttribute('data-reduced-motion');
-}
-function scrollToSection(target) {
-  const el = typeof target === 'string' ? document.getElementById(target) : target;
-  if (!el) return;
-  el.scrollIntoView({ behavior: shouldReduceMotion() ? 'auto' : 'smooth' });
-}
-function resetProgress() {
-  localStorage.removeItem('eqv2');
-  localStorage.removeItem('eq-name');
-  window.location.reload();
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'");
 }
 
-function setButtonPressedState(id, isPressed) {
-  const el = document.getElementById(id);
-  if (el) el.setAttribute('aria-pressed', String(Boolean(isPressed)));
-}
-function applyUiPreferences() {
-  const lang = state.ui?.lang || 'ro';
-  document.body.dataset.lang = lang;
-  document.documentElement.lang = lang;
-  const langBtn = document.getElementById('lang-toggle');
-  if (langBtn) langBtn.setAttribute('aria-label', lang === 'ro' ? 'Schimbă limba în engleză' : 'Switch language to Romanian');
-
-  const theme = state.ui?.theme || '';
-  document.documentElement.dataset.theme = theme;
-  setButtonPressedState('contrast-btn', theme === 'high-contrast');
-
-  const reducedMotion = Boolean(state.ui?.reducedMotion);
-  if (reducedMotion) document.documentElement.setAttribute('data-reduced-motion', '');
-  else document.documentElement.removeAttribute('data-reduced-motion');
-  setButtonPressedState('motion-btn', reducedMotion);
-}
-function updateActiveNavLink() {
-  const sections = ['onboarding','dashboard','lessons','games','projects','exam','certificates'];
-  const current = sections.findLast(id => {
-    const el = document.getElementById(id);
-    if (!el) return false;
-    const rect = el.getBoundingClientRect();
-    return rect.top <= 140 && rect.bottom >= 140;
-  }) || 'onboarding';
-
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    const target = link.getAttribute('href')?.slice(1);
-    link.classList.toggle('active', target === current);
-    link.setAttribute('aria-current', target === current ? 'page' : 'false');
-  });
-}
-let cmdSelectedIndex = 0;
-function highlightCmdSelection() {
-  const items = Array.from(document.querySelectorAll('#cmd-results .cmd-item[data-cmd-index]'));
-  items.forEach((item, idx) => {
-    item.style.background = idx === cmdSelectedIndex ? 'var(--surface2)' : '';
-    item.setAttribute('aria-selected', String(idx === cmdSelectedIndex));
-  });
+function ensureDailyQuestDate() {
+  const today = new Date().toDateString();
+  if (state.dailyQuest.date !== today) {
+    state.dailyQuest = { date: today, lessonsCompleted: 0 };
+    saveState();
+  }
 }
 
+function getCurrentLang() {
+  return document.body.dataset.lang || 'ro';
+}
+
+function getLevelLabel(level, lang = getCurrentLang()) {
+  const labels = {
+    ro: { beginner: 'Începător', intermediate: 'Intermediar', advanced: 'Avansat' },
+    en: { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' }
+  };
+  return labels[lang]?.[level] || level;
+}
+
+function projectTaskKey(projectId, taskIndex) {
+  return `${projectId}-${taskIndex}`;
+}
+
+function getProjectTaskCount(projectId) {
+  return PROJECTS.find(p => p.id === projectId)?.tasks.length || 0;
+}
+
+function getCompletedProjectIds() {
+  return PROJECTS.filter(project => {
+    return project.tasks.every((_, index) => state.completedProjects.includes(projectTaskKey(project.id, index)));
+  }).map(project => project.id);
+}
+
+function isCertificateUnlocked(level) {
+  const lessonCount = LESSONS.filter(l => l.level === level).length;
+  const completedLessons = LESSONS.filter(l => l.level === level && state.completedLessons.includes(l.id)).length;
+  const completedProjects = PROJECTS.filter(p => p.level === level && getCompletedProjectIds().includes(p.id)).length;
+  const examPassed = (state.examScores[level] || 0) >= 70;
+  return completedLessons === lessonCount && completedProjects >= 1 && examPassed;
+}
+
+function awardOnce(bucket, key, amount, silent = false) {
+  if (!state.awardedXp[bucket].includes(key)) {
+    state.awardedXp[bucket].push(key);
+    addXP(amount, silent);
+    saveState();
+    return true;
+  }
+  return false;
+}
+
+// ═══════════════════════════════════════════════
+// DATA — 30 LESSONS
+// ═══════════════════════════════════════════════
 const LESSONS = [
   { id:'b1', level:'beginner', title:'Introducere în Excel', formula:'Interfața Excel', theory:'Excel este un program de calcul tabelar. Înveți cum să navighezi: celule, rânduri, coloane, bara de formule. O celulă este identificată prin coloană + rând (ex: A1, B3).', example:'A1=10, B1=20 → click pe C1, scrie =A1+B1, apasă Enter → rezultat: 30', exercise:'Scrie formula pentru suma celulelor A1 și B1', answer:'=a1+b1', hints:['Formulele încep întotdeauna cu =','Adunarea folosește operatorul +','=A1+B1'], recap:'Formulele Excel încep cu = și folosesc referințe de celule ca A1, B2 etc.' },
   { id:'b2', level:'beginner', title:'SUM — Suma valorilor', formula:'=SUM()', theory:'SUM adună o gamă de celule. Este cea mai folosită formulă. În loc să scrii =A1+A2+A3+A4, poți scrie =SUM(A1:A4). Caracterul ":" înseamnă "de la ... până la".', example:'=SUM(A1:A5) adună valorile din A1, A2, A3, A4 și A5', exercise:'Scrie formula pentru suma celulelor de la A1 la A10', answer:'=sum(a1:a10)', hints:['Folosește paranteze după SUM','Intervalul se scrie A1:A10','=SUM(A1:A10)'], recap:'SUM(A1:A10) este mai eficient decât A1+A2+...+A10 și nu face erori.' },
@@ -845,24 +878,9 @@ const EXAMS = {
   ],
 };
 
-function getProjectTaskKeys(projectId, totalTasks) {
-  return Array.from({length: totalTasks}, (_, i) => `${projectId}-${i}`);
-}
-function isProjectCompleted(project) {
-  return getProjectTaskKeys(project.id, project.tasks.length).every(key => state.completedProjects.includes(key));
-}
-function getCompletedProjectsCount(level='all') {
-  const projects = level === 'all' ? PROJECTS : PROJECTS.filter(p => p.level === level);
-  return projects.filter(isProjectCompleted).length;
-}
-function canUnlockCertificate(level) {
-  const levelLessons = LESSONS.filter(l => l.level === level);
-  const allLessonsDone = levelLessons.every(l => state.completedLessons.includes(l.id));
-  const hasProject = getCompletedProjectsCount(level) >= 1;
-  const examPassed = (state.examScores[level] || 0) >= 70;
-  return allLessonsDone && hasProject && examPassed;
-}
-
+// ═══════════════════════════════════════════════
+// RENDER LESSONS
+// ═══════════════════════════════════════════════
 function renderLessons(filter='beginner') {
   const grid = document.getElementById('lessons-grid');
   const filtered = filter === 'all' ? LESSONS : LESSONS.filter(l => l.level === filter);
@@ -871,7 +889,7 @@ function renderLessons(filter='beginner') {
          onclick="openLesson('${l.id}')" tabindex="0" role="button"
          aria-label="Deschide lecția: ${l.title}"
          onkeydown="if(event.key==='Enter')openLesson('${l.id}')">
-      <div class="tag ${l.level}">${capitalize(l.level)}</div>
+      <div class="tag ${l.level}">${getLevelLabel(l.level)}</div>
       <h3 style="margin-top:0.5rem">${l.title}</h3>
       <div class="lesson-meta">
         <span class="tag">${l.formula}</span>
@@ -889,7 +907,11 @@ document.getElementById('lesson-level-tabs').addEventListener('click', e => {
   renderLessons(btn.dataset.filter);
 });
 
+// ═══════════════════════════════════════════════
+// LESSON MODAL
+// ═══════════════════════════════════════════════
 let hintShown = 0;
+
 function openLesson(id) {
   const lesson = LESSONS.find(l => l.id === id);
   if (!lesson) return;
@@ -897,7 +919,7 @@ function openLesson(id) {
 
   document.getElementById('modal-title').textContent = lesson.title;
   const tag = document.getElementById('modal-level-tag');
-  tag.textContent = lesson.level;
+  tag.textContent = getLevelLabel(lesson.level);
   tag.className = `tag ${lesson.level}`;
 
   document.getElementById('modal-body').innerHTML = `
@@ -929,31 +951,23 @@ function openLesson(id) {
   `;
 
   document.getElementById('lesson-modal').classList.add('open');
-  setTimeout(() => {
-    const input = document.getElementById('ex-input');
-    if (!input) return;
-    input.focus();
-    input.addEventListener('keydown', event => {
-      if (event.key === 'Enter') checkAnswer(id);
-    }, { once: true });
-  }, 100);
+  setTimeout(() => document.getElementById('ex-input')?.focus(), 100);
 }
 
 function checkAnswer(id) {
   const lesson = LESSONS.find(l => l.id === id);
-  const input = document.getElementById('ex-input').value;
-  const normalizedInput = normalizeValue(input);
-  const normalizedAnswer = normalizeValue(lesson.answer);
+  const input = normalizeAnswer(document.getElementById('ex-input').value.trim());
+  const correct = normalizeAnswer(lesson.answer);
   const fb = document.getElementById('feedback-box');
   const recap = document.getElementById('recap-step');
 
-  if (normalizedInput && (normalizedInput === normalizedAnswer || (normalizedInput.length > 3 && normalizedAnswer.includes(normalizedInput)))) {
+  if (input === correct || (input.length > 3 && correct.includes(input))) {
     fb.className = 'feedback-box show correct';
     fb.innerHTML = '✓ Corect! ' + lesson.recap;
     recap.style.display = 'block';
   } else {
     fb.className = 'feedback-box show wrong';
-    fb.innerHTML = `✗ Nu exact. Verifică sintaxa formulei. Ai scris: <code>${input || '(gol)'}</code>`;
+    fb.innerHTML = `✗ Nu exact. Verifică sintaxa formulei. Ai scris: <code>${document.getElementById('ex-input').value.trim()}</code>`;
   }
 }
 
@@ -963,7 +977,7 @@ function showHint(id) {
   if (hintShown < lesson.hints.length) {
     const div = document.createElement('div');
     div.className = 'hint show';
-    div.innerHTML = `💡 Hint ${hintShown + 1}: <strong>${lesson.hints[hintShown]}</strong>`;
+    div.innerHTML = `💡 Hint ${hintShown+1}: <strong>${lesson.hints[hintShown]}</strong>`;
     wrap.appendChild(div);
     hintShown++;
     if (hintShown === lesson.hints.length) {
@@ -985,7 +999,10 @@ function showSolution(id) {
 function completeLesson(id) {
   if (!state.completedLessons.includes(id)) {
     state.completedLessons.push(id);
-    addXP(100);
+    ensureDailyQuestDate();
+    state.dailyQuest.lessonsCompleted += 1;
+    addXP(100, true);
+    saveState();
     checkBadges();
     renderLessons(document.querySelector('#lesson-level-tabs .active')?.dataset.filter || 'beginner');
     toast('Lecție finalizată! +100 XP 🎉', 'success');
@@ -1002,27 +1019,36 @@ document.getElementById('modal-close').addEventListener('click', closeModal);
 document.getElementById('lesson-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('lesson-modal')) closeModal();
 });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeCmdPalette();
+  }
+});
 
+// ═══════════════════════════════════════════════
+// RENDER PROJECTS
+// ═══════════════════════════════════════════════
 function renderProjects(filter='beginner') {
   const grid = document.getElementById('projects-grid');
   const filtered = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.level === filter);
   grid.innerHTML = filtered.map(p => `
     <div class="project-card">
-      <div class="project-level tag ${p.level}">${p.level}</div>
+      <div class="project-level tag ${p.level}">${getLevelLabel(p.level)}</div>
       <h3>${p.title}</h3>
       <p style="font-size:0.85rem;">${p.objective}</p>
       <div class="project-tasks">
         ${p.tasks.map((t, i) => `
           <div class="task-item">
             <input type="checkbox" class="task-check" id="task-${p.id}-${i}"
-              ${state.completedProjects.includes(p.id + '-' + i) ? 'checked' : ''}
-              onchange="toggleTask('${p.id}',${i},${p.xp},${p.tasks.length})"
+              ${state.completedProjects.includes(p.id+'-'+i) ? 'checked' : ''}
+              onchange="toggleTask('${p.id}',${i},${p.xp},${p.tasks.length}, this.checked)"
               aria-label="${t}">
             <label for="task-${p.id}-${i}" style="cursor:pointer;font-size:0.85rem">${t}</label>
           </div>
         `).join('')}
       </div>
-      <div class="project-xp">🏆 ${p.xp} XP la finalizare</div>
+      <div class="project-xp">🏆 Până la ${p.xp} XP per proiect</div>
       <div class="project-skills">
         ${p.skills.map(s => `<span class="tag">${s}</span>`).join('')}
       </div>
@@ -1030,25 +1056,32 @@ function renderProjects(filter='beginner') {
   `).join('');
 }
 
-function toggleTask(projectId, taskIndex, xp, totalTasks) {
-  const key = `${projectId}-${taskIndex}`;
-  const checkbox = document.getElementById(`task-${projectId}-${taskIndex}`);
-  if (state.completedProjects.includes(key)) {
-    if (checkbox) checkbox.checked = true;
-    toast('Task-ul completat rămâne salvat.', 'info');
-    return;
+function toggleTask(projectId, taskIndex, xp, totalTasks, checked) {
+  const key = projectTaskKey(projectId, taskIndex);
+  const perTaskXp = Math.floor(xp / totalTasks);
+  const completedBefore = getCompletedProjectIds().includes(projectId);
+
+  if (checked) {
+    if (!state.completedProjects.includes(key)) {
+      state.completedProjects.push(key);
+    }
+    const taskAwarded = awardOnce('projectTasks', key, perTaskXp, true);
+    if (taskAwarded) {
+      toast(`Task bifat! +${perTaskXp} XP`, 'success');
+    }
+  } else {
+    state.completedProjects = state.completedProjects.filter(item => item !== key);
+    saveState();
+    updateDashboard();
   }
 
-  state.completedProjects.push(key);
-  addXP(Math.floor(xp / totalTasks));
-
-  const project = PROJECTS.find(p => p.id === projectId);
-  if (project && isProjectCompleted(project)) {
-    toast(`Proiect complet! ${project.title} finalizat 🎉`, 'success');
+  const completedAfter = getCompletedProjectIds().includes(projectId);
+  if (!completedBefore && completedAfter) {
+    toast(`Proiect complet! ${PROJECTS.find(p => p.id === projectId)?.title} 🎉`, 'success');
     earnBadge('badge-project');
   }
 
-  saveState();
+  renderProjects(document.querySelector('#project-level-tabs .active')?.dataset.filter || 'beginner');
   updateDashboard();
 }
 
@@ -1060,6 +1093,9 @@ document.getElementById('project-level-tabs').addEventListener('click', e => {
   renderProjects(btn.dataset.filter);
 });
 
+// ═══════════════════════════════════════════════
+// GAME MODES
+// ═══════════════════════════════════════════════
 const BINGO_TASKS = [
   'SUM pe interval','IF cu text','AVERAGE pe 5','MAX/MIN','COUNTA',
   'COUNTIF cu condiție','VLOOKUP','Sort descendent','Filter pe valoare','Formatare condițională',
@@ -1076,8 +1112,6 @@ let duelScore = {player: 0, ai: 0};
 let duelIndex = 0;
 let interviewScore = 0;
 let interviewIndex = 0;
-let duelTimer;
-let duelTimeLeft = 10;
 
 const GUESS_QUESTIONS = [
   { data:'Date: 5, 10, 15, 20. Rezultat: 50', answer:'=SUM()', options:['=SUM()','=AVERAGE()','=COUNT()','=MAX()'] },
@@ -1102,9 +1136,9 @@ const INTERVIEW_QUESTIONS = [
 ];
 
 const ESCAPE_STEPS = [
-  { clue:'Camera 1: Folosește COUNTIF pe coloana Status pentru "OK". Câte celule OK există?', answer:'3', hint:'=COUNTIF(A:A,"OK")' },
-  { clue:'Camera 2: Care este formula corectă pentru suma valorilor din B1:B5?', answer:'=sum(b1:b5)', hint:'Folosește SUM cu intervalul B1:B5' },
-  { clue:'Camera 3: PAROLA FINALĂ — Ce returnează =IF(100>50,"LIBER","BLOCAT")?', answer:'"liber"', hint:'Compară 100 cu 50 și returnează textul corespunzător' },
+  { clue:'Camera 1: Folosește COUNTIF pe coloana Status pentru "OK". Câte celule OK există?', data:[['Status'],['OK'],['ERROR'],['OK'],['OK'],['ERROR']], answer:'3', hint:'=COUNTIF(A:A,"OK")' },
+  { clue:'Camera 2: Care este formula corectă pentru suma valorilor din B1:B5?', data:[['Valori'],[10],[20],[30],[40],[50]], answer:'=sum(b1:b5)', hint:'Folosește SUM cu intervalul B1:B5' },
+  { clue:'Camera 3: PAROLA FINALĂ — Ce returnează =IF(100>50,"LIBER","BLOCAT")?', data:[], answer:'"liber"', hint:'Compară 100 cu 50 și returnează textul corespunzător' },
 ];
 
 function renderGames() {
@@ -1115,7 +1149,7 @@ function renderGames() {
         <span class="game-icon">🎯</span>
         <div>
           <h3>Excel Bingo</h3>
-          <div style="font-size:0.75rem;color:var(--text-muted)">Scor: <span id="bingo-score">0</span> XP</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Progres: <span id="bingo-score">0</span></div>
         </div>
       </div>
       <div class="game-body">
@@ -1130,7 +1164,6 @@ function renderGames() {
         </div>
         <div class="bingo-grid" id="bingo-grid"></div>
         <div id="bingo-msg" style="margin-top:0.75rem;font-size:0.85rem;"></div>
-        <button class="btn btn-outline btn-sm" style="margin-top:0.75rem" onclick="resetBingoBoard()">↺ Resetează tabla</button>
       </div>
     </div>
 
@@ -1153,7 +1186,6 @@ function renderGames() {
           </ul>
         </div>
         <div id="escape-body"></div>
-        <button class="btn btn-outline btn-sm" style="margin-top:0.75rem" onclick="resetEscapeGame()">↺ Reia Escape Room</button>
       </div>
     </div>
 
@@ -1244,9 +1276,9 @@ function renderBingo() {
 }
 
 function markBingo(i) {
-  if (i === 12) return;
-  if (bingoMarked.has(i)) bingoMarked.delete(i);
-  else bingoMarked.add(i);
+  if (i===12) return;
+  if (bingoMarked.has(i)) { bingoMarked.delete(i); }
+  else { bingoMarked.add(i); }
   renderBingo();
   checkBingoLines();
 }
@@ -1257,48 +1289,31 @@ function checkBingoLines() {
     [0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],
     [0,6,12,18,24],[4,8,12,16,20]
   ];
-  const completeLines = lines.filter(line => line.every(index => bingoMarked.has(index))).length;
+  const completeLines = lines.filter(l => l.every(index => bingoMarked.has(index))).length;
   const msg = document.getElementById('bingo-msg');
-
   if (bingoMarked.size === 25) {
-    msg.innerHTML = state.rewardFlags.bingoFull
-      ? '🎉 Recompensa pentru Bingo a fost deja acordată.'
-      : '🎉 BINGO COMPLET! +150 XP bonus!';
-
-    if (!state.rewardFlags.bingoFull) {
-      state.rewardFlags.bingoFull = true;
+    msg.innerHTML = '🎉 BINGO COMPLET! +150 XP bonus!';
+    if (awardOnce('games', 'bingo-full', 150)) {
+      earnBadge('badge-bingo');
       state.gamesWon++;
       saveState();
-      addXP(150);
-      earnBadge('badge-bingo');
+      updateDashboard();
     }
-    updateDashboard();
-    return;
+  } else if (completeLines > 0) {
+    msg.innerHTML = `✓ ${completeLines} linie(i) complete!`;
+  } else {
+    msg.innerHTML = '';
   }
-
-  msg.innerHTML = completeLines > 0
-    ? `✓ ${completeLines} linie(i) complete!`
-    : 'Completează o linie pentru Bingo!';
-}
-function resetBingoBoard() {
-  bingoMarked = new Set([12]);
-  renderBingo();
-  const msg = document.getElementById('bingo-msg');
-  if (msg) msg.innerHTML = 'Completează o linie pentru Bingo!';
 }
 
 function renderEscape() {
   const step = ESCAPE_STEPS[escapeStep];
-  document.getElementById('escape-step').textContent = Math.min(escapeStep + 1, 3);
-
-  if (!step) {
-    document.getElementById('escape-body').innerHTML = '<div style="text-align:center;padding:1.5rem"><div style="font-size:2rem">🎉</div><h3>Ai scăpat! +200 XP</h3></div>';
-    return;
-  }
-
+  if (!step) return;
+  document.getElementById('escape-step').textContent = escapeStep+1;
   document.getElementById('escape-body').innerHTML = `
     <div class="escape-clue">${step.clue}</div>
-    <input class="exercise-input" id="escape-input" type="text" placeholder="Răspunsul tău..." style="margin-bottom:0.75rem">
+    <input class="exercise-input" id="escape-input" type="text" placeholder="Răspunsul tău..."
+      style="margin-bottom:0.75rem">
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
       <button class="btn btn-primary btn-sm" onclick="checkEscape()">🔓 Deschide ușa</button>
       <button class="btn btn-outline btn-sm" onclick="showEscapeHint()">💡 Hint</button>
@@ -1310,36 +1325,29 @@ function renderEscape() {
 function showEscapeHint() {
   const fb = document.getElementById('escape-fb');
   fb.className = 'feedback-box show correct';
-  fb.textContent = '💡 ' + ESCAPE_STEPS[Math.min(escapeStep, ESCAPE_STEPS.length - 1)].hint;
-}
-function resetEscapeGame() {
-  escapeStep = 0;
-  renderEscape();
+  fb.textContent = '💡 ' + ESCAPE_STEPS[escapeStep].hint;
 }
 
 function checkEscape() {
-  const value = normalizeValue(document.getElementById('escape-input').value);
-  const answer = normalizeValue(ESCAPE_STEPS[escapeStep].answer);
+  const val = normalizeAnswer(document.getElementById('escape-input').value.trim());
+  const ans = normalizeAnswer(ESCAPE_STEPS[escapeStep].answer);
   const fb = document.getElementById('escape-fb');
-
-  if (value && (value === answer || value.includes(answer.replace(/[^a-z0-9]/g, '')))) {
+  if (val === ans || val === ans.replace(/"/g,'')) {
     fb.className = 'feedback-box show correct';
     fb.textContent = '✓ Corect! Ușa se deschide...';
     setTimeout(() => {
       escapeStep++;
       if (escapeStep >= ESCAPE_STEPS.length) {
-        renderEscape();
-        if (!state.rewardFlags.escapeWin) {
-          state.rewardFlags.escapeWin = true;
+        document.getElementById('escape-body').innerHTML = '<div style="text-align:center;padding:1.5rem"><div style="font-size:2rem">🎉</div><h3>Ai scăpat! +200 XP</h3></div>';
+        if (awardOnce('games', 'escape-complete', 200)) {
+          earnBadge('badge-escape');
           state.gamesWon++;
           saveState();
-          addXP(200);
-          earnBadge('badge-escape');
+          updateDashboard();
         }
       } else {
         renderEscape();
       }
-      updateDashboard();
     }, 800);
   } else {
     fb.className = 'feedback-box show wrong';
@@ -1361,9 +1369,7 @@ function renderGuess() {
   document.getElementById('guess-body').innerHTML = `
     <div class="escape-clue" style="margin-bottom:0.75rem">${q.data}</div>
     <div class="guess-options">
-      ${q.options.map(opt => `
-        <button class="guess-btn" onclick="checkGuess('${opt}','${q.answer}',this)">${opt}</button>
-      `).join('')}
+      ${q.options.map(opt => `<button class="guess-btn" onclick="checkGuess('${opt}','${q.answer}',this)">${opt}</button>`).join('')}
     </div>
     <div id="guess-fb"></div>
   `;
@@ -1380,34 +1386,34 @@ function checkGuess(opt, correct, btn) {
     document.getElementById('guess-fb').innerHTML = '<div style="color:var(--green-light);margin-top:0.5rem">✓ Corect! +25 XP</div>';
   } else {
     btn.classList.add('wrong-ans');
-    document.querySelectorAll('.guess-btn').forEach(b => { if (b.textContent === correct) b.classList.add('correct-ans'); });
+    document.querySelectorAll('.guess-btn').forEach(b => { if(b.textContent===correct) b.classList.add('correct-ans'); });
     document.getElementById('guess-fb').innerHTML = `<div style="color:#fca5a5;margin-top:0.5rem">✗ Formula corectă era: <strong>${correct}</strong></div>`;
   }
   guessIndex++;
   setTimeout(renderGuess, 1500);
 }
 
+let duelTimer;
+let duelTimeLeft = 10;
+
 function renderDuel() {
   if (duelIndex >= DUEL_QUESTIONS.length) {
     const won = duelScore.player >= duelScore.ai;
     document.getElementById('duel-body').innerHTML = `
       <div style="text-align:center;padding:1rem">
-        <div style="font-size:2rem">${won ? '🏆' : '💪'}</div>
-        <h3>${won ? 'Ai câștigat!' : 'AI a câștigat!'}</h3>
+        <div style="font-size:2rem">${won?'🏆':'💪'}</div>
+        <h3>${won?'Ai câștigat!':'AI a câștigat!'}</h3>
         <p>Tu: ${duelScore.player} | AI: ${duelScore.ai}</p>
         ${won ? '<p style="color:var(--green-light)">+100 XP!</p>' : ''}
         <button class="btn btn-outline btn-sm" style="margin-top:0.75rem" onclick="duelIndex=0;duelScore={player:0,ai:0};renderDuel()">Rematch</button>
       </div>`;
-    if (won && !state.rewardFlags.duelWin) {
-      state.rewardFlags.duelWin = true;
+    if (won && awardOnce('games', 'duel-win', 100)) {
       state.gamesWon++;
       saveState();
-      addXP(100);
       updateDashboard();
     }
     return;
   }
-
   const q = DUEL_QUESTIONS[duelIndex];
   duelTimeLeft = 10;
   clearInterval(duelTimer);
@@ -1423,23 +1429,19 @@ function renderDuel() {
     <button class="btn btn-primary btn-sm" onclick="checkDuel()">→ Răspunde</button>
     <div id="duel-fb"></div>
   `;
-
   duelTimer = setInterval(() => {
     duelTimeLeft--;
     const el = document.getElementById('duel-timer');
     if (el) el.textContent = `⏱ ${duelTimeLeft}s`;
-    if (duelTimeLeft <= 0) {
-      clearInterval(duelTimer);
-      aiWinsRound();
-    }
+    if (duelTimeLeft <= 0) { clearInterval(duelTimer); aiWinsRound(); }
   }, 1000);
 }
 
 function checkDuel() {
   clearInterval(duelTimer);
-  const val = normalizeValue(document.getElementById('duel-input')?.value);
-  const ans = normalizeValue(DUEL_QUESTIONS[duelIndex].answer);
-  if (val && (val === ans || ans.includes(val.replace(/"/g, '')))) {
+  const val = normalizeAnswer(document.getElementById('duel-input')?.value.trim());
+  const ans = normalizeAnswer(DUEL_QUESTIONS[duelIndex].answer);
+  if (val && (val === ans || val === ans.replace(/"/g,''))) {
     duelScore.player++;
     document.getElementById('duel-fb').innerHTML = '<div style="color:var(--green-light)">✓ Tu câștigi runda!</div>';
   } else {
@@ -1463,29 +1465,25 @@ function renderInterview() {
     const passed = interviewScore >= 4;
     document.getElementById('interview-body').innerHTML = `
       <div style="text-align:center;padding:1rem">
-        <div style="font-size:2rem">${passed ? '🎉' : '📚'}</div>
-        <h3>${passed ? 'Interviu trecut!' : 'Mai practică!'}</h3>
-        <p>Scor: ${interviewScore}/5 ${passed ? '(+150 XP)' : ''}</p>
+        <div style="font-size:2rem">${passed?'🎉':'📚'}</div>
+        <h3>${passed?'Interviu trecut!':'Mai practică!'}</h3>
+        <p>Scor: ${interviewScore}/5 ${passed?'(+150 XP)':''}</p>
         <button class="btn btn-outline btn-sm" style="margin-top:0.75rem" onclick="interviewIndex=0;interviewScore=0;renderInterview()">Reîncepe</button>
       </div>`;
-    if (passed && !state.rewardFlags.interviewWin) {
-      state.rewardFlags.interviewWin = true;
+    if (passed && awardOnce('games', 'interview-pass', 150)) {
+      earnBadge('badge-interview');
       state.gamesWon++;
       saveState();
-      addXP(150);
-      earnBadge('badge-interview');
       updateDashboard();
     }
     return;
   }
   const q = INTERVIEW_QUESTIONS[interviewIndex];
   document.getElementById('interview-body').innerHTML = `
-    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">Întrebarea ${interviewIndex + 1}/5</div>
+    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem">Întrebarea ${interviewIndex+1}/5</div>
     <div class="interview-q">${q.q}</div>
     <div class="guess-options">
-      ${q.opts.map((opt, i) => `
-        <button class="guess-btn" onclick="checkInterview(${i},${q.correct},this)">${opt}</button>
-      `).join('')}
+      ${q.opts.map((opt, i) => `<button class="guess-btn" onclick="checkInterview(${i},${q.correct},this)">${opt}</button>`).join('')}
     </div>
     <div id="interview-fb"></div>
   `;
@@ -1509,6 +1507,9 @@ function checkInterview(chosen, correct, btn) {
   setTimeout(renderInterview, 1300);
 }
 
+// ═══════════════════════════════════════════════
+// EXAM
+// ═══════════════════════════════════════════════
 let currentExam = 'beginner';
 let examAnswers = {};
 
@@ -1518,11 +1519,9 @@ function renderExam(level) {
   const questions = EXAMS[level];
   document.getElementById('exam-body').innerHTML = questions.map((q, qi) => `
     <div class="exam-question">
-      <p style="font-weight:600;margin-bottom:0">${qi + 1}. ${q.q}</p>
+      <p style="font-weight:600;margin-bottom:0">${qi+1}. ${q.q}</p>
       <div class="exam-options">
-        ${q.opts.map((opt, oi) => `
-          <button class="exam-opt" id="eopt-${qi}-${oi}" onclick="selectExamOpt(${qi},${oi})">${opt}</button>
-        `).join('')}
+        ${q.opts.map((opt, oi) => `<button class="exam-opt" id="eopt-${qi}-${oi}" onclick="selectExamOpt(${qi},${oi})">${opt}</button>`).join('')}
       </div>
     </div>
   `).join('');
@@ -1531,7 +1530,7 @@ function renderExam(level) {
 
 function selectExamOpt(qi, oi) {
   EXAMS[currentExam][qi].opts.forEach((_, i) => {
-    document.getElementById(`eopt-${qi}-${i}`)?.classList.remove('selected', 'correct-opt', 'wrong-opt');
+    document.getElementById(`eopt-${qi}-${i}`)?.classList.remove('selected');
   });
   document.getElementById(`eopt-${qi}-${oi}`).classList.add('selected');
   examAnswers[qi] = oi;
@@ -1547,10 +1546,15 @@ document.getElementById('exam-level-tabs').addEventListener('click', e => {
 
 document.getElementById('exam-submit').addEventListener('click', () => {
   const questions = EXAMS[currentExam];
+  if (Object.keys(examAnswers).length < questions.length) {
+    const remaining = questions.length - Object.keys(examAnswers).length;
+    toast(`Mai ai ${remaining} întrebare${remaining === 1 ? '' : 'bări'} fără răspuns.`, 'info');
+    return;
+  }
   let correct = 0;
   questions.forEach((q, qi) => {
     const chosen = examAnswers[qi];
-    q.opts.forEach((_, oi) => {
+    questions[qi].opts.forEach((_, oi) => {
       const el = document.getElementById(`eopt-${qi}-${oi}`);
       if (!el) return;
       el.classList.remove('correct-opt', 'wrong-opt');
@@ -1559,49 +1563,42 @@ document.getElementById('exam-submit').addEventListener('click', () => {
     });
     if (chosen === q.correct) correct++;
   });
-
-  const pct = Math.round(correct / questions.length * 100);
+  const pct = Math.round(correct/questions.length*100);
   const passed = pct >= 70;
-  const previousScore = state.examScores[currentExam] || 0;
-  state.examScores[currentExam] = Math.max(previousScore, pct);
+  const previousBest = state.examScores[currentExam] || 0;
+  state.examScores[currentExam] = Math.max(previousBest, pct);
   saveState();
 
   const result = document.getElementById('exam-result');
   result.style.display = 'block';
   result.style.background = passed ? 'rgba(22,163,74,0.1)' : 'rgba(239,68,68,0.1)';
   result.style.border = `1px solid ${passed ? 'rgba(22,163,74,0.3)' : 'rgba(239,68,68,0.3)'}`;
-
-  let rewardText = '';
-  if (passed && !state.rewardFlags[`exam_${currentExam}`]) {
-    state.rewardFlags[`exam_${currentExam}`] = true;
-    saveState();
-    addXP(200);
-    rewardText = ' +200 XP';
-  }
-
   result.innerHTML = `
-    <strong>${passed ? '✓ Promovat!' : '✗ Nepromovat'}</strong>
+    <strong>${passed?'✓ Promovat!':'✗ Nepromovat'}</strong>
     Scor: ${correct}/${questions.length} (${pct}%)
-    ${passed
-      ? `<br>${canUnlockCertificate(currentExam) ? 'Ai deblocat certificatul pentru nivelul ' + currentExam + '!' : 'Examen trecut. Mai ai nevoie de toate lecțiile și de cel puțin un proiect complet la acest nivel pentru certificat.'}${rewardText}`
-      : '<br>Minim 70% pentru a trece. Revizuiește lecțiile și încearcă din nou.'}
+    ${passed ? '<br>Ai trecut examenul pentru nivelul ' + getLevelLabel(currentExam) + '.' : '<br>Ai nevoie de minimum 70%. Revizuiește lecțiile și încearcă din nou.'}
   `;
+  if (passed) {
+    awardOnce('exams', currentExam, 200, true);
+  }
   updateDashboard();
 });
 
 document.getElementById('exam-reset').addEventListener('click', () => renderExam(currentExam));
 
+// ═══════════════════════════════════════════════
+// CERTIFICATES
+// ═══════════════════════════════════════════════
 function renderCerts() {
   const certs = [
     { id:'beginner', title:'Excel Quest Beginner Certificate', icon:'🟢', req:'10 lecții + 1 proiect + examen Beginner ≥70%', color:'var(--green-light)' },
     { id:'intermediate', title:'Excel Quest Intermediate Certificate', icon:'🟡', req:'10 lecții + 1 proiect + examen Intermediate ≥70%', color:'var(--gold)' },
     { id:'advanced', title:'Excel Quest Advanced Certificate', icon:'🔴', req:'10 lecții + 1 proiect + examen Advanced ≥70%', color:'var(--red)' },
   ];
-
   document.getElementById('cert-grid').innerHTML = certs.map(c => {
-    const unlocked = canUnlockCertificate(c.id);
+    const unlocked = isCertificateUnlocked(c.id);
     return `
-      <div class="cert-card ${unlocked ? 'unlocked' : 'locked'}">
+      <div class="cert-card ${unlocked?'unlocked':'locked'}">
         <div class="cert-icon">${c.icon}</div>
         <div class="cert-title" style="color:${c.color}">${c.title}</div>
         <div class="cert-req">${c.req}</div>
@@ -1615,57 +1612,64 @@ function renderCerts() {
 }
 
 function downloadCert(level) {
-  if (!canUnlockCertificate(level)) {
+  const normalizedLevel = String(level).toLowerCase();
+  if (!isCertificateUnlocked(normalizedLevel)) {
     toast('Certificatul nu este încă deblocat.', 'error');
     return;
   }
-
   const name = localStorage.getItem('eq-name') || 'Student';
   const date = new Date().toLocaleDateString('ro-RO');
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificat ${level}</title>
-  <style>body{font-family:Georgia,serif;background:#f8f6f0;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}.cert{background:#fff;border:8px solid #d4af37;max-width:700px;padding:3rem;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15)}h1{color:#d4af37;font-size:2rem;margin-bottom:0.5rem}h2{color:#333;font-size:1.4rem}.name{font-size:2rem;color:#15803d;margin:1rem 0;font-style:italic}.footer{margin-top:2rem;color:#888;font-size:0.85rem}</style></head>
-  <body><div class="cert"><div style="font-size:3rem">🏆</div><h1>Excel Quest</h1><h2>${capitalize(level)} Certificate</h2><p>Acest certificat este acordat lui</p><div class="name">${name}</div><p>pentru completarea cu succes a nivelului <strong>${level}</strong> în platforma Excel Quest.</p><div class="footer">Excel Quest · ${date} · excelquest.github.io</div></div></body></html>`;
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificat ${normalizedLevel}</title>
+  <style>body{font-family:Georgia,serif;background:#f8f6f0;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+  .cert{background:#fff;border:8px solid #d4af37;max-width:700px;padding:3rem;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+  h1{color:#d4af37;font-size:2rem;margin-bottom:0.5rem}h2{color:#333;font-size:1.4rem}
+  .name{font-size:2rem;color:#15803d;margin:1rem 0;font-style:italic}
+  .footer{margin-top:2rem;color:#888;font-size:0.85rem}</style></head>
+  <body><div class="cert">
+  <div style="font-size:3rem">🏆</div>
+  <h1>Excel Quest</h1>
+  <h2>${normalizedLevel.charAt(0).toUpperCase()+normalizedLevel.slice(1)} Certificate</h2>
+  <p>Acest certificat este acordat lui</p>
+  <div class="name">${name}</div>
+  <p>pentru completarea cu succes a nivelului <strong>${normalizedLevel}</strong> în platforma Excel Quest.</p>
+  <div class="footer">Excel Quest · ${date} · excelquest.github.io</div>
+  </div></body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `Excel-Quest-Certificate-${level}.html`;
+  a.download = `Excel-Quest-Certificate-${normalizedLevel}.html`;
   a.click();
-  URL.revokeObjectURL(a.href);
   toast('Certificat descărcat!', 'success');
 }
 
+// ═══════════════════════════════════════════════
+// DASHBOARD UPDATE
+// ═══════════════════════════════════════════════
 function updateDashboard() {
-  const completedProjects = getCompletedProjectsCount('all');
+  ensureDailyQuestDate();
+  const completedProjectIds = getCompletedProjectIds();
   document.getElementById('stat-xp').textContent = state.xp;
   document.getElementById('nav-xp').textContent = state.xp + ' XP';
   document.getElementById('stat-lessons').textContent = state.completedLessons.length + '/30';
-  document.getElementById('stat-projects').textContent = completedProjects + '/9';
+  document.getElementById('stat-projects').textContent = completedProjectIds.length + '/9';
   document.getElementById('stat-games').textContent = state.gamesWon;
 
   const activeLevel = document.querySelector('#dashboard .level-tab.active')?.dataset.level || 'beginner';
   const levelLessons = LESSONS.filter(l => l.level === activeLevel);
   const doneInLevel = levelLessons.filter(l => state.completedLessons.includes(l.id)).length;
   const pct = Math.round(doneInLevel / levelLessons.length * 100);
-  document.getElementById('level-label').textContent = capitalize(activeLevel);
+  document.getElementById('level-label').textContent = getLevelLabel(activeLevel);
   document.getElementById('level-pct').textContent = pct + '%';
   document.getElementById('level-bar').style.width = pct + '%';
+  document.getElementById('level-next').textContent = pct < 100
+    ? `Completează ${levelLessons.length - doneInLevel} lecți(e) mai pentru certificat.`
+    : `✓ Nivel ${getLevelLabel(activeLevel)} completat! Finalizează minimum 1 proiect și promovează examenul.`;
 
-  const projectCountInLevel = getCompletedProjectsCount(activeLevel);
-  const examPassed = (state.examScores[activeLevel] || 0) >= 70;
-  if (pct < 100) {
-    document.getElementById('level-next').textContent = `Completează ${levelLessons.length - doneInLevel} lecți(e) mai pentru progres complet.`;
-  } else if (projectCountInLevel < 1) {
-    document.getElementById('level-next').textContent = `✓ Lecțiile sunt gata. Completează un proiect ${capitalize(activeLevel)} pentru certificat.`;
-  } else if (!examPassed) {
-    document.getElementById('level-next').textContent = `✓ Lecțiile și proiectul sunt gata. Dă examenul ${capitalize(activeLevel)} pentru certificat.`;
-  } else {
-    document.getElementById('level-next').textContent = `🎓 Certificatul ${capitalize(activeLevel)} este deblocat.`;
-  }
+  document.getElementById('cert-preview').style.display = (doneInLevel === 10 && activeLevel === 'beginner') ? 'block' : 'none';
 
-  document.getElementById('cert-preview').style.display = canUnlockCertificate(activeLevel) || doneInLevel === 10 ? 'block' : 'none';
-
-  const dailyPct = Math.min(100, state.completedLessons.length * 10);
-  document.getElementById('daily-quest-text').textContent = `Completează lecții pentru XP zilnic. Progres total: ${state.completedLessons.length} lecții.`;
+  const dailyPct = Math.min(100, state.dailyQuest.lessonsCompleted * 20);
+  document.getElementById('daily-quest-text').textContent =
+    `Completează lecții pentru XP zilnic. Progres astăzi: ${state.dailyQuest.lessonsCompleted}/5 lecții.`;
   document.getElementById('daily-bar').style.width = dailyPct + '%';
 
   renderCerts();
@@ -1679,6 +1683,9 @@ document.querySelector('#dashboard .level-tabs').addEventListener('click', e => 
   updateDashboard();
 });
 
+// ═══════════════════════════════════════════════
+// BADGES
+// ═══════════════════════════════════════════════
 function checkBadges() {
   if (state.completedLessons.length >= 1) earnBadge('badge-first');
   if (state.completedLessons.length >= 5) earnBadge('badge-5');
@@ -1700,6 +1707,9 @@ function restoreBadges() {
   });
 }
 
+// ═══════════════════════════════════════════════
+// ONBOARDING
+// ═══════════════════════════════════════════════
 document.getElementById('days-row').addEventListener('click', e => {
   const btn = e.target.closest('.day-btn');
   if (btn) btn.classList.toggle('active');
@@ -1707,93 +1717,61 @@ document.getElementById('days-row').addEventListener('click', e => {
 
 document.getElementById('save-onboarding').addEventListener('click', () => {
   const name = document.getElementById('user-name').value.trim() || 'Student';
-  const selectedDays = Array.from(document.querySelectorAll('#days-row .day-btn.active')).map(btn => btn.dataset.day);
-  if (!selectedDays.length) toast('Alege cel puțin o zi de antrenament.', 'info');
+  const selectedDays = [...document.querySelectorAll('#days-row .day-btn.active')].map(btn => btn.dataset.day);
   localStorage.setItem('eq-name', name);
-  state.profile.name = name;
-  state.profile.goal = document.getElementById('user-goal').value;
-  state.profile.level = document.getElementById('user-level').value;
+  state.goal = document.getElementById('user-goal').value;
+  state.level = document.getElementById('user-level').value;
   state.profile.days = selectedDays;
   saveState();
   toast(`Bun venit, ${name}! Dashboard-ul tău este gata. 🎉`, 'success');
-  scrollToSection('dashboard');
+  document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});
   updateDashboard();
 });
 
+// ═══════════════════════════════════════════════
+// COMMAND PALETTE
+// ═══════════════════════════════════════════════
 const CMD_ITEMS = [
   ...LESSONS.map(l => ({ label: l.title, type:'Lecție', action:() => openLesson(l.id) })),
-  { label:'Dashboard', type:'Navigare', action:()=>scrollToSection('dashboard') },
-  { label:'Lecții Beginner', type:'Navigare', action:()=>{ scrollToSection('lessons'); renderLessons('beginner'); } },
-  { label:'Game Modes', type:'Navigare', action:()=>scrollToSection('games') },
-  { label:'Proiecte', type:'Navigare', action:()=>scrollToSection('projects') },
-  { label:'Examen Beginner', type:'Examen', action:()=>{ scrollToSection('exam'); renderExam('beginner'); } },
-  { label:'Certificate', type:'Navigare', action:()=>scrollToSection('certificates') },
-  { label:'Resetează progresul local', type:'Sistem', action:()=>{ if (confirm('Sigur vrei să resetezi tot progresul salvat local?')) resetProgress(); } },
+  { label:'Dashboard', type:'Navigare', action:()=>document.getElementById('dashboard').scrollIntoView({behavior:'smooth'}) },
+  { label:'Lecții Beginner', type:'Navigare', action:()=>{ document.getElementById('lessons').scrollIntoView({behavior:'smooth'}); renderLessons('beginner'); } },
+  { label:'Game Modes', type:'Navigare', action:()=>document.getElementById('games').scrollIntoView({behavior:'smooth'}) },
+  { label:'Proiecte', type:'Navigare', action:()=>document.getElementById('projects').scrollIntoView({behavior:'smooth'}) },
+  { label:'Examen Beginner', type:'Examen', action:()=>{ document.getElementById('exam').scrollIntoView({behavior:'smooth'}); renderExam('beginner'); } },
+  { label:'Certificate', type:'Navigare', action:()=>document.getElementById('certificates').scrollIntoView({behavior:'smooth'}) },
 ];
 
 function openCmdPalette() {
   document.getElementById('cmd-overlay').classList.add('open');
   document.getElementById('cmd-input').value = '';
-  cmdSelectedIndex = 0;
   renderCmdResults('');
   document.getElementById('cmd-input').focus();
 }
 function closeCmdPalette() {
   document.getElementById('cmd-overlay').classList.remove('open');
-  cmdSelectedIndex = 0;
 }
 
 document.getElementById('cmd-btn').addEventListener('click', openCmdPalette);
-document.getElementById('cmd-overlay').addEventListener('click', e => { if (e.target === document.getElementById('cmd-overlay')) closeCmdPalette(); });
+document.getElementById('cmd-overlay').addEventListener('click', e => { if(e.target===document.getElementById('cmd-overlay')) closeCmdPalette(); });
 document.addEventListener('keydown', e => {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    openCmdPalette();
-    return;
-  }
-  if (e.key === 'Escape') {
-    closeModal();
-    closeCmdPalette();
-  }
+  if ((e.ctrlKey||e.metaKey) && e.key==='k') { e.preventDefault(); openCmdPalette(); }
 });
 
 document.getElementById('cmd-input').addEventListener('input', e => renderCmdResults(e.target.value));
 document.getElementById('cmd-input').addEventListener('keydown', e => {
-  const maxIndex = Math.max(0, (window._cmdFiltered?.length || 1) - 1);
-  if (e.key === 'Escape') {
-    closeCmdPalette();
-    return;
-  }
-  if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    cmdSelectedIndex = Math.min(maxIndex, cmdSelectedIndex + 1);
-    highlightCmdSelection();
-    return;
-  }
-  if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    cmdSelectedIndex = Math.max(0, cmdSelectedIndex - 1);
-    highlightCmdSelection();
-    return;
-  }
-  if (e.key === 'Enter' && window._cmdFiltered?.length) {
-    e.preventDefault();
-    runCmd(cmdSelectedIndex);
-  }
+  if (e.key==='Escape') closeCmdPalette();
 });
 
 function renderCmdResults(query) {
   const q = query.toLowerCase();
   const filtered = CMD_ITEMS.filter(i => i.label.toLowerCase().includes(q)).slice(0, 10);
-  cmdSelectedIndex = 0;
   document.getElementById('cmd-results').innerHTML = filtered.map((item, idx) => `
-    <div class="cmd-item" data-cmd-index="${idx}" onclick="runCmd(${idx})" tabindex="0" role="option">
+    <div class="cmd-item" onclick="runCmd(${idx})" tabindex="0" onkeydown="if(event.key==='Enter')runCmd(${idx})">
       <span>${item.label}</span>
       <span class="cmd-type">${item.type}</span>
     </div>
   `).join('') || '<div class="cmd-item" style="color:var(--text-muted)">Niciun rezultat</div>';
   window._cmdFiltered = filtered;
-  highlightCmdSelection();
 }
 
 function runCmd(idx) {
@@ -1801,66 +1779,186 @@ function runCmd(idx) {
   closeCmdPalette();
 }
 
+// ═══════════════════════════════════════════════
+// LOCALIZED UI HELPERS
+// ═══════════════════════════════════════════════
+function syncLocalizedUI() {
+  const isEN = document.body.dataset.lang === 'en';
+  document.getElementById('user-name').placeholder = isEN ? 'e.g. Laura' : 'Ex: Laura';
+  const cmdInput = document.getElementById('cmd-input');
+  if (cmdInput) cmdInput.placeholder = isEN ? 'Search lessons, formulas, games...' : 'Caută lecții, formule, jocuri...';
+
+  const goalOptions = document.querySelectorAll('#user-goal option');
+  if (goalOptions.length >= 5) {
+    goalOptions[0].textContent = isEN ? 'School / university' : 'Școală / facultate';
+    goalOptions[1].textContent = isEN ? 'Personal budget' : 'Budget personal';
+    goalOptions[2].textContent = isEN ? 'Applying for jobs' : 'Aplicat la joburi';
+    goalOptions[3].textContent = isEN ? 'Reports' : 'Rapoarte';
+    goalOptions[4].textContent = isEN ? 'Dashboards' : 'Dashboard-uri';
+  }
+
+  const dayMap = isEN
+    ? ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    : ['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
+  document.querySelectorAll('#days-row .day-btn').forEach((btn, idx) => {
+    if (dayMap[idx]) btn.textContent = dayMap[idx];
+  });
+}
+// ═══════════════════════════════════════════════
+// ACCESSIBILITY CONTROLS
+// ═══════════════════════════════════════════════
+function applyLanguageTexts(lang) {
+  const goalSelect = document.getElementById('user-goal');
+  const levelSelect = document.getElementById('user-level');
+  const days = [...document.querySelectorAll('#days-row .day-btn')];
+
+  const goalOptions = {
+    ro: ['Școală / facultate','Buget personal','Aplicat la joburi','Rapoarte','Dashboard-uri'],
+    en: ['School / university','Personal budget','Applying for jobs','Reports','Dashboards']
+  };
+  const levelOptions = {
+    ro: ['Începător','Intermediar','Avansat'],
+    en: ['Beginner','Intermediate','Advanced']
+  };
+  const dayLabels = {
+    ro: ['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'],
+    en: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+  };
+  const placeholders = {
+    ro: { name: 'Ex: Laura', command: 'Caută lecții, formule, jocuri...' },
+    en: { name: 'Ex: Laura', command: 'Search lessons, formulas, games...' }
+  };
+
+  [...goalSelect.options].forEach((option, index) => option.textContent = goalOptions[lang][index]);
+  [...levelSelect.options].forEach((option, index) => option.textContent = levelOptions[lang][index]);
+  days.forEach((btn, index) => btn.textContent = dayLabels[lang][index]);
+  document.getElementById('user-name').placeholder = placeholders[lang].name;
+  document.getElementById('cmd-input').placeholder = placeholders[lang].command;
+}
+
 document.getElementById('lang-toggle').addEventListener('click', () => {
-  state.ui.lang = document.body.dataset.lang === 'ro' ? 'en' : 'ro';
-  applyUiPreferences();
-  saveState();
+  const cur = document.body.dataset.lang;
+  const next = cur === 'ro' ? 'en' : 'ro';
+  document.body.dataset.lang = next;
+  document.documentElement.lang = next;
+  applyLanguageTexts(next);
 });
 
 document.getElementById('contrast-btn').addEventListener('click', () => {
-  state.ui.theme = document.documentElement.dataset.theme === 'high-contrast' ? '' : 'high-contrast';
-  applyUiPreferences();
-  saveState();
+  const cur = document.documentElement.dataset.theme;
+  document.documentElement.dataset.theme = cur === 'high-contrast' ? '' : 'high-contrast';
 });
 
 document.getElementById('motion-btn').addEventListener('click', () => {
-  state.ui.reducedMotion = !document.documentElement.hasAttribute('data-reduced-motion');
-  applyUiPreferences();
-  saveState();
+  if (document.documentElement.hasAttribute('data-reduced-motion')) {
+    document.documentElement.removeAttribute('data-reduced-motion');
+  } else {
+    document.documentElement.setAttribute('data-reduced-motion', '');
+  }
 });
 
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
 function toast(msg, type='info') {
   const container = document.getElementById('toast-container');
   const el = document.createElement('div');
   el.className = `toast ${type}`;
-  el.innerHTML = `${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'} ${msg}`;
+  el.innerHTML = `${type==='success'?'✓':type==='error'?'✗':'ℹ'} ${msg}`;
   container.appendChild(el);
   setTimeout(() => el.remove(), 3500);
 }
 
-applyUiPreferences();
+
+// ═══════════════════════════════════════════════
+// LAUNCH HELPERS
+// ═══════════════════════════════════════════════
+const LEVEL_META = {
+  beginner: { label: 'Beginner', lessons: 10 },
+  intermediate: { label: 'Intermediate', lessons: 10 },
+  advanced: { label: 'Advanced', lessons: 10 },
+};
+
+function getProjectCompletionCount() {
+  return PROJECTS.filter(p =>
+    Array.from({length: p.tasks.length}, (_, i) => `${p.id}-${i}`).every(key => state.completedProjects.includes(key))
+  ).length;
+}
+
+function getTodayProgressCount() {
+  const key = new Date().toISOString().slice(0, 10);
+  const dailyMap = state.dailyLessonMap || {};
+  return Array.isArray(dailyMap[key]) ? dailyMap[key].length : 0;
+}
+
+function trackLessonCompletionForToday(id) {
+  const key = new Date().toISOString().slice(0, 10);
+  state.dailyLessonMap = state.dailyLessonMap || {};
+  state.dailyLessonMap[key] = state.dailyLessonMap[key] || [];
+  if (!state.dailyLessonMap[key].includes(id)) state.dailyLessonMap[key].push(id);
+}
+
+function canUnlockCertificate(level) {
+  const lessonCount = LESSONS.filter(l => l.level === level && state.completedLessons.includes(l.id)).length;
+  const projectCount = PROJECTS.filter(p => p.level === level).filter(p =>
+    Array.from({length: p.tasks.length}, (_, i) => `${p.id}-${i}`).every(key => state.completedProjects.includes(key))
+  ).length;
+  const examScore = state.examScores[level] || 0;
+  return lessonCount >= 10 && projectCount >= 1 && examScore >= 70;
+}
+
+function resetAllProgress() {
+  localStorage.removeItem('eqv2');
+  localStorage.removeItem('eq-name');
+  state.xp = 0;
+  state.completedLessons = [];
+  state.completedProjects = [];
+  state.badges = [];
+  state.gamesWon = 0;
+  state.examScores = {};
+  state.dailyLessonMap = {};
+  saveState();
+  renderLessons(document.querySelector('#lesson-level-tabs .active')?.dataset.filter || 'beginner');
+  renderProjects(document.querySelector('#project-level-tabs .active')?.dataset.filter || 'beginner');
+  renderGames();
+  renderExam(currentExam || 'beginner');
+  updateDashboard();
+  restoreBadges();
+  document.getElementById('user-name').value = '';
+  toast('Progresul local a fost resetat.', 'info');
+}
+
+document.addEventListener('click', e => {
+  if (e.target && (e.target.id === 'reset-progress-btn' || e.target.closest('#reset-progress-btn'))) {
+    if (confirm(document.body.dataset.lang === 'en' ? 'Reset local progress in this browser?' : 'Resetezi progresul local din acest browser?')) {
+      resetAllProgress();
+    }
+  }
+});
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+function restoreProfile() {
+  const savedName = localStorage.getItem('eq-name');
+  if (savedName) document.getElementById('user-name').value = savedName;
+  if (state.goal) document.getElementById('user-goal').value = state.goal;
+  if (state.level) document.getElementById('user-level').value = state.level;
+  (state.profile.days || []).forEach(day => {
+    const btn = document.querySelector(`#days-row .day-btn[data-day="${day}"]`);
+    if (btn) btn.classList.add('active');
+  });
+}
+
 renderLessons('beginner');
 renderGames();
 renderProjects('beginner');
 renderExam('beginner');
+restoreProfile();
+applyLanguageTexts(document.body.dataset.lang || 'ro');
 updateDashboard();
 restoreBadges();
 checkBadges();
-updateActiveNavLink();
-window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', event => {
-    const href = link.getAttribute('href') || '';
-    if (!href.startsWith('#')) return;
-    const target = document.getElementById(href.slice(1));
-    if (!target) return;
-    event.preventDefault();
-    scrollToSection(target);
-    updateActiveNavLink();
-  });
-});
-
-const savedName = localStorage.getItem('eq-name');
-if (savedName) document.getElementById('user-name').value = savedName;
-if (state.profile?.level) document.getElementById('user-level').value = state.profile.level;
-if (state.profile?.goal) document.getElementById('user-goal').value = state.profile.goal;
-if (Array.isArray(state.profile?.days)) {
-  document.querySelectorAll('#days-row .day-btn').forEach(btn => {
-    btn.classList.toggle('active', state.profile.days.includes(btn.dataset.day));
-  });
-}
-setButtonPressedState('contrast-btn', document.documentElement.dataset.theme === 'high-contrast');
-setButtonPressedState('motion-btn', document.documentElement.hasAttribute('data-reduced-motion'));
 </script>
 </body>
 </html>
