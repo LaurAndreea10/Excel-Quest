@@ -16,7 +16,6 @@
   --green2:#34d399;
   --gold:#f6b93b;
   --blue:#60a5fa;
-  --violet:#a78bfa;
   --rose:#fb7185;
   --shadow:0 28px 80px rgba(0,0,0,.35)
 }
@@ -35,6 +34,28 @@ body{
   color:var(--text);
   line-height:1.62
 }
+body.light{
+  --bg:#f6f9fc;
+  --card:#ffffff;
+  --line:rgba(15,23,42,.10);
+  --text:#0f172a;
+  --muted:#475569;
+  background:
+    linear-gradient(90deg,rgba(15,23,42,.04) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(15,23,42,.04) 1px,transparent 1px),
+    radial-gradient(circle at 96% 47%,rgba(246,185,59,.20) 0 34px,transparent 35px),
+    radial-gradient(circle at 10% 8%,rgba(22,193,114,.10),transparent 30%),
+    var(--bg);
+  background-size:75px 75px,75px 75px,auto,auto,auto;
+}
+body.light .top{background:rgba(246,249,252,.88)}
+body.light .window{background:linear-gradient(180deg,#ffffff,#f3f6fb)}
+body.light .formula{color:#334155}
+body.light td,
+body.light th{color:#334155}
+body.light th{color:#64748b}
+body.light .start-card input,
+body.light .start-card select{background:#ffffff;color:#0f172a}
 body.high-contrast{
   --bg:#000;
   --card:#050505;
@@ -67,7 +88,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
   outline:4px solid var(--gold);
   outline-offset:4px
 }
-.wrap{width:min(1280px,calc(100% - 36px));margin:auto}
+.wrap{width:min(1200px,calc(100% - 36px));margin:auto}
 .top{
   position:sticky;
   top:0;
@@ -101,23 +122,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
   font-weight:950
 }
 .brand-name{font-family:Georgia,serif;font-size:1.55rem}
-.links{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  flex-wrap:wrap
-}
-.links a{
-  color:var(--muted);
-  text-decoration:none;
-  font-weight:750
-}
-.right{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap
-}
+.links{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.links a{color:var(--muted);text-decoration:none;font-weight:750}
+.right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .lang,.theme,.access-btn{
   border:1px solid var(--line);
   background:rgba(255,255,255,.045);
@@ -133,12 +140,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
   color:#b8f7d8
 }
 .hero{
-  padding:96px 0 64px;
+  padding:92px 0 58px;
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:56px;
+  grid-template-columns:1.08fr .92fr;
+  gap:52px;
   align-items:center;
-  min-height:650px
+  min-height:620px
 }
 .badge{
   display:inline-flex;
@@ -161,10 +168,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
 }
 h1{
   font-family:Georgia,serif;
-  font-size:clamp(3.5rem,8vw,6.8rem);
-  line-height:.9;
+  font-size:clamp(3.3rem,8vw,6.5rem);
+  line-height:.92;
   letter-spacing:-.07em;
-  margin:24px 0
+  margin:22px 0
 }
 .accent{
   font-style:italic;
@@ -183,17 +190,8 @@ h1{
   border-radius:999px;
   z-index:-1
 }
-.lead{
-  font-size:1.34rem;
-  color:var(--muted);
-  max-width:700px
-}
-.cta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:28px
-}
+.lead{font-size:1.2rem;color:var(--muted);max-width:680px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .btn{
   display:inline-flex;
   align-items:center;
@@ -212,18 +210,9 @@ h1{
   border-color:rgba(52,211,153,.45);
   color:#041d10
 }
-.btn.gold{
-  border-color:rgba(246,185,59,.36);
-  color:#ffdc8e
-}
-.btn.blue{
-  border-color:rgba(96,165,250,.34);
-  color:#dcecff
-}
-.btn.rose{
-  border-color:rgba(251,113,133,.34);
-  color:#ffd3dc
-}
+.btn.gold{border-color:rgba(246,185,59,.36);color:#ffdc8e}
+.btn.blue{border-color:rgba(96,165,250,.34);color:#dcecff}
+.btn.rose{border-color:rgba(251,113,133,.34);color:#ffd3dc}
 .visual{position:relative;min-height:430px}
 .blob{
   position:absolute;
@@ -286,7 +275,7 @@ th{color:#8ea0b9;font-weight:900}
   position:absolute;
   left:-5px;
   bottom:-36px;
-  width:250px;
+  width:270px;
   background:rgba(15,23,42,.92);
   border:1px solid rgba(255,255,255,.1);
   border-radius:22px;
@@ -318,8 +307,8 @@ th{color:#8ea0b9;font-weight:900}
   margin-bottom:24px
 }
 .section h2{
-  font-size:clamp(2rem,4vw,3.6rem);
-  line-height:.98;
+  font-size:clamp(2rem,4vw,3.3rem);
+  line-height:1;
   letter-spacing:-.055em;
   margin:0;
   font-family:Georgia,serif
@@ -327,7 +316,6 @@ th{color:#8ea0b9;font-weight:900}
 .muted{color:var(--muted)}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .card,.start-card,.access-card{
   background:rgba(18,29,49,.78);
   border:1px solid var(--line);
@@ -335,8 +323,7 @@ th{color:#8ea0b9;font-weight:900}
   padding:20px;
   box-shadow:0 18px 50px rgba(0,0,0,.18)
 }
-.card svg,.access-card svg{width:42px;height:42px;margin-bottom:12px}
-.card h3,.start-card h3,.access-card h3{margin:0 0 8px;font-size:1.22rem}
+.card h3,.start-card h3,.access-card h3{margin:0 0 8px;font-size:1.18rem}
 .pill{
   display:inline-flex;
   border:1px solid rgba(52,211,153,.28);
@@ -348,7 +335,7 @@ th{color:#8ea0b9;font-weight:900}
   font-size:.82rem;
   margin:3px
 }
-.module-card{min-height:270px;display:flex;flex-direction:column}
+.module-card{min-height:240px;display:flex;flex-direction:column}
 .module-card p{flex:1}
 .start-card label{
   display:block;
@@ -365,12 +352,7 @@ th{color:#8ea0b9;font-weight:900}
   padding:14px 16px;
   font:inherit
 }
-.days{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:22px
-}
+.days{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .day{
   border:1px solid rgba(255,255,255,.13);
   background:rgba(255,255,255,.045);
@@ -420,21 +402,20 @@ th{color:#8ea0b9;font-weight:900}
 }
 .footer a{color:var(--text);text-decoration:none}
 .legal{display:flex;gap:14px;flex-wrap:wrap}
-
 @media(max-width:1020px){
   .hero{grid-template-columns:1fr;padding-top:64px}
-  .grid3,.grid4,.grid2{grid-template-columns:1fr 1fr}
+  .grid3,.grid2{grid-template-columns:1fr 1fr}
   .visual{min-height:380px}
   .window{margin-left:0}
 }
 @media(max-width:700px){
-  .grid3,.grid4,.grid2{grid-template-columns:1fr}
+  .grid3,.grid2{grid-template-columns:1fr}
   .nav{align-items:flex-start}
   .links{order:3;width:100%;justify-content:flex-start}
   .hero{min-height:auto}
   .brand-name{font-size:1.25rem}
-  h1{font-size:3.5rem}
-  .lead{font-size:1.08rem}
+  h1{font-size:3.4rem}
+  .lead{font-size:1.06rem}
   .float-card{position:static;margin-top:16px;width:auto}
   .blob{right:10px}
   .section-head{display:block}
@@ -448,7 +429,7 @@ th{color:#8ea0b9;font-weight:900}
 
 <header class="top">
   <div class="wrap nav">
-    <a class="brand" href="#" aria-label="Excel Quest homepage">
+    <a class="brand" href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer" aria-label="Excel Quest homepage">
       <span class="brand-icon" aria-hidden="true">X</span>
       <span class="brand-name">Excel-Quest</span>
     </a>
@@ -465,7 +446,7 @@ th{color:#8ea0b9;font-weight:900}
       <button class="lang" data-lang="en" aria-label="Switch language to English">EN</button>
       <button class="access-btn" id="contrastBtn" type="button" data-ro="Contrast" data-en="Contrast">Contrast</button>
       <button class="access-btn" id="motionBtn" type="button" data-ro="Fără mișcare" data-en="Reduce motion">Fără mișcare</button>
-      <button class="theme" id="themeBtn" aria-label="Comută tema">✱</button>
+      <button class="theme" id="themeBtn" type="button" aria-label="Comută tema">✱</button>
     </div>
   </div>
 </header>
@@ -484,14 +465,14 @@ th{color:#8ea0b9;font-weight:900}
         <span class="accent" data-ro="joc." data-en="game.">joc.</span>
       </h1>
 
-      <p class="lead" data-ro="Lecții interactive, quest-uri tematice, simulatoare reale, Formula Vault și Excel Gym — tot ce-ți trebuie ca să stăpânești Excel-ul de la zero la nivel pro." data-en="Interactive lessons, themed quests, realistic simulators, Formula Vault and Excel Gym — everything you need to master Excel from zero to pro.">
-        Lecții interactive, quest-uri tematice, simulatoare reale, Formula Vault și Excel Gym — tot ce-ți trebuie ca să stăpânești Excel-ul de la zero la nivel pro.
+      <p class="lead" data-ro="Lecții interactive, quest-uri tematice, simulatoare reale și misiuni clare — un traseu modern pentru a învăța Excel de la zero la nivel avansat." data-en="Interactive lessons, themed quests, realistic simulators and clear missions — a modern path to learn Excel from zero to advanced.">
+        Lecții interactive, quest-uri tematice, simulatoare reale și misiuni clare — un traseu modern pentru a învăța Excel de la zero la nivel avansat.
       </p>
 
       <div class="cta">
-        <a class="btn primary" href="#start-cards" data-ro="Începe acum" data-en="Start now">Începe acum</a>
-        <a class="btn gold" href="index-wow-mvp-preview.html" data-ro="Deschide Wow MVP" data-en="Open Wow MVP">Deschide Wow MVP</a>
-        <a class="btn blue" href="#content" data-ro="Vezi modulele" data-en="View modules">Vezi modulele</a>
+        <a class="btn primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer" data-ro="Începe acum" data-en="Start now">Începe acum</a>
+        <a class="btn gold" href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide Hub-ul" data-en="Open Hub">Deschide Hub-ul</a>
+        <a class="btn blue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide Add-in" data-en="Open Add-in">Deschide Add-in</a>
       </div>
     </div>
 
@@ -509,9 +490,7 @@ th{color:#8ea0b9;font-weight:900}
 
         <table aria-label="Tabel demonstrativ cu skill-uri Excel">
           <thead>
-            <tr>
-              <th></th><th>A</th><th>B</th><th>C</th><th>D</th>
-            </tr>
+            <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
           </thead>
           <tbody>
             <tr><th>1</th><td>Skill</td><td>Level</td><td>XP</td><td>Status</td></tr>
@@ -537,9 +516,9 @@ th{color:#8ea0b9;font-weight:900}
   <section class="section wrap" id="start-cards">
     <div class="section-head">
       <div>
-        <h2 data-ro="Formular de început" data-en="Start form">Formular de început</h2>
-        <p class="muted" data-ro="Alege obiectivul, nivelul și ziua de antrenament. Datele rămân local în browser." data-en="Choose your goal, level and training day. Data stays local in your browser.">
-          Alege obiectivul, nivelul și ziua de antrenament. Datele rămân local în browser.
+        <h2 data-ro="Începe în 30 de secunde" data-en="Start in 30 seconds">Începe în 30 de secunde</h2>
+        <p class="muted" data-ro="Alege obiectivul, nivelul și ziua de antrenament. Progresul se salvează local în browser." data-en="Choose your goal, level and training day. Progress is saved locally in the browser.">
+          Alege obiectivul, nivelul și ziua de antrenament. Progresul se salvează local în browser.
         </p>
       </div>
     </div>
@@ -565,20 +544,18 @@ th{color:#8ea0b9;font-weight:900}
           <option value="advanced" data-ro="Avansat" data-en="Advanced">Avansat</option>
         </select>
 
-        <button class="btn primary" id="saveStart" type="button" data-ro="Salvează și construiește dashboard-ul" data-en="Save and build dashboard">
-          Salvează și construiește dashboard-ul
-        </button>
-        <button class="btn rose" id="resetProgress" type="button" data-ro="Resetează progresul (0)" data-en="Reset progress (0)">
-          Resetează progresul (0)
-        </button>
+        <div class="cta">
+          <button class="btn primary" id="saveStart" type="button" data-ro="Salvează traseul" data-en="Save path">Salvează traseul</button>
+          <button class="btn rose" id="resetProgress" type="button" data-ro="Resetează progresul (0)" data-en="Reset progress (0)">Resetează progresul (0)</button>
+        </div>
 
         <div id="startResult" class="result-card" role="status" aria-live="polite"></div>
       </article>
 
       <article class="start-card">
         <h3 data-ro="Ziua de antrenament" data-en="Training day">Ziua de antrenament</h3>
-        <p class="muted" data-ro="Alege o zi pentru antrenamentul tău de 5 minute." data-en="Choose a day for your 5-minute training.">
-          Alege o zi pentru antrenamentul tău de 5 minute.
+        <p class="muted" data-ro="Alege o zi pentru rutina ta scurtă de Excel." data-en="Choose a day for your short Excel routine.">
+          Alege o zi pentru rutina ta scurtă de Excel.
         </p>
 
         <div class="days" role="group" aria-label="Zile de antrenament">
@@ -591,6 +568,11 @@ th{color:#8ea0b9;font-weight:900}
           <button class="day" data-day="Duminică" data-ro="Duminică" data-en="Sunday">Duminică</button>
         </div>
 
+        <div class="cta">
+          <a class="btn primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer">Onboarding</a>
+          <a class="btn blue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer">Add-in</a>
+        </div>
+
         <div id="dayResult" class="result-card" role="status" aria-live="polite"></div>
       </article>
     </div>
@@ -599,36 +581,39 @@ th{color:#8ea0b9;font-weight:900}
   <section class="section wrap" id="features">
     <div class="section-head">
       <div>
-        <h2 data-ro="Ce face aplicația memorabilă" data-en="What makes it memorable">Ce face aplicația memorabilă</h2>
-        <p class="muted" data-ro="Nu doar formule, ci misiuni, feedback, proiecte și progres vizibil." data-en="Not just formulas, but missions, feedback, projects and visible progress.">
-          Nu doar formule, ci misiuni, feedback, proiecte și progres vizibil.
+        <h2 data-ro="De ce arată premium" data-en="Why it feels premium">De ce arată premium</h2>
+        <p class="muted" data-ro="Experiență clară, structură simplă și doar trei destinații principale: Start, Hub și Add-in." data-en="Clear experience, simple structure and only three main destinations: Start, Hub and Add-in.">
+          Experiență clară, structură simplă și doar trei destinații principale: Start, Hub și Add-in.
         </p>
       </div>
     </div>
 
-    <div class="grid4">
+    <div class="grid3">
       <article class="card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 38h32M12 34V14h24v20" stroke="#34d399" stroke-width="3"/><path d="M16 21h16M16 27h10" stroke="#60a5fa" stroke-width="3"/></svg>
-        <h3>Skill Tree</h3>
-        <p data-ro="Ramuri pentru formule, cleaning, charts, pivot, dashboard-uri și job skills." data-en="Branches for formulas, cleaning, charts, pivot, dashboards and job skills.">Ramuri pentru formule, cleaning, charts, pivot, dashboard-uri și job skills.</p>
+        <span class="pill">Start</span>
+        <h3 data-ro="Onboarding ghidat" data-en="Guided onboarding">Onboarding ghidat</h3>
+        <p data-ro="Intrare rapidă pentru utilizatori noi, cu o experiență simplă și prietenoasă." data-en="Fast entry for new users with a simple and friendly experience.">
+          Intrare rapidă pentru utilizatori noi, cu o experiență simplă și prietenoasă.
+        </p>
+        <a class="btn primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide Start" data-en="Open Start">Deschide Start</a>
       </article>
 
       <article class="card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 14h32v24H8z" stroke="#f2b84b" stroke-width="3"/><path d="M8 16l16 13 16-13" stroke="#f2b84b" stroke-width="3"/></svg>
-        <h3>Excel Inbox</h3>
-        <p data-ro="Cereri realiste de la manager, client, HR și finance transformate în misiuni." data-en="Realistic manager, client, HR and finance requests become missions.">Cereri realiste de la manager, client, HR și finance transformate în misiuni.</p>
+        <span class="pill">Hub</span>
+        <h3>Excel Quest Hub</h3>
+        <p data-ro="Locul central pentru explorare, overview și navigare între experiențe." data-en="The central place for exploration, overview and navigation between experiences.">
+          Locul central pentru explorare, overview și navigare între experiențe.
+        </p>
+        <a class="btn gold" href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide Hub" data-en="Open Hub">Deschide Hub</a>
       </article>
 
       <article class="card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M14 8h20l6 7v25H14z" stroke="#a78bfa" stroke-width="3"/><path d="M19 22h17M19 29h12" stroke="#a78bfa" stroke-width="3"/></svg>
-        <h3>Real File Simulator</h3>
-        <p data-ro="Fișiere haotice cu duplicate, totaluri manuale și formule stricate." data-en="Messy files with duplicates, manual totals and broken formulas.">Fișiere haotice cu duplicate, totaluri manuale și formule stricate.</p>
-      </article>
-
-      <article class="card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6l15 8v11c0 9-6 15-15 18C15 40 9 34 9 25V14z" stroke="#fb7185" stroke-width="3"/><path d="M18 25l4 4 9-10" stroke="#fb7185" stroke-width="3"/></svg>
-        <h3>Boss Battles</h3>
-        <p data-ro="Provocări finale precum Pivot Monster și Dashboard Dragon." data-en="Final challenges like Pivot Monster and Dashboard Dragon.">Provocări finale precum Pivot Monster și Dashboard Dragon.</p>
+        <span class="pill">Pro</span>
+        <h3 data-ro="Add-in și practică" data-en="Add-in and practice">Add-in și practică</h3>
+        <p data-ro="Pentru flow-uri mai avansate, practică aplicată și experiențe orientate pe productivitate." data-en="For more advanced flows, applied practice and productivity-oriented experiences.">
+          Pentru flow-uri mai avansate, practică aplicată și experiențe orientate pe productivitate.
+        </p>
+        <a class="btn blue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide Add-in" data-en="Open Add-in">Deschide Add-in</a>
       </article>
     </div>
   </section>
@@ -636,85 +621,39 @@ th{color:#8ea0b9;font-weight:900}
   <section class="section wrap" id="content">
     <div class="section-head">
       <div>
-        <h2 data-ro="Conținut și moduri" data-en="Content and modes">Conținut și moduri</h2>
-        <p class="muted" data-ro="Carduri clare pentru lecții, practică, carieră, jocuri și accesibilitate." data-en="Clear cards for lessons, practice, career, games and accessibility.">
-          Carduri clare pentru lecții, practică, carieră, jocuri și accesibilitate.
+        <h2 data-ro="Conținut esențial" data-en="Essential content">Conținut esențial</h2>
+        <p class="muted" data-ro="Am redus zgomotul vizual și am păstrat doar căile cele mai importante." data-en="Visual noise is reduced and only the most important paths remain.">
+          Am redus zgomotul vizual și am păstrat doar căile cele mai importante.
         </p>
       </div>
     </div>
 
     <div class="grid3">
       <article class="card module-card">
-        <span class="pill">Core</span>
-        <h3 data-ro="Lecții + proiecte" data-en="Lessons + projects">Lecții + proiecte</h3>
-        <p data-ro="Lecții reale, mini-challenge-uri, Formula Vault, proiecte și certificat preview." data-en="Real lessons, mini-challenges, Formula Vault, projects and certificate preview.">Lecții reale, mini-challenge-uri, Formula Vault, proiecte și certificat preview.</p>
-        <a class="btn primary" href="index-content-rich-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
+        <span class="pill">Lecții</span>
+        <h3 data-ro="Traseu de învățare" data-en="Learning path">Traseu de învățare</h3>
+        <p data-ro="Pornește simplu, cu ghidare clară, apoi avansează către practică și sisteme mai complexe." data-en="Start simply with clear guidance, then move into practice and more complex systems.">
+          Pornește simplu, cu ghidare clară, apoi avansează către practică și sisteme mai complexe.
+        </p>
+        <a class="btn primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer" data-ro="Începe" data-en="Start">Începe</a>
       </article>
 
       <article class="card module-card">
-        <span class="pill">Practice</span>
-        <h3 data-ro="Module practice" data-en="Practical modules">Module practice</h3>
-        <p data-ro="Excel Detective, Formula Builder, Explain My Formula și Data Cleaning Lab." data-en="Excel Detective, Formula Builder, Explain My Formula and Data Cleaning Lab.">Excel Detective, Formula Builder, Explain My Formula și Data Cleaning Lab.</p>
-        <a class="btn blue" href="index-advanced-learning-modules-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
+        <span class="pill">Explorare</span>
+        <h3 data-ro="Hub central" data-en="Central hub">Hub central</h3>
+        <p data-ro="Intră în spațiul principal al proiectului și descoperă overview-ul complet." data-en="Enter the main project space and explore the full overview.">
+          Intră în spațiul principal al proiectului și descoperă overview-ul complet.
+        </p>
+        <a class="btn gold" href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide" data-en="Open">Deschide</a>
       </article>
 
       <article class="card module-card">
-        <span class="pill">Quest</span>
-        <h3>Quest Systems</h3>
-        <p data-ro="Excel Quest Map, Inbox, Bad Spreadsheet Museum, Formula Duels și Audit Mode." data-en="Excel Quest Map, Inbox, Bad Spreadsheet Museum, Formula Duels and Audit Mode.">Excel Quest Map, Inbox, Bad Spreadsheet Museum, Formula Duels și Audit Mode.</p>
-        <a class="btn gold" href="index-quest-systems-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Games</span>
-        <h3>Game Modes</h3>
-        <p data-ro="Escape Room, Build-a-Dashboard, Excel Roast, Bingo, Sandbox și Interview Mode." data-en="Escape Room, Build-a-Dashboard, Excel Roast, Bingo, Sandbox and Interview Mode.">Escape Room, Build-a-Dashboard, Excel Roast, Bingo, Sandbox și Interview Mode.</p>
-        <a class="btn" href="index-game-modes-lab-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Career</span>
-        <h3>Career Growth</h3>
-        <p data-ro="Trasee de carieră, Excel Gym, Cheat Sheet, Certification și Template Library." data-en="Career paths, Excel Gym, Cheat Sheet, Certification and Template Library.">Trasee de carieră, Excel Gym, Cheat Sheet, Certification și Template Library.</p>
-        <a class="btn" href="index-career-growth-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Unexpected</span>
-        <h3>Unexpected Lab</h3>
-        <p data-ro="Excel Courtroom, Translation Mode, Easter Eggs și Data Ethics Corner." data-en="Excel Courtroom, Translation Mode, Easter Eggs and Data Ethics Corner.">Excel Courtroom, Translation Mode, Easter Eggs și Data Ethics Corner.</p>
-        <a class="btn" href="index-unexpected-lab-preview.html" data-ro="Deschide" data-en="Open">Deschide</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Levels</span>
-        <h3 data-ro="Beginner → Advanced" data-en="Beginner → Advanced">Beginner → Advanced</h3>
-        <p data-ro="Niveluri clare pentru începători, intermediar și avansat, cu misiuni potrivite." data-en="Clear levels for beginner, intermediate and advanced learners, with matching missions.">Niveluri clare pentru începători, intermediar și avansat, cu misiuni potrivite.</p>
-        <a class="btn" href="index-wow-mvp-preview.html" data-ro="Vezi traseul" data-en="View path">Vezi traseul</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Certificates</span>
-        <h3 data-ro="Certificate + badge-uri" data-en="Certificates + badges">Certificate + badge-uri</h3>
-        <p data-ro="Preview de certificat, colecții de achievement-uri și progres vizibil." data-en="Certificate preview, achievement collections and visible progress.">Preview de certificat, colecții de achievement-uri și progres vizibil.</p>
-        <a class="btn" href="index-career-growth-preview.html" data-ro="Vezi progresul" data-en="View progress">Vezi progresul</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">A11y</span>
-        <h3 data-ro="Accesibilitate" data-en="Accessibility">Accesibilitate</h3>
-        <p data-ro="Focus vizibil, navigare cu tastatura, contrast mărit, reducere animații și structură semantică." data-en="Visible focus, keyboard navigation, high contrast, reduced motion and semantic structure.">Focus vizibil, navigare cu tastatura, contrast mărit, reducere animații și structură semantică.</p>
-        <a class="btn" href="#accessibility" data-ro="Vezi opțiunile" data-en="View options">Vezi opțiunile</a>
-      </article>
-
-      <article class="card module-card">
-        <span class="pill">Onboarding</span>
-        <h3 data-ro="Fluxuri ghidate" data-en="Guided flows">Fluxuri ghidate</h3>
-        <p data-ro="Deschide rapid onboarding și add-in în versiuni dedicate." data-en="Quickly open dedicated onboarding and add-in versions.">Deschide rapid onboarding și add-in în versiuni dedicate.</p>
-        <div class="cta">
-          <a class="btn primary" href="enhanced-main.html#onboarding">Onboarding</a>
-          <a class="btn blue" href="enhanced-pro-v2.html#addin">Add-in</a>
-        </div>
+        <span class="pill">Avansat</span>
+        <h3 data-ro="Modul Pro" data-en="Pro mode">Modul Pro</h3>
+        <p data-ro="Pentru utilizatori care vor un pas în plus: add-in, practică și workflow-uri mai aplicate." data-en="For users who want one step further: add-in, practice and more applied workflows.">
+          Pentru utilizatori care vor un pas în plus: add-in, practică și workflow-uri mai aplicate.
+        </p>
+        <a class="btn blue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer" data-ro="Deschide" data-en="Open">Deschide</a>
       </article>
     </div>
   </section>
@@ -723,40 +662,37 @@ th{color:#8ea0b9;font-weight:900}
     <div class="section-head">
       <div>
         <h2 data-ro="Accesibilitate" data-en="Accessibility">Accesibilitate</h2>
-        <p class="muted" data-ro="Pentru persoane cu dizabilități și pentru utilizatori care preferă o interfață mai clară." data-en="For disabled users and for anyone who prefers a clearer interface.">
-          Pentru persoane cu dizabilități și pentru utilizatori care preferă o interfață mai clară.
+        <p class="muted" data-ro="Interfață clară, focus vizibil, contrast ridicat și reducerea mișcării." data-en="Clear interface, visible focus, high contrast and reduced motion.">
+          Interfață clară, focus vizibil, contrast ridicat și reducerea mișcării.
         </p>
       </div>
     </div>
 
     <div class="grid3">
       <article class="access-card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 8v32M12 20h24" stroke="#34d399" stroke-width="3"/><circle cx="24" cy="10" r="4" stroke="#34d399" stroke-width="3"/></svg>
         <h3 data-ro="Navigare cu tastatura" data-en="Keyboard navigation">Navigare cu tastatura</h3>
         <ul class="access-list">
           <li data-ro="Skip link către conținut" data-en="Skip link to content">Skip link către conținut</li>
-          <li data-ro="Focus vizibil pe butoane și câmpuri" data-en="Visible focus on buttons and fields">Focus vizibil pe butoane și câmpuri</li>
-          <li data-ro="Controale reale: button, input, select" data-en="Real controls: button, input, select">Controale reale: button, input, select</li>
+          <li data-ro="Focus vizibil pe elemente interactive" data-en="Visible focus on interactive elements">Focus vizibil pe elemente interactive</li>
+          <li data-ro="Structură semantică simplă" data-en="Simple semantic structure">Structură semantică simplă</li>
         </ul>
       </article>
 
       <article class="access-card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 24c5-9 11-13 16-13s11 4 16 13c-5 9-11 13-16 13S13 33 8 24Z" stroke="#f2b84b" stroke-width="3"/><circle cx="24" cy="24" r="5" stroke="#f2b84b" stroke-width="3"/></svg>
         <h3 data-ro="Vizibilitate" data-en="Visibility">Vizibilitate</h3>
         <ul class="access-list">
           <li data-ro="Buton pentru contrast mărit" data-en="High contrast toggle">Buton pentru contrast mărit</li>
-          <li data-ro="Text mare și spațiere generoasă" data-en="Large text and generous spacing">Text mare și spațiere generoasă</li>
-          <li data-ro="Stări active clare" data-en="Clear active states">Stări active clare</li>
+          <li data-ro="Spațiere aerisită" data-en="Comfortable spacing">Spațiere aerisită</li>
+          <li data-ro="Butoane mari și clare" data-en="Large, clear buttons">Butoane mari și clare</li>
         </ul>
       </article>
 
       <article class="access-card">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 34c8-18 16 18 24 0" stroke="#60a5fa" stroke-width="3"/><path d="M12 14h24" stroke="#60a5fa" stroke-width="3"/></svg>
         <h3 data-ro="Confort cognitiv" data-en="Cognitive comfort">Confort cognitiv</h3>
         <ul class="access-list">
-          <li data-ro="Buton pentru reducerea animațiilor" data-en="Reduced motion toggle">Buton pentru reducerea animațiilor</li>
-          <li data-ro="Secțiuni scurte, carduri clare" data-en="Short sections, clear cards">Secțiuni scurte, carduri clare</li>
-          <li data-ro="Feedback text, nu doar culoare" data-en="Text feedback, not only color">Feedback text, nu doar culoare</li>
+          <li data-ro="Reducerea animațiilor" data-en="Reduced motion">Reducerea animațiilor</li>
+          <li data-ro="Mai puține decizii vizuale" data-en="Fewer visual decisions">Mai puține decizii vizuale</li>
+          <li data-ro="CTA-uri prioritizate" data-en="Prioritized CTAs">CTA-uri prioritizate</li>
         </ul>
       </article>
     </div>
@@ -764,13 +700,14 @@ th{color:#8ea0b9;font-weight:900}
 
   <section class="section wrap">
     <div class="card">
-      <h2 data-ro="Începe rapid" data-en="Start quickly">Începe rapid</h2>
-      <p class="muted" data-ro="Pentru cel mai bun efect wow, începe cu Wow MVP: Skill Tree, Inbox, Real File Simulator, Formula Builder, Boss Battles și Portfolio." data-en="For the strongest wow effect, start with Wow MVP: Skill Tree, Inbox, Real File Simulator, Formula Builder, Boss Battles and Portfolio.">
-        Pentru cel mai bun efect wow, începe cu Wow MVP: Skill Tree, Inbox, Real File Simulator, Formula Builder, Boss Battles și Portfolio.
+      <h2 data-ro="Intră direct în experiență" data-en="Jump straight into the experience">Intră direct în experiență</h2>
+      <p class="muted" data-ro="Alege una dintre cele trei direcții: onboarding, hub central sau add-in." data-en="Choose one of the three directions: onboarding, central hub or add-in.">
+        Alege una dintre cele trei direcții: onboarding, hub central sau add-in.
       </p>
       <div class="cta">
-        <a class="btn primary" href="index-wow-mvp-preview.html">Wow MVP</a>
-        <a class="btn" href="legal.html" data-ro="Politica & mențiuni" data-en="Policy & notes">Politica & mențiuni</a>
+        <a class="btn primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer">Onboarding</a>
+        <a class="btn gold" href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer">Hub</a>
+        <a class="btn blue" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer">Add-in</a>
       </div>
     </div>
   </section>
@@ -780,9 +717,10 @@ th{color:#8ea0b9;font-weight:900}
   <div class="wrap footer-row">
     <span>© 2026 Excel-Quest · construit de Laura Andreea</span>
     <nav class="legal">
-      <a href="https://github.com/LaurAndreea10/Excel-Quest">GitHub</a>
-      <a href="sitemap.html">Sitemap</a>
-      <a href="legal.html" data-ro="Politică" data-en="Policy">Politică</a>
+      <a href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html" target="_blank" rel="noopener noreferrer">Hub</a>
+      <a href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener noreferrer">Start</a>
+      <a href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener noreferrer">Add-in</a>
     </nav>
   </div>
 </footer>
@@ -790,6 +728,7 @@ th{color:#8ea0b9;font-weight:900}
 <script>
 let lang = localStorage.eq_lang || 'ro';
 let certificateProgress = parseInt(localStorage.eq_cert_progress || '0', 10);
+if (Number.isNaN(certificateProgress)) certificateProgress = 0;
 
 const progressBar = document.getElementById('certificateProgressBar');
 const progressText = document.getElementById('certificateProgressText');
@@ -801,6 +740,9 @@ const levelSelect = document.getElementById('level');
 const startResult = document.getElementById('startResult');
 const dayResult = document.getElementById('dayResult');
 const resetButton = document.getElementById('resetProgress');
+const themeBtn = document.getElementById('themeBtn');
+const contrastBtn = document.getElementById('contrastBtn');
+const motionBtn = document.getElementById('motionBtn');
 
 const progressLabels = {
   ro: [
@@ -827,6 +769,11 @@ function getMissionLabel(language, value) {
   if (value === 0) return found.text;
   if (value >= 100) return found.text;
   return `${value}% · ${found.text}`;
+}
+
+function updateToggleLabels() {
+  contrastBtn.textContent = contrastBtn.dataset[lang];
+  motionBtn.textContent = motionBtn.dataset[lang];
 }
 
 function updateCertificateProgress() {
@@ -867,33 +814,14 @@ function applyLang(nextLang) {
     button.classList.toggle('active', button.dataset.lang === nextLang);
   });
 
+  updateToggleLabels();
+
   document.title = nextLang === 'ro'
     ? 'Excel Quest – Învață Excel ca într-un joc'
     : 'Excel Quest – Learn Excel like a game';
 
   updateCertificateProgress();
 }
-
-document.querySelectorAll('.lang').forEach(button => {
-  button.addEventListener('click', () => applyLang(button.dataset.lang));
-});
-
-document.getElementById('themeBtn').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-});
-
-document.getElementById('contrastBtn').addEventListener('click', () => {
-  document.body.classList.toggle('high-contrast');
-  localStorage.eq_contrast = document.body.classList.contains('high-contrast') ? '1' : '0';
-});
-
-document.getElementById('motionBtn').addEventListener('click', () => {
-  document.body.classList.toggle('reduce-motion');
-  localStorage.eq_motion = document.body.classList.contains('reduce-motion') ? '1' : '0';
-});
-
-if (localStorage.eq_contrast === '1') document.body.classList.add('high-contrast');
-if (localStorage.eq_motion === '1') document.body.classList.add('reduce-motion');
 
 function restoreSavedState() {
   const savedName = localStorage.eq_start_name || '';
@@ -902,7 +830,6 @@ function restoreSavedState() {
   const savedDay = localStorage.eq_training_day || '';
 
   learnerNameInput.value = savedName;
-
   if (savedGoal) goalSelect.value = savedGoal;
   if (savedLevel) levelSelect.value = savedLevel;
 
@@ -912,6 +839,29 @@ function restoreSavedState() {
     });
   }
 }
+
+document.querySelectorAll('.lang').forEach(button => {
+  button.addEventListener('click', () => applyLang(button.dataset.lang));
+});
+
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  localStorage.eq_theme = document.body.classList.contains('light') ? 'light' : 'dark';
+});
+
+contrastBtn.addEventListener('click', () => {
+  document.body.classList.toggle('high-contrast');
+  localStorage.eq_contrast = document.body.classList.contains('high-contrast') ? '1' : '0';
+});
+
+motionBtn.addEventListener('click', () => {
+  document.body.classList.toggle('reduce-motion');
+  localStorage.eq_motion = document.body.classList.contains('reduce-motion') ? '1' : '0';
+});
+
+if (localStorage.eq_theme === 'light') document.body.classList.add('light');
+if (localStorage.eq_contrast === '1') document.body.classList.add('high-contrast');
+if (localStorage.eq_motion === '1') document.body.classList.add('reduce-motion');
 
 document.getElementById('saveStart').addEventListener('click', () => {
   const name = learnerNameInput.value.trim() || (lang === 'ro' ? 'Invitat' : 'Guest');
@@ -923,7 +873,7 @@ document.getElementById('saveStart').addEventListener('click', () => {
   localStorage.eq_start_level = levelSelect.value;
 
   startResult.textContent = lang === 'ro'
-    ? `Bun venit, ${name}! Ți-am pregătit un traseu pentru: ${goalText}. Nivel selectat: ${levelText}.`
+    ? `Bun venit, ${name}! Traseul tău este pregătit pentru: ${goalText}. Nivel selectat: ${levelText}.`
     : `Welcome, ${name}! Your path is ready for: ${goalText}. Selected level: ${levelText}.`;
   startResult.classList.add('visible');
 
@@ -934,7 +884,6 @@ document.querySelectorAll('.day').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('.day').forEach(dayButton => dayButton.classList.remove('active'));
     button.classList.add('active');
-
     localStorage.eq_training_day = button.dataset.day;
 
     dayResult.textContent = lang === 'ro'
@@ -947,18 +896,11 @@ document.querySelectorAll('.day').forEach(button => {
 });
 
 document.getElementById('resetProgress').addEventListener('click', () => {
-  [
-    'eq_start_name',
-    'eq_start_goal',
-    'eq_start_level',
-    'eq_training_day',
-    'eq_cert_progress'
-  ].forEach(key => localStorage.removeItem(key));
+  ['eq_start_name', 'eq_start_goal', 'eq_start_level', 'eq_training_day', 'eq_cert_progress'].forEach(key => localStorage.removeItem(key));
 
   learnerNameInput.value = '';
   goalSelect.selectedIndex = 0;
   levelSelect.selectedIndex = 0;
-
   document.querySelectorAll('.day').forEach(button => button.classList.remove('active'));
 
   certificateProgress = 0;
