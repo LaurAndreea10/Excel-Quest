@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Quest · Final — Învață Excel ca un joc</title>
+<meta name="description" content="Platforma completă Excel Quest: tutorial onboarding, skill tree gamificat, simulator real, add-in integrat. De la zero la dashboard executiv.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Geist:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Verde Excel — semnătura */
+  --excel-darkest:#0e3a23;
+  --excel-dark:#185c37;
+  --excel-mid:#217346;
+  --excel-bright:#2f9357;
+  --excel-glow:#5fc88a;
+  --mint:#dff3e8;
+  --mint-soft:#f0f8f0;
+  --leaf:rgba(33,115,70,.12);
+  --leaf-line:rgba(33,115,70,.22);
+
+  /* Warm anchors */
+  --cream:#faf7ef;
+  --paper:#fefdf9;
+  --ink:#1a2926;
+  --ink-soft:#2c3a36;
+  --muted:#5a6862;
+  --muted-2:#8a948f;
+  --rule:rgba(26,41,38,.08);
+  --rule-strong:rgba(26,41,38,.14);
+
+  /* Accents */
+  --gold:#b78628;
+  --rust:#a8421f;
+  --shadow-sm:0 1px 2px rgba(14,58,35,.06);
+  --shadow:0 8px 24px -10px rgba(14,58,35,.18);
+  --shadow-lg:0 24px 60px -20px rgba(14,58,35,.24);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Geist','Inter',system-ui,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.55;
+  font-size:15.5px;
+  overflow-x:hidden;
+}
+::selection{background:var(--excel-mid);color:#fff}
+
+/* Subtle grain texture */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit}
+
+/* ════════════ TOP RIBBON ════════════ */
+.ribbon{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,247,239,.92);
+  backdrop-filter:blur(12px) saturate(140%);
+  border-bottom:1px solid var(--rule);
+}
+.ribbon-row{
+  max-width:1280px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--excel-darkest) 0%,var(--excel-mid) 100%);
+  display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),var(--shadow-sm);
+  font-family:'Fraunces',serif;letter-spacing:-.02em;
+}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text strong{font-family:'Fraunces',serif;font-size:19px;font-weight:900;letter-spacing:-.025em;color:var(--ink)}
+.brand-text small{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:3px}
+
+.ribbon-nav{display:flex;align-items:center;gap:4px;margin-left:auto;flex-wrap:wrap}
+.r-link{
+  font-size:13px;font-weight:600;color:var(--muted);
+  padding:7px 12px;border-radius:7px;transition:.15s;
+}
+.r-link:hover{color:var(--excel-mid);background:var(--mint-soft)}
+.r-divider{width:1px;height:18px;background:var(--rule);margin:0 6px}
+
+.r-cta{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:700;
+  background:var(--excel-mid);color:#fff;
+  padding:8px 14px;border-radius:8px;
+  transition:.18s;box-shadow:var(--shadow-sm);
+}
+.r-cta:hover{background:var(--excel-dark);transform:translateY(-1px);box-shadow:0 6px 16px -6px rgba(33,115,70,.5)}
+
+/* ════════════ HERO ════════════ */
+.hero{
+  position:relative;
+  padding:80px 24px 60px;
+  max-width:1280px;margin:0 auto;
+}
+.hero-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:40px}}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 12px;
+  background:var(--mint);border:1px solid var(--leaf-line);border-radius:99px;
+  font-size:11.5px;font-weight:700;color:var(--excel-dark);
+  letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--excel-mid);
+  box-shadow:0 0 0 3px rgba(33,115,70,.18);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+
+h1.title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(46px,7vw,84px);
+  font-weight:900;
+  line-height:.95;
+  letter-spacing:-.045em;
+  color:var(--ink);
+  margin-bottom:24px;
+  font-variation-settings:"opsz" 144;
+}
+h1.title em{
+  font-style:italic;font-weight:400;
+  color:var(--excel-mid);
+  font-variation-settings:"opsz" 144;
+}
+h1.title .quest{
+  display:inline-block;position:relative;
+}
+h1.title .quest::after{
+  content:'';position:absolute;left:-3%;right:-3%;bottom:8%;height:.32em;
+  background:rgba(95,200,138,.32);z-index:-1;
+  border-radius:2px;
+  transform:rotate(-1deg);
+}
+
+.lede{
+  font-size:18.5px;line-height:1.5;color:var(--ink-soft);
+  max-width:560px;margin-bottom:36px;font-weight:400;
+}
+.lede b{font-weight:700;color:var(--ink);background:linear-gradient(180deg,transparent 60%,var(--mint) 60%)}
+
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:36px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--excel-darkest);color:#fff;
+  padding:14px 22px;border-radius:10px;
+  font-size:14.5px;font-weight:700;
+  box-shadow:0 4px 14px -4px rgba(14,58,35,.4),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:.2s;letter-spacing:-.005em;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px -4px rgba(14,58,35,.5),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-primary svg{transition:transform .25s}
+.btn-primary:hover svg{transform:translateX(3px)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:13px 18px;border-radius:10px;
+  font-size:14px;font-weight:600;color:var(--ink-soft);
+  border:1px solid var(--rule-strong);background:var(--paper);
+  transition:.15s;
+}
+.btn-ghost:hover{border-color:var(--excel-mid);color:var(--excel-dark);background:var(--mint-soft)}
+
+.hero-meta{
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:28px;border-top:1px dashed var(--rule-strong);
+}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-num{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--excel-darkest);letter-spacing:-.03em;line-height:1}
+.meta-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:6px}
+
+/* HERO RIGHT: Excel Card */
+.excel-card{
+  position:relative;
+  background:#fff;
+  border-radius:18px;
+  border:1px solid var(--rule-strong);
+  box-shadow:var(--shadow-lg);
+  overflow:hidden;
+  transform:rotate(1.2deg);
+  transition:transform .4s cubic-bezier(.2,.9,.4,1);
+}
+.excel-card:hover{transform:rotate(0deg) translateY(-4px)}
+.excel-card-bar{
+  background:linear-gradient(180deg,var(--excel-mid),var(--excel-dark));
+  color:#fff;padding:9px 14px;
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;gap:7px;
+}
+.excel-card-bar svg{flex-shrink:0}
+.excel-card-bar .file{flex:1;opacity:.92}
+.excel-card-bar .live{
+  font-size:9px;background:rgba(95,200,138,.3);padding:2px 7px;border-radius:99px;
+  letter-spacing:.08em;border:1px solid rgba(255,255,255,.12);
+}
+.excel-card-toolbar{
+  display:flex;align-items:center;gap:6px;padding:8px 12px;
+  background:#f6f6f4;border-bottom:1px solid #e8e6df;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+}
+.excel-card-toolbar code{
+  background:#fff;border:1px solid #e0ddd2;padding:2px 7px;border-radius:4px;color:var(--excel-dark);font-weight:600;
+}
+.fx{font-style:italic;font-family:'Fraunces',serif;font-size:13px;color:#3a3a36}
+.formula-bar{
+  background:#fff;padding:6px 12px;border-bottom:1px solid #e8e6df;
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--excel-darkest);
+  font-weight:600;display:flex;align-items:center;gap:8px;
+}
+.formula-bar::before{content:'fx';font-family:'Fraunces',serif;color:var(--muted-2);font-style:italic;margin-right:4px}
+.cursor-blink{display:inline-block;width:1.5px;height:13px;background:var(--excel-mid);animation:blink 1.1s steps(1) infinite;margin-left:1px;vertical-align:-1px}
+@keyframes blink{50%{opacity:0}}
+
+.sheet-grid{display:grid;grid-template-columns:32px repeat(4,1fr);font-size:11px;background:#fff}
+.sg-cell{padding:8px 10px;border-right:1px solid #ebe9e2;border-bottom:1px solid #ebe9e2;color:#2a2a26;background:#fff}
+.sg-cell:nth-child(5n){border-right:none}
+.sg-h{background:#f3f3f0;font-weight:700;text-align:center;color:#5a5a52;font-size:10px}
+.sg-row-h{background:#f3f3f0;font-weight:700;text-align:center;color:#5a5a52;font-size:10px}
+.sg-cell.highlight{background:#fff8e7;color:var(--ink);font-weight:700;animation:highlightPulse 2.5s ease-in-out infinite}
+@keyframes highlightPulse{0%,100%{background:#fff8e7}50%{background:#ffeac0}}
+.sg-cell.formula-cell{background:var(--mint);color:var(--excel-darkest);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px}
+
+.excel-floating-badge{
+  position:absolute;top:32%;left:-22px;
+  background:#fff;border:1px solid var(--leaf-line);
+  border-radius:10px;padding:8px 12px;
+  box-shadow:var(--shadow);
+  font-size:11px;font-weight:700;color:var(--excel-dark);
+  display:flex;align-items:center;gap:6px;
+  transform:rotate(-3deg);
+  animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-6px)}}
+.excel-floating-badge .num{
+  font-family:'Fraunces',serif;font-size:17px;color:var(--excel-mid);
+  font-weight:900;letter-spacing:-.02em;
+}
+.excel-floating-xp{
+  position:absolute;bottom:18%;right:-18px;
+  background:var(--excel-darkest);color:#fff;
+  border-radius:10px;padding:8px 14px;
+  box-shadow:var(--shadow);
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  transform:rotate(4deg);
+  animation:float 3.5s ease-in-out -1.7s infinite;
+}
+.excel-floating-xp::before{content:'+25 XP';color:var(--excel-glow)}
+
+/* ════════════ SECTION HEADERS ════════════ */
+.section{position:relative;padding:80px 24px;max-width:1280px;margin:0 auto}
+.section-head{margin-bottom:48px;max-width:760px}
+.section-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:800;color:var(--excel-mid);
+  letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.section-tag::before{
+  content:'';width:24px;height:1.5px;background:var(--excel-mid);
+}
+h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(34px,4.5vw,52px);
+  font-weight:700;letter-spacing:-.035em;line-height:1.05;
+  color:var(--ink);margin-bottom:18px;
+  font-variation-settings:"opsz" 80;
+}
+h2 em{font-style:italic;color:var(--excel-mid);font-weight:500}
+.section-lede{font-size:17px;color:var(--muted);max-width:600px;line-height:1.6}
+
+/* ════════════ JOURNEY / 3 PATHS ════════════ */
+.journey{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);border-radius:18px;overflow:hidden;background:#fff}
+@media(max-width:900px){.path-grid{grid-template-columns:1fr}}
+.path-card{
+  padding:36px 28px;
+  border-right:1px solid var(--rule);
+  position:relative;transition:.25s;
+  display:flex;flex-direction:column;
+}
+.path-card:last-child{border-right:none}
+@media(max-width:900px){.path-card{border-right:none;border-bottom:1px solid var(--rule)}.path-card:last-child{border-bottom:none}}
+.path-card:hover{background:var(--mint-soft)}
+.path-card.featured{background:linear-gradient(180deg,var(--mint-soft) 0%,#fff 100%)}
+.path-card.featured::before{
+  content:'CEL MAI POPULAR';position:absolute;top:14px;right:14px;
+  font-size:9px;font-weight:800;letter-spacing:.1em;
+  color:var(--excel-darkest);background:var(--mint);
+  padding:3px 8px;border-radius:4px;border:1px solid var(--leaf-line);
+}
+
+.path-num{
+  font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--excel-mid);
+  font-weight:500;letter-spacing:.04em;margin-bottom:8px;
+}
+.path-card h3{
+  font-family:'Fraunces',serif;font-size:26px;font-weight:700;letter-spacing:-.025em;
+  margin-bottom:8px;line-height:1.1;color:var(--ink);
+}
+.path-card p{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:20px;flex:1}
+
+.path-feats{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.path-feat{font-size:13px;color:var(--ink-soft);display:flex;align-items:flex-start;gap:8px;line-height:1.45}
+.path-feat::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--excel-mid);margin-top:8px;flex-shrink:0;
+}
+
+.path-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:700;color:var(--excel-darkest);
+  border-bottom:1.5px solid var(--excel-mid);
+  padding-bottom:2px;width:fit-content;
+  transition:.2s;
+}
+.path-cta:hover{color:var(--excel-mid);gap:10px}
+
+/* ════════════ ECOSYSTEM MAP ════════════ */
+.eco-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:840px){.eco-grid{grid-template-columns:1fr}}
+
+.eco-card{
+  background:#fff;border:1px solid var(--rule);border-radius:14px;
+  padding:24px;transition:.25s;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:12px;
+}
+.eco-card:hover{border-color:var(--excel-mid);box-shadow:0 12px 32px -16px rgba(33,115,70,.25);transform:translateY(-2px)}
+.eco-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--excel-mid),var(--excel-glow));
+  opacity:0;transition:.25s;
+}
+.eco-card:hover::before{opacity:1}
+
+.eco-head{display:flex;align-items:center;gap:14px}
+.eco-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--mint);border:1px solid var(--leaf-line);
+  display:grid;place-items:center;color:var(--excel-dark);
+  font-size:19px;flex-shrink:0;
+}
+.eco-card h3{
+  font-family:'Fraunces',serif;font-size:21px;font-weight:700;
+  letter-spacing:-.02em;color:var(--ink);
+}
+.eco-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+.eco-card p{color:var(--muted);font-size:14px;line-height:1.55}
+
+.eco-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.eco-feat{font-size:11px;font-weight:600;color:var(--excel-dark);background:var(--mint-soft);border:1px solid var(--leaf);padding:3px 9px;border-radius:99px}
+
+.eco-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px dashed var(--rule)}
+.eco-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:700;color:var(--excel-mid);
+}
+.eco-link:hover{color:var(--excel-darkest)}
+.eco-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2)}
+
+/* ════════════ INTERACTIVE PLAY AREA ════════════ */
+.play{
+  background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  position:relative;
+}
+
+.play-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:start}
+@media(max-width:900px){.play-grid{grid-template-columns:1fr}}
+
+.play-tabs{display:flex;flex-direction:column;gap:6px}
+@media(max-width:900px){.play-tabs{flex-direction:row;flex-wrap:wrap}}
+.play-tab{
+  text-align:left;padding:14px 18px;border-radius:10px;
+  background:transparent;border:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:3px;
+  transition:.2s;
+}
+.play-tab:hover{border-color:var(--leaf-line);background:var(--mint-soft)}
+.play-tab.active{
+  background:var(--ink);color:var(--cream);border-color:var(--ink);
+  box-shadow:0 8px 20px -8px rgba(26,41,38,.4);
+}
+.play-tab .pt-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;opacity:.7}
+.play-tab .pt-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;letter-spacing:-.015em}
+.play-tab.active .pt-num{color:var(--excel-glow)}
+
+.play-panel{
+  background:var(--paper);border:1px solid var(--rule-strong);border-radius:16px;
+  padding:28px;min-height:440px;
+  box-shadow:var(--shadow);
+}
+
+/* Formula builder UI */
+.builder-input-row{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.builder-input-row label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.builder-input{
+  width:100%;padding:14px 16px;border-radius:10px;
+  border:1.5px solid var(--rule-strong);background:#fff;
+  font-size:14px;color:var(--ink);transition:.15s;
+  font-family:'Geist',sans-serif;
+}
+.builder-input:focus{outline:none;border-color:var(--excel-mid);box-shadow:0 0 0 4px rgba(33,115,70,.1)}
+
+.builder-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.b-btn{
+  padding:10px 16px;border-radius:8px;font-size:13px;font-weight:700;
+  background:var(--excel-darkest);color:#fff;transition:.15s;
+}
+.b-btn:hover{background:var(--excel-mid)}
+.b-btn-light{background:var(--mint);color:var(--excel-darkest);border:1px solid var(--leaf-line);font-size:12px;padding:8px 12px;font-weight:600}
+.b-btn-light:hover{background:var(--leaf)}
+
+.result-box{
+  background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px;
+  min-height:120px;
+}
+.result-box .res-formula{
+  font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;
+  color:var(--excel-darkest);background:var(--mint-soft);
+  padding:10px 14px;border-radius:8px;border:1px solid var(--leaf-line);
+  margin-bottom:12px;display:block;word-break:break-all;
+}
+.result-box .res-info{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.result-box .res-info code{background:var(--leaf);padding:1px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--excel-darkest)}
+.result-empty{color:var(--muted-2);font-size:14px;font-style:italic}
+
+/* Debug — before/after */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:520px){.ba-grid{grid-template-columns:1fr}}
+.ba-cell{border-radius:10px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+.ba-cell.before{background:#fdf3f0;border:1px solid rgba(168,66,31,.18);color:var(--rust)}
+.ba-cell.after{background:var(--mint-soft);border:1px solid var(--leaf-line);color:var(--excel-darkest)}
+.ba-label{font-family:'Geist',sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;opacity:.85}
+
+/* Skill demo */
+.skill-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:600px){.skill-demo{grid-template-columns:1fr}}
+.skill-demo-card{
+  background:#fff;border:1px solid var(--rule);border-radius:12px;
+  padding:14px;display:flex;flex-direction:column;gap:8px;cursor:pointer;
+  transition:.2s;position:relative;
+}
+.skill-demo-card.locked{opacity:.5;cursor:not-allowed}
+.skill-demo-card.unlocked:hover{border-color:var(--excel-mid);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.skill-demo-card.done{border-color:var(--excel-mid);background:var(--mint-soft)}
+.skill-demo-card.done::after{
+  content:'✓';position:absolute;top:8px;right:10px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--excel-mid);color:#fff;
+  display:grid;place-items:center;font-size:11px;font-weight:900;
+}
+.sd-status{
+  font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:4px;width:fit-content;
+}
+.sd-status.locked{background:rgba(168,66,31,.1);color:var(--rust)}
+.sd-status.unlocked{background:var(--mint);color:var(--excel-dark)}
+.sd-status.done{background:var(--excel-mid);color:#fff}
+.skill-demo-card h4{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--ink)}
+.skill-demo-card p{font-size:11.5px;color:var(--muted);line-height:1.45}
+.sd-xp{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--excel-mid);font-weight:700;margin-top:auto}
+
+/* Mini progress */
+.mini-prog{margin-top:18px;padding:14px;background:#fff;border:1px solid var(--rule);border-radius:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mp-text{flex:1;min-width:160px}
+.mp-text strong{display:block;font-size:13px;color:var(--ink);font-weight:700;margin-bottom:3px}
+.mp-text small{font-size:11px;color:var(--muted)}
+.mp-bar{width:100%;max-width:200px;height:6px;background:var(--rule);border-radius:99px;overflow:hidden;margin-top:6px}
+.mp-fill{height:100%;background:linear-gradient(90deg,var(--excel-mid),var(--excel-glow));border-radius:99px;transition:width .5s ease}
+.mp-xp{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:var(--excel-darkest)}
+
+/* Inbox demo */
+.inbox-demo{display:flex;flex-direction:column;gap:10px}
+.inbox-row{
+  background:#fff;border:1px solid var(--rule);border-radius:10px;
+  padding:14px 16px;display:flex;gap:12px;cursor:pointer;transition:.2s;
+}
+.inbox-row:hover{border-color:var(--excel-mid);background:var(--mint-soft)}
+.inbox-row.active{border-color:var(--excel-darkest);background:var(--mint-soft)}
+.inbox-dot{width:7px;height:7px;border-radius:50%;background:var(--excel-mid);margin-top:6px;flex-shrink:0}
+.inbox-content{flex:1}
+.inbox-from{font-size:11px;color:var(--muted);margin-bottom:3px;display:flex;gap:8px;align-items:center}
+.lv-chip{font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;letter-spacing:.05em}
+.lv-chip.b{background:var(--mint);color:var(--excel-dark)}
+.lv-chip.i{background:#fef3c7;color:var(--gold)}
+.lv-chip.a{background:#fee2e2;color:var(--rust)}
+.inbox-subj{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:2px;letter-spacing:-.005em}
+.inbox-snip{font-size:12.5px;color:var(--muted);line-height:1.4}
+
+/* ════════════ STATS / PROOF ════════════ */
+.proof-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:var(--ink);color:var(--cream);
+  border-radius:16px;overflow:hidden;
+}
+@media(max-width:760px){.proof-row{grid-template-columns:repeat(2,1fr)}}
+.proof-cell{
+  padding:32px 24px;border-right:1px solid rgba(250,247,239,.08);
+  display:flex;flex-direction:column;gap:6px;
+}
+.proof-cell:last-child{border-right:none}
+@media(max-width:760px){.proof-cell:nth-child(2){border-right:none}.proof-cell:nth-child(-n+2){border-bottom:1px solid rgba(250,247,239,.08)}}
+.proof-num{
+  font-family:'Fraunces',serif;font-size:46px;font-weight:700;
+  letter-spacing:-.04em;line-height:1;color:var(--excel-glow);
+  font-variation-settings:"opsz" 100;
+}
+.proof-lbl{font-size:12px;color:rgba(250,247,239,.7);letter-spacing:.05em;line-height:1.4;margin-top:8px}
+
+/* ════════════ COMPARISON / FEATURE GRID ════════════ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:840px){.feat-grid{grid-template-columns:1fr}}
+.feat-block{
+  background:#fff;border:1px solid var(--rule);border-radius:14px;
+  padding:28px 24px;
+}
+.feat-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:linear-gradient(135deg,var(--excel-darkest),var(--excel-mid));
+  display:grid;place-items:center;color:#fff;
+  margin-bottom:16px;font-size:19px;
+}
+.feat-block h3{font-family:'Fraunces',serif;font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink)}
+.feat-block p{font-size:14px;color:var(--muted);line-height:1.55}
+
+/* ════════════ CTA ════════════ */
+.final-cta{
+  background:var(--ink);color:var(--cream);
+  border-radius:24px;padding:60px 48px;
+  text-align:center;position:relative;overflow:hidden;
+  margin:0 24px;max-width:1232px;
+}
+@media(min-width:1280px){.final-cta{margin:0 auto}}
+.final-cta::before{
+  content:'';position:absolute;top:-50%;right:-20%;width:80%;height:200%;
+  background:radial-gradient(ellipse,rgba(95,200,138,.12),transparent 70%);
+  pointer-events:none;
+}
+.final-cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.final-cta h2{color:var(--cream);font-size:clamp(36px,5vw,56px);margin-bottom:18px}
+.final-cta h2 em{color:var(--excel-glow)}
+.final-cta p{font-size:17px;color:rgba(250,247,239,.75);margin-bottom:32px;line-height:1.5}
+.final-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn-cream{
+  background:var(--cream);color:var(--ink);
+  padding:14px 24px;border-radius:10px;
+  font-size:14.5px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:.2s;
+}
+.btn-cream:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 24px -8px rgba(0,0,0,.4)}
+.btn-outline{
+  background:transparent;color:var(--cream);
+  padding:13px 22px;border:1px solid rgba(250,247,239,.25);border-radius:10px;
+  font-size:14px;font-weight:600;transition:.2s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-outline:hover{border-color:var(--excel-glow);color:var(--excel-glow)}
+
+/* ════════════ FOOTER ════════════ */
+footer{
+  padding:48px 24px 32px;max-width:1280px;margin:0 auto;
+  border-top:1px solid var(--rule);margin-top:80px;
+}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+
+.foot-col h4{font-size:11px;font-weight:800;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{font-size:13.5px;color:var(--muted);transition:.15s}
+.foot-col a:hover{color:var(--excel-mid)}
+
+.foot-brand{font-family:'Fraunces',serif;font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.foot-tag{font-size:13px;color:var(--muted);max-width:280px;line-height:1.55;margin-bottom:14px}
+
+.foot-bottom{
+  padding-top:24px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:var(--muted-2);
+}
+.foot-bottom a:hover{color:var(--excel-mid)}
+
+/* Toast */
+.toast-wrap{position:fixed;right:18px;bottom:18px;z-index:80;display:flex;flex-direction:column;gap:8px}
+.toast{
+  background:var(--ink);color:var(--cream);
+  padding:11px 16px;border-radius:10px;
+  font-size:13px;font-weight:600;
+  box-shadow:var(--shadow-lg);
+  border:1px solid rgba(250,247,239,.1);
+  animation:slideIn .25s cubic-bezier(.2,.9,.4,1);
+  display:flex;align-items:center;gap:8px;
+}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.toast.ok{border-color:rgba(95,200,138,.3)}
+.toast.ok::before{content:'✓';color:var(--excel-glow);font-weight:800}
+
+/* Hidden by default */
+[data-tab-content]{display:none}
+[data-tab-content].active{display:block}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.9,.4,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ RIBBON ═══════════════════════════ -->
+<header class="ribbon">
+  <div class="ribbon-row">
+    <a href="#" class="brand">
+      <div class="brand-mark">EQ</div>
+      <div class="brand-text">
+        <strong>Excel Quest</strong>
+        <small>Final Edition</small>
+      </div>
+    </a>
+    <nav class="ribbon-nav">
+      <a class="r-link" href="#paths">Trasee</a>
+      <a class="r-link" href="#ecosystem">Ecosistem</a>
+      <a class="r-link" href="#play">Demo</a>
+      <a class="r-link" href="#features">Funcții</a>
+      <span class="r-divider"></span>
+      <a class="r-link" href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="r-cta" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html">Începe →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> v3 · Final · ecosistem complet</div>
+      <h1 class="title">
+        Învață Excel<br>
+        ca un <em>joc</em>.<br>
+        Aplică-l ca un <span class="quest">profesionist</span>.
+      </h1>
+      <p class="lede">
+        Patru pagini, un singur drum. <b>Onboarding tutorial</b> pentru începători, <b>skill tree gamificat</b> pentru ritm, <b>simulator real</b> pentru practică, <b>add-in integrat</b> pentru direct în Excel. Românește, de la zero la dashboard executiv.
+      </p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html">
+          Începe tutorialul
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn-ghost" href="#play">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 4.5v5l4-2.5-4-2.5z" fill="currentColor"/></svg>
+          Vezi demo live
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-num">4</span>
+          <span class="meta-lbl">Pagini conectate</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">12</span>
+          <span class="meta-lbl">Skill-uri Excel</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">100%</span>
+          <span class="meta-lbl">Limbă română</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">0€</span>
+          <span class="meta-lbl">Open source</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="excel-card">
+      <div class="excel-card-bar">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1h6l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/></svg>
+        <span class="file">Excel_Quest_demo.xlsx</span>
+        <span class="live">LIVE</span>
+      </div>
+      <div class="excel-card-toolbar">
+        <code>C2</code>
+        <span class="fx">fx</span>
+        <span style="opacity:.7">selectat</span>
+      </div>
+      <div class="formula-bar">=SUM(B2:B5)<span class="cursor-blink"></span></div>
+      <div class="sheet-grid">
+        <div class="sg-cell sg-h"></div>
+        <div class="sg-cell sg-h">A</div>
+        <div class="sg-cell sg-h">B</div>
+        <div class="sg-cell sg-h">C</div>
+        <div class="sg-cell sg-h">D</div>
+
+        <div class="sg-cell sg-row-h">1</div>
+        <div class="sg-cell" style="font-weight:700">Produs</div>
+        <div class="sg-cell" style="font-weight:700">Vânzări</div>
+        <div class="sg-cell" style="font-weight:700">Total</div>
+        <div class="sg-cell" style="font-weight:700">Status</div>
+
+        <div class="sg-cell sg-row-h">2</div>
+        <div class="sg-cell">Mere</div>
+        <div class="sg-cell">1.200</div>
+        <div class="sg-cell formula-cell highlight">=SUM(B2:B5)</div>
+        <div class="sg-cell">Profit</div>
+
+        <div class="sg-cell sg-row-h">3</div>
+        <div class="sg-cell">Pere</div>
+        <div class="sg-cell">850</div>
+        <div class="sg-cell"></div>
+        <div class="sg-cell"></div>
+
+        <div class="sg-cell sg-row-h">4</div>
+        <div class="sg-cell">Prune</div>
+        <div class="sg-cell">640</div>
+        <div class="sg-cell"></div>
+        <div class="sg-cell"></div>
+
+        <div class="sg-cell sg-row-h">5</div>
+        <div class="sg-cell">Caise</div>
+        <div class="sg-cell">320</div>
+        <div class="sg-cell"></div>
+        <div class="sg-cell"></div>
+      </div>
+
+      <div class="excel-floating-badge">
+        <span class="num">+1</span>
+        Skill deblocat
+      </div>
+      <div class="excel-floating-xp"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ JOURNEY / 3 PATHS ═══════════════════════════ -->
+<section class="section journey" id="paths">
+  <div class="section-head reveal">
+    <span class="section-tag">01 / Ecosistem</span>
+    <h2>Trei <em>trasee</em>, un singur ritm.</h2>
+    <p class="section-lede">Începe acolo unde ești. Treci prin tutorial, intră în quest gamificat, sau sari direct în add-in dacă ești deja confortabil cu Excel.</p>
+  </div>
+
+  <div class="path-grid reveal">
+    <a class="path-card" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html">
+      <div class="path-num">Traseu 01 · ușor</div>
+      <h3>Pornire de la zero</h3>
+      <p>Tutorial onboarding cu pași clari. Fără intimidări. Înveți cu exemple concrete.</p>
+      <div class="path-feats">
+        <div class="path-feat">Tutorial 6 pași cu video-style demo</div>
+        <div class="path-feat">Glossary termeni · ghiduri PDF</div>
+        <div class="path-feat">Pentru începători absoluți</div>
+      </div>
+      <span class="path-cta">Pagină Enhanced Main →</span>
+    </a>
+
+    <a class="path-card featured" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">
+      <div class="path-num">Traseu 02 · gamificat</div>
+      <h3>Quest cu skill tree</h3>
+      <p>12 skill-uri progresive, bosses, badges, simulator real. Dependență sănătoasă de progres.</p>
+      <div class="path-feats">
+        <div class="path-feat">Skill tree blocat la start, deblocare în lanț</div>
+        <div class="path-feat">Inbox cu misiuni reale · simulator pe nivel</div>
+        <div class="path-feat">Boss battles · weekly challenge</div>
+      </div>
+      <span class="path-cta">Pagină Pro v2 →</span>
+    </a>
+
+    <a class="path-card" href="https://laurandreea10.github.io/Excel-Quest/">
+      <div class="path-num">Traseu 03 · clasic</div>
+      <h3>Versiunea originală</h3>
+      <p>Prima iterație Excel Quest. Punct de pornire pentru cine preferă o abordare directă.</p>
+      <div class="path-feats">
+        <div class="path-feat">Skill tree simplu · add-in mock</div>
+        <div class="path-feat">Stack-ul de plecare al proiectului</div>
+        <div class="path-feat">Reference pentru istoric</div>
+      </div>
+      <span class="path-cta">Pagină Main →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ECOSYSTEM MAP ═══════════════════════════ -->
+<section class="section" id="ecosystem">
+  <div class="section-head reveal">
+    <span class="section-tag">02 / Hartă</span>
+    <h2>Toate paginile, <em>conectate</em>.</h2>
+    <p class="section-lede">Patru fișiere HTML separate, dar gândite ca un singur sistem. Fiecare pagină are un rol clar și se leagă natural de următoarea.</p>
+  </div>
+
+  <div class="eco-grid reveal">
+    <div class="eco-card">
+      <div class="eco-head">
+        <div class="eco-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h11A1.5 1.5 0 0 1 17 4.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 15.5v-11z" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h14M8 3v14" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <h3>Main V2</h3>
+          <span class="eco-tag">index.html · clasic</span>
+        </div>
+      </div>
+      <p>Versiunea originală a proiectului. Skill tree linear, simulator simplu, mockup add-in. Punctul de plecare istoric al întregului ecosistem.</p>
+      <div class="eco-features">
+        <span class="eco-feat">12 skill-uri</span>
+        <span class="eco-feat">Add-in mock</span>
+        <span class="eco-feat">Single-file HTML</span>
+      </div>
+      <div class="eco-foot">
+        <a class="eco-link" href="https://laurandreea10.github.io/Excel-Quest/" target="_blank" rel="noopener">Deschide pagina ↗</a>
+        <span class="eco-meta">/Excel-Quest/</span>
+      </div>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-head">
+        <div class="eco-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v4M10 14v4M2 10h4M14 10h4M5 5l2 2M13 13l2 2M5 15l2-2M13 7l2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <h3>Enhanced Main</h3>
+          <span class="eco-tag">enhanced-main.html · onboarding</span>
+        </div>
+      </div>
+      <p>Pagina de tutorial. Onboarding pas-cu-pas pentru cine pornește de la zero. Glossary, exemple, ghiduri descărcabile, dificultate progresivă.</p>
+      <div class="eco-features">
+        <span class="eco-feat">Tutorial 6 pași</span>
+        <span class="eco-feat">Glossary RO</span>
+        <span class="eco-feat">PDF download</span>
+      </div>
+      <div class="eco-foot">
+        <a class="eco-link" href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener">Deschide pagina ↗</a>
+        <span class="eco-meta">/enhanced-main.html</span>
+      </div>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-head">
+        <div class="eco-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v8l7 4 7-4V6l-7-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 10l7-4M10 10v8M10 10L3 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>Enhanced Pro v2</h3>
+          <span class="eco-tag">enhanced-pro-v2.html · gamificat</span>
+        </div>
+      </div>
+      <p>Inima ecosistemului. Skill tree cu deblocare progresivă, inbox cu misiuni, simulator nivelat, bosses, weekly challenge, portfolio public.</p>
+      <div class="eco-features">
+        <span class="eco-feat">Skill tree</span>
+        <span class="eco-feat">Bosses</span>
+        <span class="eco-feat">Inbox + Simulator</span>
+        <span class="eco-feat">Portfolio</span>
+      </div>
+      <div class="eco-foot">
+        <a class="eco-link" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener">Deschide pagina ↗</a>
+        <span class="eco-meta">/enhanced-pro-v2.html</span>
+      </div>
+    </div>
+
+    <div class="eco-card">
+      <div class="eco-head">
+        <div class="eco-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="3" width="15" height="14" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 7h15M12 7v10" stroke="currentColor" stroke-width="1.5"/><path d="M14 11l1 1 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>Add-in Pane</h3>
+          <span class="eco-tag">enhanced-pro-v2.html#addin · integrat</span>
+        </div>
+      </div>
+      <p>Task pane funcțional ce simulează experiența unui add-in real Excel. 5 exerciții live cu verificare formula, debugger și hint-uri progresive.</p>
+      <div class="eco-features">
+        <span class="eco-feat">5 exerciții live</span>
+        <span class="eco-feat">Debugger</span>
+        <span class="eco-feat">localStorage XP</span>
+      </div>
+      <div class="eco-foot">
+        <a class="eco-link" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html#addin" target="_blank" rel="noopener">Deschide add-in ↗</a>
+        <span class="eco-meta">#addin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ INTERACTIVE PLAY ═══════════════════════════ -->
+<section class="section play" id="play">
+  <div class="section-head reveal">
+    <span class="section-tag">03 / Demo</span>
+    <h2>Probează aici. <em>Nu doar citi.</em></h2>
+    <p class="section-lede">Mostre live din ecosistem, integrate direct pe această pagină. Click pe un panou și interacționează — dacă-ți place, deschizi versiunea completă.</p>
+  </div>
+
+  <div class="play-grid reveal">
+    <div class="play-tabs">
+      <button class="play-tab active" data-tab="skills">
+        <span class="pt-num">— 01</span>
+        <span class="pt-name">Skill Tree</span>
+      </button>
+      <button class="play-tab" data-tab="builder">
+        <span class="pt-num">— 02</span>
+        <span class="pt-name">Formula Builder</span>
+      </button>
+      <button class="play-tab" data-tab="debug">
+        <span class="pt-num">— 03</span>
+        <span class="pt-name">Debugger</span>
+      </button>
+      <button class="play-tab" data-tab="inbox">
+        <span class="pt-num">— 04</span>
+        <span class="pt-name">Inbox</span>
+      </button>
+    </div>
+
+    <div class="play-panel">
+      <!-- SKILLS DEMO -->
+      <div data-tab-content="skills" class="active">
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px">Începe Beginner</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:18px">Click pe un skill deblocat pentru a-l completa. Fiecare skill îl deblochează pe următorul.</p>
+        <div class="skill-demo" id="skillDemo">
+          <!-- injected via JS -->
+        </div>
+        <div class="mini-prog">
+          <div class="mp-text">
+            <strong id="mpText">Apasă "Formula Basics" pentru a începe</strong>
+            <small id="mpSub">Primul skill se deblochează automat</small>
+            <div class="mp-bar"><div class="mp-fill" id="mpFill" style="width:0%"></div></div>
+          </div>
+          <span class="mp-xp" id="mpXp">0 XP</span>
+        </div>
+      </div>
+
+      <!-- FORMULA BUILDER -->
+      <div data-tab-content="builder">
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px">Spune ce vrei să faci</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:18px">Descrie problema în limbaj natural. Generăm formula potrivită.</p>
+        <div class="builder-input-row">
+          <label>Ce calcul vrei?</label>
+          <input class="builder-input" id="bInp" placeholder="Ex: suma vânzărilor pe regiunea Nord">
+        </div>
+        <div class="builder-actions">
+          <button class="b-btn" onclick="buildFormula()">✦ Generează</button>
+          <button class="b-btn-light" onclick="setBuilder('suma vânzărilor pe regiunea Nord')">Demo: SUMIF</button>
+          <button class="b-btn-light" onclick="setBuilder('caută prețul produsului din E1')">Demo: XLOOKUP</button>
+          <button class="b-btn-light" onclick="setBuilder('numără celulele cu Nord')">Demo: COUNTIF</button>
+        </div>
+        <div class="result-box" id="bRes">
+          <span class="result-empty">Aici apare formula generată cu explicație și exemplu.</span>
+        </div>
+      </div>
+
+      <!-- DEBUGGER -->
+      <div data-tab-content="debug">
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px">Paste formula stricată</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:18px">Identificăm eroarea, sugerăm fix-ul, arătăm before/after.</p>
+        <div class="builder-input-row">
+          <label>Formula cu eroare</label>
+          <input class="builder-input" id="dInp" placeholder="=VLOOKUP(A2,B:D,4,0)" style="font-family:'JetBrains Mono',monospace;color:var(--rust)">
+        </div>
+        <div class="builder-actions">
+          <button class="b-btn" onclick="debugFormula()">🔍 Analizează</button>
+          <button class="b-btn-light" onclick="setDebug('=VLOOKUP(A2,B:D,4,0)')">VLOOKUP cu TRUE</button>
+          <button class="b-btn-light" onclick="setDebug('=SUM(A1:A10')">Paranteze rotunjite</button>
+          <button class="b-btn-light" onclick="setDebug('=IF(A1>0,OK)')">Text fără ""</button>
+        </div>
+        <div class="result-box" id="dRes">
+          <span class="result-empty">Introdu o formulă pentru a o analiza.</span>
+        </div>
+      </div>
+
+      <!-- INBOX -->
+      <div data-tab-content="inbox">
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px">Misiuni reale, ca la birou</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:18px">Cereri pe ton de business. Fiecare email = misiune cu pași clari.</p>
+        <div class="inbox-demo">
+          <div class="inbox-row" onclick="this.classList.toggle('active');toast('Email deschis în Pro v2')">
+            <div class="inbox-dot"></div>
+            <div class="inbox-content">
+              <div class="inbox-from">
+                Manager · Roxana D.
+                <span class="lv-chip b">Beginner</span>
+              </div>
+              <div class="inbox-subj">Raport vânzări pe regiuni</div>
+              <div class="inbox-snip">Salut, am nevoie urgent de totalul vânzărilor grupat pe regiuni pentru Q1...</div>
+            </div>
+          </div>
+          <div class="inbox-row" onclick="this.classList.toggle('active');toast('Email deschis în Pro v2')">
+            <div class="inbox-dot"></div>
+            <div class="inbox-content">
+              <div class="inbox-from">
+                HR · Andreea M.
+                <span class="lv-chip i">Intermediate</span>
+              </div>
+              <div class="inbox-subj">Absențe &gt; 3 zile</div>
+              <div class="inbox-snip">Am nevoie de lista angajaților cu mai mult de 3 absențe luna aceasta...</div>
+            </div>
+          </div>
+          <div class="inbox-row" onclick="this.classList.toggle('active');toast('Email deschis în Pro v2')">
+            <div class="inbox-dot"></div>
+            <div class="inbox-content">
+              <div class="inbox-from">
+                CEO · Dan P.
+                <span class="lv-chip a">Advanced</span>
+              </div>
+              <div class="inbox-subj">Dashboard executiv Q1</div>
+              <div class="inbox-snip">Dashboard complet pentru board meeting vineri: KPI-uri, grafice, regiuni, top produse.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;text-align:center">
+          <a href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html#inbox" class="b-btn-light" style="display:inline-flex;text-decoration:none">Vezi toate misiunile în Pro v2 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+<section class="section">
+  <div class="proof-row reveal">
+    <div class="proof-cell">
+      <span class="proof-num">12</span>
+      <span class="proof-lbl">Skill-uri Excel acoperite, de la SUM la Power Query</span>
+    </div>
+    <div class="proof-cell">
+      <span class="proof-num">6</span>
+      <span class="proof-lbl">Boss battles cu badge unic la fiecare victorie</span>
+    </div>
+    <div class="proof-cell">
+      <span class="proof-num">4</span>
+      <span class="proof-lbl">Pagini conectate într-un singur ecosistem</span>
+    </div>
+    <div class="proof-cell">
+      <span class="proof-num">100%</span>
+      <span class="proof-lbl">Funcțional în limba română, fără engleză tehnică</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FEATURES ═══════════════════════════ -->
+<section class="section" id="features">
+  <div class="section-head reveal">
+    <span class="section-tag">04 / Funcții</span>
+    <h2>Ce face Excel Quest <em>diferit</em>.</h2>
+    <p class="section-lede">Nu-i un curs filmat. Nu-i o listă de exerciții. E un produs gândit ca un joc, cu progres real și aplicare imediată.</p>
+  </div>
+
+  <div class="feat-grid reveal">
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v3M10 15v3M2 10h3M15 10h3M4 4l2 2M14 14l2 2M4 16l2-2M14 6l2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <h3>Skill tree progresiv</h3>
+      <p>12 skill-uri organizate în 3 niveluri. Toate blocate la start. Primul se deblochează singur, apoi în lanț. Nu sari peste fundamente.</p>
+    </div>
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H7l-4 3V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Inbox cu misiuni reale</h3>
+      <p>Email-uri pe ton de business de la Manager, HR, CEO. Fiecare misiune are pași bifabili și se finalizează cu publicarea în portofoliu public.</p>
+    </div>
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/><path d="m17 17-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Formula Builder &amp; Debugger</h3>
+      <p>Descrie ce vrei, primești formula. Paste o formulă stricată, primești fix cu before/after. Nu memorezi sintaxă, înveți modele.</p>
+    </div>
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6l7 4 7-4-7-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 10l7 4 7-4M3 14l7 4 7-4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Boss battles &amp; badges</h3>
+      <p>2 bosses pe nivel, deblocați după ce termini skill-urile. XP mare la victorie, badge unic pe permanență, dovadă de progres pe profilul tău.</p>
+    </div>
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 11l2 2 4-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Simulator pe nivel</h3>
+      <p>Fișier haotic, checklist de reparare, feedback instant. De la "Buget_Personal_FINAL_corect_v3" la "Finance_Monthly_FINAL_V12".</p>
+    </div>
+    <div class="feat-block">
+      <div class="feat-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 3h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/><path d="M5 8h10M9 8v9" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <h3>Add-in task pane integrat</h3>
+      <p>Simulare fidelă a panoului lateral Excel. 5 exerciții cu verificare live, debugger funcțional, progres salvat în localStorage. Plan: Office Store.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
+<section class="section" style="padding-top:40px">
+  <div class="final-cta reveal">
+    <div class="final-cta-inner">
+      <h2>Excel <em>nu se învață citind</em>.</h2>
+      <p>Se învață făcând. Și e mai ușor când fiecare formulă deblochează ceva — un boss, un badge, un proiect în portofoliu, o linie pe CV.</p>
+      <div class="final-actions">
+        <a class="btn-cream" href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html">
+          Începe quest-ul →
+        </a>
+        <a class="btn-outline" href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" rel="noopener">
+          Vezi pe GitHub ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">Excel Quest</div>
+      <p class="foot-tag">Învață Excel ca un joc, aplică-l ca un profesionist. Open source, în limba română, gratuit pentru totdeauna.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Trasee</h4>
+      <ul>
+        <li><a href="https://laurandreea10.github.io/Excel-Quest/" target="_blank" rel="noopener">Main V2</a></li>
+        <li><a href="https://laurandreea10.github.io/Excel-Quest/enhanced-main.html" target="_blank" rel="noopener">Enhanced Main</a></li>
+        <li><a href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html" target="_blank" rel="noopener">Enhanced Pro v2</a></li>
+        <li><a href="https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html#addin" target="_blank" rel="noopener">Add-in</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Resurse</h4>
+      <ul>
+        <li><a href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" rel="noopener">Repository GitHub ↗</a></li>
+        <li><a href="https://github.com/LaurAndreea10" target="_blank" rel="noopener">Profil dev ↗</a></li>
+        <li><a href="#paths">Compară traseele</a></li>
+        <li><a href="#features">Lista de funcții</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Stack</h4>
+      <ul>
+        <li>HTML/CSS/JS pur</li>
+        <li>Single-file pages</li>
+        <li>localStorage progres</li>
+        <li>Zero dependențe</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 · Laura Andreea · construit cu ❤ și mult Ctrl+Shift+L</span>
+    <span><a href="https://github.com/LaurAndreea10/Excel-Quest" target="_blank" rel="noopener">github.com/LaurAndreea10/Excel-Quest</a></span>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+'use strict';
+
+/* ═══════════════════════ TOAST ═══════════════════════ */
+function toast(msg,type='ok'){
+  const wrap=document.getElementById('toastWrap');
+  const el=document.createElement('div');
+  el.className='toast '+type;
+  el.textContent=msg;
+  wrap.appendChild(el);
+  setTimeout(()=>{el.style.opacity='0';el.style.transform='translateX(20px)';el.style.transition='all .2s';setTimeout(()=>el.remove(),200);},2400);
+}
+
+/* ═══════════════════════ TABS ═══════════════════════ */
+document.querySelectorAll('.play-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.play-tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('[data-tab-content]').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector(`[data-tab-content="${t.dataset.tab}"]`).classList.add('active');
+  });
+});
+
+/* ═══════════════════════ SKILL DEMO ═══════════════════════ */
+const SKILLS_DEMO=[
+  {id:'s1',title:'Formula Basics',desc:'SUM, AVERAGE, COUNT — fundamentele',xp:20,prev:null},
+  {id:'s2',title:'IF Logic',desc:'Condiții simple și imbricate',xp:25,prev:'s1'},
+  {id:'s3',title:'VLOOKUP',desc:'Căutare verticală cu IFERROR',xp:30,prev:'s2'},
+];
+const ST={skills:JSON.parse(localStorage.getItem('eq-final-skills')||'[]')};
+
+function renderSkills(){
+  const wrap=document.getElementById('skillDemo');
+  wrap.innerHTML=SKILLS_DEMO.map(s=>{
+    const isDone=ST.skills.includes(s.id);
+    const prevDone=!s.prev||ST.skills.includes(s.prev);
+    const isLocked=!isDone&&!prevDone;
+    const status=isDone?'done':isLocked?'locked':'unlocked';
+    const statusText=isDone?'✓ Completat':isLocked?'🔒 Blocat':'▶ Disponibil';
+    return `<div class="skill-demo-card ${status}" onclick="${isLocked?`toast('Finalizează skill-ul anterior')`:isDone?`toast('Deja completat')`:`completeSkill('${s.id}')`}">
+      <span class="sd-status ${status}">${statusText}</span>
+      <h4>${s.title}</h4>
+      <p>${s.desc}</p>
+      <span class="sd-xp">+${s.xp} XP</span>
+    </div>`;
+  }).join('');
+  updateMP();
+}
+function completeSkill(id){
+  const s=SKILLS_DEMO.find(x=>x.id===id);
+  if(!s||ST.skills.includes(id))return;
+  ST.skills.push(id);
+  localStorage.setItem('eq-final-skills',JSON.stringify(ST.skills));
+  toast(`+${s.xp} XP — ${s.title}`);
+  renderSkills();
+}
+function updateMP(){
+  const total=SKILLS_DEMO.reduce((a,s)=>a+s.xp,0);
+  const earned=SKILLS_DEMO.filter(s=>ST.skills.includes(s.id)).reduce((a,s)=>a+s.xp,0);
+  const pct=Math.round(earned/total*100);
+  document.getElementById('mpFill').style.width=pct+'%';
+  document.getElementById('mpXp').textContent=earned+' XP';
+  const t=document.getElementById('mpText'),sub=document.getElementById('mpSub');
+  if(ST.skills.length===0){t.textContent='Apasă "Formula Basics" pentru a începe';sub.textContent='Primul skill se deblochează automat';}
+  else if(ST.skills.length<SKILLS_DEMO.length){
+    const next=SKILLS_DEMO.find(s=>!ST.skills.includes(s.id));
+    t.textContent=`Următor: ${next.title}`;sub.textContent=`Mai ai ${SKILLS_DEMO.length-ST.skills.length} skill${SKILLS_DEMO.length-ST.skills.length>1?'-uri':''}`;
+  } else {
+    t.textContent='🎉 Toate skill-urile demo completate!';sub.textContent='Continuă în Pro v2 cu toate cele 12';
+  }
+}
+renderSkills();
+
+/* ═══════════════════════ FORMULA BUILDER ═══════════════════════ */
+const KB=[
+  {k:['suma','sumif','total','regiune'],f:'=SUMIF(A:A,"criteriu",B:B)',ex:'=SUMIF(A:A,"Nord",B:B)',info:'SUMIF adună valorile din B pentru rândurile unde A îndeplinește criteriul.'},
+  {k:['suma multiple','sumifs'],f:'=SUMIFS(C:C,A:A,"crit1",B:B,"crit2")',ex:'=SUMIFS(D:D,A:A,"Nord",B:B,"Mere")',info:'SUMIFS adună cu condiții multiple. Coloana de sumat vine PRIMA.'},
+  {k:['caută','prețul','cod','xlookup','lookup'],f:'=XLOOKUP(E1,A:A,C:C,"Nu există")',ex:'=XLOOKUP(E1,Produse[Cod],Produse[Pret],"—")',info:'XLOOKUP caută în A și returnează valoarea din C. Mai bun decât VLOOKUP.'},
+  {k:['dacă','if','condiție'],f:'=IF(B2>0,"Profit","Pierdere")',ex:'=IF(AND(B2>=5,C2<>"Absent"),"Promovat","Respins")',info:'IF(condiție, adevărat, fals). Ghilimelele obligatorii pentru text.'},
+  {k:['numără','count','countif'],f:'=COUNTIF(A:A,"criteriu")',ex:'=COUNTIF(A:A,"Nord")',info:'COUNTIF numără celulele care îndeplinesc condiția.'},
+];
+function setBuilder(v){document.getElementById('bInp').value=v;buildFormula();}
+function buildFormula(){
+  const text=document.getElementById('bInp').value.toLowerCase();
+  const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const qn=norm(text);
+  let best=null,bestScore=0;
+  for(const t of KB){let score=0;for(const k of t.k)if(qn.includes(norm(k)))score+=4;if(score>bestScore){bestScore=score;best=t;}}
+  const r=document.getElementById('bRes');
+  if(best){
+    r.innerHTML=`<span class="res-formula">${best.f}</span><div class="res-info"><strong>Exemplu:</strong> <code>${best.ex}</code><br><br>${best.info}</div>`;
+  } else {
+    r.innerHTML='<span class="result-empty">Nu am găsit un template potrivit. Încearcă: sumă, caută, dacă, numără, total.</span>';
+  }
+}
+
+/* ═══════════════════════ DEBUGGER ═══════════════════════ */
+const RULES=[
+  {test:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o!==c;},msg:'Paranteze nepereche',fix:f=>{let o=0,c=0;for(const ch of f){if(ch==='(')o++;if(ch===')')c++;}return o>c?f+')'.repeat(o-c):f;},explain:'Fiecare ( trebuie să aibă un ) corespunzător.'},
+  {test:f=>!/^=/.test(f.trim()),msg:'Formula nu începe cu =',fix:f=>'='+f.trim(),explain:'Fără = Excel tratează conținutul ca text simplu.'},
+  {test:f=>/SUUM|AVRAGE|VLOKUP/i.test(f),msg:'Funcție scrisă greșit',fix:f=>f.replace(/SUUM/gi,'SUM').replace(/AVRAGE/gi,'AVERAGE').replace(/VLOKUP/gi,'VLOOKUP'),explain:'Excel nu recunoaște typo-uri în nume de funcții.'},
+  {test:f=>/VLOOKUP.*,\s*TRUE\s*\)/i.test(f),msg:'VLOOKUP cu TRUE (aproximativ)',fix:f=>f.replace(/,\s*TRUE\s*\)/i,',0)'),explain:'TRUE face potrivire aproximativă. Pentru exactă folosește 0 (FALSE).'},
+  {test:f=>/IF\s*\([^,]+,\s*[A-Za-z][A-Za-z0-9]*\s*\)/i.test(f)&&!f.includes('"'),msg:'Text în IF fără ghilimele',fix:f=>f.replace(/,\s*([A-Za-z][A-Za-z0-9]*)\s*\)/,',"$1")'),explain:'Textul în formule trebuie să fie între ghilimele duble.'},
+];
+function setDebug(v){document.getElementById('dInp').value=v;debugFormula();}
+function debugFormula(){
+  const f=document.getElementById('dInp').value.trim();
+  const r=document.getElementById('dRes');
+  if(!f){r.innerHTML='<span class="result-empty">Introdu o formulă.</span>';return;}
+  for(const rule of RULES){
+    if(rule.test(f)){
+      const fix=rule.fix?rule.fix(f):null;
+      r.innerHTML=`<div style="font-size:13.5px;color:var(--rust);font-weight:700;margin-bottom:6px">✗ ${rule.msg}</div><div class="res-info" style="margin-bottom:12px">${rule.explain}</div>${fix?`<div class="ba-grid"><div class="ba-cell before"><div class="ba-label">Înainte</div>${f}</div><div class="ba-cell after"><div class="ba-label">Fix sugerat</div>${fix}</div></div>`:''}`;
+      return;
+    }
+  }
+  r.innerHTML='<div style="font-size:13.5px;color:var(--excel-darkest);font-weight:700;margin-bottom:6px">✓ Formula pare validă sintactic</div><div class="res-info">Dacă tot nu merge, verifică tipurile de date cu <code>=ISNUMBER(A1)</code> sau referințele cu F9.</div>';
+}
+
+/* ═══════════════════════ REVEAL ON SCROLL ═══════════════════════ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
