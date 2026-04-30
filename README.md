@@ -11,6 +11,18 @@ Aplicație web educațională pentru utilizatorii care vor să învețe Microsof
 - **Enhanced Pro v2**: `https://laurandreea10.github.io/Excel-Quest/enhanced-pro-v2.html`
 - **Excel Quest Hub**: `https://laurandreea10.github.io/Excel-Quest/excel-quest-hub.html`
 
+## English translation & accessibility
+
+The final **Excel Quest Hub** includes:
+
+- **Romanian / English support** for key labels, CTA buttons, and main Hub sections
+- **Accessibility improvements** for people with disabilities, including:
+  - skip link for faster keyboard navigation
+  - clearer focus flow for interactive areas
+  - readable spacing and strong visual hierarchy
+  - text feedback in addition to color-based states
+  - a dedicated accessibility section inside the Hub
+
 ## Funcționalități
 
 - **Lecții interactive** — de la celule de bază la macro-uri și Power Query
@@ -64,6 +76,8 @@ Excel-Quest/
 - [ ] Enhanced Main se încarcă corect
 - [ ] Enhanced Pro v2 se încarcă corect
 - [ ] Excel Quest Hub se încarcă corect
+- [ ] Toggle RO / EN funcționează în Hub
+- [ ] Skip link și navigarea cu tastatura funcționează în Hub
 - [ ] Lighthouse score 90+ la SEO și Accessibility
 
 ## Tech stack
