@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excel Quest · Hub v5 — continuă de unde ai rămas</title>
+<title>Excel Quest · Hub — continuă de unde ai rămas</title>
 <meta name="description" content="Hub Excel Quest conectat la progresul real din Pro v2: XP, skill-uri, badges, demo de 60 secunde, changelog public și trasee clare.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +234,7 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
   <div class="ribbon-row">
     <a href="#" class="brand">
       <div class="brand-mark">EQ</div>
-      <div class="brand-text"><strong>Excel Quest</strong><small>Hub v5</small></div>
+      <div class="brand-text"><strong>Excel Quest</strong><small>Hub</small></div>
     </a>
     <nav class="ribbon-nav">
       <a class="r-link" href="#skill-tree">Skill Tree</a>
@@ -913,7 +913,7 @@ footer{padding:48px 24px 32px;max-width:1280px;margin:0 auto;border-top:1px soli
   </div>
   <div class="foot-bottom">
     <span>© 2026 · Laura Andreea · Excel Quest</span>
-    <span>Hub v5 · orientare + resume dashboard</span>
+    <span>Hub · orientare + resume dashboard</span>
   </div>
 </footer>
 
